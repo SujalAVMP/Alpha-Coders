@@ -4214,3 +4214,32 @@ Permission check for test access: {
   isInvited: true
 }
 Access granted to test 1744649851558 for user s@gmail.com
+Execute code request: {
+  language: 'python',
+  input: '[[1,4,5],[1,3,4],[2,6]]',
+  assessmentId: 'assessment_1'
+}
+Executing Python code with Docker
+Error executing Python code: {
+  error: Error: Command failed: cat /tmp/run_13edf58b-1226-48d9-8436-415ea2364fb7.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_13edf58b-1226-48d9-8436-415ea2364fb7       -i python:3.9-slim       bash
+  Traceback (most recent call last):
+    File "/tmp/solution.py", line 7, in <module>
+      target = int(input().strip())
+  EOFError: EOF when reading a line
+  
+      at genericNodeError (node:internal/errors:983:15)
+      at wrappedFn (node:internal/errors:537:14)
+      at ChildProcess.exithandler (node:child_process:414:12)
+      at ChildProcess.emit (node:events:518:28)
+      at maybeClose (node:internal/child_process:1101:16)
+      at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+    code: 1,
+    killed: false,
+    signal: null,
+    cmd: 'cat /tmp/run_13edf58b-1226-48d9-8436-415ea2364fb7.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_13edf58b-1226-48d9-8436-415ea2364fb7       -i python:3.9-slim       bash'
+  },
+  stderr: 'Traceback (most recent call last):\n' +
+    '  File "/tmp/solution.py", line 7, in <module>\n' +
+    '    target = int(input().strip())\n' +
+    'EOFError: EOF when reading a line\n'
+}
