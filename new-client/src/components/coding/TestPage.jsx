@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
-import { getTestById, executeCode, runTestCases, submitCode } from '../../utils/api';
+import { getTestById, executeCode, runTestCases, submitCode, submitAssessment, fetchAPI } from '../../utils/api';
 import Editor from '@monaco-editor/react';
+import './TestPage.css';
 import {
   Box,
   Container,
@@ -11,7 +12,6 @@ import {
   Button,
   Tabs,
   Tab,
-  Divider,
   CircularProgress,
   Alert,
   FormControl,
@@ -35,6 +35,13 @@ const getMonacoLanguage = (language) => {
 const TestPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const editorRef = useRef(null);
+
+  // Extract assessmentId from URL query parameters
+  const queryParams = new URLSearchParams(window.location.search);
+  const assessmentId = queryParams.get('assessmentId');
+
+  // State variables
   const [test, setTest] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -46,6 +53,12 @@ const TestPage = () => {
   const [testResults, setTestResults] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [attemptsUsed, setAttemptsUsed] = useState(0);
+  const [maxAttempts, setMaxAttempts] = useState(1);
+  const [submittingAssessment, setSubmittingAssessment] = useState(false);
+  const [assessmentSubmitSuccess, setAssessmentSubmitSuccess] = useState(false);
+  const [panelWidth, setPanelWidth] = useState(50); // 50% width for each panel
+  const resizerRef = useRef(null);
 
   // Language templates
   const languageTemplates = {
@@ -107,20 +120,63 @@ int main() {
   useEffect(() => {
     const fetchTest = async () => {
       try {
-        const data = await getTestById(id);
+        setLoading(true);
+        setError(null);
+
+        // Construct the URL with the assessmentId as a query parameter if available
+        let url = `/tests/${id}`;
+        if (assessmentId) {
+          url += `?assessmentId=${assessmentId}`;
+        }
+
+        // Add a retry mechanism for better reliability
+        let attempts = 0;
+        const maxAttempts = 3;
+        let data = null;
+
+        while (attempts < maxAttempts && !data) {
+          try {
+            attempts++;
+            // Use the fetchAPI function directly to have more control over the URL
+            data = await fetchAPI(url);
+
+            if (!data) {
+              throw new Error('Test not found or you do not have permission to access it');
+            }
+          } catch (fetchError) {
+            console.error(`Attempt ${attempts} failed:`, fetchError);
+
+            if (attempts >= maxAttempts) {
+              throw fetchError; // Re-throw the error after max attempts
+            }
+
+            // Wait before retrying
+            await new Promise(resolve => setTimeout(resolve, 1000));
+          }
+        }
+
         setTest(data);
         // Set initial code template based on selected language
         setCode(languageTemplates[language]);
       } catch (error) {
         console.error('Error fetching test:', error);
-        setError(error.message);
+        // Provide a more user-friendly error message
+        if (error.message.includes('permission')) {
+          setError('You do not have permission to access this test. Please make sure you have been invited to take this test.');
+        } else if (error.message.includes('not found')) {
+          setError('Test not found. The test may have been removed or you may have an incorrect link.');
+        } else if (error.message.includes('500')) {
+          setError('The server encountered an error while loading the test. This might be due to a permission issue or a server configuration problem. Please contact your administrator.');
+        } else {
+          setError(`Error loading test: ${error.message}`);
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchTest();
-  }, [id]);
+  }, [id, assessmentId, language]);
 
   const handleLanguageChange = (e) => {
     const newLanguage = e.target.value;
@@ -132,23 +188,70 @@ int main() {
     setCode(value);
   };
 
-  const handleTabChange = (event, newValue) => {
+  const handleTabChange = (_, newValue) => {
     setTab(newValue);
   };
+
+  // Function to handle editor mounting
+  const handleEditorDidMount = (editor) => {
+    editorRef.current = editor;
+  };
+
+  // Handle resizer drag
+  const handleMouseDown = useCallback((e) => {
+    const startX = e.clientX;
+    const startWidth = panelWidth;
+
+    const handleMouseMove = (moveEvent) => {
+      const containerWidth = document.querySelector('.test-page-container').clientWidth;
+      const newWidth = startWidth + ((moveEvent.clientX - startX) / containerWidth) * 100;
+      // Limit the width between 20% and 80%
+      const clampedWidth = Math.min(Math.max(newWidth, 20), 80);
+      setPanelWidth(clampedWidth);
+    };
+
+    const handleMouseUp = () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+  }, [panelWidth]);
 
   const handleRunCode = async () => {
     try {
       setExecuting(true);
       setOutput('');
       setTestResults(null);
+      setTab(0); // Switch to output tab
 
+      // Get the first test case from the test object
+      let input = test.sampleInput || '';
+
+      // If the test has test cases, use the first non-hidden one
+      if (test.testCases && Array.isArray(test.testCases) && test.testCases.length > 0) {
+        const visibleTestCase = test.testCases.find(tc => !tc.isHidden);
+        if (visibleTestCase) {
+          input = visibleTestCase.input;
+        }
+      }
+
+      // Include assessmentId in the request for proper permission handling
       const data = await executeCode({
         code,
         language,
-        input: test.sampleInput
+        input,
+        assessmentId: assessmentId // Pass assessmentId for permission validation
       });
 
-      setOutput(data.output);
+      if (data && data.output) {
+        setOutput(data.output);
+      } else if (data && data.error) {
+        setOutput(`Error: ${data.error}`);
+      } else {
+        setOutput('No output received from the server.');
+      }
     } catch (error) {
       console.error('Error executing code:', error);
       setOutput(`Error: ${error.message}`);
@@ -162,10 +265,13 @@ int main() {
       setExecuting(true);
       setOutput('');
       setTestResults(null);
+      setTab(1); // Switch to test results tab
 
+      // Include assessmentId in the request for proper permission handling
       const data = await runTestCases(id, {
         code,
-        language
+        language,
+        assessmentId: assessmentId // Pass assessmentId for permission validation
       });
 
       setTestResults(data);
@@ -182,21 +288,74 @@ int main() {
       setSubmitting(true);
       setOutput('');
 
+      // Include assessmentId in the request for proper permission handling
       const data = await submitCode(id, {
         code,
-        language
+        language,
+        assessmentId: assessmentId // Pass assessmentId for permission validation
       });
+
+      // Update attempts information if returned from the server
+      if (data.attemptsUsed !== undefined && data.maxAttempts !== undefined) {
+        setAttemptsUsed(data.attemptsUsed);
+        setMaxAttempts(data.maxAttempts);
+      }
 
       setSubmitSuccess(true);
       setTimeout(() => {
-        navigate(`/submissions/${data._id}`);
+        if (assessmentId) {
+          navigate(`/assessments/${assessmentId}/view`);
+        } else {
+          navigate(`/submissions/${data._id}`);
+        }
       }, 1500);
     } catch (error) {
       console.error('Error submitting code:', error);
-      setOutput(`Error: ${error.message}`);
+
+      // Check if the error is due to maximum attempts reached
+      if (error.message && error.message.includes('Maximum attempts reached')) {
+        try {
+          const errorData = JSON.parse(error.message.split('Server details:')[1].trim());
+          if (errorData.attemptsUsed && errorData.maxAttempts) {
+            setAttemptsUsed(errorData.attemptsUsed);
+            setMaxAttempts(errorData.maxAttempts);
+          }
+        } catch (parseError) {
+          console.error('Error parsing attempts data:', parseError);
+        }
+
+        setOutput(`Error: You have reached the maximum number of attempts (${maxAttempts}) for this test.`);
+      } else {
+        setOutput(`Error: ${error.message}`);
+      }
+
       setSubmitSuccess(false);
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const handleSubmitAssessment = async () => {
+    if (!assessmentId) return;
+
+    try {
+      setSubmittingAssessment(true);
+
+      // Submit the entire assessment
+      await submitAssessment(assessmentId);
+
+      setAssessmentSubmitSuccess(true);
+
+      // Redirect to the assessment view page after successful submission
+      setTimeout(() => {
+        navigate(`/assessments/${assessmentId}/view?submitted=true`);
+      }, 1500);
+    } catch (error) {
+      console.error('Error submitting assessment:', error);
+      setOutput(`Error submitting assessment: ${error.message}`);
+      setAssessmentSubmitSuccess(false);
+    } finally {
+      setSubmittingAssessment(false);
     }
   };
 
@@ -218,26 +377,54 @@ int main() {
   if (error) {
     return (
       <Container maxWidth="lg" sx={{ mt: 4 }}>
-        <Paper sx={{ p: 3, textAlign: 'center' }}>
+        <Paper sx={{ p: 4, textAlign: 'center', borderRadius: 2, boxShadow: 3 }}>
           <Typography variant="h5" color="error" gutterBottom>
-            Error loading test
+            Access Error
           </Typography>
-          <Typography>{error}</Typography>
-          <Button
-            variant="contained"
-            sx={{ mt: 2 }}
-            onClick={() => window.location.reload()}
-          >
-            Retry
-          </Button>
+          <Typography variant="body1" sx={{ maxWidth: '600px', mx: 'auto', mb: 3 }}>
+            {error}
+          </Typography>
+
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
+            <Button
+              variant="outlined"
+              color="primary"
+              component={RouterLink}
+              to="/dashboard"
+            >
+              Return to Dashboard
+            </Button>
+            {assessmentId && (
+              <Button
+                variant="outlined"
+                color="secondary"
+                component={RouterLink}
+                to={`/assessments/${assessmentId}/view`}
+              >
+                Back to Assessment
+              </Button>
+            )}
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => window.location.reload()}
+            >
+              Retry
+            </Button>
+          </Box>
+
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 4 }}>
+            This could be due to a permission issue or the test may not exist.
+            If you believe you should have access to this test, please contact your instructor or administrator.
+          </Typography>
         </Paper>
       </Container>
     );
   }
 
   return (
-    <Box sx={{ bgcolor: 'grey.50', minHeight: 'calc(100vh - 64px)' }}>
-      <Container maxWidth="xl" sx={{ pt: 4, pb: 8 }}>
+    <Box sx={{ bgcolor: 'grey.50', width: '100%' }} className="test-page-container">
+      <Box sx={{ pt: 3, pb: 2, px: { xs: 2, sm: 3, md: 4 } }}>
         {/* Header */}
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
           <Box>
@@ -250,7 +437,7 @@ int main() {
                 size="medium"
                 color={
                   test.difficulty === 'Easy' ? 'success' :
-                  test.difficulty === 'Medium' ? 'warning' : 'error'
+                    test.difficulty === 'Medium' ? 'warning' : 'error'
                 }
                 sx={{ fontWeight: 600, px: 1 }}
               />
@@ -263,16 +450,16 @@ int main() {
             variant="outlined"
             color="primary"
             component={RouterLink}
-            to="/tests"
+            to={assessmentId ? `/assessments/${assessmentId}/view` : "/tests"}
             sx={{ borderRadius: 2 }}
           >
-            Back to Challenges
+            {assessmentId ? 'Back to Assessment' : 'Back to Challenges'}
           </Button>
         </Box>
 
-        <Grid container spacing={3}>
+        <Box className="split-view-container">
           {/* Problem Description */}
-          <Grid item xs={12} md={5} lg={4}>
+          <Box className="problem-panel" sx={{ width: `${panelWidth}%` }}>
             <Paper
               elevation={2}
               sx={{
@@ -282,6 +469,7 @@ int main() {
                 display: 'flex',
                 flexDirection: 'column'
               }}
+              className="problem-description-container"
             >
               <Box sx={{
                 bgcolor: 'primary.main',
@@ -300,28 +488,28 @@ int main() {
                 <Typography variant="h6" fontWeight="bold" gutterBottom>
                   Problem Statement
                 </Typography>
-                <Typography variant="body1" paragraph sx={{ lineHeight: 1.7 }}>
+                <Typography variant="body1" sx={{ lineHeight: 1.7, mb: 2 }}>
                   {test.problemStatement}
                 </Typography>
 
                 <Typography variant="h6" fontWeight="bold" gutterBottom>
                   Input Format
                 </Typography>
-                <Typography variant="body1" paragraph sx={{ lineHeight: 1.7 }}>
+                <Typography variant="body1" sx={{ lineHeight: 1.7, mb: 2 }}>
                   {test.inputFormat}
                 </Typography>
 
                 <Typography variant="h6" fontWeight="bold" gutterBottom>
                   Output Format
                 </Typography>
-                <Typography variant="body1" paragraph sx={{ lineHeight: 1.7 }}>
+                <Typography variant="body1" sx={{ lineHeight: 1.7, mb: 2 }}>
                   {test.outputFormat}
                 </Typography>
 
                 <Typography variant="h6" fontWeight="bold" gutterBottom>
                   Constraints
                 </Typography>
-                <Typography variant="body1" paragraph sx={{ lineHeight: 1.7 }}>
+                <Typography variant="body1" sx={{ lineHeight: 1.7, mb: 2 }}>
                   {test.constraints}
                 </Typography>
 
@@ -364,16 +552,24 @@ int main() {
                 </Box>
               </Box>
             </Paper>
-          </Grid>
+          </Box>
+
+          {/* Resizer */}
+          <div className="resizer" ref={resizerRef} onMouseDown={handleMouseDown}></div>
 
           {/* Code Editor and Output */}
-          <Grid item xs={12} md={7} lg={8}>
+          <Box className="editor-panel" sx={{ width: `${100 - panelWidth}%`, display: 'flex', flexDirection: 'column' }}>
             <Paper
               elevation={2}
               sx={{
                 borderRadius: 3,
                 overflow: 'hidden',
-                mb: 3
+                mb: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                flexGrow: 0, /* Don't let it grow and push buttons off screen */
+                height: 'auto',
+                maxHeight: '60vh' /* Limit height to ensure buttons are visible */
               }}
             >
               <Box sx={{
@@ -417,9 +613,9 @@ int main() {
                 </FormControl>
               </Box>
 
-              <Box sx={{ border: 0, borderColor: 'grey.300' }}>
+              <Box sx={{ flexGrow: 1, minHeight: '350px', maxHeight: 'calc(100vh - 350px)' }} className="monaco-editor-container">
                 <Editor
-                  height="450px"
+                  height="100%"
                   language={getMonacoLanguage(language)}
                   value={code}
                   onChange={handleCodeChange}
@@ -430,18 +626,61 @@ int main() {
                     fontSize: 14,
                     wordWrap: 'on',
                     padding: { top: 16, bottom: 16 },
-                    lineHeight: 1.5
+                    lineHeight: 1.5,
+                    automaticLayout: true
                   }}
+                  onMount={handleEditorDidMount}
                 />
               </Box>
+            </Paper>
 
-              <Box sx={{ display: 'flex', gap: 2, p: 3, bgcolor: 'grey.100', borderTop: 1, borderColor: 'divider' }}>
+            {/* BUTTONS MOVED OUTSIDE THE EDITOR CONTAINER */}
+            <Paper
+              elevation={4}
+              sx={{
+                p: 3,
+                mb: 3,
+                borderRadius: 3,
+                bgcolor: '#e3f2fd',
+                position: 'relative',
+                zIndex: 10,
+                border: '2px solid #1976d2',
+                boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+              }}
+            >
+              <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold', color: '#1565c0' }}>
+                Code Actions
+              </Typography>
+
+              {/* Attempts information */}
+              {assessmentId && (
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                  <Typography variant="body2" color="text.secondary">
+                    <strong>Attempts:</strong> {attemptsUsed} of {maxAttempts} used
+                  </Typography>
+                  {assessmentId && (
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      onClick={handleSubmitAssessment}
+                      disabled={submittingAssessment}
+                      size="small"
+                      sx={{ borderRadius: 2 }}
+                    >
+                      {submittingAssessment ? 'Submitting...' : 'Submit Assessment'}
+                    </Button>
+                  )}
+                </Box>
+              )}
+
+              {/* Action buttons */}
+              <Box sx={{ display: 'flex', gap: 2, bgcolor: '#f0f7ff', p: 2, borderRadius: 2, border: '1px solid #2196f3' }}>
                 <Button
                   variant="contained"
                   color="primary"
                   onClick={handleRunCode}
-                  disabled={executing || submitting}
-                  sx={{ px: 3, py: 1, borderRadius: 2 }}
+                  disabled={executing || submitting || submittingAssessment}
+                  sx={{ px: 4, py: 2, borderRadius: 2, fontSize: '1rem', fontWeight: 'bold', minWidth: '120px' }}
                 >
                   Run Code
                 </Button>
@@ -449,8 +688,8 @@ int main() {
                   variant="contained"
                   color="secondary"
                   onClick={handleRunTests}
-                  disabled={executing || submitting}
-                  sx={{ px: 3, py: 1, borderRadius: 2 }}
+                  disabled={executing || submitting || submittingAssessment}
+                  sx={{ px: 4, py: 2, borderRadius: 2, fontSize: '1rem', fontWeight: 'bold', minWidth: '120px' }}
                 >
                   Run Tests
                 </Button>
@@ -458,8 +697,8 @@ int main() {
                   variant="contained"
                   color="success"
                   onClick={handleSubmit}
-                  disabled={executing || submitting}
-                  sx={{ ml: 'auto', px: 4, py: 1, borderRadius: 2, fontWeight: 600 }}
+                  disabled={executing || submitting || submittingAssessment || attemptsUsed >= maxAttempts}
+                  sx={{ ml: 'auto', px: 4, py: 2, borderRadius: 2, fontWeight: 'bold', fontSize: '1rem', minWidth: '150px' }}
                 >
                   {submitting ? 'Submitting...' : 'Submit Solution'}
                 </Button>
@@ -480,11 +719,30 @@ int main() {
               </Alert>
             )}
 
+            {assessmentSubmitSuccess && (
+              <Alert
+                severity="success"
+                variant="filled"
+                sx={{
+                  mb: 3,
+                  borderRadius: 2,
+                  boxShadow: 2
+                }}
+              >
+                Assessment submitted successfully! Redirecting to assessment page...
+              </Alert>
+            )}
+
             <Paper
               elevation={2}
               sx={{
                 borderRadius: 3,
-                overflow: 'hidden'
+                overflow: 'hidden',
+                height: '250px',
+                minHeight: '250px',
+                display: 'flex',
+                flexDirection: 'column',
+                mb: 3 /* Add margin to avoid footer overlap */
               }}
             >
               <Box sx={{
@@ -498,7 +756,7 @@ int main() {
                   variant="fullWidth"
                   sx={{
                     '& .MuiTab-root': {
-                      py: 2,
+                      py: 1.5,
                       fontWeight: 600
                     }
                   }}
@@ -508,9 +766,9 @@ int main() {
                 </Tabs>
               </Box>
 
-              <Box sx={{ p: 3, minHeight: '200px' }}>
+              <Box sx={{ p: 2, flexGrow: 1, overflowY: 'auto', minHeight: '180px' }} className="output-container">
                 {executing ? (
-                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
                     <CircularProgress />
                   </Box>
                 ) : (
@@ -519,15 +777,17 @@ int main() {
                       <Paper
                         variant="outlined"
                         sx={{
-                          p: 3,
+                          p: 2,
                           bgcolor: 'grey.900',
                           color: 'grey.100',
                           fontFamily: 'monospace',
                           whiteSpace: 'pre-wrap',
-                          minHeight: '200px',
-                          maxHeight: '300px',
+                          minHeight: '150px',
+                          height: '100%',
                           overflow: 'auto',
-                          borderRadius: 2
+                          borderRadius: 2,
+                          fontSize: '14px',
+                          lineHeight: 1.5
                         }}
                       >
                         {output || 'Run your code to see the output here.'}
@@ -535,41 +795,41 @@ int main() {
                     )}
 
                     {tab === 1 && (
-                      <Box>
+                      <Box sx={{ height: '100%', minHeight: '150px', overflow: 'auto' }}>
                         {testResults ? (
                           <>
                             <Box
                               sx={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                mb: 3,
+                                mb: 2,
                                 p: 2,
                                 borderRadius: 2,
-                                bgcolor: testResults.passed === testResults.total ? 'success.50' : 'warning.50',
+                                bgcolor: testResults.summary?.passedTestCases === testResults.summary?.totalTestCases ? 'success.50' : 'warning.50',
                                 border: 1,
-                                borderColor: testResults.passed === testResults.total ? 'success.main' : 'warning.main'
+                                borderColor: testResults.summary?.passedTestCases === testResults.summary?.totalTestCases ? 'success.main' : 'warning.main'
                               }}
                             >
-                              <Typography variant="h6" fontWeight="bold" color="text.primary">
+                              <Typography variant="subtitle1" fontWeight="bold" color="text.primary">
                                 Test Results:
                               </Typography>
                               <Typography
-                                variant="h6"
+                                variant="subtitle1"
                                 fontWeight="bold"
-                                color={testResults.passed === testResults.total ? 'success.main' : 'warning.main'}
+                                color={testResults.summary?.passedTestCases === testResults.summary?.totalTestCases ? 'success.main' : 'warning.main'}
                                 sx={{ ml: 1 }}
                               >
-                                {testResults.passed}/{testResults.total} Passed
+                                {testResults.summary?.passedTestCases || 0}/{testResults.summary?.totalTestCases || 0} Passed
                               </Typography>
                             </Box>
 
                             <Grid container spacing={2}>
-                              {testResults.results.map((result, index) => (
+                              {testResults.results?.map((result, index) => (
                                 <Grid item xs={12} key={index}>
                                   <Paper
                                     elevation={1}
                                     sx={{
-                                      p: 3,
+                                      p: 2,
                                       borderRadius: 2,
                                       bgcolor: result.passed ? 'success.50' : 'error.50',
                                       borderLeft: 4,
@@ -577,7 +837,7 @@ int main() {
                                     }}
                                   >
                                     <Box sx={{ display: 'flex', alignItems: 'center', mb: result.passed ? 0 : 2 }}>
-                                      <Typography variant="subtitle1" fontWeight="bold">
+                                      <Typography variant="subtitle2" fontWeight="bold">
                                         Test Case {index + 1}:
                                       </Typography>
                                       <Chip
@@ -655,34 +915,7 @@ int main() {
                             </Grid>
                           </>
                         ) : (
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              flexDirection: 'column',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              height: '200px',
-                              bgcolor: 'grey.50',
-                              borderRadius: 2,
-                              p: 3,
-                              textAlign: 'center'
-                            }}
-                          >
-                            <Typography variant="h6" color="text.secondary" gutterBottom>
-                              No test results yet
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              Click "Run Tests" to check your solution against the test cases.
-                            </Typography>
-                            <Button
-                              variant="contained"
-                              color="primary"
-                              onClick={handleRunTests}
-                              sx={{ mt: 3 }}
-                            >
-                              Run Tests
-                            </Button>
-                          </Box>
+                          <Typography variant="body1">Run tests to see results.</Typography>
                         )}
                       </Box>
                     )}
@@ -690,9 +923,9 @@ int main() {
                 )}
               </Box>
             </Paper>
-          </Grid>
-        </Grid>
-      </Container>
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 };

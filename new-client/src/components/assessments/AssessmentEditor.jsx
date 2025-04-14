@@ -51,7 +51,7 @@ import {
   AccessTime as AccessTimeIcon,
   Code as CodeIcon
 } from '@mui/icons-material';
-import { getAllTests, createAssessment, getAssessmentById, updateAssessment, inviteStudentsByEmail } from '../../utils/api';
+import { getAllTests, createAssessment, getAssessmentById, updateAssessment, inviteStudentsByEmail, generateInvitationLink } from '../../utils/api';
 
 const AssessmentEditor = () => {
   const { assessmentId } = useParams();
@@ -72,7 +72,7 @@ const AssessmentEditor = () => {
     title: '',
     description: '',
     tests: [],
-    startTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().slice(0, 16), // Tomorrow
+    startTime: new Date().toISOString().slice(0, 16), // Current time
     endTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16), // 1 week from now
     maxAttempts: 1,
     isPublic: false,
@@ -237,16 +237,41 @@ const AssessmentEditor = () => {
         ...assessment,
         // Convert dates to ISO strings if they aren't already
         startTime: typeof assessment.startTime === 'string' ? assessment.startTime : assessment.startTime.toISOString(),
-        endTime: typeof assessment.endTime === 'string' ? assessment.endTime : assessment.endTime.toISOString()
+        endTime: typeof assessment.endTime === 'string' ? assessment.endTime : assessment.endTime.toISOString(),
+        // Include invitedStudents to ensure they're saved with the assessment
+        invitedStudents: assessment.invitedStudents
       };
 
+      let result;
       if (isNewAssessment) {
         // Create a new assessment
-        const result = await createAssessment(assessmentData);
+        result = await createAssessment(assessmentData);
         console.log('Assessment created:', result);
+
+        // If we have invited students during creation, send invitations now
+        if (assessment.invitedStudents && assessment.invitedStudents.length > 0) {
+          console.log('Sending invitations for newly created assessment:', assessment.invitedStudents);
+
+          // Extract emails from invitedStudents objects
+          const emails = assessment.invitedStudents
+            .filter(student => typeof student === 'object' && student.email)
+            .map(student => student.email)
+            .join(',');
+
+          if (emails) {
+            console.log('Sending invitations to emails:', emails);
+            try {
+              await inviteStudentsByEmail(result.assessment.id, emails);
+              console.log('Invitations sent successfully');
+            } catch (inviteError) {
+              console.error('Error sending invitations:', inviteError);
+              // Don't fail the whole operation if invitations fail
+            }
+          }
+        }
       } else {
         // Update an existing assessment
-        const result = await updateAssessment(assessmentId, assessmentData);
+        result = await updateAssessment(assessmentId, assessmentData);
         console.log('Assessment updated:', result);
       }
 
@@ -558,6 +583,20 @@ const AssessmentEditor = () => {
                             {student.lastAttempt ? new Date(student.lastAttempt).toLocaleString() : 'N/A'}
                           </TableCell>
                           <TableCell align="right">
+                            {!isNewAssessment && (
+                              <Button
+                                size="small"
+                                variant="outlined"
+                                onClick={() => {
+                                  const link = generateInvitationLink(assessmentId, student.email);
+                                  navigator.clipboard.writeText(link);
+                                  alert(`Invitation link copied to clipboard:\n${link}`);
+                                }}
+                                sx={{ mr: 1 }}
+                              >
+                                Copy Link
+                              </Button>
+                            )}
                             <IconButton
                               color="error"
                               onClick={() => handleRemoveStudent(student.email)}

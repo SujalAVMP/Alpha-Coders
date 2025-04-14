@@ -58,9 +58,8 @@ const Register = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ mt: 8 }}>
-        <Paper elevation={3} sx={{ p: 4 }}>
+    <Box className="auth-container">
+      <Paper elevation={3} className="auth-paper">
           <Typography variant="h4" component="h1" align="center" gutterBottom>
             Sign Up
           </Typography>
@@ -176,9 +175,8 @@ const Register = () => {
               </Typography>
             </Box>
           </Box>
-        </Paper>
-      </Box>
-    </Container>
+      </Paper>
+    </Box>
   );
 };
 

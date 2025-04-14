@@ -14,29 +14,14 @@ export const AuthProvider = ({ children }) => {
     const loadUser = async () => {
       try {
         console.log('Loading user...');
-        const token = localStorage.getItem('token');
-        console.log('Token:', token);
-        if (!token) {
-          console.log('No token found');
-          setLoading(false);
-          return;
-        }
-
-        // Get the stored email from localStorage
-        const storedEmail = localStorage.getItem('userEmail');
-        console.log('Stored email:', storedEmail);
-
-        console.log('Getting current user...');
-        const data = await getCurrentUser(storedEmail);
-        console.log('Current user:', data);
-        setUser(data);
-        setIsAuthenticated(true);
-      } catch (err) {
-        console.error('Error loading user:', err);
+        // Clear any existing tokens to ensure no one is logged in initially
         localStorage.removeItem('token');
         localStorage.removeItem('userEmail');
+        console.log('Cleared any existing tokens');
+        setLoading(false);
+      } catch (err) {
+        console.error('Error in initial auth setup:', err);
         setError(err.message || 'An error occurred');
-      } finally {
         setLoading(false);
       }
     };

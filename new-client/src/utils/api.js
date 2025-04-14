@@ -30,6 +30,7 @@ export const fetchAPI = async (url, options = {}) => {
     }
 
     console.log('API Request URL:', apiUrl);
+    console.log('API Request Body:', options.body);
 
     // Make the request
     const response = await fetch(apiUrl, {
@@ -37,12 +38,56 @@ export const fetchAPI = async (url, options = {}) => {
       headers
     });
 
-    // Parse the response
-    const data = await response.json();
+    console.log('API Response Status:', response.status);
+    console.log('API Response Headers:', response.headers);
+
+    // Check if the response is HTML instead of JSON (common server error)
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('text/html')) {
+      const htmlText = await response.text();
+      console.error('Received HTML response instead of JSON:', htmlText.substring(0, 200));
+      throw new Error('Server returned HTML instead of JSON. The server might be experiencing issues.');
+    }
+
+    // Try to parse the response as JSON
+    let data;
+    try {
+      const responseText = await response.text();
+      console.log('API Response Text:', responseText.substring(0, 200));
+
+      // Try to parse the response as JSON if it's not empty
+      if (responseText.trim()) {
+        try {
+          data = JSON.parse(responseText);
+        } catch (jsonError) {
+          console.error('Error parsing JSON:', jsonError);
+          throw new Error(`Failed to parse response as JSON: ${responseText.substring(0, 100)}...`);
+        }
+      } else {
+        console.warn('Empty response received');
+        data = {};
+      }
+    } catch (parseError) {
+      console.error('Error reading response:', parseError);
+
+      // For 500 errors, try to get more detailed error information
+      if (response.status === 500) {
+        throw new Error(`API request failed with status ${response.status}: ${response.statusText}`);
+      } else if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}: ${response.statusText}`);
+      }
+
+      return {};
+    }
 
     // Check if the response is ok
     if (!response.ok) {
-      throw new Error(data.message || 'Something went wrong');
+      console.error(`API Error (${url}):`, {
+        status: response.status,
+        statusText: response.statusText,
+        data
+      });
+      throw new Error(data.message || `API request failed with status ${response.status}`);
     }
 
     return data;
@@ -158,15 +203,48 @@ export const unassignAssessmentFromUser = (assessmentId, userId) => fetchAPI(`/a
 });
 export const getAssessees = () => fetchAPI('/users/assessees');
 
-export const inviteStudentsByEmail = (assessmentId, emails) => fetchAPI(`/assessments/${assessmentId}/invite`, {
-  method: 'POST',
-  body: JSON.stringify({ emails })
-});
+export const inviteStudentsByEmail = (assessmentId, emails) => {
+  // Ensure emails is properly formatted
+  // If it's a comma-separated string, keep it as is
+  // If it's an array, join it with commas
+  const formattedEmails = Array.isArray(emails) ? emails.join(',') : emails;
+
+  console.log('Inviting students to assessment:', assessmentId);
+  console.log('Emails to invite:', formattedEmails);
+
+  return fetchAPI(`/assessments/${assessmentId}/invite`, {
+    method: 'POST',
+    body: JSON.stringify({ emails: formattedEmails })
+  });
+};
 
 export const inviteStudentsByIds = (assessmentId, userIds) => fetchAPI(`/assessments/${assessmentId}/invite`, {
   method: 'POST',
   body: JSON.stringify({ userIds })
 });
+
+export const acceptInvitation = (assessmentId, data) => fetchAPI(`/assessments/${assessmentId}/accept-invitation`, {
+  method: 'POST',
+  body: JSON.stringify(data)
+});
+
+// Submit an entire assessment
+export const submitAssessment = (assessmentId) => fetchAPI(`/assessments/${assessmentId}/submit`, {
+  method: 'POST',
+  body: JSON.stringify({})
+});
+
+// Generate an invitation link for an assessment
+export const generateInvitationLink = (assessmentId, email) => {
+  // Create a simple token based on the assessment ID and email
+  const token = btoa(`${assessmentId}:${email}:${Date.now()}`).replace(/=/g, '');
+
+  // Get the base URL
+  const baseUrl = window.location.origin;
+
+  // Create the invitation URL
+  return `${baseUrl}/assessments/${assessmentId}/invitation?token=${token}&email=${encodeURIComponent(email)}`;
+};
 
 // Notifications API
 export const getNotifications = () => fetchAPI('/notifications');
@@ -223,6 +301,8 @@ export default {
   getAssessees,
   inviteStudentsByEmail,
   inviteStudentsByIds,
+  acceptInvitation,
+  generateInvitationLink,
 
   // Notifications
   getNotifications,

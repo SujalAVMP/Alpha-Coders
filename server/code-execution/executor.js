@@ -24,6 +24,10 @@ async function executePython(code, input) {
   const executionId = uuidv4();
 
   try {
+    console.log(`Starting Python execution with ID: ${executionId}`);
+    console.log(`Code length: ${code?.length || 0} characters`);
+    console.log(`Input length: ${input?.length || 0} characters`);
+
     // Create temporary files for code and input
     const tempCodeFile = path.join(os.tmpdir(), `solution_${executionId}.py`);
     const tempInputFile = path.join(os.tmpdir(), `input_${executionId}.txt`);
@@ -43,10 +47,24 @@ cat > /tmp/input.txt << 'EOL'
 ${input || ''}
 EOL
 
-cat /tmp/input.txt | python3 /tmp/solution.py`;
+cat /tmp/input.txt | python3 /tmp/solution.py 2>&1`;
 
     await fs.writeFile(tempScriptFile, scriptContent);
     await executeCommand(`chmod +x ${tempScriptFile}`);
+
+    // Check if Docker is running
+    try {
+      await executeCommand('docker ps');
+      console.log('Docker is running');
+    } catch (dockerError) {
+      console.error('Docker is not running:', dockerError);
+      return {
+        output: '',
+        error: 'Docker is not running. Please start Docker and try again.',
+        executionTime: 0,
+        memoryUsed: 0
+      };
+    }
 
     // Set up Docker command using a pre-built Python image
     const dockerCommand = `cat ${tempScriptFile} | docker run --rm --network none --memory=512m --cpus=1 \
@@ -54,19 +72,28 @@ cat /tmp/input.txt | python3 /tmp/solution.py`;
       -i python:3.9-slim \
       bash`;
 
-    console.log('Executing Python code with Docker');
+    console.log('Executing Python code with Docker command:', dockerCommand);
 
     // Execute code
     const startTime = Date.now();
     const { stdout, stderr } = await executeCommand(dockerCommand);
     const executionTime = Date.now() - startTime;
 
-    console.log('Python execution result:', { stdout, stderr });
+    console.log('Python execution result:', {
+      stdout: stdout?.substring(0, 200),
+      stderr: stderr?.substring(0, 200),
+      executionTime
+    });
 
     // Clean up temporary files
-    await fs.unlink(tempCodeFile);
-    await fs.unlink(tempInputFile);
-    await fs.unlink(tempScriptFile);
+    try {
+      await fs.unlink(tempCodeFile);
+      await fs.unlink(tempInputFile);
+      await fs.unlink(tempScriptFile);
+      console.log('Temporary files cleaned up');
+    } catch (cleanupError) {
+      console.error('Error cleaning up temporary files:', cleanupError);
+    }
 
     // Get memory usage (this is approximate)
     const memoryUsed = 50; // Default value in MB
@@ -81,7 +108,7 @@ cat /tmp/input.txt | python3 /tmp/solution.py`;
     console.error('Error executing Python code:', error);
     return {
       output: '',
-      error: error.stderr || 'Execution error',
+      error: error.stderr || error.message || 'Execution error',
       executionTime: 0,
       memoryUsed: 0
     };
@@ -93,6 +120,10 @@ async function executeCpp(code, input) {
   const executionId = uuidv4();
 
   try {
+    console.log(`Starting C++ execution with ID: ${executionId}`);
+    console.log(`Code length: ${code?.length || 0} characters`);
+    console.log(`Input length: ${input?.length || 0} characters`);
+
     // Create temporary files for code and input
     const tempCodeFile = path.join(os.tmpdir(), `solution_${executionId}.cpp`);
     const tempInputFile = path.join(os.tmpdir(), `input_${executionId}.txt`);
@@ -112,10 +143,24 @@ cat > /tmp/input.txt << 'EOL'
 ${input || ''}
 EOL
 
-g++ -o /tmp/solution /tmp/solution.cpp -std=c++17 && cat /tmp/input.txt | /tmp/solution`;
+g++ -o /tmp/solution /tmp/solution.cpp -std=c++17 2>&1 && cat /tmp/input.txt | /tmp/solution 2>&1 || echo "Compilation failed"$?`;
 
     await fs.writeFile(tempScriptFile, scriptContent);
     await executeCommand(`chmod +x ${tempScriptFile}`);
+
+    // Check if Docker is running
+    try {
+      await executeCommand('docker ps');
+      console.log('Docker is running');
+    } catch (dockerError) {
+      console.error('Docker is not running:', dockerError);
+      return {
+        output: '',
+        error: 'Docker is not running. Please start Docker and try again.',
+        executionTime: 0,
+        memoryUsed: 0
+      };
+    }
 
     // Set up Docker command using a pre-built GCC image
     const dockerCommand = `cat ${tempScriptFile} | docker run --rm --network none --memory=512m --cpus=1 \
@@ -123,19 +168,28 @@ g++ -o /tmp/solution /tmp/solution.cpp -std=c++17 && cat /tmp/input.txt | /tmp/s
       -i gcc:latest \
       bash`;
 
-    console.log('Executing C++ code with Docker');
+    console.log('Executing C++ code with Docker command:', dockerCommand);
 
     // Execute code
     const startTime = Date.now();
     const { stdout, stderr } = await executeCommand(dockerCommand);
     const executionTime = Date.now() - startTime;
 
-    console.log('C++ execution result:', { stdout, stderr });
+    console.log('C++ execution result:', {
+      stdout: stdout?.substring(0, 200),
+      stderr: stderr?.substring(0, 200),
+      executionTime
+    });
 
     // Clean up temporary files
-    await fs.unlink(tempCodeFile);
-    await fs.unlink(tempInputFile);
-    await fs.unlink(tempScriptFile);
+    try {
+      await fs.unlink(tempCodeFile);
+      await fs.unlink(tempInputFile);
+      await fs.unlink(tempScriptFile);
+      console.log('Temporary files cleaned up');
+    } catch (cleanupError) {
+      console.error('Error cleaning up temporary files:', cleanupError);
+    }
 
     // Get memory usage (this is approximate)
     const memoryUsed = 50; // Default value in MB
@@ -150,7 +204,7 @@ g++ -o /tmp/solution /tmp/solution.cpp -std=c++17 && cat /tmp/input.txt | /tmp/s
     console.error('Error executing C++ code:', error);
     return {
       output: '',
-      error: error.stderr || 'Compilation or execution error',
+      error: error.stderr || error.message || 'Compilation or execution error',
       executionTime: 0,
       memoryUsed: 0
     };

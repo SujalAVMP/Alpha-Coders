@@ -1,12 +1,13 @@
 import React from 'react';
-import { Box, Container, Typography, Link, Divider } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Box, Container, Typography } from '@mui/material';
 
 const Footer = () => {
   return (
     <Box
       component="footer"
       sx={{
-        py: 3,
+        py: 2,
         px: 2,
         mt: 'auto',
         backgroundColor: (theme) =>
@@ -16,22 +17,20 @@ const Footer = () => {
       }}
     >
       <Container maxWidth="lg">
-        <Divider sx={{ mb: 2 }} />
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-          <Typography variant="body2" color="text.secondary">
-            © {new Date().getFullYear()} CodeTest Platform
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Typography
+            variant="h6"
+            component={Link}
+            to="/"
+            sx={{
+              fontWeight: 700,
+              color: 'primary.main',
+              textDecoration: 'none',
+              display: 'inline-block'
+            }}
+          >
+            CodeTest
           </Typography>
-          <Box>
-            <Link href="#" color="inherit" sx={{ mx: 1 }}>
-              Privacy Policy
-            </Link>
-            <Link href="#" color="inherit" sx={{ mx: 1 }}>
-              Terms of Service
-            </Link>
-            <Link href="#" color="inherit" sx={{ mx: 1 }}>
-              Contact
-            </Link>
-          </Box>
         </Box>
       </Container>
     </Box>

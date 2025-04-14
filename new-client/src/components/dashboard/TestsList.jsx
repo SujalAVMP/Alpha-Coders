@@ -23,6 +23,7 @@ import {
   InputLabel
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import AddIcon from '@mui/icons-material/Add';
 
 const TestsList = () => {
   const [tests, setTests] = useState([]);
@@ -52,20 +53,20 @@ const TestsList = () => {
   useEffect(() => {
     // Apply filters
     let result = tests;
-    
+
     // Apply search filter
     if (searchTerm) {
-      result = result.filter(test => 
+      result = result.filter(test =>
         test.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         test.description.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-    
+
     // Apply difficulty filter
     if (difficultyFilter !== 'All') {
       result = result.filter(test => test.difficulty === difficultyFilter);
     }
-    
+
     setFilteredTests(result);
   }, [searchTerm, difficultyFilter, tests]);
 
@@ -100,8 +101,8 @@ const TestsList = () => {
             Error loading tests
           </Typography>
           <Typography>{error}</Typography>
-          <Button 
-            variant="contained" 
+          <Button
+            variant="contained"
             sx={{ mt: 2 }}
             onClick={() => window.location.reload()}
           >
@@ -113,12 +114,23 @@ const TestsList = () => {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Coding Challenges
-      </Typography>
-      
-      <Paper sx={{ p: 3, mb: 4 }}>
+    <Box className="page-container">
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+        <Typography variant="h4">
+          Coding Challenges
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<AddIcon />}
+          component={RouterLink}
+          to="/tests/new"
+        >
+          Create New Test
+        </Button>
+      </Box>
+
+      <Paper sx={{ p: 3, mb: 4 }} className="content-card">
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3 }}>
           <TextField
             label="Search"
@@ -135,7 +147,7 @@ const TestsList = () => {
               ),
             }}
           />
-          
+
           <FormControl sx={{ minWidth: 120 }} size="small">
             <InputLabel id="difficulty-filter-label">Difficulty</InputLabel>
             <Select
@@ -152,7 +164,7 @@ const TestsList = () => {
             </Select>
           </FormControl>
         </Box>
-        
+
         <TableContainer>
           <Table>
             <TableHead>
@@ -175,11 +187,11 @@ const TestsList = () => {
                   <TableRow key={test._id}>
                     <TableCell>{test.title}</TableCell>
                     <TableCell>
-                      <Chip 
-                        label={test.difficulty} 
+                      <Chip
+                        label={test.difficulty}
                         size="small"
                         color={
-                          test.difficulty === 'Easy' ? 'success' : 
+                          test.difficulty === 'Easy' ? 'success' :
                           test.difficulty === 'Medium' ? 'warning' : 'error'
                         }
                       />
@@ -202,7 +214,7 @@ const TestsList = () => {
           </Table>
         </TableContainer>
       </Paper>
-    </Container>
+    </Box>
   );
 };
 

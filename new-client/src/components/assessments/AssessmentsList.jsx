@@ -98,19 +98,59 @@ const AssessmentsList = () => {
       setInviting(true);
       setError('');
 
-      // Send invitation
-      await inviteStudentsByEmail(selectedAssessment.id, inviteEmails);
+      // Clean up the email list - split by commas and trim whitespace
+      const emailList = inviteEmails
+        .split(',')
+        .map(email => email.trim())
+        .filter(email => email.length > 0);
 
-      setSuccess('Invitations sent successfully');
+      // Validate email format
+      const invalidEmails = emailList.filter(email => {
+        // Simple email validation regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return !emailRegex.test(email);
+      });
+
+      if (invalidEmails.length > 0) {
+        setError(`Invalid email format: ${invalidEmails.join(', ')}`);
+        setInviting(false);
+        return;
+      }
+
+      const cleanedEmails = emailList.join(',');
+      console.log('Sending invitation to emails:', cleanedEmails);
+
+      // Send invitation
+      const response = await inviteStudentsByEmail(selectedAssessment.id, cleanedEmails);
+      console.log('Invitation response:', response);
+
+      // Refresh assessments to show updated invited users
+      await fetchAssessments();
+
+      // Display appropriate success message
+      if (response.success) {
+        let successMessage = response.message || `Invitations sent successfully to ${cleanedEmails}`;
+
+        // If there are unregistered emails, add a note about them
+        if (response.notFoundEmails && response.notFoundEmails.length > 0) {
+          console.log('Unregistered emails invited:', response.notFoundEmails);
+          successMessage += `. Note: ${response.notFoundEmails.length} email(s) are for unregistered users who will see the assessment when they register.`;
+        }
+
+        setSuccess(successMessage);
+      } else {
+        throw new Error(response.message || 'Failed to send invitations');
+      }
+
       setOpenInviteDialog(false);
       setSelectedAssessment(null);
       setInviteEmails('');
 
-      // Clear success message after 3 seconds
-      setTimeout(() => setSuccess(''), 3000);
+      // Clear success message after 5 seconds
+      setTimeout(() => setSuccess(''), 5000);
     } catch (err) {
       console.error('Error inviting students:', err);
-      setError('Failed to send invitations. Please try again.');
+      setError(err.message || 'Failed to send invitations. Please try again.');
     } finally {
       setInviting(false);
     }
@@ -129,7 +169,7 @@ const AssessmentsList = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
+    <Box className="page-container assessments-container">
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
           My Assessments
@@ -214,7 +254,23 @@ const AssessmentsList = () => {
                 <CardActions sx={{ p: 2, pt: 0 }}>
                   <Button
                     size="small"
-                    onClick={() => navigate(`/assessments/${assessment.id}`)}
+                    onClick={() => {
+                      // Log the assessment object for debugging
+                      console.log('Viewing assessment details:', assessment);
+
+                      // Handle both id and _id formats
+                      const assessmentId = assessment.id || assessment._id;
+                      console.log('Using assessment ID:', assessmentId);
+
+                      if (!assessmentId) {
+                        console.error('Assessment ID is missing or invalid:', assessment);
+                        alert('Error: Assessment ID is missing. Please try again.');
+                        return;
+                      }
+
+                      // Navigate to the assessment details view
+                      navigate(`/assessments/${assessmentId}`);
+                    }}
                     sx={{ mr: 'auto' }}
                   >
                     View Details
@@ -314,7 +370,7 @@ const AssessmentsList = () => {
           </Button>
         </DialogActions>
       </Dialog>
-    </Container>
+    </Box>
   );
 };
 

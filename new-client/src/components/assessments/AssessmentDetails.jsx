@@ -61,7 +61,9 @@ const AssessmentDetails = () => {
 
         // Fetch the assessment data
         try {
+          console.log('Fetching assessment with ID:', assessmentId);
           const assessmentData = await getAssessmentById(assessmentId);
+          console.log('Assessment data received:', assessmentData);
           setAssessment(assessmentData);
         } catch (error) {
           console.error('Error fetching assessment:', error);
@@ -76,7 +78,12 @@ const AssessmentDetails = () => {
       }
     };
 
-    fetchData();
+    if (assessmentId) {
+      fetchData();
+    } else {
+      setError('Invalid assessment ID');
+      setLoading(false);
+    }
   }, [assessmentId, user?.id]);
 
   const handleDeleteAssessment = () => {

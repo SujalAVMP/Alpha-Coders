@@ -1,0 +1,108 @@
+/* Global responsive styles */
+
+/* Make content containers responsive */
+.content-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* Auth pages (login, register) */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 64px);
+  width: 100%;
+  padding: 24px;
+}
+
+.auth-paper {
+  width: 100% !important;
+  max-width: 450px !important;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Dashboard, Submissions, Active Tests pages */
+.dashboard-container,
+.submissions-container,
+.active-tests-container,
+.assessments-container {
+  width: 100% !important;
+  padding: 24px !important;
+}
+
+.page-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 24px !important;
+}
+
+/* Content cards */
+.content-card {
+  width: 100% !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+  overflow: hidden;
+}
+
+/* Tables */
+.MuiTable-root {
+  width: 100% !important;
+}
+
+.table-container {
+  width: 100% !important;
+  overflow-x: auto;
+}
+
+/* Responsive tables for mobile */
+@media (max-width: 600px) {
+  .MuiTableCell-root {
+    padding: 8px !important;
+  }
+
+  .MuiTableCell-head {
+    font-size: 0.8rem !important;
+  }
+
+  .MuiTableCell-body {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* Responsive layout for different screen sizes */
+@media (min-width: 1200px) {
+  .content-container {
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+
+  .dashboard-container,
+  .submissions-container,
+  .active-tests-container,
+  .assessments-container,
+  .page-container {
+    padding: 32px !important;
+  }
+}
+
+/* Fix for fixed width elements */
+.fixed-width-container {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Navbar improvements */
+.navbar {
+  width: 100% !important;
+}
+
+/* Footer improvements */
+.footer {
+  width: 100% !important;
+  padding: 16px !important;
+}

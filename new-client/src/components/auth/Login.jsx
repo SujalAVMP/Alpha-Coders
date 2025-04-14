@@ -29,12 +29,12 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!email || !password) {
       setFormError('Please fill in all fields');
       return;
     }
-    
+
     try {
       await loginUser({ email, password });
       navigate('/dashboard');
@@ -45,19 +45,18 @@ const Login = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ mt: 8 }}>
-        <Paper elevation={3} sx={{ p: 4 }}>
+    <Box className="auth-container">
+      <Paper elevation={3} className="auth-paper">
           <Typography variant="h4" component="h1" align="center" gutterBottom>
             Sign In
           </Typography>
-          
+
           {(error || formError) && (
             <Alert severity="error" sx={{ mb: 2 }}>
               {formError || error}
             </Alert>
           )}
-          
+
           <Box component="form" onSubmit={onSubmit} noValidate>
             <TextField
               margin="normal"
@@ -71,7 +70,7 @@ const Login = () => {
               value={email}
               onChange={onChange}
             />
-            
+
             <TextField
               margin="normal"
               required
@@ -84,7 +83,7 @@ const Login = () => {
               value={password}
               onChange={onChange}
             />
-            
+
             <Button
               type="submit"
               fullWidth
@@ -93,7 +92,7 @@ const Login = () => {
             >
               Sign In
             </Button>
-            
+
             <Box sx={{ textAlign: 'center', mt: 2 }}>
               <Typography variant="body2">
                 Don't have an account?{' '}
@@ -103,9 +102,8 @@ const Login = () => {
               </Typography>
             </Box>
           </Box>
-        </Paper>
-      </Box>
-    </Container>
+      </Paper>
+    </Box>
   );
 };
 

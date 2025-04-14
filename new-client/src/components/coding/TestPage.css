@@ -1,0 +1,156 @@
+/* TestPage.css */
+.test-page-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 120px); /* Subtract navbar and footer height */
+  min-height: 700px; /* Ensure minimum height for smaller screens */
+  padding-bottom: 20px; /* Add padding to avoid footer overlap */
+}
+
+.split-view-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-grow: 1;
+  overflow: hidden;
+  height: calc(100vh - 200px); /* Ensure it doesn't overflow */
+  min-height: 600px; /* Minimum height for the container */
+}
+
+.problem-panel {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.editor-panel {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.problem-description-container {
+  height: 100%;
+  overflow-y: auto;
+  flex-grow: 1;
+  max-height: calc(100vh - 200px); /* Prevent overflow */
+}
+
+.editor-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.monaco-editor-container {
+  flex-grow: 1;
+  min-height: 350px !important; /* Ensure minimum editor height */
+  max-height: calc(100vh - 400px); /* Ensure there's space for buttons */
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+.output-container {
+  height: 200px;
+  min-height: 150px; /* Ensure minimum height */
+  overflow-y: auto;
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: 'Courier New', monospace;
+  white-space: pre-wrap;
+}
+
+/* Resizable panels */
+.resizer {
+  width: 8px;
+  background-color: #f0f0f0;
+  cursor: col-resize;
+  height: 100%;
+  transition: background-color 0.2s;
+  z-index: 10;
+}
+
+.resizer:hover, .resizer.active {
+  background-color: #ccc;
+}
+
+/* Responsive styles */
+@media (max-width: 960px) {
+  .problem-description-container {
+    height: auto;
+    max-height: 400px;
+  }
+
+  .editor-container {
+    height: auto;
+  }
+
+  .monaco-editor-container {
+    min-height: 300px;
+  }
+
+  .output-container {
+    height: 150px;
+  }
+}
+
+@media (max-width: 600px) {
+  .monaco-editor-container {
+    min-height: 250px;
+  }
+
+  .output-container {
+    height: 120px;
+  }
+}
+
+/* Fix for the Monaco editor to be responsive */
+.monaco-editor {
+  width: 100% !important;
+}
+
+.monaco-editor .overflow-guard {
+  width: 100% !important;
+}
+
+/* Make all pages responsive */
+.responsive-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 16px;
+}
+
+.responsive-paper {
+  width: 100% !important;
+}
+
+.responsive-grid {
+  width: 100% !important;
+}
+
+/* Dashboard, Submissions, Active Tests pages */
+.dashboard-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.submissions-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.active-tests-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}

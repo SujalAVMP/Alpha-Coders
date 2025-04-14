@@ -375,100 +375,10 @@ const Assessment = {
   }
 };
 
-// Initialize with some sample data
+// Initialize empty database
 function initializeData() {
-  // Create sample users
-  const adminUser = User.create({
-    name: 'Admin User',
-    email: 'admin@gmail.com',
-    password: 'admin123',
-    role: 'assessor'
-  });
-
-  const testUser = User.create({
-    name: 'Test User',
-    email: 'test@gmail.com',
-    password: 'test123',
-    role: 'assessee'
-  });
-
-  // Create sample tests
-  const twoSumTest = Test.create({
-    title: 'Two Sum',
-    description: 'Find two numbers in an array that add up to a target',
-    difficulty: 'Easy',
-    timeLimit: 30,
-    problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.',
-    inputFormat: 'First line contains an array of integers separated by space. Second line contains the target sum.',
-    outputFormat: 'Return the indices of the two numbers that add up to the target.',
-    constraints: 'You may assume that each input would have exactly one solution, and you may not use the same element twice.',
-    sampleInput: '[2, 7, 11, 15]\n9',
-    sampleOutput: '[0, 1]',
-    createdBy: adminUser.id,
-    isPublic: true
-  });
-
-  const reverseLinkedListTest = Test.create({
-    title: 'Reverse Linked List',
-    description: 'Reverse a singly linked list',
-    difficulty: 'Medium',
-    timeLimit: 45,
-    problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list.',
-    inputFormat: 'The input is an array representing the linked list.',
-    outputFormat: 'Return the reversed linked list as an array.',
-    constraints: 'The number of nodes in the list is in the range [0, 5000].',
-    sampleInput: '[1, 2, 3, 4, 5]',
-    sampleOutput: '[5, 4, 3, 2, 1]',
-    createdBy: adminUser.id,
-    isPublic: true
-  });
-
-  // Create sample test cases
-  TestCase.create({
-    testId: twoSumTest.id,
-    input: '[2, 7, 11, 15]\n9',
-    expected: '[0, 1]',
-    isHidden: false
-  });
-
-  TestCase.create({
-    testId: twoSumTest.id,
-    input: '[3, 2, 4]\n6',
-    expected: '[1, 2]',
-    isHidden: false
-  });
-
-  TestCase.create({
-    testId: twoSumTest.id,
-    input: '[3, 3]\n6',
-    expected: '[0, 1]',
-    isHidden: true
-  });
-
-  TestCase.create({
-    testId: reverseLinkedListTest.id,
-    input: '[1, 2, 3, 4, 5]',
-    expected: '[5, 4, 3, 2, 1]',
-    isHidden: false
-  });
-
-  TestCase.create({
-    testId: reverseLinkedListTest.id,
-    input: '[1, 2]',
-    expected: '[2, 1]',
-    isHidden: false
-  });
-
-  // Create a sample assessment
-  Assessment.create({
-    title: 'Basic Algorithms Assessment',
-    description: 'Assessment covering basic algorithms and data structures',
-    createdBy: adminUser.id,
-    tests: [twoSumTest.id, reverseLinkedListTest.id],
-    assignedTo: [testUser.id],
-    startTime: new Date(),
-    endTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 7 days from now
-  });
+  // No sample data initialization
+  console.log('Database initialized with no sample data');
 }
 
 module.exports = {

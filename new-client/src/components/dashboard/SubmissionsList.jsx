@@ -129,12 +129,12 @@ const SubmissionsList = () => {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+    <Box className="page-container submissions-container">
       <Typography variant="h4" gutterBottom>
         Your Submissions
       </Typography>
 
-      <Paper sx={{ p: 3, mb: 4 }}>
+      <Paper sx={{ p: 3, mb: 4 }} className="content-card">
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3 }}>
           <TextField
             label="Search by Test Title"
@@ -188,7 +188,7 @@ const SubmissionsList = () => {
           </Box>
         )}
       </Paper>
-    </Container>
+    </Box>
   );
 };
 

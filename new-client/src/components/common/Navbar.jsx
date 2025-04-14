@@ -69,16 +69,38 @@ const Navbar = () => {
   };
 
   const isActive = (path) => {
+    // For paths with query parameters
+    if (path.includes('?')) {
+      const [basePath, queryParam] = path.split('?');
+      return location.pathname === basePath && location.search.includes(queryParam);
+    }
+    // For regular paths
     return location.pathname === path;
   };
 
-  const menuItems = [
-    { text: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
-    { text: 'Tests', path: '/tests', icon: <CodeIcon /> },
-    { text: 'Assessments', path: '/assessments', icon: <CodeIcon /> },
-    { text: 'Submissions', path: '/submissions', icon: <HistoryIcon /> },
-    { text: 'Profile', path: '/profile', icon: <PersonIcon /> }
-  ];
+  // Define menu items based on user role
+  const getMenuItems = () => {
+    if (!user) return [];
+
+    if (user.role === 'assessor') {
+      return [
+        { text: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
+        { text: 'Tests', path: '/tests', icon: <CodeIcon /> },
+        { text: 'Assessments', path: '/assessments', icon: <CodeIcon /> },
+        { text: 'Submissions', path: '/submissions', icon: <HistoryIcon /> },
+        { text: 'Profile', path: '/profile', icon: <PersonIcon /> }
+      ];
+    } else {
+      // For assessee users - removed Tests and Assessments, and made Active Tests and My Submissions direct links
+      return [
+        { text: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
+        { text: 'Active Tests', path: '/dashboard', icon: <CodeIcon /> },
+        { text: 'My Submissions', path: '/dashboard?tab=submissions', icon: <HistoryIcon /> }
+      ];
+    }
+  };
+
+  const menuItems = getMenuItems();
 
   const drawer = (
     <Box sx={{ width: 250 }} role="presentation">
@@ -152,8 +174,8 @@ const Navbar = () => {
   );
 
   return (
-    <AppBar position="sticky" color="default" elevation={0} sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
-      <Container maxWidth="lg">
+    <AppBar position="sticky" color="default" elevation={0} sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }} className="navbar">
+      <Box className="content-container">
         <Toolbar disableGutters>
           {isMobile && (
             <IconButton
@@ -281,7 +303,7 @@ const Navbar = () => {
             )}
           </Box>
         </Toolbar>
-      </Container>
+      </Box>
 
       <Drawer
         variant="temporary"

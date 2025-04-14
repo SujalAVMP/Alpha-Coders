@@ -40,8 +40,7 @@ import {
   AccessTime as AccessTimeIcon,
   Code as CodeIcon
 } from '@mui/icons-material';
-import { getMyTests, getMyAssessments, createTest, deleteTest, getTestById, getAssessees, inviteStudentsByIds, inviteStudentsByEmail, getTestTemplates, createTestFromTemplate } from '../../utils/api';
-import { fetchAPI } from '../../utils/api';
+import { getMyTests, getMyAssessments, createTest, deleteTest, getTestById, getAssessees, inviteStudentsByIds, inviteStudentsByEmail, getTestTemplates, createTestFromTemplate, fetchAPI } from '../../utils/api';
 
 const AssessorDashboard = () => {
   const { user } = useContext(AuthContext);
@@ -84,7 +83,7 @@ const AssessorDashboard = () => {
     title: '',
     description: '',
     tests: [],
-    startTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().slice(0, 16), // Tomorrow
+    startTime: new Date().toISOString().slice(0, 16), // Current time
     endTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16), // 1 week from now
     maxAttempts: 1,
     isPublic: false
@@ -220,7 +219,7 @@ const AssessorDashboard = () => {
         title: '',
         description: '',
         tests: [],
-        startTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().slice(0, 16),
+        startTime: new Date().toISOString().slice(0, 16),
         endTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16),
         maxAttempts: 1,
         isPublic: false
@@ -385,7 +384,7 @@ const AssessorDashboard = () => {
   }
 
   return (
-    <Box sx={{ maxWidth: 1200, mx: 'auto', p: 3 }}>
+    <Box sx={{ width: '100%', mx: 'auto', p: 3 }} className="dashboard-container">
       <Typography variant="h4" component="h1" gutterBottom>
         Assessor Dashboard
       </Typography>
@@ -400,7 +399,7 @@ const AssessorDashboard = () => {
         </Alert>
       )}
 
-      <Paper sx={{ mb: 4 }}>
+      <Paper sx={{ mb: 4 }} className="content-card">
         <Tabs
           value={tabValue}
           onChange={handleTabChange}
@@ -409,7 +408,6 @@ const AssessorDashboard = () => {
           centered
         >
           <Tab label="My Assessments" />
-          <Tab label="Analytics" />
         </Tabs>
 
         <Box sx={{ p: 3 }}>
@@ -424,7 +422,7 @@ const AssessorDashboard = () => {
                   variant="contained"
                   color="primary"
                   startIcon={<AddIcon />}
-                  onClick={() => navigate('/tests/new')}
+                  onClick={() => navigate('/assessments/new')}
                 >
                   Create New Assessment
                 </Button>
@@ -611,7 +609,23 @@ const AssessorDashboard = () => {
                         <CardActions>
                           <Button
                             size="small"
-                            onClick={() => navigate(`/assessments/${assessment.id}`)}
+                            onClick={() => {
+                              // Log the assessment object for debugging
+                              console.log('Viewing assessment:', assessment);
+
+                              // Handle both id and _id formats
+                              const assessmentId = assessment.id || assessment._id;
+                              console.log('Using assessment ID:', assessmentId);
+
+                              if (!assessmentId) {
+                                console.error('Assessment ID is missing or invalid:', assessment);
+                                alert('Error: Assessment ID is missing. Please try again.');
+                                return;
+                              }
+
+                              // Navigate to the assessment details view
+                              navigate(`/assessments/${assessmentId}`);
+                            }}
                           >
                             View
                           </Button>
@@ -645,186 +659,7 @@ const AssessorDashboard = () => {
             </>
           )}
 
-          {/* Assessments Tab */}
-          {tabValue === 1 && (
-            <>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-                <Typography variant="h6">
-                  Technical Assessments
-                </Typography>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  startIcon={<AddIcon />}
-                  onClick={() => setOpenCreateAssessment(true)}
-                >
-                  Create New Assessment
-                </Button>
-              </Box>
 
-              {assessments.length === 0 ? (
-                <Box>
-                  <Paper sx={{ p: 3, textAlign: 'center', mb: 3 }}>
-                    <Typography variant="body1" color="textSecondary" paragraph>
-                      You haven't created any assessments yet. Click the button above to create your first assessment.
-                    </Typography>
-
-                    {tests.length === 0 ? (
-                      <Alert severity="warning" sx={{ mt: 2, textAlign: 'left' }}>
-                        You need to create at least one test before you can create an assessment. Go to the "My Tests" tab to create a test first.
-                      </Alert>
-                    ) : (
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        startIcon={<AddIcon />}
-                        onClick={() => setOpenCreateAssessment(true)}
-                        sx={{ mt: 2 }}
-                      >
-                        Create New Assessment
-                      </Button>
-                    )}
-                  </Paper>
-
-                  <Paper sx={{ p: 3 }}>
-                    <Typography variant="h6" gutterBottom>
-                      About Assessments
-                    </Typography>
-                    <Typography variant="body2" paragraph>
-                      Assessments are collections of tests that you can assign to students. You can:
-                    </Typography>
-                    <List dense>
-                      <ListItem>
-                        <ListItemText primary="Set time limits for the entire assessment" />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemText primary="Limit the number of attempts allowed" />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemText primary="Invite specific students by email" />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemText primary="Make assessments public or private" />
-                      </ListItem>
-                    </List>
-                  </Paper>
-                </Box>
-              ) : (
-                <Grid container spacing={3}>
-                  {assessments.map((assessment) => (
-                    <Grid item xs={12} md={6} key={assessment.id}>
-                      <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                        <CardContent sx={{ flexGrow: 1 }}>
-                          <Typography variant="h6" component="h2" gutterBottom>
-                            {assessment.title}
-                          </Typography>
-
-                          <Typography variant="body2" color="textSecondary" paragraph>
-                            {assessment.description}
-                          </Typography>
-
-                          <Box sx={{ mb: 2 }}>
-                            <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                              <CodeIcon fontSize="small" sx={{ mr: 1 }} />
-                              {assessment.tests.length} Tests Included
-                            </Typography>
-
-                            <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                              <AccessTimeIcon fontSize="small" sx={{ mr: 1 }} />
-                              Start: {new Date(assessment.startTime).toLocaleString()}
-                            </Typography>
-
-                            <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                              <AccessTimeIcon fontSize="small" sx={{ mr: 1 }} />
-                              End: {new Date(assessment.endTime).toLocaleString()}
-                            </Typography>
-
-                            <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                              <PersonIcon fontSize="small" sx={{ mr: 1 }} />
-                              Max Attempts: {assessment.maxAttempts}
-                            </Typography>
-
-                            <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center' }}>
-                              <PersonIcon fontSize="small" sx={{ mr: 1 }} />
-                              Invited Students: {assessment.invitedUsers?.length || 0}
-                            </Typography>
-
-                            {assessment.invitedUsers?.length > 0 && (
-                              <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                {assessment.invitedUsers.slice(0, 3).map(user => (
-                                  <Chip
-                                    key={user.id}
-                                    label={user.name || user.email}
-                                    size="small"
-                                    variant="outlined"
-                                  />
-                                ))}
-                                {assessment.invitedUsers.length > 3 && (
-                                  <Chip
-                                    label={`+${assessment.invitedUsers.length - 3} more`}
-                                    size="small"
-                                    variant="outlined"
-                                  />
-                                )}
-                              </Box>
-                            )}
-                          </Box>
-                        </CardContent>
-
-                        <Divider />
-
-                        <CardActions>
-                          <Button
-                            size="small"
-                            component={Link}
-                            to={`/assessments/${assessment.id}`}
-                          >
-                            View
-                          </Button>
-                          <Button
-                            size="small"
-                            component={Link}
-                            to={`/assessments/${assessment.id}/edit`}
-                          >
-                            Edit
-                          </Button>
-                          <Button
-                            size="small"
-                            color="primary"
-                            onClick={() => handleOpenInviteDialog(assessment)}
-                          >
-                            Invite
-                          </Button>
-                          <Button
-                            size="small"
-                            color="error"
-                            onClick={() => handleDeleteAssessment(assessment.id)}
-                          >
-                            Delete
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Grid>
-                  ))}
-                </Grid>
-              )}
-            </>
-          )}
-
-          {/* Analytics Tab */}
-          {tabValue === 2 && (
-            <>
-              <Typography variant="h6" gutterBottom>
-                Performance Analytics
-              </Typography>
-
-              <Paper sx={{ p: 3, textAlign: 'center' }}>
-                <Typography variant="body1" color="textSecondary">
-                  Analytics features will be available soon.
-                </Typography>
-              </Paper>
-            </>
-          )}
         </Box>
       </Paper>
 

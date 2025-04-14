@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Box, CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { AuthProvider } from './context/AuthContext';
+import './styles/global.css';
 
 // Components
 import Navbar from './components/common/Navbar';
@@ -22,6 +23,9 @@ import TestEditor from './components/tests/TestEditor';
 import AssessmentEditor from './components/assessments/AssessmentEditor';
 import AssessmentDetails from './components/assessments/AssessmentDetails';
 import AssessmentsList from './components/assessments/AssessmentsList';
+import AssessmentView from './components/assessments/AssessmentView';
+import AssessmentDetailsView from './components/assessments/AssessmentDetailsView';
+import InvitationAcceptance from './components/assessments/InvitationAcceptance';
 
 // Create theme
 const theme = createTheme({
@@ -176,7 +180,10 @@ function App() {
                   <Route path="/assessments" element={<AssessmentsList />} />
                   <Route path="/assessments/new" element={<AssessmentEditor />} />
                   <Route path="/assessments/:assessmentId/edit" element={<AssessmentEditor />} />
-                  <Route path="/assessments/:assessmentId" element={<AssessmentDetails />} />
+                  <Route path="/assessments/:assessmentId" element={<AssessmentDetailsView />} />
+                  <Route path="/assessments/:assessmentId/details" element={<AssessmentDetails />} />
+                  <Route path="/assessments/:assessmentId/view" element={<AssessmentView />} />
+                  <Route path="/assessments/:assessmentId/invitation" element={<InvitationAcceptance />} />
                 </Route>
 
                 {/* Fallback Route */}

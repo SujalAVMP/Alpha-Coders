@@ -7,669 +7,4210 @@ Pulling GCC image...
 GCC image pulled successfully
 Docker setup completed
 Test server running on port 5002
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: pratham@gmail.com
-Creating new user for email: pratham@gmail.com
-New user created: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Found user by email: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Returning user for /me: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: pratham@gmail.com
-Found user by email: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Returning user for /me: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: pratham@gmail.com
-Found user by email: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Returning user for /me: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: pratham@gmail.com
-Found user by email: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Returning user for /me: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: pratham@gmail.com
-Found user by email: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Returning user for /me: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: pratham@gmail.com
-Found user by email: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Returning user for /me: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
+Register request body: { name: 'p', email: 'p@gmail.com', password: '1', role: 'assessor' }
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
 User found for my assessments: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
 Found assessments count: 0
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
 User found for my assessments: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
 Found assessments count: 0
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+GET /api/tests - Auth Header: Bearer test-token Email: p@gmail.com
 User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
 Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+GET /api/tests - Auth Header: Bearer test-token Email: p@gmail.com
 User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
 Returning all tests for assessor
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: pratham@gmail.com
-Found user by email: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
+User found for my assessments: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
-Returning user for /me: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+Found assessments count: 0
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
+User found for my assessments: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: pratham@gmail.com
-Found user by email: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+Found assessments count: 0
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
+User found for my assessments: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
-Returning user for /me: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+Found assessments count: 0
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
+User found for my assessments: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+Found assessments count: 0
+GET /api/tests - Auth Header: Bearer test-token Email: p@gmail.com
 User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
 Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+GET /api/tests - Auth Header: Bearer test-token Email: p@gmail.com
 User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
 Returning all tests for assessor
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: pratham@gmail.com
-Found user by email: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
+User found for my assessments: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
-Returning user for /me: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+Found assessments count: 0
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
+User found for my assessments: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: pratham@gmail.com
-Found user by email: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Returning user for /me: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+Found assessments count: 0
+GET /api/tests - Auth Header: Bearer test-token Email: p@gmail.com
 User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
 Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+GET /api/tests - Auth Header: Bearer test-token Email: p@gmail.com
 User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p@gmail.com
+User found: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p@gmail.com
+User found: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
+User found for my assessments: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
+  role: 'assessor'
+}
+Found assessments count: 0
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
+User found for my assessments: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
+  role: 'assessor'
+}
+Found assessments count: 0
+GET /api/tests - Auth Header: Bearer test-token Email: p@gmail.com
+User found: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p@gmail.com
+User found: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
 Returning all tests for assessor
 Create assessment request body: {
-  title: 'dfasd',
-  description: 'sadfa',
-  tests: [ '1744621374408' ],
-  startTime: '2025-04-15T09:03',
-  endTime: '2025-04-21T09:03',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
   maxAttempts: 1,
   isPublic: false,
-  invitedStudents: [
-    { email: 'sujal@gmail.com', status: 'Invited', lastAttempt: null }
-  ]
+  invitedStudents: []
 }
-POST /api/assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
+POST /api/assessments - Auth Header: Bearer test-token Email: p@gmail.com
 User found for assessment creation: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
-Tests array for assessment: [ '1744621374408' ]
+Tests array for assessment: [ '1744649851558' ]
 Filtered invitedStudents for new assessment: []
 New assessment being created: {
   id: 'assessment_1',
-  title: 'dfasd',
-  description: 'sadfa',
-  tests: [ '1744621374408' ],
-  startTime: '2025-04-15T09:03',
-  endTime: '2025-04-21T09:03',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
   maxAttempts: 1,
   isPublic: false,
   invitedStudents: [],
-  createdBy: 'test-user-id',
-  createdAt: '2025-04-14T09:03:13.721Z',
-  updatedAt: '2025-04-14T09:03:13.722Z'
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z'
 }
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
 User found for my assessments: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
-Checking assessment: assessment_1 createdBy: test-user-id user.id: test-user-id
+Checking assessment: assessment_1 createdBy: ecn269 user.id: ecn269
 Found assessments count: 1
 Assessment assessment_1 invited users: []
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
 User found for my assessments: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
-Checking assessment: assessment_1 createdBy: test-user-id user.id: test-user-id
+Checking assessment: assessment_1 createdBy: ecn269 user.id: ecn269
 Found assessments count: 1
 Assessment assessment_1 invited users: []
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
-User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
+User found for my assessments: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
-User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+Checking assessment: assessment_1 createdBy: ecn269 user.id: ecn269
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
+User found for my assessments: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
 }
-Returning all tests for assessor
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'dfasd',
-  description: 'sadfa',
-  tests: [ '1744621374408' ],
-  startTime: '2025-04-15T09:03',
-  endTime: '2025-04-21T09:03',
-  maxAttempts: 1,
-  isPublic: false,
-  invitedStudents: [],
-  createdBy: 'test-user-id',
-  createdAt: '2025-04-14T09:03:13.721Z',
-  updatedAt: '2025-04-14T09:03:13.722Z'
+Checking assessment: assessment_1 createdBy: ecn269 user.id: ecn269
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+Register request body: { name: 's', email: 's@gmail.com', password: '1', role: 'assessee' }
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Notifications for user s@gmail.com : []
+No notifications found for user, creating a sample one
+Created sample notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: false
 }
-User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Creator check: {
-  assessmentCreatedBy: 'test-user-id',
-  userId: 'test-user-id',
-  isCreator: true
-}
-Permission check: {
-  isCreator: true,
-  isPublic: false,
-  isInvited: false,
-  isInvitedById: false,
-  isInvitedByEmail: false
-}
-Test details count: 1
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'dfasd',
-  description: 'sadfa',
-  tests: [ '1744621374408' ],
-  startTime: '2025-04-15T09:03',
-  endTime: '2025-04-21T09:03',
-  maxAttempts: 1,
-  isPublic: false,
-  invitedStudents: [],
-  createdBy: 'test-user-id',
-  createdAt: '2025-04-14T09:03:13.721Z',
-  updatedAt: '2025-04-14T09:03:13.722Z'
-}
-User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
-}
-Creator check: {
-  assessmentCreatedBy: 'test-user-id',
-  userId: 'test-user-id',
-  isCreator: true
-}
-Permission check: {
-  isCreator: true,
-  isPublic: false,
-  isInvited: false,
-  isInvitedById: false,
-  isInvitedByEmail: false
-}
-Test details count: 1
+Marked notification as read: 1744649884542for2odj
 Auth header for /me: Bearer test-token
 Token for /me: test-token
-Email from query: pratham@gmail.com
+Email from query: s@gmail.com
 Found user by email: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
 }
 Returning user for /me: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+Login request body: { email: 'p@gmail.com', password: '1' }
+Found user: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
   role: 'assessor'
+}
+Login successful for user: p@gmail.com
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
+User found for my assessments: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
+  role: 'assessor'
+}
+Checking assessment: assessment_1 createdBy: ecn269 user.id: ecn269
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p@gmail.com
+User found for my assessments: {
+  id: 'ecn269',
+  name: 'p',
+  email: 'p@gmail.com',
+  password: '1',
+  role: 'assessor'
+}
+Checking assessment: assessment_1 createdBy: ecn269 user.id: ecn269
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+Login request body: { email: 's@gmail.com', password: '1' }
+Found user: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Login successful for user: s@gmail.com
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+Login request body: { email: 's@gmail.com', password: '1' }
+Found user: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Login successful for user: s@gmail.com
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
 }
 Auth header for /me: Bearer test-token
 Token for /me: test-token
-Email from query: pratham@gmail.com
+Email from query: s@gmail.com
 Found user by email: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
 }
 Returning user for /me: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
 }
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
-User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
 }
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
-User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
 }
-Returning all tests for assessor
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_1
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
 Available assessments: [ 'assessment_1' ]
 Assessment found: {
   id: 'assessment_1',
-  title: 'dfasd',
-  description: 'sadfa',
-  tests: [ '1744621374408' ],
-  startTime: '2025-04-15T09:03',
-  endTime: '2025-04-21T09:03',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
   maxAttempts: 1,
   isPublic: false,
   invitedStudents: [],
-  createdBy: 'test-user-id',
-  createdAt: '2025-04-14T09:03:13.721Z',
-  updatedAt: '2025-04-14T09:03:13.722Z'
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
 }
 User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
 }
-Creator check: {
-  assessmentCreatedBy: 'test-user-id',
-  userId: 'test-user-id',
-  isCreator: true
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
 }
 Permission check: {
-  isCreator: true,
+  isCreator: false,
   isPublic: false,
-  isInvited: false,
+  isInvited: true,
   isInvitedById: false,
-  isInvitedByEmail: false
+  isInvitedByEmail: false,
+  hasValidToken: false
 }
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
 Test details count: 1
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
 Available assessments: [ 'assessment_1' ]
 Assessment found: {
   id: 'assessment_1',
-  title: 'dfasd',
-  description: 'sadfa',
-  tests: [ '1744621374408' ],
-  startTime: '2025-04-15T09:03',
-  endTime: '2025-04-21T09:03',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
   maxAttempts: 1,
   isPublic: false,
   invitedStudents: [],
-  createdBy: 'test-user-id',
-  createdAt: '2025-04-14T09:03:13.721Z',
-  updatedAt: '2025-04-14T09:03:13.722Z'
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
 }
 User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
 }
-Creator check: {
-  assessmentCreatedBy: 'test-user-id',
-  userId: 'test-user-id',
-  isCreator: true
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
 }
 Permission check: {
-  isCreator: true,
+  isCreator: false,
   isPublic: false,
-  isInvited: false,
+  isInvited: true,
   isInvitedById: false,
-  isInvitedByEmail: false
+  isInvitedByEmail: false,
+  hasValidToken: false
 }
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
 Test details count: 1
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
-User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
 }
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
-User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
 }
-Returning all tests for assessor
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_2
-Looking for assessment with ID: assessment_2
-Available assessments: [ 'assessment_1' ]
-Assessment not found
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_2
-Looking for assessment with ID: assessment_2
-Available assessments: [ 'assessment_1' ]
-Assessment not found
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
-User found for my assessments: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+Access granted to test 1744649851558 for user s@gmail.com
+Login request body: { email: 's@gmail.com', password: '1' }
+Found user: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
 }
-Checking assessment: assessment_1 createdBy: test-user-id user.id: test-user-id
-Found assessments count: 1
-Assessment assessment_1 invited users: []
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
-User found for my assessments: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+Login successful for user: s@gmail.com
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
 }
-Checking assessment: assessment_1 createdBy: test-user-id user.id: test-user-id
-Found assessments count: 1
-Assessment assessment_1 invited users: []
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
-User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
 }
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
-User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
 }
-Returning all tests for assessor
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_1
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
 Available assessments: [ 'assessment_1' ]
 Assessment found: {
   id: 'assessment_1',
-  title: 'dfasd',
-  description: 'sadfa',
-  tests: [ '1744621374408' ],
-  startTime: '2025-04-15T09:03',
-  endTime: '2025-04-21T09:03',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
   maxAttempts: 1,
   isPublic: false,
   invitedStudents: [],
-  createdBy: 'test-user-id',
-  createdAt: '2025-04-14T09:03:13.721Z',
-  updatedAt: '2025-04-14T09:03:13.722Z'
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
 }
 User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
 }
-Creator check: {
-  assessmentCreatedBy: 'test-user-id',
-  userId: 'test-user-id',
-  isCreator: true
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
 }
 Permission check: {
-  isCreator: true,
+  isCreator: false,
   isPublic: false,
-  isInvited: false,
+  isInvited: true,
   isInvitedById: false,
-  isInvitedByEmail: false
+  isInvitedByEmail: false,
+  hasValidToken: false
 }
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
 Test details count: 1
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
 Available assessments: [ 'assessment_1' ]
 Assessment found: {
   id: 'assessment_1',
-  title: 'dfasd',
-  description: 'sadfa',
-  tests: [ '1744621374408' ],
-  startTime: '2025-04-15T09:03',
-  endTime: '2025-04-21T09:03',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
   maxAttempts: 1,
   isPublic: false,
   invitedStudents: [],
-  createdBy: 'test-user-id',
-  createdAt: '2025-04-14T09:03:13.721Z',
-  updatedAt: '2025-04-14T09:03:13.722Z'
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
 }
 User found: {
-  id: 'test-user-id',
-  name: 'pratham',
-  email: 'pratham@gmail.com',
-  password: 'password123',
-  role: 'assessor'
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
 }
-Creator check: {
-  assessmentCreatedBy: 'test-user-id',
-  userId: 'test-user-id',
-  isCreator: true
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
 }
 Permission check: {
-  isCreator: true,
+  isCreator: false,
   isPublic: false,
-  isInvited: false,
+  isInvited: true,
   isInvitedById: false,
-  isInvitedByEmail: false
+  isInvitedByEmail: false,
+  hasValidToken: false
 }
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
 Test details count: 1
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+Login request body: { email: 's@gmail.com', password: '1' }
+Found user: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Login successful for user: s@gmail.com
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+Login request body: { email: 's@gmail.com', password: '1' }
+Found user: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Login successful for user: s@gmail.com
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+Login request body: { email: 's@gmail.com', password: '1' }
+Found user: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Login successful for user: s@gmail.com
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+Execute code request: {
+  language: 'python',
+  input: '[[1,4,5],[1,3,4],[2,6]]',
+  assessmentId: 'assessment_1'
+}
+Executing Python code with Docker
+Error executing Python code: {
+  error: Error: Command failed: cat /tmp/run_d02da919-f852-480a-9bc2-0e57f65c5bdc.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_d02da919-f852-480a-9bc2-0e57f65c5bdc       -i python:3.9-slim       bash
+  Traceback (most recent call last):
+    File "/tmp/solution.py", line 7, in <module>
+      target = int(input().strip())
+  EOFError: EOF when reading a line
+  
+      at genericNodeError (node:internal/errors:983:15)
+      at wrappedFn (node:internal/errors:537:14)
+      at ChildProcess.exithandler (node:child_process:414:12)
+      at ChildProcess.emit (node:events:518:28)
+      at maybeClose (node:internal/child_process:1101:16)
+      at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+    code: 1,
+    killed: false,
+    signal: null,
+    cmd: 'cat /tmp/run_d02da919-f852-480a-9bc2-0e57f65c5bdc.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_d02da919-f852-480a-9bc2-0e57f65c5bdc       -i python:3.9-slim       bash'
+  },
+  stderr: 'Traceback (most recent call last):\n' +
+    '  File "/tmp/solution.py", line 7, in <module>\n' +
+    '    target = int(input().strip())\n' +
+    'EOFError: EOF when reading a line\n'
+}
+Execute code request: {
+  language: 'python',
+  input: '[[1,4,5],[1,3,4],[2,6]]',
+  assessmentId: 'assessment_1'
+}
+Executing Python code with Docker
+Error executing Python code: {
+  error: Error: Command failed: cat /tmp/run_cddfa4a4-e3b0-4890-aeb8-d42099d0c218.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_cddfa4a4-e3b0-4890-aeb8-d42099d0c218       -i python:3.9-slim       bash
+  Traceback (most recent call last):
+    File "/tmp/solution.py", line 7, in <module>
+      target = int(input().strip())
+  EOFError: EOF when reading a line
+  
+      at genericNodeError (node:internal/errors:983:15)
+      at wrappedFn (node:internal/errors:537:14)
+      at ChildProcess.exithandler (node:child_process:414:12)
+      at ChildProcess.emit (node:events:518:28)
+      at maybeClose (node:internal/child_process:1101:16)
+      at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+    code: 1,
+    killed: false,
+    signal: null,
+    cmd: 'cat /tmp/run_cddfa4a4-e3b0-4890-aeb8-d42099d0c218.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_cddfa4a4-e3b0-4890-aeb8-d42099d0c218       -i python:3.9-slim       bash'
+  },
+  stderr: 'Traceback (most recent call last):\n' +
+    '  File "/tmp/solution.py", line 7, in <module>\n' +
+    '    target = int(input().strip())\n' +
+    'EOFError: EOF when reading a line\n'
+}
+Execute code request: {
+  language: 'python',
+  input: '[[1,4,5],[1,3,4],[2,6]]',
+  assessmentId: 'assessment_1'
+}
+Executing Python code with Docker
+Error executing Python code: {
+  error: Error: Command failed: cat /tmp/run_9d187a11-e5b2-4deb-9c2f-7206c314982b.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_9d187a11-e5b2-4deb-9c2f-7206c314982b       -i python:3.9-slim       bash
+  Traceback (most recent call last):
+    File "/tmp/solution.py", line 7, in <module>
+      target = int(input().strip())
+  EOFError: EOF when reading a line
+  
+      at genericNodeError (node:internal/errors:983:15)
+      at wrappedFn (node:internal/errors:537:14)
+      at ChildProcess.exithandler (node:child_process:414:12)
+      at ChildProcess.emit (node:events:518:28)
+      at maybeClose (node:internal/child_process:1101:16)
+      at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+    code: 1,
+    killed: false,
+    signal: null,
+    cmd: 'cat /tmp/run_9d187a11-e5b2-4deb-9c2f-7206c314982b.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_9d187a11-e5b2-4deb-9c2f-7206c314982b       -i python:3.9-slim       bash'
+  },
+  stderr: 'Traceback (most recent call last):\n' +
+    '  File "/tmp/solution.py", line 7, in <module>\n' +
+    '    target = int(input().strip())\n' +
+    'EOFError: EOF when reading a line\n'
+}
+Run test cases request: {
+  testId: '1744649851558',
+  language: 'python',
+  assessmentId: 'assessment_1'
+}
+Executing Python code with Docker
+Error executing Python code: {
+  error: Error: Command failed: cat /tmp/run_b1b3352b-f0ad-40e0-9793-b54d761876df.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_b1b3352b-f0ad-40e0-9793-b54d761876df       -i python:3.9-slim       bash
+  Traceback (most recent call last):
+    File "/tmp/solution.py", line 7, in <module>
+      target = int(input().strip())
+  EOFError: EOF when reading a line
+  
+      at genericNodeError (node:internal/errors:983:15)
+      at wrappedFn (node:internal/errors:537:14)
+      at ChildProcess.exithandler (node:child_process:414:12)
+      at ChildProcess.emit (node:events:518:28)
+      at maybeClose (node:internal/child_process:1101:16)
+      at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+    code: 1,
+    killed: false,
+    signal: null,
+    cmd: 'cat /tmp/run_b1b3352b-f0ad-40e0-9793-b54d761876df.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_b1b3352b-f0ad-40e0-9793-b54d761876df       -i python:3.9-slim       bash'
+  },
+  stderr: 'Traceback (most recent call last):\n' +
+    '  File "/tmp/solution.py", line 7, in <module>\n' +
+    '    target = int(input().strip())\n' +
+    'EOFError: EOF when reading a line\n'
+}
+Executing Python code with Docker
+Error executing Python code: {
+  error: Error: Command failed: cat /tmp/run_1c9d89d9-935f-48db-9c2d-3dd1d4946d72.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_1c9d89d9-935f-48db-9c2d-3dd1d4946d72       -i python:3.9-slim       bash
+  Traceback (most recent call last):
+    File "/tmp/solution.py", line 7, in <module>
+      target = int(input().strip())
+  EOFError: EOF when reading a line
+  
+      at genericNodeError (node:internal/errors:983:15)
+      at wrappedFn (node:internal/errors:537:14)
+      at ChildProcess.exithandler (node:child_process:414:12)
+      at ChildProcess.emit (node:events:518:28)
+      at maybeClose (node:internal/child_process:1101:16)
+      at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+    code: 1,
+    killed: false,
+    signal: null,
+    cmd: 'cat /tmp/run_1c9d89d9-935f-48db-9c2d-3dd1d4946d72.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_1c9d89d9-935f-48db-9c2d-3dd1d4946d72       -i python:3.9-slim       bash'
+  },
+  stderr: 'Traceback (most recent call last):\n' +
+    '  File "/tmp/solution.py", line 7, in <module>\n' +
+    '    target = int(input().strip())\n' +
+    'EOFError: EOF when reading a line\n'
+}
+Execute code request: {
+  language: 'python',
+  input: '[[1,4,5],[1,3,4],[2,6]]',
+  assessmentId: 'assessment_1'
+}
+Executing Python code with Docker
+Error executing Python code: {
+  error: Error: Command failed: cat /tmp/run_9f31bb51-ef99-47b1-8e26-3c00e33205b5.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_9f31bb51-ef99-47b1-8e26-3c00e33205b5       -i python:3.9-slim       bash
+  Traceback (most recent call last):
+    File "/tmp/solution.py", line 7, in <module>
+      target = int(input().strip())
+  EOFError: EOF when reading a line
+  
+      at genericNodeError (node:internal/errors:983:15)
+      at wrappedFn (node:internal/errors:537:14)
+      at ChildProcess.exithandler (node:child_process:414:12)
+      at ChildProcess.emit (node:events:518:28)
+      at maybeClose (node:internal/child_process:1101:16)
+      at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+    code: 1,
+    killed: false,
+    signal: null,
+    cmd: 'cat /tmp/run_9f31bb51-ef99-47b1-8e26-3c00e33205b5.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_9f31bb51-ef99-47b1-8e26-3c00e33205b5       -i python:3.9-slim       bash'
+  },
+  stderr: 'Traceback (most recent call last):\n' +
+    '  File "/tmp/solution.py", line 7, in <module>\n' +
+    '    target = int(input().strip())\n' +
+    'EOFError: EOF when reading a line\n'
+}
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+Login request body: { email: 's@gmail.com', password: '1' }
+Found user: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Login successful for user: s@gmail.com
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+Login request body: { email: 's@gmail.com', password: '1' }
+Found user: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Login successful for user: s@gmail.com
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+Login request body: { email: 's@gmail.com', password: '1' }
+Found user: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Login successful for user: s@gmail.com
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+Login request body: { email: 's@gmail.com', password: '1' }
+Found user: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Login successful for user: s@gmail.com
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s@gmail.com
+Found user by email: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/notifications - Auth Header: Bearer test-token Email: s@gmail.com
+Found/created user for notifications: 6y0oxp s@gmail.com
+Found notification for user: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+Notifications for user s@gmail.com : [
+  {
+    id: '1744649884542for2odj',
+    userId: '6y0oxp',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T16:58:04.542Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s@gmail.com
+User found/created: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: s@gmail.com 6y0oxp
+All assessments: [ { id: 'assessment_1', title: 'sadfasdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s@gmail.com (6y0oxp) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744649884542for2odj',
+  userId: '6y0oxp',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T16:58:04.542Z',
+  read: true
+}
+User s@gmail.com is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sadfasdf',
+  description: '',
+  tests: [ '1744649851558' ],
+  startTime: '2025-04-14T22:26',
+  endTime: '2025-04-21T22:26',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'ecn269',
+  createdAt: '2025-04-14T16:57:48.198Z',
+  updatedAt: '2025-04-14T16:57:48.198Z',
+  attemptsUsed: 0
+}
+User found: {
+  id: '6y0oxp',
+  name: 's',
+  email: 's@gmail.com',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'ecn269', userId: '6y0oxp', isCreator: false }
+Invitation check for user s@gmail.com assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: false,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744649851558' ]
+Found test: 1744649851558 Merge K Sorted Lists
+Test details count: 1
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s@gmail.com Test ID: 1744649851558
+Found user for test access check: 6y0oxp s@gmail.com
+Looking for test with ID: 1744649851558
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744649851558',
+    title: 'Merge K Sorted Lists'
+  }
+]
+Test found: { id: undefined, _id: '1744649851558', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744649851558 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744649851558
+Assessment assessment_1 contains test 1744649851558
+User s@gmail.com is invited to assessment assessment_1 containing test 1744649851558 through notification
+Permission check for test access: {
+  testId: '1744649851558',
+  userId: '6y0oxp',
+  userEmail: 's@gmail.com',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744649851558 for user s@gmail.com
