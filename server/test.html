@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Test</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <h1>API Test</h1>
+  <button id="testButton">Test API</button>
+  <button id="registerButton">Register User</button>
+  <button id="loginButton">Login User</button>
+  <button id="testsButton">Get Tests</button>
+  <pre id="output"></pre>
+
+  <script>
+    const API_URL = 'http://localhost:5002/api';
+    const output = document.getElementById('output');
+
+    document.getElementById('testButton').addEventListener('click', async () => {
+      try {
+        const response = await axios.get(`${API_URL}/test`);
+        output.textContent = JSON.stringify(response.data, null, 2);
+      } catch (error) {
+        output.textContent = `Error: ${error.message}\n${JSON.stringify(error.response?.data, null, 2)}`;
+      }
+    });
+
+    document.getElementById('registerButton').addEventListener('click', async () => {
+      try {
+        const userData = {
+          name: 'Test User',
+          email: 'test@example.com',
+          password: 'password123'
+        };
+        const response = await axios.post(`${API_URL}/auth/register`, userData);
+        output.textContent = JSON.stringify(response.data, null, 2);
+        localStorage.setItem('token', response.data.token);
+      } catch (error) {
+        output.textContent = `Error: ${error.message}\n${JSON.stringify(error.response?.data, null, 2)}`;
+      }
+    });
+
+    document.getElementById('loginButton').addEventListener('click', async () => {
+      try {
+        const userData = {
+          email: 'test@example.com',
+          password: 'password123'
+        };
+        const response = await axios.post(`${API_URL}/auth/login`, userData);
+        output.textContent = JSON.stringify(response.data, null, 2);
+        localStorage.setItem('token', response.data.token);
+      } catch (error) {
+        output.textContent = `Error: ${error.message}\n${JSON.stringify(error.response?.data, null, 2)}`;
+      }
+    });
+
+    document.getElementById('testsButton').addEventListener('click', async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`${API_URL}/tests`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        output.textContent = JSON.stringify(response.data, null, 2);
+      } catch (error) {
+        output.textContent = `Error: ${error.message}\n${JSON.stringify(error.response?.data, null, 2)}`;
+      }
+    });
+  </script>
+</body>
+</html>
