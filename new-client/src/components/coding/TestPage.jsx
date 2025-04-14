@@ -60,62 +60,42 @@ const TestPage = () => {
   const [panelWidth, setPanelWidth] = useState(50); // 50% width for each panel
   const resizerRef = useRef(null);
 
-  // Language templates
-  const languageTemplates = {
-    python: `def solution(nums, target):
+  // Default language templates (will be replaced by problem-specific templates if available)
+  const defaultLanguageTemplates = {
+    python: `def solution(input_data):
     # Your code here
     pass
 
 # Read input
-nums = eval(input().strip())
-target = int(input().strip())
+input_data = input().strip()
 
 # Call function and print result
-print(solution(nums, target))`,
+print(solution(input_data))`,
     cpp: `#include <iostream>
-#include <vector>
 #include <string>
-#include <sstream>
 
-std::vector<int> solution(std::vector<int>& nums, int target) {
+std::string solution(const std::string& input) {
     // Your code here
-    return {};
-}
-
-// Parse input string to vector
-std::vector<int> parseInput(const std::string& input) {
-    std::vector<int> result;
-    std::stringstream ss(input.substr(1, input.size() - 2)); // Remove [ and ]
-    std::string item;
-    while (std::getline(ss, item, ',')) {
-        result.push_back(std::stoi(item));
-    }
-    return result;
+    return "";
 }
 
 int main() {
     // Read input
     std::string input;
     std::getline(std::cin, input);
-    std::vector<int> nums = parseInput(input);
-
-    int target;
-    std::cin >> target;
 
     // Call solution
-    std::vector<int> result = solution(nums, target);
+    std::string result = solution(input);
 
     // Print result
-    std::cout << "[";
-    for (size_t i = 0; i < result.size(); ++i) {
-        if (i > 0) std::cout << ", ";
-        std::cout << result[i];
-    }
-    std::cout << "]" << std::endl;
+    std::cout << result << std::endl;
 
     return 0;
 }`
   };
+
+  // We'll use this to store the actual templates for the current problem
+  // This is now handled directly through the test object
 
   useEffect(() => {
     const fetchTest = async () => {
@@ -156,8 +136,15 @@ int main() {
         }
 
         setTest(data);
-        // Set initial code template based on selected language
-        setCode(languageTemplates[language]);
+
+        // Check if the test has code templates
+        if (data.codeTemplates && data.codeTemplates[language]) {
+          // Use problem-specific templates
+          setCode(data.codeTemplates[language]);
+        } else {
+          // Fall back to default templates
+          setCode(defaultLanguageTemplates[language]);
+        }
       } catch (error) {
         console.error('Error fetching test:', error);
         // Provide a more user-friendly error message
@@ -181,7 +168,13 @@ int main() {
   const handleLanguageChange = (e) => {
     const newLanguage = e.target.value;
     setLanguage(newLanguage);
-    setCode(languageTemplates[newLanguage]);
+
+    // Use the appropriate template for the selected language
+    if (test.codeTemplates && test.codeTemplates[newLanguage]) {
+      setCode(test.codeTemplates[newLanguage]);
+    } else {
+      setCode(defaultLanguageTemplates[newLanguage]);
+    }
   };
 
   const handleCodeChange = (value) => {
@@ -237,6 +230,8 @@ int main() {
         }
       }
 
+      console.log('Executing code with input:', input);
+
       // Include assessmentId in the request for proper permission handling
       const data = await executeCode({
         code,
@@ -244,6 +239,8 @@ int main() {
         input,
         assessmentId: assessmentId // Pass assessmentId for permission validation
       });
+
+      console.log('Code execution response:', data);
 
       if (data && data.output) {
         setOutput(data.output);
@@ -267,12 +264,16 @@ int main() {
       setTestResults(null);
       setTab(1); // Switch to test results tab
 
+      console.log('Running test cases for test ID:', id);
+
       // Include assessmentId in the request for proper permission handling
       const data = await runTestCases(id, {
         code,
         language,
         assessmentId: assessmentId // Pass assessmentId for permission validation
       });
+
+      console.log('Test case execution response:', data);
 
       setTestResults(data);
     } catch (error) {

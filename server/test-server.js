@@ -3,6 +3,7 @@ const cors = require('cors');
 const { executeCode, runTestCases, buildDockerImage } = require('./code-execution/executor');
 const path = require('path');
 const fs = require('fs').promises;
+const sampleTestTemplates = require('./test-templates');
 
 // Initialize Express app
 const app = express();
@@ -194,8 +195,9 @@ app.get('/api/auth/me', (req, res) => {
   return res.status(401).json({ message: 'Invalid token' });
 });
 
-// Sample test templates for assessors to use
-const sampleTestTemplates = [
+// Sample test templates are now imported from './test-templates'
+/* Old templates commented out
+const oldTemplates = [
   {
     title: 'Two Sum',
     description: 'Find two numbers that add up to a target',
@@ -207,6 +209,61 @@ const sampleTestTemplates = [
     constraints: '2 <= nums.length <= 10^4\n-10^9 <= nums[i] <= 10^9\n-10^9 <= target <= 10^9\nOnly one valid answer exists.',
     sampleInput: '[2,7,11,15]\n9',
     sampleOutput: '[0,1]',
+    codeTemplates: {
+      python: `def solution(nums, target):
+    # Your code here
+    pass
+
+# Read input
+nums = eval(input().strip())
+target = int(input().strip())
+
+# Call function and print result
+print(solution(nums, target))`,
+      cpp: `#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+
+std::vector<int> solution(std::vector<int>& nums, int target) {
+    // Your code here
+    return {};
+}
+
+// Parse input string to vector
+std::vector<int> parseInput(const std::string& input) {
+    std::vector<int> result;
+    std::stringstream ss(input.substr(1, input.size() - 2)); // Remove [ and ]
+    std::string item;
+    while (std::getline(ss, item, ',')) {
+        result.push_back(std::stoi(item));
+    }
+    return result;
+}
+
+int main() {
+    // Read input
+    std::string input;
+    std::getline(std::cin, input);
+    std::vector<int> nums = parseInput(input);
+
+    int target;
+    std::cin >> target;
+
+    // Call solution
+    std::vector<int> result = solution(nums, target);
+
+    // Print result
+    std::cout << "[";
+    for (size_t i = 0; i < result.size(); ++i) {
+        if (i > 0) std::cout << ", ";
+        std::cout << result[i];
+    }
+    std::cout << "]" << std::endl;
+
+    return 0;
+}`
+    },
     testCases: [
       { input: '[2,7,11,15]\n9', expected: '[0,1]', isHidden: false },
       { input: '[3,2,4]\n6', expected: '[1,2]', isHidden: false },
@@ -284,6 +341,7 @@ const sampleTestTemplates = [
     ]
   }
 ];
+*/
 
 // Mock tests data - empty by default for new users
 const tests = [];
@@ -340,17 +398,19 @@ app.get('/api/tests', (req, res) => {
     return res.json(tests);
   }
 
-  // If the user is an assessee, return only tests that are part of their assigned assessments
+  // If the user is an assessee, return tests that are part of their assigned assessments OR public tests
   const assignedAssessments = assessments.filter(assessment => {
     // Check if the user's email is in the invitedStudents array as an object
-    const invitedByEmail = assessment.invitedStudents.some(student =>
-      typeof student === 'object' && student.email === user.email
-    );
+    const invitedByEmail = assessment.invitedStudents && Array.isArray(assessment.invitedStudents) &&
+      assessment.invitedStudents.some(student =>
+        typeof student === 'object' && student.email === user.email
+      );
 
     // Check if the user's ID is in the invitedStudents array
-    const invitedById = assessment.invitedStudents.includes(user.id);
+    const invitedById = assessment.invitedStudents && Array.isArray(assessment.invitedStudents) &&
+      assessment.invitedStudents.includes(user.id);
 
-    return invitedByEmail || invitedById;
+    return invitedByEmail || invitedById || assessment.isPublic;
   });
 
   console.log('Assigned assessments:', assignedAssessments.length);
@@ -365,8 +425,14 @@ app.get('/api/tests', (req, res) => {
 
   console.log('Assigned test IDs:', [...assignedTestIds]);
 
-  // Filter tests to only include those in assigned assessments
-  const accessibleTests = tests.filter(test => assignedTestIds.has(test._id));
+  // Get public tests
+  const publicTests = tests.filter(test => test.isPublic);
+  console.log('Public tests:', publicTests.length);
+
+  // Filter tests to include those in assigned assessments AND public tests
+  const accessibleTests = tests.filter(test =>
+    assignedTestIds.has(test._id) || test.isPublic
+  );
 
   console.log('Returning accessible tests for assessee:', accessibleTests.length);
   res.json(accessibleTests);
@@ -374,8 +440,16 @@ app.get('/api/tests', (req, res) => {
 
 // Get public tests
 app.get('/api/tests/public', (req, res) => {
+  // Get the user from the request (in a real app, this would be from the token)
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
   // Return only public tests
   const publicTests = tests.filter(test => test.isPublic);
+  console.log('Returning public tests:', publicTests.length);
   res.json(publicTests);
 });
 
@@ -474,7 +548,9 @@ app.post('/api/tests/from-template/:templateIndex', (req, res) => {
     _id: Date.now().toString(),
     createdBy: userId,
     createdAt: new Date().toISOString(),
-    isPublic: false // Default to private
+    isPublic: false, // Default to private
+    // Make sure to include code templates if available
+    codeTemplates: template.codeTemplates || null
   };
 
   // Add the test to the tests array
@@ -665,6 +741,11 @@ app.get('/api/tests/:id', (req, res) => {
     constraints: test.constraints || 'You may assume that each input would have exactly one solution, and you may not use the same element twice.',
     sampleInput: test.sampleInput || '[2, 7, 11, 15]\n9',
     sampleOutput: test.sampleOutput || '[0, 1]',
+    // Include code templates if available
+    codeTemplates: test.codeTemplates || {
+      python: `def solution(nums, target):\n    # Your code here\n    pass\n\n# Read input\nnums = eval(input().strip())\ntarget = int(input().strip())\n\n# Call function and print result\nprint(solution(nums, target))`,
+      cpp: `#include <iostream>\n#include <vector>\n#include <string>\n#include <sstream>\n\nstd::vector<int> solution(std::vector<int>& nums, int target) {\n    // Your code here\n    return {};\n}\n\n// Parse input string to vector\nstd::vector<int> parseInput(const std::string& input) {\n    std::vector<int> result;\n    std::stringstream ss(input.substr(1, input.size() - 2)); // Remove [ and ]\n    std::string item;\n    while (std::getline(ss, item, ',')) {\n        result.push_back(std::stoi(item));\n    }\n    return result;\n}\n\nint main() {\n    // Read input\n    std::string input;\n    std::getline(std::cin, input);\n    std::vector<int> nums = parseInput(input);\n\n    int target;\n    std::cin >> target;\n\n    // Call solution\n    std::vector<int> result = solution(nums, target);\n\n    // Print result\n    std::cout << "[";\n    for (size_t i = 0; i < result.size(); ++i) {\n        if (i > 0) std::cout << ", ";\n        std::cout << result[i];\n    }\n    std::cout << "]" << std::endl;\n\n    return 0;\n}`
+    },
     createdBy: {
       name: user.id === 'admin123' ? 'Admin' : (test.createdBy?.name || 'Test User'),
       email: user.id === 'admin123' ? 'admin@gmail.com' : (test.createdBy?.email || 'test@gmail.com')

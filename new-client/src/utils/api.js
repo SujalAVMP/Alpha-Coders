@@ -165,14 +165,21 @@ export const deleteSubmission = (id) => fetchAPI(`/code/submissions/${id}`, {
 });
 
 // Code Execution API
-export const executeCode = (codeData) => fetchAPI('/code/execute', {
-  method: 'POST',
-  body: JSON.stringify(codeData)
-});
-export const runTestCases = (testId, codeData) => fetchAPI(`/code/tests/${testId}/run`, {
-  method: 'POST',
-  body: JSON.stringify(codeData)
-});
+export const executeCode = (codeData) => {
+  console.log('Executing code with data:', codeData);
+  return fetchAPI('/code/execute', {
+    method: 'POST',
+    body: JSON.stringify(codeData)
+  });
+};
+
+export const runTestCases = (testId, codeData) => {
+  console.log(`Running test cases for test ${testId} with data:`, codeData);
+  return fetchAPI(`/code/tests/${testId}/run`, {
+    method: 'POST',
+    body: JSON.stringify(codeData)
+  });
+};
 
 // Assessments API
 export const getMyAssessments = () => fetchAPI('/assessments/my-assessments');
