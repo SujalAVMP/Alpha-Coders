@@ -135,13 +135,16 @@ int main() {
           }
         }
 
+        console.log('Fetched test data:', data);
         setTest(data);
 
         // Check if the test has code templates
         if (data.codeTemplates && data.codeTemplates[language]) {
+          console.log(`Using problem-specific template for ${language}:`, data.codeTemplates[language]);
           // Use problem-specific templates
           setCode(data.codeTemplates[language]);
         } else {
+          console.log(`Using default template for ${language}:`, defaultLanguageTemplates[language]);
           // Fall back to default templates
           setCode(defaultLanguageTemplates[language]);
         }
@@ -169,10 +172,15 @@ int main() {
     const newLanguage = e.target.value;
     setLanguage(newLanguage);
 
+    console.log('Language changed to:', newLanguage);
+    console.log('Test object:', test);
+
     // Use the appropriate template for the selected language
     if (test.codeTemplates && test.codeTemplates[newLanguage]) {
+      console.log(`Using problem-specific template for ${newLanguage}:`, test.codeTemplates[newLanguage]);
       setCode(test.codeTemplates[newLanguage]);
     } else {
+      console.log(`Using default template for ${newLanguage}:`, defaultLanguageTemplates[newLanguage]);
       setCode(defaultLanguageTemplates[newLanguage]);
     }
   };
