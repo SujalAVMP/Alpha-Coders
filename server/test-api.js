@@ -20,7 +20,7 @@ async function registerUser() {
     console.log('Registering user...');
     const userData = {
       name: 'Test User',
-      email: 'test@example.com',
+      email: 'test@gmail.com',
       password: 'password123'
     };
     const response = await fetch(`${API_URL}/auth/register`, {
@@ -43,7 +43,7 @@ async function loginUser() {
   try {
     console.log('Logging in user...');
     const userData = {
-      email: 'test@example.com',
+      email: 'test@gmail.com',
       password: 'password123'
     };
     const response = await fetch(`${API_URL}/auth/login`, {

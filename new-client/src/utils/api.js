@@ -15,8 +15,24 @@ export const fetchAPI = async (url, options = {}) => {
       headers['Authorization'] = `Bearer ${token}`;
     }
 
+    // Get the user email from localStorage
+    const userEmail = localStorage.getItem('userEmail');
+
+    // Add email as query parameter if available
+    let apiUrl = `${API_URL}${url}`;
+    if (userEmail) {
+      // Check if URL already has query parameters
+      const separator = apiUrl.includes('?') ? '&' : '?';
+      // Make sure we don't add the email parameter twice
+      if (!apiUrl.includes(`email=${encodeURIComponent(userEmail)}`)) {
+        apiUrl += `${separator}email=${encodeURIComponent(userEmail)}`;
+      }
+    }
+
+    console.log('API Request URL:', apiUrl);
+
     // Make the request
-    const response = await fetch(`${API_URL}${url}`, {
+    const response = await fetch(apiUrl, {
       ...options,
       headers
     });
@@ -47,7 +63,10 @@ export const login = (userData) => fetchAPI('/auth/login', {
   body: JSON.stringify(userData)
 });
 
-export const getCurrentUser = () => fetchAPI('/auth/me');
+export const getCurrentUser = (email) => {
+  const url = email ? `/auth/me?email=${encodeURIComponent(email)}` : '/auth/me';
+  return fetchAPI(url);
+};
 
 export const deleteUserAccount = () => fetchAPI('/users/me', {
   method: 'DELETE'

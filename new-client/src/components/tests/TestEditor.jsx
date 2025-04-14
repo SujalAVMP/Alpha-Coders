@@ -459,7 +459,7 @@ const TestEditor = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <TextField
-                    label="Sample Input"
+                    label="Input"
                     name="sampleInput"
                     fullWidth
                     multiline
@@ -470,7 +470,7 @@ const TestEditor = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <TextField
-                    label="Sample Output"
+                    label="Output"
                     name="sampleOutput"
                     fullWidth
                     multiline

@@ -22,14 +22,19 @@ export const AuthProvider = ({ children }) => {
           return;
         }
 
+        // Get the stored email from localStorage
+        const storedEmail = localStorage.getItem('userEmail');
+        console.log('Stored email:', storedEmail);
+
         console.log('Getting current user...');
-        const data = await getCurrentUser();
+        const data = await getCurrentUser(storedEmail);
         console.log('Current user:', data);
         setUser(data);
         setIsAuthenticated(true);
       } catch (err) {
         console.error('Error loading user:', err);
         localStorage.removeItem('token');
+        localStorage.removeItem('userEmail');
         setError(err.message || 'An error occurred');
       } finally {
         setLoading(false);
@@ -48,6 +53,7 @@ export const AuthProvider = ({ children }) => {
       const data = await register(userData);
       console.log('Registration response:', data);
       localStorage.setItem('token', data.token);
+      localStorage.setItem('userEmail', userData.email);
       setUser(data.user);
       setIsAuthenticated(true);
       return data;
@@ -69,6 +75,7 @@ export const AuthProvider = ({ children }) => {
       const data = await login(userData);
       console.log('Login response:', data);
       localStorage.setItem('token', data.token);
+      localStorage.setItem('userEmail', userData.email);
       setUser(data.user);
       setIsAuthenticated(true);
       return data;
@@ -84,6 +91,7 @@ export const AuthProvider = ({ children }) => {
   // Logout user
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userEmail');
     setUser(null);
     setIsAuthenticated(false);
   };
@@ -95,6 +103,7 @@ export const AuthProvider = ({ children }) => {
       setError(null);
       await deleteUserAccount();
       localStorage.removeItem('token');
+      localStorage.removeItem('userEmail');
       setUser(null);
       setIsAuthenticated(false);
       return { success: true, message: 'Account deleted successfully' };

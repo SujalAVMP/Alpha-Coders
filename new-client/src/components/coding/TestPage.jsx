@@ -327,7 +327,7 @@ int main() {
 
                 <Box sx={{ mt: 3, mb: 2 }}>
                   <Typography variant="h6" fontWeight="bold" gutterBottom>
-                    Sample Input
+                    Input
                   </Typography>
                   <Paper
                     variant="outlined"
@@ -346,7 +346,7 @@ int main() {
 
                 <Box sx={{ mt: 3 }}>
                   <Typography variant="h6" fontWeight="bold" gutterBottom>
-                    Sample Output
+                    Output
                   </Typography>
                   <Paper
                     variant="outlined"

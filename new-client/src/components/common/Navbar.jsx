@@ -74,7 +74,8 @@ const Navbar = () => {
 
   const menuItems = [
     { text: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
-    { text: 'Challenges', path: '/tests', icon: <CodeIcon /> },
+    { text: 'Tests', path: '/tests', icon: <CodeIcon /> },
+    { text: 'Assessments', path: '/assessments', icon: <CodeIcon /> },
     { text: 'Submissions', path: '/submissions', icon: <HistoryIcon /> },
     { text: 'Profile', path: '/profile', icon: <PersonIcon /> }
   ];
@@ -101,7 +102,6 @@ const Navbar = () => {
             <Divider />
             {menuItems.map((item) => (
               <ListItem
-                button
                 key={item.text}
                 onClick={() => handleNavigation(item.path)}
                 selected={isActive(item.path)}
@@ -114,6 +114,7 @@ const Navbar = () => {
                   '&.Mui-selected:hover': {
                     bgcolor: 'primary.100',
                   },
+                  cursor: 'pointer',
                 }}
               >
                 <ListItemIcon>
@@ -123,7 +124,7 @@ const Navbar = () => {
               </ListItem>
             ))}
             <Divider sx={{ my: 1 }} />
-            <ListItem button onClick={handleLogout}>
+            <ListItem onClick={handleLogout} sx={{ cursor: 'pointer' }}>
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>
@@ -132,13 +133,13 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <ListItem button onClick={() => handleNavigation('/login')}>
+            <ListItem onClick={() => handleNavigation('/login')} sx={{ cursor: 'pointer' }}>
               <ListItemIcon>
                 <LoginIcon />
               </ListItemIcon>
               <ListItemText primary="Login" />
             </ListItem>
-            <ListItem button onClick={() => handleNavigation('/register')}>
+            <ListItem onClick={() => handleNavigation('/register')} sx={{ cursor: 'pointer' }}>
               <ListItemIcon>
                 <PersonAddIcon />
               </ListItemIcon>

@@ -30,32 +30,32 @@ import {
 const Profile = () => {
   const { user, deleteAccount, loading, error } = useContext(AuthContext);
   const navigate = useNavigate();
-  
+
   const [openDialog, setOpenDialog] = useState(false);
   const [confirmText, setConfirmText] = useState('');
   const [deleteError, setDeleteError] = useState('');
   const [deleteSuccess, setDeleteSuccess] = useState(false);
-  
+
   const handleOpenDialog = () => {
     setOpenDialog(true);
     setConfirmText('');
     setDeleteError('');
   };
-  
+
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
-  
+
   const handleConfirmTextChange = (e) => {
     setConfirmText(e.target.value);
   };
-  
+
   const handleDeleteAccount = async () => {
     if (confirmText !== 'DELETE') {
       setDeleteError('Please type DELETE to confirm');
       return;
     }
-    
+
     try {
       await deleteAccount();
       setDeleteSuccess(true);
@@ -66,7 +66,7 @@ const Profile = () => {
       setDeleteError(err.message || 'Failed to delete account');
     }
   };
-  
+
   if (loading) {
     return (
       <Box
@@ -81,14 +81,14 @@ const Profile = () => {
       </Box>
     );
   }
-  
+
   return (
     <Box sx={{ bgcolor: 'grey.50', minHeight: 'calc(100vh - 64px)' }}>
       <Container maxWidth="md" sx={{ pt: 4, pb: 8 }}>
         <Typography variant="h4" fontWeight="bold" gutterBottom>
           Your Profile
         </Typography>
-        
+
         <Grid container spacing={3}>
           {/* Profile Information */}
           <Grid item xs={12}>
@@ -98,7 +98,7 @@ const Profile = () => {
                   Account Information
                 </Typography>
               </Box>
-              
+
               <Box sx={{ p: 3 }}>
                 <Grid container spacing={3} alignItems="center">
                   <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -113,7 +113,7 @@ const Profile = () => {
                       {user?.name?.charAt(0) || 'U'}
                     </Avatar>
                   </Grid>
-                  
+
                   <Grid item xs={12} md={8}>
                     <Box sx={{ mb: 3 }}>
                       <Typography variant="body2" color="text.secondary" gutterBottom>
@@ -124,17 +124,17 @@ const Profile = () => {
                         {user?.name || 'User'}
                       </Typography>
                     </Box>
-                    
+
                     <Box sx={{ mb: 3 }}>
                       <Typography variant="body2" color="text.secondary" gutterBottom>
                         <EmailIcon fontSize="small" sx={{ mr: 1, verticalAlign: 'middle' }} />
                         EMAIL
                       </Typography>
                       <Typography variant="h6" fontWeight={500}>
-                        {user?.email || 'user@example.com'}
+                        {user?.email || 'Not available'}
                       </Typography>
                     </Box>
-                    
+
                     <Box>
                       <Typography variant="body2" color="text.secondary" gutterBottom>
                         <VpnKeyIcon fontSize="small" sx={{ mr: 1, verticalAlign: 'middle' }} />
@@ -149,14 +149,14 @@ const Profile = () => {
               </Box>
             </Paper>
           </Grid>
-          
+
           {/* Danger Zone */}
           <Grid item xs={12}>
-            <Paper 
-              elevation={2} 
-              sx={{ 
-                p: 0, 
-                borderRadius: 3, 
+            <Paper
+              elevation={2}
+              sx={{
+                p: 0,
+                borderRadius: 3,
                 overflow: 'hidden',
                 borderLeft: 4,
                 borderColor: 'error.main'
@@ -167,7 +167,7 @@ const Profile = () => {
                   Danger Zone
                 </Typography>
               </Box>
-              
+
               <Box sx={{ p: 3 }}>
                 <Grid container spacing={2} alignItems="center">
                   <Grid item xs={12} md={8}>
@@ -193,7 +193,7 @@ const Profile = () => {
             </Paper>
           </Grid>
         </Grid>
-        
+
         {/* Delete Account Dialog */}
         <Dialog
           open={openDialog}
@@ -209,19 +209,19 @@ const Profile = () => {
             <DialogContentText id="delete-account-dialog-description">
               This action cannot be undone. This will permanently delete your account and remove all your data from our servers.
             </DialogContentText>
-            
+
             {deleteError && (
               <Alert severity="error" sx={{ mt: 2 }}>
                 {deleteError}
               </Alert>
             )}
-            
+
             {deleteSuccess && (
               <Alert severity="success" sx={{ mt: 2 }}>
                 Your account has been deleted successfully. Redirecting...
               </Alert>
             )}
-            
+
             <TextField
               autoFocus
               margin="dense"
@@ -240,9 +240,9 @@ const Profile = () => {
             <Button onClick={handleCloseDialog} disabled={deleteSuccess}>
               Cancel
             </Button>
-            <Button 
-              onClick={handleDeleteAccount} 
-              color="error" 
+            <Button
+              onClick={handleDeleteAccount}
+              color="error"
               variant="contained"
               disabled={confirmText !== 'DELETE' || deleteSuccess}
             >

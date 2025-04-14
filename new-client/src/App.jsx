@@ -21,6 +21,7 @@ import SubmissionDetails from './components/coding/SubmissionDetails';
 import TestEditor from './components/tests/TestEditor';
 import AssessmentEditor from './components/assessments/AssessmentEditor';
 import AssessmentDetails from './components/assessments/AssessmentDetails';
+import AssessmentsList from './components/assessments/AssessmentsList';
 
 // Create theme
 const theme = createTheme({
@@ -172,6 +173,7 @@ function App() {
                   <Route path="/submissions" element={<SubmissionsList />} />
                   <Route path="/submissions/:id" element={<SubmissionDetails />} />
                   <Route path="/profile" element={<Profile />} />
+                  <Route path="/assessments" element={<AssessmentsList />} />
                   <Route path="/assessments/new" element={<AssessmentEditor />} />
                   <Route path="/assessments/:assessmentId/edit" element={<AssessmentEditor />} />
                   <Route path="/assessments/:assessmentId" element={<AssessmentDetails />} />

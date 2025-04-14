@@ -1,0 +1,675 @@
+Checking Docker and pulling required images...
+Docker version: Docker version 28.0.4, build b8034c0
+
+Pulling Python image...
+Python image pulled successfully
+Pulling GCC image...
+GCC image pulled successfully
+Docker setup completed
+Test server running on port 5002
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: pratham@gmail.com
+Creating new user for email: pratham@gmail.com
+New user created: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Found user by email: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning user for /me: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: pratham@gmail.com
+Found user by email: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning user for /me: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: pratham@gmail.com
+Found user by email: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning user for /me: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: pratham@gmail.com
+Found user by email: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning user for /me: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: pratham@gmail.com
+Found user by email: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning user for /me: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: pratham@gmail.com
+Found user by email: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning user for /me: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found for my assessments: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Found assessments count: 0
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found for my assessments: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Found assessments count: 0
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: pratham@gmail.com
+Found user by email: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning user for /me: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: pratham@gmail.com
+Found user by email: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning user for /me: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: pratham@gmail.com
+Found user by email: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning user for /me: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: pratham@gmail.com
+Found user by email: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning user for /me: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+Create assessment request body: {
+  title: 'dfasd',
+  description: 'sadfa',
+  tests: [ '1744621374408' ],
+  startTime: '2025-04-15T09:03',
+  endTime: '2025-04-21T09:03',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [
+    { email: 'sujal@gmail.com', status: 'Invited', lastAttempt: null }
+  ]
+}
+POST /api/assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found for assessment creation: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Tests array for assessment: [ '1744621374408' ]
+Filtered invitedStudents for new assessment: []
+New assessment being created: {
+  id: 'assessment_1',
+  title: 'dfasd',
+  description: 'sadfa',
+  tests: [ '1744621374408' ],
+  startTime: '2025-04-15T09:03',
+  endTime: '2025-04-21T09:03',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'test-user-id',
+  createdAt: '2025-04-14T09:03:13.721Z',
+  updatedAt: '2025-04-14T09:03:13.722Z'
+}
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found for my assessments: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Checking assessment: assessment_1 createdBy: test-user-id user.id: test-user-id
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found for my assessments: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Checking assessment: assessment_1 createdBy: test-user-id user.id: test-user-id
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'dfasd',
+  description: 'sadfa',
+  tests: [ '1744621374408' ],
+  startTime: '2025-04-15T09:03',
+  endTime: '2025-04-21T09:03',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'test-user-id',
+  createdAt: '2025-04-14T09:03:13.721Z',
+  updatedAt: '2025-04-14T09:03:13.722Z'
+}
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Creator check: {
+  assessmentCreatedBy: 'test-user-id',
+  userId: 'test-user-id',
+  isCreator: true
+}
+Permission check: {
+  isCreator: true,
+  isPublic: false,
+  isInvited: false,
+  isInvitedById: false,
+  isInvitedByEmail: false
+}
+Test details count: 1
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'dfasd',
+  description: 'sadfa',
+  tests: [ '1744621374408' ],
+  startTime: '2025-04-15T09:03',
+  endTime: '2025-04-21T09:03',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'test-user-id',
+  createdAt: '2025-04-14T09:03:13.721Z',
+  updatedAt: '2025-04-14T09:03:13.722Z'
+}
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Creator check: {
+  assessmentCreatedBy: 'test-user-id',
+  userId: 'test-user-id',
+  isCreator: true
+}
+Permission check: {
+  isCreator: true,
+  isPublic: false,
+  isInvited: false,
+  isInvitedById: false,
+  isInvitedByEmail: false
+}
+Test details count: 1
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: pratham@gmail.com
+Found user by email: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning user for /me: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: pratham@gmail.com
+Found user by email: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning user for /me: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'dfasd',
+  description: 'sadfa',
+  tests: [ '1744621374408' ],
+  startTime: '2025-04-15T09:03',
+  endTime: '2025-04-21T09:03',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'test-user-id',
+  createdAt: '2025-04-14T09:03:13.721Z',
+  updatedAt: '2025-04-14T09:03:13.722Z'
+}
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Creator check: {
+  assessmentCreatedBy: 'test-user-id',
+  userId: 'test-user-id',
+  isCreator: true
+}
+Permission check: {
+  isCreator: true,
+  isPublic: false,
+  isInvited: false,
+  isInvitedById: false,
+  isInvitedByEmail: false
+}
+Test details count: 1
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'dfasd',
+  description: 'sadfa',
+  tests: [ '1744621374408' ],
+  startTime: '2025-04-15T09:03',
+  endTime: '2025-04-21T09:03',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'test-user-id',
+  createdAt: '2025-04-14T09:03:13.721Z',
+  updatedAt: '2025-04-14T09:03:13.722Z'
+}
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Creator check: {
+  assessmentCreatedBy: 'test-user-id',
+  userId: 'test-user-id',
+  isCreator: true
+}
+Permission check: {
+  isCreator: true,
+  isPublic: false,
+  isInvited: false,
+  isInvitedById: false,
+  isInvitedByEmail: false
+}
+Test details count: 1
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_2
+Looking for assessment with ID: assessment_2
+Available assessments: [ 'assessment_1' ]
+Assessment not found
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_2
+Looking for assessment with ID: assessment_2
+Available assessments: [ 'assessment_1' ]
+Assessment not found
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found for my assessments: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Checking assessment: assessment_1 createdBy: test-user-id user.id: test-user-id
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found for my assessments: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Checking assessment: assessment_1 createdBy: test-user-id user.id: test-user-id
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: pratham@gmail.com
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'dfasd',
+  description: 'sadfa',
+  tests: [ '1744621374408' ],
+  startTime: '2025-04-15T09:03',
+  endTime: '2025-04-21T09:03',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'test-user-id',
+  createdAt: '2025-04-14T09:03:13.721Z',
+  updatedAt: '2025-04-14T09:03:13.722Z'
+}
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Creator check: {
+  assessmentCreatedBy: 'test-user-id',
+  userId: 'test-user-id',
+  isCreator: true
+}
+Permission check: {
+  isCreator: true,
+  isPublic: false,
+  isInvited: false,
+  isInvitedById: false,
+  isInvitedByEmail: false
+}
+Test details count: 1
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: pratham@gmail.com Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'dfasd',
+  description: 'sadfa',
+  tests: [ '1744621374408' ],
+  startTime: '2025-04-15T09:03',
+  endTime: '2025-04-21T09:03',
+  maxAttempts: 1,
+  isPublic: false,
+  invitedStudents: [],
+  createdBy: 'test-user-id',
+  createdAt: '2025-04-14T09:03:13.721Z',
+  updatedAt: '2025-04-14T09:03:13.722Z'
+}
+User found: {
+  id: 'test-user-id',
+  name: 'pratham',
+  email: 'pratham@gmail.com',
+  password: 'password123',
+  role: 'assessor'
+}
+Creator check: {
+  assessmentCreatedBy: 'test-user-id',
+  userId: 'test-user-id',
+  isCreator: true
+}
+Permission check: {
+  isCreator: true,
+  isPublic: false,
+  isInvited: false,
+  isInvitedById: false,
+  isInvitedByEmail: false
+}
+Test details count: 1

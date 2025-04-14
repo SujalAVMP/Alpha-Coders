@@ -1,6 +1,6 @@
 /**
  * In-memory database for the Coding Platform
- * 
+ *
  * This file implements an in-memory database for the application.
  * In a real application, this would be replaced with a proper database like MongoDB or PostgreSQL.
  */
@@ -133,10 +133,10 @@ const Test = {
     const index = db.tests.findIndex(test => test.id === id);
     if (index === -1) return false;
     db.tests.splice(index, 1);
-    
+
     // Also delete associated test cases
     db.testCases = db.testCases.filter(tc => tc.testId !== id);
-    
+
     return true;
   },
 
@@ -328,7 +328,7 @@ const Assessment = {
   addTest(id, testId) {
     const assessment = this.findById(id);
     if (!assessment) return null;
-    
+
     if (!assessment.tests.includes(testId)) {
       assessment.tests.push(testId);
       assessment.updatedAt = new Date();
@@ -340,7 +340,7 @@ const Assessment = {
   removeTest(id, testId) {
     const assessment = this.findById(id);
     if (!assessment) return null;
-    
+
     const index = assessment.tests.indexOf(testId);
     if (index !== -1) {
       assessment.tests.splice(index, 1);
@@ -353,7 +353,7 @@ const Assessment = {
   assignToUser(id, userId) {
     const assessment = this.findById(id);
     if (!assessment) return null;
-    
+
     if (!assessment.assignedTo.includes(userId)) {
       assessment.assignedTo.push(userId);
       assessment.updatedAt = new Date();
@@ -365,7 +365,7 @@ const Assessment = {
   unassignFromUser(id, userId) {
     const assessment = this.findById(id);
     if (!assessment) return null;
-    
+
     const index = assessment.assignedTo.indexOf(userId);
     if (index !== -1) {
       assessment.assignedTo.splice(index, 1);
@@ -380,14 +380,14 @@ function initializeData() {
   // Create sample users
   const adminUser = User.create({
     name: 'Admin User',
-    email: 'admin@example.com',
+    email: 'admin@gmail.com',
     password: 'admin123',
     role: 'assessor'
   });
-  
+
   const testUser = User.create({
     name: 'Test User',
-    email: 'test@example.com',
+    email: 'test@gmail.com',
     password: 'test123',
     role: 'assessee'
   });

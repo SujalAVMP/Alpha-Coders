@@ -95,24 +95,23 @@ const AssessmentEditor = () => {
         setAvailableTests(testsData || []);
 
         if (!isNewAssessment) {
-          // In a real app, we would fetch the assessment data here
-          // For now, we'll use mock data
-          const mockAssessment = {
-            id: assessmentId,
-            title: 'Sample Assessment',
-            description: 'This is a sample assessment for demonstration purposes.',
-            tests: testsData ? [testsData[0]?._id].filter(Boolean) : [],
-            startTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().slice(0, 16),
-            endTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16),
-            maxAttempts: 1,
-            isPublic: false,
-            invitedStudents: [
-              { email: 'student1@example.com', status: 'Invited', lastAttempt: null },
-              { email: 'student2@example.com', status: 'Started', lastAttempt: new Date().toISOString() }
-            ]
-          };
+          try {
+            // Fetch the assessment data
+            const assessmentData = await getAssessmentById(assessmentId);
 
-          setAssessment(mockAssessment);
+            // Format dates for the form inputs
+            if (assessmentData.startTime) {
+              assessmentData.startTime = new Date(assessmentData.startTime).toISOString().slice(0, 16);
+            }
+            if (assessmentData.endTime) {
+              assessmentData.endTime = new Date(assessmentData.endTime).toISOString().slice(0, 16);
+            }
+
+            setAssessment(assessmentData);
+          } catch (error) {
+            console.error('Error fetching assessment:', error);
+            setError('Failed to load assessment data. Please try again.');
+          }
         }
 
       } catch (err) {
@@ -252,7 +251,7 @@ const AssessmentEditor = () => {
       }
 
       setSaving(false);
-      navigate('/dashboard');
+      navigate('/assessments');
 
     } catch (err) {
       console.error('Error saving assessment:', err);

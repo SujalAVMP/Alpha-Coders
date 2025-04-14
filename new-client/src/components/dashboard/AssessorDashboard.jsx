@@ -332,8 +332,17 @@ const AssessorDashboard = () => {
 
         // Process manually entered emails
         if (emails) {
-          await inviteStudentsByEmail(selectedAssessment.id, emails);
-          console.log('Invited students by email:', emails);
+          // Make sure we're sending the emails in the format the server expects
+          const emailsString = typeof emails === 'string' ? emails : emails.join(',');
+          console.log('Sending invitation to emails:', emailsString);
+
+          try {
+            const response = await inviteStudentsByEmail(selectedAssessment.id, emailsString);
+            console.log('Invitation response:', response);
+          } catch (error) {
+            console.error('Error inviting by email:', error);
+            throw error; // Re-throw to be caught by the outer catch block
+          }
         }
 
         console.log('Successfully invited students');
@@ -438,7 +447,7 @@ const AssessorDashboard = () => {
                   <Paper sx={{ p: 3, mb: 3 }}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                       <Typography variant="h6">
-                        Sample Test Templates
+                        Test Templates
                       </Typography>
                       <Button
                         variant="outlined"
@@ -602,8 +611,7 @@ const AssessorDashboard = () => {
                         <CardActions>
                           <Button
                             size="small"
-                            component={Link}
-                            to={`/assessments/${assessment.id}`}
+                            onClick={() => navigate(`/assessments/${assessment.id}`)}
                           >
                             View
                           </Button>
@@ -925,7 +933,7 @@ const AssessorDashboard = () => {
 
             <Grid item xs={12} sm={6}>
               <TextField
-                label="Sample Input"
+                label="Input"
                 fullWidth
                 multiline
                 rows={3}
@@ -936,7 +944,7 @@ const AssessorDashboard = () => {
 
             <Grid item xs={12} sm={6}>
               <TextField
-                label="Sample Output"
+                label="Output"
                 fullWidth
                 multiline
                 rows={3}
