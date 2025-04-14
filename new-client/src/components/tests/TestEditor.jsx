@@ -56,39 +56,7 @@ const TestEditor = () => {
     constraints: '',
     sampleInput: '',
     sampleOutput: '',
-    testCases: [],
-    codeTemplates: {
-      python: `def solution(input_data):
-    # Your code here
-    pass
-
-# Read input
-input_data = input().strip()
-
-# Call function and print result
-print(solution(input_data))`,
-      cpp: `#include <iostream>
-#include <string>
-
-std::string solution(const std::string& input) {
-    // Your code here
-    return "";
-}
-
-int main() {
-    // Read input
-    std::string input;
-    std::getline(std::cin, input);
-
-    // Call solution
-    std::string result = solution(input);
-
-    // Print result
-    std::cout << result << std::endl;
-
-    return 0;
-}`
-    }
+    testCases: []
   });
 
   // UI state
@@ -188,10 +156,7 @@ int main() {
             sampleInput: template.sampleInput || '',
             sampleOutput: template.sampleOutput || '',
             testCases: Array.isArray(template.testCases) ? [...template.testCases] : [],
-            codeTemplates: template.codeTemplates || {
-              python: `def solution(input_data):\n    # Your code here\n    pass\n\n# Read input\ninput_data = input().strip()\n\n# Call function and print result\nprint(solution(input_data))`,
-              cpp: `#include <iostream>\n#include <string>\n\nstd::string solution(const std::string& input) {\n    // Your code here\n    return "";\n}\n\nint main() {\n    // Read input\n    std::string input;\n    std::getline(std::cin, input);\n\n    // Call solution\n    std::string result = solution(input);\n\n    // Print result\n    std::cout << result << std::endl;\n\n    return 0;\n}`
-            }
+
           };
 
           console.log('Setting test data from template:', updatedTest);
@@ -385,7 +350,6 @@ int main() {
               <Tab label="Basic Info" />
               <Tab label="Problem Statement" />
               <Tab label="Test Cases" />
-              <Tab label="Code Templates" />
             </Tabs>
           </Box>
 
@@ -630,72 +594,7 @@ int main() {
             </Paper>
           )}
 
-          {/* Code Templates Tab */}
-          {tabValue === 3 && (
-            <Paper sx={{ p: 3 }}>
-              <Typography variant="h6" gutterBottom>
-                Code Templates
-              </Typography>
-              <Typography variant="body2" color="textSecondary" sx={{ mb: 3 }}>
-                Customize the boilerplate code that will be provided to users for this problem.
-                Make sure the templates match the input/output format described in the problem statement.
-              </Typography>
 
-              <Grid container spacing={3}>
-                <Grid item xs={12}>
-                  <Typography variant="subtitle1" gutterBottom>
-                    Python Template
-                  </Typography>
-                  <TextField
-                    name="pythonTemplate"
-                    fullWidth
-                    multiline
-                    rows={12}
-                    value={test.codeTemplates?.python || ''}
-                    onChange={(e) => {
-                      setTest(prev => ({
-                        ...prev,
-                        codeTemplates: {
-                          ...prev.codeTemplates,
-                          python: e.target.value
-                        }
-                      }));
-                    }}
-                    placeholder="Enter Python boilerplate code"
-                    InputProps={{
-                      style: { fontFamily: 'monospace' }
-                    }}
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <Typography variant="subtitle1" gutterBottom>
-                    C++ Template
-                  </Typography>
-                  <TextField
-                    name="cppTemplate"
-                    fullWidth
-                    multiline
-                    rows={12}
-                    value={test.codeTemplates?.cpp || ''}
-                    onChange={(e) => {
-                      setTest(prev => ({
-                        ...prev,
-                        codeTemplates: {
-                          ...prev.codeTemplates,
-                          cpp: e.target.value
-                        }
-                      }));
-                    }}
-                    placeholder="Enter C++ boilerplate code"
-                    InputProps={{
-                      style: { fontFamily: 'monospace' }
-                    }}
-                  />
-                </Grid>
-              </Grid>
-            </Paper>
-          )}
 
           {/* Save button */}
           <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>

@@ -60,42 +60,49 @@ const TestPage = () => {
   const [panelWidth, setPanelWidth] = useState(50); // 50% width for each panel
   const resizerRef = useRef(null);
 
-  // Default language templates (will be replaced by problem-specific templates if available)
-  const defaultLanguageTemplates = {
-    python: `def solution(input_data):
-    # Your code here
+  // Standard templates for all problems
+  const standardTemplates = {
+    python: `# Read input from stdin and solve the problem
+# Example:
+# n = int(input())
+# arr = list(map(int, input().split()))
+
+def solve():
+    # Your solution here
     pass
 
-# Read input
-input_data = input().strip()
+if __name__ == "__main__":
+    # Call the solve function
+    solve()`,
 
-# Call function and print result
-print(solution(input_data))`,
     cpp: `#include <iostream>
+#include <vector>
 #include <string>
+#include <algorithm>
+using namespace std;
 
-std::string solution(const std::string& input) {
-    // Your code here
-    return "";
+// Main solution function
+void solve() {
+    // Your solution here
+    // Example:
+    // int n;
+    // cin >> n;
+    // vector<int> arr(n);
+    // for(int i = 0; i < n; i++) {
+    //     cin >> arr[i];
+    // }
 }
 
 int main() {
-    // Read input
-    std::string input;
-    std::getline(std::cin, input);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-    // Call solution
-    std::string result = solution(input);
-
-    // Print result
-    std::cout << result << std::endl;
+    // Call the solve function
+    solve();
 
     return 0;
 }`
   };
-
-  // We'll use this to store the actual templates for the current problem
-  // This is now handled directly through the test object
 
   useEffect(() => {
     const fetchTest = async () => {
@@ -138,16 +145,9 @@ int main() {
         console.log('Fetched test data:', data);
         setTest(data);
 
-        // Check if the test has code templates
-        if (data.codeTemplates && data.codeTemplates[language]) {
-          console.log(`Using problem-specific template for ${language}:`, data.codeTemplates[language]);
-          // Use problem-specific templates
-          setCode(data.codeTemplates[language]);
-        } else {
-          console.log(`Using default template for ${language}:`, defaultLanguageTemplates[language]);
-          // Fall back to default templates
-          setCode(defaultLanguageTemplates[language]);
-        }
+        // Always use standard templates
+        console.log(`Using standard template for ${language}:`, standardTemplates[language]);
+        setCode(standardTemplates[language]);
       } catch (error) {
         console.error('Error fetching test:', error);
         // Provide a more user-friendly error message
@@ -173,16 +173,10 @@ int main() {
     setLanguage(newLanguage);
 
     console.log('Language changed to:', newLanguage);
-    console.log('Test object:', test);
 
-    // Use the appropriate template for the selected language
-    if (test.codeTemplates && test.codeTemplates[newLanguage]) {
-      console.log(`Using problem-specific template for ${newLanguage}:`, test.codeTemplates[newLanguage]);
-      setCode(test.codeTemplates[newLanguage]);
-    } else {
-      console.log(`Using default template for ${newLanguage}:`, defaultLanguageTemplates[newLanguage]);
-      setCode(defaultLanguageTemplates[newLanguage]);
-    }
+    // Always use standard templates
+    console.log(`Using standard template for ${newLanguage}:`, standardTemplates[newLanguage]);
+    setCode(standardTemplates[newLanguage]);
   };
 
   const handleCodeChange = (value) => {

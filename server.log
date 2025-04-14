@@ -7,3 +7,1120 @@ Pulling GCC image...
 GCC image pulled successfully
 Docker setup completed
 Test server running on port 5002
+Register request body: { name: 'p', email: 'p', password: '1', role: 'assessor' }
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Found assessments count: 0
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Found assessments count: 0
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Found assessments count: 0
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Found assessments count: 0
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Found assessments count: 0
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Found assessments count: 0
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+Create assessment request body: {
+  title: 'sdfsad',
+  description: '',
+  tests: [ '1744659184845', '1744659189430' ],
+  startTime: '2025-04-14T19:33',
+  endTime: '2025-04-21T19:33',
+  maxAttempts: 1,
+  isPublic: true,
+  invitedStudents: []
+}
+POST /api/assessments - Auth Header: Bearer test-token Email: p
+User found for assessment creation: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Tests array for assessment: [ '1744659184845', '1744659189430' ]
+Filtered invitedStudents for new assessment: []
+New assessment being created: {
+  id: 'assessment_1',
+  title: 'sdfsad',
+  description: '',
+  tests: [ '1744659184845', '1744659189430' ],
+  startTime: '2025-04-14T19:33',
+  endTime: '2025-04-21T19:33',
+  maxAttempts: 1,
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'j5l3gl',
+  createdAt: '2025-04-14T19:33:20.021Z',
+  updatedAt: '2025-04-14T19:33:20.021Z'
+}
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Checking assessment: assessment_1 createdBy: j5l3gl user.id: j5l3gl
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'j5l3gl',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Checking assessment: assessment_1 createdBy: j5l3gl user.id: j5l3gl
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+Register request body: { name: 's', email: 's', password: '1', role: 'assessee' }
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s
+Found user by email: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+Returning user for /me: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+GET /api/notifications - Auth Header: Bearer test-token Email: s
+Found/created user for notifications: 76ukr s
+Notifications for user s : []
+No notifications found for user, creating a sample one
+Created sample notification: {
+  id: '1744659206448jvt1iqr',
+  userId: '76ukr',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T19:33:26.448Z',
+  read: false
+}
+Marked notification as read: 1744659206448jvt1iqr
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: s
+Found user by email: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+Returning user for /me: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+GET /api/notifications - Auth Header: Bearer test-token Email: s
+Found/created user for notifications: 76ukr s
+Found notification for user: {
+  id: '1744659206448jvt1iqr',
+  userId: '76ukr',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T19:33:26.448Z',
+  read: true
+}
+Notifications for user s : [
+  {
+    id: '1744659206448jvt1iqr',
+    userId: '76ukr',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T19:33:26.448Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s
+User found/created: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+Checking assigned assessments for user: s 76ukr
+All assessments: [ { id: 'assessment_1', title: 'sdfsad' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s (76ukr) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744659206448jvt1iqr',
+  userId: '76ukr',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T19:33:26.448Z',
+  read: true
+}
+User s is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s
+User found/created: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+Checking assigned assessments for user: s 76ukr
+All assessments: [ { id: 'assessment_1', title: 'sdfsad' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user s (76ukr) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744659206448jvt1iqr',
+  userId: '76ukr',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T19:33:26.448Z',
+  read: true
+}
+User s is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sdfsad',
+  description: '',
+  tests: [ '1744659184845', '1744659189430' ],
+  startTime: '2025-04-14T19:33',
+  endTime: '2025-04-21T19:33',
+  maxAttempts: 1,
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'j5l3gl',
+  createdAt: '2025-04-14T19:33:20.021Z',
+  updatedAt: '2025-04-14T19:33:20.021Z',
+  attemptsUsed: 0
+}
+User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
+Invitation check for user s assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744659184845', '1744659189430' ]
+Found test: 1744659184845 Merge K Sorted Lists
+Found test: 1744659189430 Valid Parentheses
+Test details count: 2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sdfsad',
+  description: '',
+  tests: [ '1744659184845', '1744659189430' ],
+  startTime: '2025-04-14T19:33',
+  endTime: '2025-04-21T19:33',
+  maxAttempts: 1,
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'j5l3gl',
+  createdAt: '2025-04-14T19:33:20.021Z',
+  updatedAt: '2025-04-14T19:33:20.021Z',
+  attemptsUsed: 0
+}
+User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
+Invitation check for user s assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744659184845', '1744659189430' ]
+Found test: 1744659184845 Merge K Sorted Lists
+Found test: 1744659189430 Valid Parentheses
+Test details count: 2
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659184845
+Found user for test access check: 76ukr s
+Looking for test with ID: 1744659184845
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744659184845',
+    title: 'Merge K Sorted Lists'
+  },
+  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+]
+Test found: { id: undefined, _id: '1744659184845', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744659184845 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744659184845
+Assessment assessment_1 contains test 1744659184845
+Assessment assessment_1 is public
+Permission check for test access: {
+  testId: '1744659184845',
+  userId: '76ukr',
+  userEmail: 's',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744659184845 for user s
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659184845
+Found user for test access check: 76ukr s
+Looking for test with ID: 1744659184845
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744659184845',
+    title: 'Merge K Sorted Lists'
+  },
+  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+]
+Test found: { id: undefined, _id: '1744659184845', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744659184845 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744659184845
+Assessment assessment_1 contains test 1744659184845
+Assessment assessment_1 is public
+Permission check for test access: {
+  testId: '1744659184845',
+  userId: '76ukr',
+  userEmail: 's',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744659184845 for user s
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sdfsad',
+  description: '',
+  tests: [ '1744659184845', '1744659189430' ],
+  startTime: '2025-04-14T19:33',
+  endTime: '2025-04-21T19:33',
+  maxAttempts: 1,
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'j5l3gl',
+  createdAt: '2025-04-14T19:33:20.021Z',
+  updatedAt: '2025-04-14T19:33:20.021Z',
+  attemptsUsed: 0
+}
+User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
+Invitation check for user s assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744659184845', '1744659189430' ]
+Found test: 1744659184845 Merge K Sorted Lists
+Found test: 1744659189430 Valid Parentheses
+Test details count: 2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sdfsad',
+  description: '',
+  tests: [ '1744659184845', '1744659189430' ],
+  startTime: '2025-04-14T19:33',
+  endTime: '2025-04-21T19:33',
+  maxAttempts: 1,
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'j5l3gl',
+  createdAt: '2025-04-14T19:33:20.021Z',
+  updatedAt: '2025-04-14T19:33:20.021Z',
+  attemptsUsed: 0
+}
+User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
+Invitation check for user s assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744659184845', '1744659189430' ]
+Found test: 1744659184845 Merge K Sorted Lists
+Found test: 1744659189430 Valid Parentheses
+Test details count: 2
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659189430
+Found user for test access check: 76ukr s
+Looking for test with ID: 1744659189430
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744659184845',
+    title: 'Merge K Sorted Lists'
+  },
+  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+]
+Test found: { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744659189430 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744659189430
+Assessment assessment_1 contains test 1744659189430
+Assessment assessment_1 is public
+Permission check for test access: {
+  testId: '1744659189430',
+  userId: '76ukr',
+  userEmail: 's',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744659189430 for user s
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659189430
+Found user for test access check: 76ukr s
+Looking for test with ID: 1744659189430
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744659184845',
+    title: 'Merge K Sorted Lists'
+  },
+  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+]
+Test found: { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744659189430 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744659189430
+Assessment assessment_1 contains test 1744659189430
+Assessment assessment_1 is public
+Permission check for test access: {
+  testId: '1744659189430',
+  userId: '76ukr',
+  userEmail: 's',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744659189430 for user s
+Execute code request: { language: 'python', assessmentId: 'assessment_1' }
+Code to execute: def solve():
+    s = input().strip()
+    stack = []
+    bracket_map = {')': '(', '}': '{', ']': '['}
+
+    for char in s:
+        if char in bracket_map.values():  # open brackets
+            stack.append(char)
+        elif char in bracket_map:  # closing brackets
+            if not stack or stack[-1] != bracket_map[char]:
+                print(False)
+                return
+            stack.pop()
+        else:
+            # In case the input contains invalid characters, optional safeguard
+            print(False)
+            return
+    
+    print(True if not stack else False)
+
+if __name__ == "__main__":
+    solve()
+
+Input: ()[]{}
+Executing code in Docker container...
+Starting Python execution with ID: f4f7ba67-950c-44ad-9d18-054da2990ddb
+Code length: 623 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_f4f7ba67-950c-44ad-9d18-054da2990ddb.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_f4f7ba67-950c-44ad-9d18-054da2990ddb       -i python:3.9-slim       bash
+Python execution result: { stdout: 'True\n', stderr: '', executionTime: 325 }
+Temporary files cleaned up
+Execution result: { output: 'True\n', error: '', executionTime: 325, memoryUsed: 50 }
+Execute code request: { language: 'python', assessmentId: 'assessment_1' }
+Code to execute: def solve():
+    s = input().strip()
+    stack = []
+    bracket_map = {')': '(', '}': '{', ']': '['}
+
+    for char in s:
+        if char in bracket_map.values():  # open brackets
+            stack.append(char)
+        elif char in bracket_map:  # closing brackets
+            if not stack or stack[-1] != bracket_map[char]:
+                print(False)
+                return
+            stack.pop()
+        else:
+            # In case the input contains invalid characters, optional safeguard
+            print(False)
+            return
+    print("hi")
+    print(True if not stack else False)
+
+if __name__ == "__main__":
+    solve()
+
+Input: ()[]{}
+Executing code in Docker container...
+Starting Python execution with ID: 97ec259d-412b-47a2-bfb7-31159aaeab35
+Code length: 634 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_97ec259d-412b-47a2-bfb7-31159aaeab35.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_97ec259d-412b-47a2-bfb7-31159aaeab35       -i python:3.9-slim       bash
+Python execution result: { stdout: 'hi\nTrue\n', stderr: '', executionTime: 413 }
+Temporary files cleaned up
+Execution result: { output: 'hi\nTrue\n', error: '', executionTime: 413, memoryUsed: 50 }
+Run test cases request: {
+  testId: '1744659189430',
+  language: 'python',
+  assessmentId: 'assessment_1'
+}
+Starting Python execution with ID: 0a6d0545-3aae-4a82-8f1d-1542bd2ed119
+Code length: 634 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_0a6d0545-3aae-4a82-8f1d-1542bd2ed119.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_0a6d0545-3aae-4a82-8f1d-1542bd2ed119       -i python:3.9-slim       bash
+Python execution result: { stdout: 'hi\nTrue\n', stderr: '', executionTime: 357 }
+Temporary files cleaned up
+Starting Python execution with ID: 8835551f-4a77-4772-90c5-32d5a318d1d3
+Code length: 634 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_8835551f-4a77-4772-90c5-32d5a318d1d3.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_8835551f-4a77-4772-90c5-32d5a318d1d3       -i python:3.9-slim       bash
+Python execution result: { stdout: 'False\n', stderr: '', executionTime: 383 }
+Temporary files cleaned up
+Starting Python execution with ID: 49431f30-2a9c-4389-a02f-acd2cce1602f
+Code length: 634 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_49431f30-2a9c-4389-a02f-acd2cce1602f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_49431f30-2a9c-4389-a02f-acd2cce1602f       -i python:3.9-slim       bash
+Python execution result: { stdout: 'hi\nTrue\n', stderr: '', executionTime: 380 }
+Temporary files cleaned up
+Execute code request: { language: 'python', assessmentId: 'assessment_1' }
+Code to execute: def solve():
+    s = input().strip()
+    stack = []
+    bracket_map = {')': '(', '}': '{', ']': '['}
+
+    for char in s:
+        if char in bracket_map.values():  # open brackets
+            stack.append(char)
+        elif char in bracket_map:  # closing brackets
+            if not stack or stack[-1] != bracket_map[char]:
+                print(False)
+                return
+            stack.pop()
+        else:
+            # In case the input contains invalid characters, optional safeguard
+            print(False)
+            return
+    # print("hi")
+    print(True if not stack else False)
+
+if __name__ == "__main__":
+    solve()
+
+Input: ()[]{}
+Executing code in Docker container...
+Starting Python execution with ID: fa8eef2f-1ad4-476b-9cc8-f5d8bdf0f34e
+Code length: 636 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_fa8eef2f-1ad4-476b-9cc8-f5d8bdf0f34e.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_fa8eef2f-1ad4-476b-9cc8-f5d8bdf0f34e       -i python:3.9-slim       bash
+Python execution result: { stdout: 'True\n', stderr: '', executionTime: 387 }
+Temporary files cleaned up
+Execution result: { output: 'True\n', error: '', executionTime: 387, memoryUsed: 50 }
+Run test cases request: {
+  testId: '1744659189430',
+  language: 'python',
+  assessmentId: 'assessment_1'
+}
+Starting Python execution with ID: 7106508d-c833-48c6-8859-16ce1bc9f58c
+Code length: 636 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_7106508d-c833-48c6-8859-16ce1bc9f58c.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_7106508d-c833-48c6-8859-16ce1bc9f58c       -i python:3.9-slim       bash
+Python execution result: { stdout: 'True\n', stderr: '', executionTime: 378 }
+Temporary files cleaned up
+Starting Python execution with ID: db342404-f662-472d-9ba6-a182d7c3c12b
+Code length: 636 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_db342404-f662-472d-9ba6-a182d7c3c12b.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_db342404-f662-472d-9ba6-a182d7c3c12b       -i python:3.9-slim       bash
+Python execution result: { stdout: 'False\n', stderr: '', executionTime: 387 }
+Temporary files cleaned up
+Starting Python execution with ID: ca764d43-937f-4950-bbb3-01da86aa8f4f
+Code length: 636 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_ca764d43-937f-4950-bbb3-01da86aa8f4f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_ca764d43-937f-4950-bbb3-01da86aa8f4f       -i python:3.9-slim       bash
+Python execution result: { stdout: 'True\n', stderr: '', executionTime: 326 }
+Temporary files cleaned up
+Run test cases request: {
+  testId: '1744659189430',
+  language: 'python',
+  assessmentId: 'assessment_1'
+}
+Starting Python execution with ID: 2b3d64ab-fb83-41c6-bd67-2f78f4550bb7
+Code length: 656 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_2b3d64ab-fb83-41c6-bd67-2f78f4550bb7.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_2b3d64ab-fb83-41c6-bd67-2f78f4550bb7       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 310 }
+Temporary files cleaned up
+Starting Python execution with ID: e890be63-68f9-4cb2-a069-96691b93ce8d
+Code length: 656 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_e890be63-68f9-4cb2-a069-96691b93ce8d.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_e890be63-68f9-4cb2-a069-96691b93ce8d       -i python:3.9-slim       bash
+Python execution result: { stdout: 'False\n', stderr: '', executionTime: 457 }
+Temporary files cleaned up
+Starting Python execution with ID: 509d8cb0-efd8-4b47-85cf-d25bc4fba716
+Code length: 656 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_509d8cb0-efd8-4b47-85cf-d25bc4fba716.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_509d8cb0-efd8-4b47-85cf-d25bc4fba716       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 371 }
+Temporary files cleaned up
+Submit code request: {
+  testId: '1744659189430',
+  language: 'python',
+  assessmentId: 'assessment_1'
+}
+User s has used 0 of 1 attempts for test 1744659189430 in assessment assessment_1
+Starting Python execution with ID: ad1b4533-db13-411d-b021-f3586d15b87a
+Code length: 656 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_ad1b4533-db13-411d-b021-f3586d15b87a.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_ad1b4533-db13-411d-b021-f3586d15b87a       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 304 }
+Temporary files cleaned up
+Starting Python execution with ID: c01c43fe-b35c-434c-a21e-42b64e3cfa6c
+Code length: 656 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_c01c43fe-b35c-434c-a21e-42b64e3cfa6c.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_c01c43fe-b35c-434c-a21e-42b64e3cfa6c       -i python:3.9-slim       bash
+Python execution result: { stdout: 'False\n', stderr: '', executionTime: 323 }
+Temporary files cleaned up
+Starting Python execution with ID: 532adc5a-5988-49c9-9487-ad01051ea75a
+Code length: 656 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_532adc5a-5988-49c9-9487-ad01051ea75a.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_532adc5a-5988-49c9-9487-ad01051ea75a       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 317 }
+Temporary files cleaned up
+Starting Python execution with ID: 530174b4-4fe3-4894-972c-9f9d00350098
+Code length: 656 characters
+Input length: 2 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_530174b4-4fe3-4894-972c-9f9d00350098.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_530174b4-4fe3-4894-972c-9f9d00350098       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 320 }
+Temporary files cleaned up
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sdfsad',
+  description: '',
+  tests: [ '1744659184845', '1744659189430' ],
+  startTime: '2025-04-14T19:33',
+  endTime: '2025-04-21T19:33',
+  maxAttempts: 1,
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'j5l3gl',
+  createdAt: '2025-04-14T19:33:20.021Z',
+  updatedAt: '2025-04-14T19:33:20.021Z',
+  attemptsUsed: 0,
+  testAttempts: { '76ukr': { '1744659189430': 1 } }
+}
+User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
+Invitation check for user s assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744659184845', '1744659189430' ]
+Found test: 1744659184845 Merge K Sorted Lists
+Found test: 1744659189430 Valid Parentheses
+Test details count: 2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sdfsad',
+  description: '',
+  tests: [ '1744659184845', '1744659189430' ],
+  startTime: '2025-04-14T19:33',
+  endTime: '2025-04-21T19:33',
+  maxAttempts: 1,
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'j5l3gl',
+  createdAt: '2025-04-14T19:33:20.021Z',
+  updatedAt: '2025-04-14T19:33:20.021Z',
+  attemptsUsed: 0,
+  testAttempts: { '76ukr': { '1744659189430': 1 } }
+}
+User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
+Invitation check for user s assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744659184845', '1744659189430' ]
+Found test: 1744659184845 Merge K Sorted Lists
+Found test: 1744659189430 Valid Parentheses
+Test details count: 2
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659184845
+Found user for test access check: 76ukr s
+Looking for test with ID: 1744659184845
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744659184845',
+    title: 'Merge K Sorted Lists'
+  },
+  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+]
+Test found: { id: undefined, _id: '1744659184845', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744659184845 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744659184845
+Assessment assessment_1 contains test 1744659184845
+Assessment assessment_1 is public
+Permission check for test access: {
+  testId: '1744659184845',
+  userId: '76ukr',
+  userEmail: 's',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744659184845 for user s
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659184845
+Found user for test access check: 76ukr s
+Looking for test with ID: 1744659184845
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744659184845',
+    title: 'Merge K Sorted Lists'
+  },
+  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+]
+Test found: { id: undefined, _id: '1744659184845', title: 'Merge K Sorted Lists' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744659184845 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744659184845
+Assessment assessment_1 contains test 1744659184845
+Assessment assessment_1 is public
+Permission check for test access: {
+  testId: '1744659184845',
+  userId: '76ukr',
+  userEmail: 's',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744659184845 for user s
+Execute code request: { language: 'python', assessmentId: 'assessment_1' }
+Code to execute: def solve():
+    s = input().strip()
+    stack = []
+    bracket_map = {')': '(', '}': '{', ']': '['}
+
+    for char in s:
+        if char in bracket_map.values():  # open brackets
+            stack.append(char)
+        elif char in bracket_map:  # closing brackets
+            if not stack or stack[-1] != bracket_map[char]:
+                print(False)
+                return
+            stack.pop()
+        else:
+            # In case the input contains invalid characters, optional safeguard
+            print(False)
+            return
+    
+    print(True if not stack else False)
+
+if __name__ == "__main__":
+    solve()
+
+Input: [[1,4,5],[1,3,4],[2,6]]
+Executing code in Docker container...
+Starting Python execution with ID: 9d61b374-d79e-4436-95f7-5c00082b6833
+Code length: 623 characters
+Input length: 23 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_9d61b374-d79e-4436-95f7-5c00082b6833.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_9d61b374-d79e-4436-95f7-5c00082b6833       -i python:3.9-slim       bash
+Python execution result: { stdout: 'False\n', stderr: '', executionTime: 409 }
+Temporary files cleaned up
+Execution result: { output: 'False\n', error: '', executionTime: 409, memoryUsed: 50 }
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sdfsad',
+  description: '',
+  tests: [ '1744659184845', '1744659189430' ],
+  startTime: '2025-04-14T19:33',
+  endTime: '2025-04-21T19:33',
+  maxAttempts: 1,
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'j5l3gl',
+  createdAt: '2025-04-14T19:33:20.021Z',
+  updatedAt: '2025-04-14T19:33:20.021Z',
+  attemptsUsed: 0,
+  testAttempts: { '76ukr': { '1744659189430': 1 } }
+}
+User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
+Invitation check for user s assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744659184845', '1744659189430' ]
+Found test: 1744659184845 Merge K Sorted Lists
+Found test: 1744659189430 Valid Parentheses
+Test details count: 2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'sdfsad',
+  description: '',
+  tests: [ '1744659184845', '1744659189430' ],
+  startTime: '2025-04-14T19:33',
+  endTime: '2025-04-21T19:33',
+  maxAttempts: 1,
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'j5l3gl',
+  createdAt: '2025-04-14T19:33:20.021Z',
+  updatedAt: '2025-04-14T19:33:20.021Z',
+  attemptsUsed: 0,
+  testAttempts: { '76ukr': { '1744659189430': 1 } }
+}
+User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
+Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
+Invitation check for user s assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744659184845', '1744659189430' ]
+Found test: 1744659184845 Merge K Sorted Lists
+Found test: 1744659189430 Valid Parentheses
+Test details count: 2
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659189430
+Found user for test access check: 76ukr s
+Looking for test with ID: 1744659189430
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744659184845',
+    title: 'Merge K Sorted Lists'
+  },
+  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+]
+Test found: { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744659189430 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744659189430
+Assessment assessment_1 contains test 1744659189430
+Assessment assessment_1 is public
+Permission check for test access: {
+  testId: '1744659189430',
+  userId: '76ukr',
+  userEmail: 's',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744659189430 for user s
+GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659189430
+Found user for test access check: 76ukr s
+Looking for test with ID: 1744659189430
+Available tests: [
+  {
+    id: undefined,
+    _id: '1744659184845',
+    title: 'Merge K Sorted Lists'
+  },
+  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+]
+Test found: { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744659189430 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744659189430
+Assessment assessment_1 contains test 1744659189430
+Assessment assessment_1 is public
+Permission check for test access: {
+  testId: '1744659189430',
+  userId: '76ukr',
+  userEmail: 's',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744659189430 for user s
+Execute code request: { language: 'python', assessmentId: 'assessment_1' }
+Code to execute: def solve():
+    s = input().strip()
+    stack = []
+    bracket_map = {')': '(', '}': '{', ']': '['}
+
+    for char in s:
+        if char in bracket_map.values():  # open brackets
+            stack.append(char)
+        elif char in bracket_map:  # closing brackets
+            if not stack or stack[-1] != bracket_map[char]:
+                print(False)
+                return
+            stack.pop()
+        else:
+            # In case the input contains invalid characters, optional safeguard
+            print(False)
+            return
+    
+    print(True if not stack else False)
+
+if __name__ == "__main__":
+    solve()
+
+Input: ()[]{}
+Executing code in Docker container...
+Starting Python execution with ID: 9c30c78a-8901-4014-9770-9e7ac48055de
+Code length: 623 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_9c30c78a-8901-4014-9770-9e7ac48055de.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_9c30c78a-8901-4014-9770-9e7ac48055de       -i python:3.9-slim       bash
+Python execution result: { stdout: 'True\n', stderr: '', executionTime: 349 }
+Temporary files cleaned up
+Execution result: { output: 'True\n', error: '', executionTime: 349, memoryUsed: 50 }
+Run test cases request: {
+  testId: '1744659189430',
+  language: 'python',
+  assessmentId: 'assessment_1'
+}
+Starting Python execution with ID: 333e2dfe-c8eb-4063-9bb9-0d467c8ca9d2
+Code length: 623 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_333e2dfe-c8eb-4063-9bb9-0d467c8ca9d2.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_333e2dfe-c8eb-4063-9bb9-0d467c8ca9d2       -i python:3.9-slim       bash
+Python execution result: { stdout: 'True\n', stderr: '', executionTime: 344 }
+Temporary files cleaned up
+Starting Python execution with ID: 8903669f-dd85-4516-a4a4-b8f289fd6384
+Code length: 623 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_8903669f-dd85-4516-a4a4-b8f289fd6384.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_8903669f-dd85-4516-a4a4-b8f289fd6384       -i python:3.9-slim       bash
+Python execution result: { stdout: 'False\n', stderr: '', executionTime: 404 }
+Temporary files cleaned up
+Starting Python execution with ID: 0c36652c-d880-4ad9-b0d4-2e9439d5bca3
+Code length: 623 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_0c36652c-d880-4ad9-b0d4-2e9439d5bca3.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_0c36652c-d880-4ad9-b0d4-2e9439d5bca3       -i python:3.9-slim       bash
+Python execution result: { stdout: 'True\n', stderr: '', executionTime: 380 }
+Temporary files cleaned up
