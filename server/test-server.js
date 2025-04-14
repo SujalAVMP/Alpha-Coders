@@ -2079,6 +2079,19 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
     const passedCount = results.filter(tc => tc.passed).length;
     const status = passedCount === testCases.length ? 'Accepted' : 'Wrong Answer';
 
+    // For hidden test cases, remove input and expected output details
+    const sanitizedResults = results.map(result => {
+      if (result.isHidden) {
+        return {
+          ...result,
+          input: 'Hidden',
+          expected: 'Hidden',
+          actual: result.passed ? 'Hidden' : result.actual
+        };
+      }
+      return result;
+    });
+
     // Calculate average execution time and memory usage
     const avgExecutionTime = Math.round(
       results.reduce((sum, tc) => sum + tc.executionTime, 0) / results.length
@@ -2106,7 +2119,7 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
       totalTestCases: testCases.length,
       executionTime: avgExecutionTime,
       memoryUsed: avgMemoryUsed,
-      testResults: results,
+      testResults: sanitizedResults, // Use sanitized results to hide hidden test case details
       submittedAt: new Date().toISOString()
     };
 
@@ -2228,6 +2241,43 @@ app.delete('/api/users/me', (req, res) => {
   // In a real app, we would delete the user's account and all associated data
   console.log('Deleting user account');
   res.status(200).json({ message: 'User account deleted successfully' });
+});
+
+// Get attempts information for a test in an assessment
+app.get('/api/assessments/:assessmentId/tests/:testId/attempts', (req, res) => {
+  const { assessmentId, testId } = req.params;
+  const userEmail = req.query.email;
+
+  console.log(`Getting attempts for test ${testId} in assessment ${assessmentId} for user ${userEmail}`);
+
+  // Find the assessment
+  const assessment = assessments.find(a => a._id === assessmentId || a.id === assessmentId);
+  if (!assessment) {
+    return res.status(404).json({ error: 'Assessment not found' });
+  }
+
+  // Find the user
+  const user = users.find(u => u.email === userEmail);
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  // Get attempts information
+  let attemptsUsed = 0;
+  if (assessment.testAttempts &&
+      assessment.testAttempts[user.id] &&
+      assessment.testAttempts[user.id][testId] !== undefined) {
+    attemptsUsed = assessment.testAttempts[user.id][testId];
+  }
+
+  const maxAttempts = assessment.maxAttempts || 1;
+
+  console.log(`User ${userEmail} has used ${attemptsUsed} of ${maxAttempts} attempts for test ${testId}`);
+
+  res.json({
+    attemptsUsed,
+    maxAttempts
+  });
 });
 
 // Default route

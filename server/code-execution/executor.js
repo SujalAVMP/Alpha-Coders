@@ -95,8 +95,34 @@ cat /tmp/input.txt | python3 /tmp/solution.py 2>&1`;
       console.error('Error cleaning up temporary files:', cleanupError);
     }
 
-    // Get memory usage (this is approximate)
-    const memoryUsed = 50; // Default value in MB
+    // Get memory usage from Docker stats
+    let memoryUsed = 0;
+    try {
+      // Get container stats
+      const statsCommand = `docker stats code_exec_${executionId} --no-stream --format "{{.MemUsage}}" 2>/dev/null || echo "0MB / 0MB"`;
+      const { stdout: statsOutput } = await executeCommand(statsCommand);
+
+      // Parse memory usage from stats output (format: "10.5MiB / 500MiB")
+      const memoryMatch = statsOutput.match(/([\d.]+)([KMG]?i?B)/i);
+      if (memoryMatch) {
+        const value = parseFloat(memoryMatch[1]);
+        const unit = memoryMatch[2].toUpperCase();
+
+        // Convert to MB
+        if (unit.includes('KB') || unit.includes('KIB')) {
+          memoryUsed = value / 1024;
+        } else if (unit.includes('GB') || unit.includes('GIB')) {
+          memoryUsed = value * 1024;
+        } else {
+          memoryUsed = value;
+        }
+      } else {
+        memoryUsed = 50; // Default if parsing fails
+      }
+    } catch (statsError) {
+      console.error('Error getting memory stats:', statsError);
+      memoryUsed = 50; // Default if command fails
+    }
 
     return {
       output: stdout,
@@ -191,8 +217,34 @@ g++ -o /tmp/solution /tmp/solution.cpp -std=c++17 2>&1 && cat /tmp/input.txt | /
       console.error('Error cleaning up temporary files:', cleanupError);
     }
 
-    // Get memory usage (this is approximate)
-    const memoryUsed = 50; // Default value in MB
+    // Get memory usage from Docker stats
+    let memoryUsed = 0;
+    try {
+      // Get container stats
+      const statsCommand = `docker stats code_exec_${executionId} --no-stream --format "{{.MemUsage}}" 2>/dev/null || echo "0MB / 0MB"`;
+      const { stdout: statsOutput } = await executeCommand(statsCommand);
+
+      // Parse memory usage from stats output (format: "10.5MiB / 500MiB")
+      const memoryMatch = statsOutput.match(/([\d.]+)([KMG]?i?B)/i);
+      if (memoryMatch) {
+        const value = parseFloat(memoryMatch[1]);
+        const unit = memoryMatch[2].toUpperCase();
+
+        // Convert to MB
+        if (unit.includes('KB') || unit.includes('KIB')) {
+          memoryUsed = value / 1024;
+        } else if (unit.includes('GB') || unit.includes('GIB')) {
+          memoryUsed = value * 1024;
+        } else {
+          memoryUsed = value;
+        }
+      } else {
+        memoryUsed = 50; // Default if parsing fails
+      }
+    } catch (statsError) {
+      console.error('Error getting memory stats:', statsError);
+      memoryUsed = 50; // Default if command fails
+    }
 
     return {
       output: stdout,

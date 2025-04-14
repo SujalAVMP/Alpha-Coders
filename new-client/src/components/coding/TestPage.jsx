@@ -55,6 +55,33 @@ const TestPage = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [attemptsUsed, setAttemptsUsed] = useState(0);
   const [maxAttempts, setMaxAttempts] = useState(1);
+
+  // Fetch attempts information when the component loads
+  useEffect(() => {
+    if (assessmentId && id) {
+      // Fetch attempts information from the server
+      const fetchAttempts = async () => {
+        try {
+          const response = await fetch(`http://localhost:5002/api/assessments/${assessmentId}/tests/${id}/attempts?email=${encodeURIComponent(localStorage.getItem('userEmail'))}`, {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            console.log('Attempts data:', data);
+            setAttemptsUsed(data.attemptsUsed || 0);
+            setMaxAttempts(data.maxAttempts || 1);
+          }
+        } catch (error) {
+          console.error('Error fetching attempts:', error);
+        }
+      };
+
+      fetchAttempts();
+    }
+  }, [assessmentId, id]);
   const [submittingAssessment, setSubmittingAssessment] = useState(false);
   const [assessmentSubmitSuccess, setAssessmentSubmitSuccess] = useState(false);
   const [panelWidth, setPanelWidth] = useState(50); // 50% width for each panel
@@ -288,6 +315,13 @@ int main() {
 
   const handleSubmit = async () => {
     try {
+      // Check if user has attempts remaining
+      if (attemptsUsed >= maxAttempts) {
+        toast.error(`Maximum attempts (${maxAttempts}) reached for this test.`);
+        setOutput(`Error: You have reached the maximum number of attempts (${maxAttempts}) for this test.`);
+        return;
+      }
+
       setSubmitting(true);
       setOutput('');
 
@@ -302,9 +336,20 @@ int main() {
       if (data.attemptsUsed !== undefined && data.maxAttempts !== undefined) {
         setAttemptsUsed(data.attemptsUsed);
         setMaxAttempts(data.maxAttempts);
+      } else {
+        // If not returned from server, increment locally
+        setAttemptsUsed(prev => prev + 1);
+      }
+
+      // Show test results if available
+      if (data.testResults) {
+        setTestResults(data.testResults);
+        setTab(1); // Switch to test results tab
       }
 
       setSubmitSuccess(true);
+      toast.success(`Solution submitted successfully! You have used ${attemptsUsed + 1} of ${maxAttempts} attempts.`);
+
       setTimeout(() => {
         if (assessmentId) {
           navigate(`/assessments/${assessmentId}/view`);
@@ -327,8 +372,10 @@ int main() {
           console.error('Error parsing attempts data:', parseError);
         }
 
+        toast.error(`Maximum attempts (${maxAttempts}) reached for this test.`);
         setOutput(`Error: You have reached the maximum number of attempts (${maxAttempts}) for this test.`);
       } else {
+        toast.error(`Error: ${error.message}`);
         setOutput(`Error: ${error.message}`);
       }
 
@@ -839,7 +886,7 @@ int main() {
                                       borderColor: result.passed ? 'success.main' : 'error.main'
                                     }}
                                   >
-                                    <Box sx={{ display: 'flex', alignItems: 'center', mb: result.passed ? 0 : 2 }}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                                       <Typography variant="subtitle2" fontWeight="bold">
                                         Test Case {index + 1}:
                                       </Typography>
@@ -851,8 +898,8 @@ int main() {
                                       />
                                     </Box>
 
-                                    {!result.passed && (
-                                      <Grid container spacing={2} sx={{ mt: 1 }}>
+                                    {/* Always show input/output details, even for passed tests */}
+                                    <Grid container spacing={2} sx={{ mt: 1 }}>
                                         <Grid item xs={12} md={4}>
                                           <Typography variant="body2" fontWeight="bold" color="text.secondary">
                                             Input:
@@ -911,7 +958,6 @@ int main() {
                                           </Paper>
                                         </Grid>
                                       </Grid>
-                                    )}
                                   </Paper>
                                 </Grid>
                               ))}

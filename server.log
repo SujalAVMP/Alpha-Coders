@@ -10,7 +10,7 @@ Test server running on port 5002
 Register request body: { name: 'p', email: 'p', password: '1', role: 'assessor' }
 GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
 User found for my assessments: {
-  id: 'j5l3gl',
+  id: 'trt9uh',
   name: 'p',
   email: 'p',
   password: '1',
@@ -19,7 +19,106 @@ User found for my assessments: {
 Found assessments count: 0
 GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
 User found for my assessments: {
-  id: 'j5l3gl',
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Found assessments count: 0
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'trt9uh',
   name: 'p',
   email: 'p',
   password: '1',
@@ -28,16 +127,7 @@ User found for my assessments: {
 Found assessments count: 0
 GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
 User found for my assessments: {
-  id: 'j5l3gl',
-  name: 'p',
-  email: 'p',
-  password: '1',
-  role: 'assessor'
-}
-Found assessments count: 0
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
-User found for my assessments: {
-  id: 'j5l3gl',
+  id: 'trt9uh',
   name: 'p',
   email: 'p',
   password: '1',
@@ -46,7 +136,7 @@ User found for my assessments: {
 Found assessments count: 0
 GET /api/tests - Auth Header: Bearer test-token Email: p
 User found: {
-  id: 'j5l3gl',
+  id: 'trt9uh',
   name: 'p',
   email: 'p',
   password: '1',
@@ -55,79 +145,7 @@ User found: {
 Returning all tests for assessor
 GET /api/tests - Auth Header: Bearer test-token Email: p
 User found: {
-  id: 'j5l3gl',
-  name: 'p',
-  email: 'p',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: p
-User found: {
-  id: 'j5l3gl',
-  name: 'p',
-  email: 'p',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: p
-User found: {
-  id: 'j5l3gl',
-  name: 'p',
-  email: 'p',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: p
-User found: {
-  id: 'j5l3gl',
-  name: 'p',
-  email: 'p',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: p
-User found: {
-  id: 'j5l3gl',
-  name: 'p',
-  email: 'p',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
-User found for my assessments: {
-  id: 'j5l3gl',
-  name: 'p',
-  email: 'p',
-  password: '1',
-  role: 'assessor'
-}
-Found assessments count: 0
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
-User found for my assessments: {
-  id: 'j5l3gl',
-  name: 'p',
-  email: 'p',
-  password: '1',
-  role: 'assessor'
-}
-Found assessments count: 0
-GET /api/tests - Auth Header: Bearer test-token Email: p
-User found: {
-  id: 'j5l3gl',
-  name: 'p',
-  email: 'p',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: p
-User found: {
-  id: 'j5l3gl',
+  id: 'trt9uh',
   name: 'p',
   email: 'p',
   password: '1',
@@ -135,169 +153,239 @@ User found: {
 }
 Returning all tests for assessor
 Create assessment request body: {
-  title: 'sdfsad',
+  title: 'Testsdf',
   description: '',
-  tests: [ '1744659184845', '1744659189430' ],
-  startTime: '2025-04-14T19:33',
-  endTime: '2025-04-21T19:33',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T19:51',
+  endTime: '2025-04-21T19:51',
   maxAttempts: 1,
   isPublic: true,
   invitedStudents: []
 }
 POST /api/assessments - Auth Header: Bearer test-token Email: p
 User found for assessment creation: {
-  id: 'j5l3gl',
+  id: 'trt9uh',
   name: 'p',
   email: 'p',
   password: '1',
   role: 'assessor'
 }
-Tests array for assessment: [ '1744659184845', '1744659189430' ]
+Tests array for assessment: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
 Filtered invitedStudents for new assessment: []
 New assessment being created: {
   id: 'assessment_1',
-  title: 'sdfsad',
+  title: 'Testsdf',
   description: '',
-  tests: [ '1744659184845', '1744659189430' ],
-  startTime: '2025-04-14T19:33',
-  endTime: '2025-04-21T19:33',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T19:51',
+  endTime: '2025-04-21T19:51',
   maxAttempts: 1,
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'j5l3gl',
-  createdAt: '2025-04-14T19:33:20.021Z',
-  updatedAt: '2025-04-14T19:33:20.021Z'
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:52:05.943Z'
 }
 GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
 User found for my assessments: {
-  id: 'j5l3gl',
+  id: 'trt9uh',
   name: 'p',
   email: 'p',
   password: '1',
   role: 'assessor'
 }
-Checking assessment: assessment_1 createdBy: j5l3gl user.id: j5l3gl
+Checking assessment: assessment_1 createdBy: trt9uh user.id: trt9uh
 Found assessments count: 1
 Assessment assessment_1 invited users: []
 GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
 User found for my assessments: {
-  id: 'j5l3gl',
+  id: 'trt9uh',
   name: 'p',
   email: 'p',
   password: '1',
   role: 'assessor'
 }
-Checking assessment: assessment_1 createdBy: j5l3gl user.id: j5l3gl
+Checking assessment: assessment_1 createdBy: trt9uh user.id: trt9uh
 Found assessments count: 1
 Assessment assessment_1 invited users: []
+Register request body: { name: 's', email: 's', password: '1', role: 'assessor' }
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: s
+User found for my assessments: { id: 'p43hk', name: 's', email: 's', password: '1', role: 'assessor' }
+Checking assessment: assessment_1 createdBy: trt9uh user.id: p43hk
+Found assessments count: 0
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: s
+User found for my assessments: { id: 'p43hk', name: 's', email: 's', password: '1', role: 'assessor' }
+Checking assessment: assessment_1 createdBy: trt9uh user.id: p43hk
+Found assessments count: 0
+Deleting user account
 Register request body: { name: 's', email: 's', password: '1', role: 'assessee' }
+Register request body: { name: 's', email: 's', password: '1', role: 'assessee' }
+Register request body: { name: 's', email: 's', password: '1', role: 'assessee' }
+Register request body: { name: 's', email: 'su', password: '1', role: 'assessee' }
 Auth header for /me: Bearer test-token
 Token for /me: test-token
-Email from query: s
-Found user by email: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-Returning user for /me: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-GET /api/notifications - Auth Header: Bearer test-token Email: s
-Found/created user for notifications: 76ukr s
-Notifications for user s : []
+Email from query: su
+Found user by email: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: su
+Found/created user for notifications: 0wobsr su
+Notifications for user su : []
 No notifications found for user, creating a sample one
 Created sample notification: {
-  id: '1744659206448jvt1iqr',
-  userId: '76ukr',
+  id: '1744660394195r9p5ibw',
+  userId: '0wobsr',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-14T19:33:26.448Z',
+  createdAt: '2025-04-14T19:53:14.195Z',
   read: false
 }
-Marked notification as read: 1744659206448jvt1iqr
+Marked notification as read: 1744660394195r9p5ibw
 Auth header for /me: Bearer test-token
 Token for /me: test-token
-Email from query: s
-Found user by email: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-Returning user for /me: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-GET /api/notifications - Auth Header: Bearer test-token Email: s
-Found/created user for notifications: 76ukr s
+Email from query: su
+Found user by email: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: su
+Found/created user for notifications: 0wobsr su
 Found notification for user: {
-  id: '1744659206448jvt1iqr',
-  userId: '76ukr',
+  id: '1744660394195r9p5ibw',
+  userId: '0wobsr',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-14T19:33:26.448Z',
+  createdAt: '2025-04-14T19:53:14.195Z',
   read: true
 }
-Notifications for user s : [
+Notifications for user su : [
   {
-    id: '1744659206448jvt1iqr',
-    userId: '76ukr',
+    id: '1744660394195r9p5ibw',
+    userId: '0wobsr',
     type: 'invitation',
     title: 'New Assessment Invitation',
     message: 'You have been invited to take a sample assessment',
     assessmentId: 'assessment_1',
-    createdAt: '2025-04-14T19:33:26.448Z',
+    createdAt: '2025-04-14T19:53:14.195Z',
     read: true
   }
 ]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s
-User found/created: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-Checking assigned assessments for user: s 76ukr
-All assessments: [ { id: 'assessment_1', title: 'sdfsad' } ]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: su
+User found/created: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: su 0wobsr
+All assessments: [ { id: 'assessment_1', title: 'Testsdf' } ]
 Assessment assessment_1 invitedStudents: []
-Checking if user s (76ukr) is invited to assessment assessment_1
+Checking if user su (0wobsr) is invited to assessment assessment_1
 Found matching notification: {
-  id: '1744659206448jvt1iqr',
-  userId: '76ukr',
+  id: '1744660394195r9p5ibw',
+  userId: '0wobsr',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-14T19:33:26.448Z',
+  createdAt: '2025-04-14T19:53:14.195Z',
   read: true
 }
-User s is invited to assessment assessment_1 through notification
+User su is invited to assessment assessment_1 through notification
 Assigned assessments count: 1
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: s
-User found/created: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-Checking assigned assessments for user: s 76ukr
-All assessments: [ { id: 'assessment_1', title: 'sdfsad' } ]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: su
+User found/created: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: su 0wobsr
+All assessments: [ { id: 'assessment_1', title: 'Testsdf' } ]
 Assessment assessment_1 invitedStudents: []
-Checking if user s (76ukr) is invited to assessment assessment_1
+Checking if user su (0wobsr) is invited to assessment assessment_1
 Found matching notification: {
-  id: '1744659206448jvt1iqr',
-  userId: '76ukr',
+  id: '1744660394195r9p5ibw',
+  userId: '0wobsr',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-14T19:33:26.448Z',
+  createdAt: '2025-04-14T19:53:14.195Z',
   read: true
 }
-User s is invited to assessment assessment_1 through notification
+User su is invited to assessment assessment_1 through notification
 Assigned assessments count: 1
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: su Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
 Available assessments: [ 'assessment_1' ]
 Assessment found: {
   id: 'assessment_1',
-  title: 'sdfsad',
+  title: 'Testsdf',
   description: '',
-  tests: [ '1744659184845', '1744659189430' ],
-  startTime: '2025-04-14T19:33',
-  endTime: '2025-04-21T19:33',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T19:51',
+  endTime: '2025-04-21T19:51',
   maxAttempts: 1,
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'j5l3gl',
-  createdAt: '2025-04-14T19:33:20.021Z',
-  updatedAt: '2025-04-14T19:33:20.021Z',
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:52:05.943Z',
   attemptsUsed: 0
 }
-User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
-Invitation check for user s assessment assessment_1 : {
+User found: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'trt9uh', userId: '0wobsr', isCreator: false }
+Invitation check for user su assessment assessment_1 : {
   isInvitedById: false,
   isInvitedByEmail: false,
   hasInvitationNotification: true,
@@ -312,32 +400,45 @@ Permission check: {
   isInvitedByEmail: false,
   hasValidToken: false
 }
-Looking up tests: [ '1744659184845', '1744659189430' ]
-Found test: 1744659184845 Merge K Sorted Lists
-Found test: 1744659189430 Valid Parentheses
-Test details count: 2
+Looking up tests: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Found test: 1744660298055 Two Sum
+Found test: 1744660301964 Reverse Linked List
+Found test: 1744660308403 Merge K Sorted Lists
+Found test: 1744660313541 Valid Parentheses
+Test details count: 4
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: su Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
 Available assessments: [ 'assessment_1' ]
 Assessment found: {
   id: 'assessment_1',
-  title: 'sdfsad',
+  title: 'Testsdf',
   description: '',
-  tests: [ '1744659184845', '1744659189430' ],
-  startTime: '2025-04-14T19:33',
-  endTime: '2025-04-21T19:33',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T19:51',
+  endTime: '2025-04-21T19:51',
   maxAttempts: 1,
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'j5l3gl',
-  createdAt: '2025-04-14T19:33:20.021Z',
-  updatedAt: '2025-04-14T19:33:20.021Z',
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:52:05.943Z',
   attemptsUsed: 0
 }
-User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
-Invitation check for user s assessment assessment_1 : {
+User found: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'trt9uh', userId: '0wobsr', isCreator: false }
+Invitation check for user su assessment assessment_1 : {
   isInvitedById: false,
   isInvitedByEmail: false,
   hasInvitationNotification: true,
@@ -352,126 +453,698 @@ Permission check: {
   isInvitedByEmail: false,
   hasValidToken: false
 }
-Looking up tests: [ '1744659184845', '1744659189430' ]
-Found test: 1744659184845 Merge K Sorted Lists
-Found test: 1744659189430 Valid Parentheses
-Test details count: 2
-GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659184845
-Found user for test access check: 76ukr s
-Looking for test with ID: 1744659184845
+Looking up tests: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Found test: 1744660298055 Two Sum
+Found test: 1744660301964 Reverse Linked List
+Found test: 1744660308403 Merge K Sorted Lists
+Found test: 1744660313541 Valid Parentheses
+Test details count: 4
+Getting attempts for test 1744660313541 in assessment assessment_1 for user su
+User su has used 0 of 1 attempts for test 1744660313541
+GET /api/tests/:id - Auth Header: Bearer test-token Email: su Test ID: 1744660313541
+Found user for test access check: 0wobsr su
+Looking for test with ID: 1744660313541
 Available tests: [
+  { id: undefined, _id: '1744660298055', title: 'Two Sum' },
+  { id: undefined, _id: '1744660301964', title: 'Reverse Linked List' },
   {
     id: undefined,
-    _id: '1744659184845',
+    _id: '1744660308403',
     title: 'Merge K Sorted Lists'
   },
-  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+  { id: undefined, _id: '1744660313541', title: 'Valid Parentheses' }
 ]
-Test found: { id: undefined, _id: '1744659184845', title: 'Merge K Sorted Lists' }
+Test found: { id: undefined, _id: '1744660313541', title: 'Valid Parentheses' }
 Specific assessment ID from query: assessment_1
 Filtering to check only assessment assessment_1
-Is test 1744659184845 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744659184845
-Assessment assessment_1 contains test 1744659184845
+Is test 1744660313541 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744660313541
+Assessment assessment_1 contains test 1744660313541
 Assessment assessment_1 is public
 Permission check for test access: {
-  testId: '1744659184845',
-  userId: '76ukr',
-  userEmail: 's',
+  testId: '1744660313541',
+  userId: '0wobsr',
+  userEmail: 'su',
   isCreator: false,
   isPublic: undefined,
   isInvited: true
 }
-Access granted to test 1744659184845 for user s
-GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659184845
-Found user for test access check: 76ukr s
-Looking for test with ID: 1744659184845
+Access granted to test 1744660313541 for user su
+Getting attempts for test 1744660313541 in assessment assessment_1 for user su
+User su has used 0 of 1 attempts for test 1744660313541
+GET /api/tests/:id - Auth Header: Bearer test-token Email: su Test ID: 1744660313541
+Found user for test access check: 0wobsr su
+Looking for test with ID: 1744660313541
 Available tests: [
+  { id: undefined, _id: '1744660298055', title: 'Two Sum' },
+  { id: undefined, _id: '1744660301964', title: 'Reverse Linked List' },
   {
     id: undefined,
-    _id: '1744659184845',
+    _id: '1744660308403',
     title: 'Merge K Sorted Lists'
   },
-  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+  { id: undefined, _id: '1744660313541', title: 'Valid Parentheses' }
 ]
-Test found: { id: undefined, _id: '1744659184845', title: 'Merge K Sorted Lists' }
+Test found: { id: undefined, _id: '1744660313541', title: 'Valid Parentheses' }
 Specific assessment ID from query: assessment_1
 Filtering to check only assessment assessment_1
-Is test 1744659184845 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744659184845
-Assessment assessment_1 contains test 1744659184845
+Is test 1744660313541 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744660313541
+Assessment assessment_1 contains test 1744660313541
 Assessment assessment_1 is public
 Permission check for test access: {
-  testId: '1744659184845',
-  userId: '76ukr',
-  userEmail: 's',
+  testId: '1744660313541',
+  userId: '0wobsr',
+  userEmail: 'su',
   isCreator: false,
   isPublic: undefined,
   isInvited: true
 }
-Access granted to test 1744659184845 for user s
+Access granted to test 1744660313541 for user su
+Login request body: { email: 'p', password: '1' }
+Found user: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Login successful for user: p
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Checking assessment: assessment_1 createdBy: trt9uh user.id: trt9uh
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Checking assessment: assessment_1 createdBy: trt9uh user.id: trt9uh
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer test-token Email: p
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Returning all tests for assessor
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: p Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
 Available assessments: [ 'assessment_1' ]
 Assessment found: {
   id: 'assessment_1',
-  title: 'sdfsad',
+  title: 'Testsdf',
   description: '',
-  tests: [ '1744659184845', '1744659189430' ],
-  startTime: '2025-04-14T19:33',
-  endTime: '2025-04-21T19:33',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T19:51',
+  endTime: '2025-04-21T19:51',
   maxAttempts: 1,
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'j5l3gl',
-  createdAt: '2025-04-14T19:33:20.021Z',
-  updatedAt: '2025-04-14T19:33:20.021Z',
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:52:05.943Z',
   attemptsUsed: 0
 }
-User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
-Invitation check for user s assessment assessment_1 : {
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Creator check: { assessmentCreatedBy: 'trt9uh', userId: 'trt9uh', isCreator: true }
+Invitation check for user p assessment assessment_1 : {
   isInvitedById: false,
   isInvitedByEmail: false,
-  hasInvitationNotification: true,
+  hasInvitationNotification: false,
   hasValidToken: false,
-  isInvited: true
+  isInvited: false
 }
 Permission check: {
-  isCreator: false,
+  isCreator: true,
   isPublic: true,
-  isInvited: true,
+  isInvited: false,
   isInvitedById: false,
   isInvitedByEmail: false,
   hasValidToken: false
 }
-Looking up tests: [ '1744659184845', '1744659189430' ]
-Found test: 1744659184845 Merge K Sorted Lists
-Found test: 1744659189430 Valid Parentheses
-Test details count: 2
+Looking up tests: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Found test: 1744660298055 Two Sum
+Found test: 1744660301964 Reverse Linked List
+Found test: 1744660308403 Merge K Sorted Lists
+Found test: 1744660313541 Valid Parentheses
+Test details count: 4
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: p Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
 Available assessments: [ 'assessment_1' ]
 Assessment found: {
   id: 'assessment_1',
-  title: 'sdfsad',
+  title: 'Testsdf',
   description: '',
-  tests: [ '1744659184845', '1744659189430' ],
-  startTime: '2025-04-14T19:33',
-  endTime: '2025-04-21T19:33',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T19:51',
+  endTime: '2025-04-21T19:51',
   maxAttempts: 1,
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'j5l3gl',
-  createdAt: '2025-04-14T19:33:20.021Z',
-  updatedAt: '2025-04-14T19:33:20.021Z',
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:52:05.943Z',
   attemptsUsed: 0
 }
-User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
-Invitation check for user s assessment assessment_1 : {
+User found: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Creator check: { assessmentCreatedBy: 'trt9uh', userId: 'trt9uh', isCreator: true }
+Invitation check for user p assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: false,
+  hasValidToken: false,
+  isInvited: false
+}
+Permission check: {
+  isCreator: true,
+  isPublic: true,
+  isInvited: false,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Found test: 1744660298055 Two Sum
+Found test: 1744660301964 Reverse Linked List
+Found test: 1744660308403 Merge K Sorted Lists
+Found test: 1744660313541 Valid Parentheses
+Test details count: 4
+Update assessment assessment_1 request body: {
+  id: 'assessment_1',
+  title: 'Testsdf',
+  description: '',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T14:21',
+  endTime: '2025-04-21T14:21',
+  maxAttempts: '3',
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:52:05.943Z',
+  attemptsUsed: 0,
+  testDetails: [
+    {
+      title: 'Two Sum',
+      description: 'Find two numbers that add up to a target',
+      difficulty: 'Easy',
+      timeLimit: 60,
+      problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      inputFormat: 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: 'Return the indices of the two numbers that add up to the target.',
+      constraints: '2 <= nums.length <= 10^4\n' +
+        '-10^9 <= nums[i] <= 10^9\n' +
+        '-10^9 <= target <= 10^9\n' +
+        'Only one valid answer exists.',
+      sampleInput: '[2,7,11,15]\n9',
+      sampleOutput: '[0,1]',
+      testCases: [Array],
+      _id: '1744660298055',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:38.055Z'
+    },
+    {
+      title: 'Reverse Linked List',
+      description: 'Reverse a singly linked list',
+      difficulty: 'Medium',
+      timeLimit: 60,
+      problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list. The linked list is represented as an array for simplicity.',
+      inputFormat: 'The input is an array representing the linked list.',
+      outputFormat: 'Return the reversed linked list as an array.',
+      constraints: 'The number of nodes in the list is the range [0, 5000].\n' +
+        '-5000 <= Node.val <= 5000',
+      sampleInput: '[1,2,3,4,5]',
+      sampleOutput: '[5,4,3,2,1]',
+      testCases: [Array],
+      _id: '1744660301964',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:41.964Z'
+    },
+    {
+      title: 'Merge K Sorted Lists',
+      description: 'Merge k sorted linked lists into one sorted linked list',
+      difficulty: 'Hard',
+      timeLimit: 90,
+      problemStatement: 'You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it. The linked lists are represented as arrays for simplicity.',
+      inputFormat: 'The input is an array of arrays, where each inner array represents a linked list.',
+      outputFormat: 'Return the merged linked list as an array.',
+      constraints: 'k == lists.length\n' +
+        '0 <= k <= 10^4\n' +
+        '0 <= lists[i].length <= 500\n' +
+        '-10^4 <= lists[i][j] <= 10^4\n' +
+        'lists[i] is sorted in ascending order.\n' +
+        'The sum of lists[i].length will not exceed 10^4.',
+      sampleInput: '[[1,4,5],[1,3,4],[2,6]]',
+      sampleOutput: '[1,1,2,3,4,4,5,6]',
+      testCases: [Array],
+      _id: '1744660308403',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:48.403Z'
+    },
+    {
+      title: 'Valid Parentheses',
+      description: 'Determine if a string of parentheses is valid',
+      difficulty: 'Easy',
+      timeLimit: 45,
+      problemStatement: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets, and open brackets must be closed in the correct order.",
+      inputFormat: 'A string containing only parentheses characters: (){}[]',
+      outputFormat: 'Return true if the string is valid, false otherwise.',
+      constraints: "1 <= s.length <= 10^4\ns consists of parentheses only '()[]{}'.",
+      sampleInput: '()[]{}',
+      sampleOutput: 'true',
+      testCases: [Array],
+      _id: '1744660313541',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:53.541Z'
+    }
+  ]
+}
+PUT /api/assessments/:id - Auth Header: Bearer test-token Email: p Assessment ID: assessment_1
+User found for assessment update: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Tests array for assessment update: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Filtered invitedStudents: []
+Updated assessment: {
+  id: 'assessment_1',
+  title: 'Testsdf',
+  description: '',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T14:21',
+  endTime: '2025-04-21T14:21',
+  maxAttempts: '3',
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:53:30.226Z',
+  attemptsUsed: 0,
+  testDetails: [
+    {
+      title: 'Two Sum',
+      description: 'Find two numbers that add up to a target',
+      difficulty: 'Easy',
+      timeLimit: 60,
+      problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      inputFormat: 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: 'Return the indices of the two numbers that add up to the target.',
+      constraints: '2 <= nums.length <= 10^4\n' +
+        '-10^9 <= nums[i] <= 10^9\n' +
+        '-10^9 <= target <= 10^9\n' +
+        'Only one valid answer exists.',
+      sampleInput: '[2,7,11,15]\n9',
+      sampleOutput: '[0,1]',
+      testCases: [Array],
+      _id: '1744660298055',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:38.055Z'
+    },
+    {
+      title: 'Reverse Linked List',
+      description: 'Reverse a singly linked list',
+      difficulty: 'Medium',
+      timeLimit: 60,
+      problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list. The linked list is represented as an array for simplicity.',
+      inputFormat: 'The input is an array representing the linked list.',
+      outputFormat: 'Return the reversed linked list as an array.',
+      constraints: 'The number of nodes in the list is the range [0, 5000].\n' +
+        '-5000 <= Node.val <= 5000',
+      sampleInput: '[1,2,3,4,5]',
+      sampleOutput: '[5,4,3,2,1]',
+      testCases: [Array],
+      _id: '1744660301964',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:41.964Z'
+    },
+    {
+      title: 'Merge K Sorted Lists',
+      description: 'Merge k sorted linked lists into one sorted linked list',
+      difficulty: 'Hard',
+      timeLimit: 90,
+      problemStatement: 'You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it. The linked lists are represented as arrays for simplicity.',
+      inputFormat: 'The input is an array of arrays, where each inner array represents a linked list.',
+      outputFormat: 'Return the merged linked list as an array.',
+      constraints: 'k == lists.length\n' +
+        '0 <= k <= 10^4\n' +
+        '0 <= lists[i].length <= 500\n' +
+        '-10^4 <= lists[i][j] <= 10^4\n' +
+        'lists[i] is sorted in ascending order.\n' +
+        'The sum of lists[i].length will not exceed 10^4.',
+      sampleInput: '[[1,4,5],[1,3,4],[2,6]]',
+      sampleOutput: '[1,1,2,3,4,4,5,6]',
+      testCases: [Array],
+      _id: '1744660308403',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:48.403Z'
+    },
+    {
+      title: 'Valid Parentheses',
+      description: 'Determine if a string of parentheses is valid',
+      difficulty: 'Easy',
+      timeLimit: 45,
+      problemStatement: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets, and open brackets must be closed in the correct order.",
+      inputFormat: 'A string containing only parentheses characters: (){}[]',
+      outputFormat: 'Return true if the string is valid, false otherwise.',
+      constraints: "1 <= s.length <= 10^4\ns consists of parentheses only '()[]{}'.",
+      sampleInput: '()[]{}',
+      sampleOutput: 'true',
+      testCases: [Array],
+      _id: '1744660313541',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:53.541Z'
+    }
+  ]
+}
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Checking assessment: assessment_1 createdBy: trt9uh user.id: trt9uh
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: p
+User found for my assessments: {
+  id: 'trt9uh',
+  name: 'p',
+  email: 'p',
+  password: '1',
+  role: 'assessor'
+}
+Checking assessment: assessment_1 createdBy: trt9uh user.id: trt9uh
+Found assessments count: 1
+Assessment assessment_1 invited users: []
+Login request body: { email: 'su', password: '1' }
+Found user: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Login successful for user: su
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: su
+Found user by email: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: su
+Found/created user for notifications: 0wobsr su
+Found notification for user: {
+  id: '1744660394195r9p5ibw',
+  userId: '0wobsr',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T19:53:14.195Z',
+  read: true
+}
+Notifications for user su : [
+  {
+    id: '1744660394195r9p5ibw',
+    userId: '0wobsr',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T19:53:14.195Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: su
+Found user by email: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: su
+Found/created user for notifications: 0wobsr su
+Found notification for user: {
+  id: '1744660394195r9p5ibw',
+  userId: '0wobsr',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T19:53:14.195Z',
+  read: true
+}
+Notifications for user su : [
+  {
+    id: '1744660394195r9p5ibw',
+    userId: '0wobsr',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T19:53:14.195Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: su
+User found/created: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: su 0wobsr
+All assessments: [ { id: 'assessment_1', title: 'Testsdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user su (0wobsr) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744660394195r9p5ibw',
+  userId: '0wobsr',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T19:53:14.195Z',
+  read: true
+}
+User su is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: su
+User found/created: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: su 0wobsr
+All assessments: [ { id: 'assessment_1', title: 'Testsdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user su (0wobsr) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744660394195r9p5ibw',
+  userId: '0wobsr',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T19:53:14.195Z',
+  read: true
+}
+User su is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: su Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'Testsdf',
+  description: '',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T14:21',
+  endTime: '2025-04-21T14:21',
+  maxAttempts: '3',
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:53:30.226Z',
+  attemptsUsed: 0,
+  testDetails: [
+    {
+      title: 'Two Sum',
+      description: 'Find two numbers that add up to a target',
+      difficulty: 'Easy',
+      timeLimit: 60,
+      problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      inputFormat: 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: 'Return the indices of the two numbers that add up to the target.',
+      constraints: '2 <= nums.length <= 10^4\n' +
+        '-10^9 <= nums[i] <= 10^9\n' +
+        '-10^9 <= target <= 10^9\n' +
+        'Only one valid answer exists.',
+      sampleInput: '[2,7,11,15]\n9',
+      sampleOutput: '[0,1]',
+      testCases: [Array],
+      _id: '1744660298055',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:38.055Z'
+    },
+    {
+      title: 'Reverse Linked List',
+      description: 'Reverse a singly linked list',
+      difficulty: 'Medium',
+      timeLimit: 60,
+      problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list. The linked list is represented as an array for simplicity.',
+      inputFormat: 'The input is an array representing the linked list.',
+      outputFormat: 'Return the reversed linked list as an array.',
+      constraints: 'The number of nodes in the list is the range [0, 5000].\n' +
+        '-5000 <= Node.val <= 5000',
+      sampleInput: '[1,2,3,4,5]',
+      sampleOutput: '[5,4,3,2,1]',
+      testCases: [Array],
+      _id: '1744660301964',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:41.964Z'
+    },
+    {
+      title: 'Merge K Sorted Lists',
+      description: 'Merge k sorted linked lists into one sorted linked list',
+      difficulty: 'Hard',
+      timeLimit: 90,
+      problemStatement: 'You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it. The linked lists are represented as arrays for simplicity.',
+      inputFormat: 'The input is an array of arrays, where each inner array represents a linked list.',
+      outputFormat: 'Return the merged linked list as an array.',
+      constraints: 'k == lists.length\n' +
+        '0 <= k <= 10^4\n' +
+        '0 <= lists[i].length <= 500\n' +
+        '-10^4 <= lists[i][j] <= 10^4\n' +
+        'lists[i] is sorted in ascending order.\n' +
+        'The sum of lists[i].length will not exceed 10^4.',
+      sampleInput: '[[1,4,5],[1,3,4],[2,6]]',
+      sampleOutput: '[1,1,2,3,4,4,5,6]',
+      testCases: [Array],
+      _id: '1744660308403',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:48.403Z'
+    },
+    {
+      title: 'Valid Parentheses',
+      description: 'Determine if a string of parentheses is valid',
+      difficulty: 'Easy',
+      timeLimit: 45,
+      problemStatement: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets, and open brackets must be closed in the correct order.",
+      inputFormat: 'A string containing only parentheses characters: (){}[]',
+      outputFormat: 'Return true if the string is valid, false otherwise.',
+      constraints: "1 <= s.length <= 10^4\ns consists of parentheses only '()[]{}'.",
+      sampleInput: '()[]{}',
+      sampleOutput: 'true',
+      testCases: [Array],
+      _id: '1744660313541',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:53.541Z'
+    }
+  ]
+}
+User found: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'trt9uh', userId: '0wobsr', isCreator: false }
+Invitation check for user su assessment assessment_1 : {
   isInvitedById: false,
   isInvitedByEmail: false,
   hasInvitationNotification: true,
@@ -486,414 +1159,603 @@ Permission check: {
   isInvitedByEmail: false,
   hasValidToken: false
 }
-Looking up tests: [ '1744659184845', '1744659189430' ]
-Found test: 1744659184845 Merge K Sorted Lists
-Found test: 1744659189430 Valid Parentheses
-Test details count: 2
-GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659189430
-Found user for test access check: 76ukr s
-Looking for test with ID: 1744659189430
+Looking up tests: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Found test: 1744660298055 Two Sum
+Found test: 1744660301964 Reverse Linked List
+Found test: 1744660308403 Merge K Sorted Lists
+Found test: 1744660313541 Valid Parentheses
+Test details count: 4
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: su Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'Testsdf',
+  description: '',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T14:21',
+  endTime: '2025-04-21T14:21',
+  maxAttempts: '3',
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:53:30.226Z',
+  attemptsUsed: 0,
+  testDetails: [
+    {
+      title: 'Two Sum',
+      description: 'Find two numbers that add up to a target',
+      difficulty: 'Easy',
+      timeLimit: 60,
+      problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      inputFormat: 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: 'Return the indices of the two numbers that add up to the target.',
+      constraints: '2 <= nums.length <= 10^4\n' +
+        '-10^9 <= nums[i] <= 10^9\n' +
+        '-10^9 <= target <= 10^9\n' +
+        'Only one valid answer exists.',
+      sampleInput: '[2,7,11,15]\n9',
+      sampleOutput: '[0,1]',
+      testCases: [Array],
+      _id: '1744660298055',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:38.055Z'
+    },
+    {
+      title: 'Reverse Linked List',
+      description: 'Reverse a singly linked list',
+      difficulty: 'Medium',
+      timeLimit: 60,
+      problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list. The linked list is represented as an array for simplicity.',
+      inputFormat: 'The input is an array representing the linked list.',
+      outputFormat: 'Return the reversed linked list as an array.',
+      constraints: 'The number of nodes in the list is the range [0, 5000].\n' +
+        '-5000 <= Node.val <= 5000',
+      sampleInput: '[1,2,3,4,5]',
+      sampleOutput: '[5,4,3,2,1]',
+      testCases: [Array],
+      _id: '1744660301964',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:41.964Z'
+    },
+    {
+      title: 'Merge K Sorted Lists',
+      description: 'Merge k sorted linked lists into one sorted linked list',
+      difficulty: 'Hard',
+      timeLimit: 90,
+      problemStatement: 'You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it. The linked lists are represented as arrays for simplicity.',
+      inputFormat: 'The input is an array of arrays, where each inner array represents a linked list.',
+      outputFormat: 'Return the merged linked list as an array.',
+      constraints: 'k == lists.length\n' +
+        '0 <= k <= 10^4\n' +
+        '0 <= lists[i].length <= 500\n' +
+        '-10^4 <= lists[i][j] <= 10^4\n' +
+        'lists[i] is sorted in ascending order.\n' +
+        'The sum of lists[i].length will not exceed 10^4.',
+      sampleInput: '[[1,4,5],[1,3,4],[2,6]]',
+      sampleOutput: '[1,1,2,3,4,4,5,6]',
+      testCases: [Array],
+      _id: '1744660308403',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:48.403Z'
+    },
+    {
+      title: 'Valid Parentheses',
+      description: 'Determine if a string of parentheses is valid',
+      difficulty: 'Easy',
+      timeLimit: 45,
+      problemStatement: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets, and open brackets must be closed in the correct order.",
+      inputFormat: 'A string containing only parentheses characters: (){}[]',
+      outputFormat: 'Return true if the string is valid, false otherwise.',
+      constraints: "1 <= s.length <= 10^4\ns consists of parentheses only '()[]{}'.",
+      sampleInput: '()[]{}',
+      sampleOutput: 'true',
+      testCases: [Array],
+      _id: '1744660313541',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:53.541Z'
+    }
+  ]
+}
+User found: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'trt9uh', userId: '0wobsr', isCreator: false }
+Invitation check for user su assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Found test: 1744660298055 Two Sum
+Found test: 1744660301964 Reverse Linked List
+Found test: 1744660308403 Merge K Sorted Lists
+Found test: 1744660313541 Valid Parentheses
+Test details count: 4
+Getting attempts for test 1744660298055 in assessment assessment_1 for user su
+User su has used 0 of 3 attempts for test 1744660298055
+GET /api/tests/:id - Auth Header: Bearer test-token Email: su Test ID: 1744660298055
+Found user for test access check: 0wobsr su
+Looking for test with ID: 1744660298055
 Available tests: [
+  { id: undefined, _id: '1744660298055', title: 'Two Sum' },
+  { id: undefined, _id: '1744660301964', title: 'Reverse Linked List' },
   {
     id: undefined,
-    _id: '1744659184845',
+    _id: '1744660308403',
     title: 'Merge K Sorted Lists'
   },
-  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+  { id: undefined, _id: '1744660313541', title: 'Valid Parentheses' }
 ]
-Test found: { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+Test found: { id: undefined, _id: '1744660298055', title: 'Two Sum' }
 Specific assessment ID from query: assessment_1
 Filtering to check only assessment assessment_1
-Is test 1744659189430 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744659189430
-Assessment assessment_1 contains test 1744659189430
+Is test 1744660298055 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744660298055
+Assessment assessment_1 contains test 1744660298055
 Assessment assessment_1 is public
 Permission check for test access: {
-  testId: '1744659189430',
-  userId: '76ukr',
-  userEmail: 's',
+  testId: '1744660298055',
+  userId: '0wobsr',
+  userEmail: 'su',
   isCreator: false,
   isPublic: undefined,
   isInvited: true
 }
-Access granted to test 1744659189430 for user s
-GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659189430
-Found user for test access check: 76ukr s
-Looking for test with ID: 1744659189430
+Access granted to test 1744660298055 for user su
+Getting attempts for test 1744660298055 in assessment assessment_1 for user su
+User su has used 0 of 3 attempts for test 1744660298055
+GET /api/tests/:id - Auth Header: Bearer test-token Email: su Test ID: 1744660298055
+Found user for test access check: 0wobsr su
+Looking for test with ID: 1744660298055
 Available tests: [
+  { id: undefined, _id: '1744660298055', title: 'Two Sum' },
+  { id: undefined, _id: '1744660301964', title: 'Reverse Linked List' },
   {
     id: undefined,
-    _id: '1744659184845',
+    _id: '1744660308403',
     title: 'Merge K Sorted Lists'
   },
-  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+  { id: undefined, _id: '1744660313541', title: 'Valid Parentheses' }
 ]
-Test found: { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
+Test found: { id: undefined, _id: '1744660298055', title: 'Two Sum' }
 Specific assessment ID from query: assessment_1
 Filtering to check only assessment assessment_1
-Is test 1744659189430 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744659189430
-Assessment assessment_1 contains test 1744659189430
+Is test 1744660298055 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744660298055
+Assessment assessment_1 contains test 1744660298055
 Assessment assessment_1 is public
 Permission check for test access: {
-  testId: '1744659189430',
-  userId: '76ukr',
-  userEmail: 's',
+  testId: '1744660298055',
+  userId: '0wobsr',
+  userEmail: 'su',
   isCreator: false,
   isPublic: undefined,
   isInvited: true
 }
-Access granted to test 1744659189430 for user s
+Access granted to test 1744660298055 for user su
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: su Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'Testsdf',
+  description: '',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T14:21',
+  endTime: '2025-04-21T14:21',
+  maxAttempts: '3',
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:53:30.226Z',
+  attemptsUsed: 0,
+  testDetails: [
+    {
+      title: 'Two Sum',
+      description: 'Find two numbers that add up to a target',
+      difficulty: 'Easy',
+      timeLimit: 60,
+      problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      inputFormat: 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: 'Return the indices of the two numbers that add up to the target.',
+      constraints: '2 <= nums.length <= 10^4\n' +
+        '-10^9 <= nums[i] <= 10^9\n' +
+        '-10^9 <= target <= 10^9\n' +
+        'Only one valid answer exists.',
+      sampleInput: '[2,7,11,15]\n9',
+      sampleOutput: '[0,1]',
+      testCases: [Array],
+      _id: '1744660298055',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:38.055Z'
+    },
+    {
+      title: 'Reverse Linked List',
+      description: 'Reverse a singly linked list',
+      difficulty: 'Medium',
+      timeLimit: 60,
+      problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list. The linked list is represented as an array for simplicity.',
+      inputFormat: 'The input is an array representing the linked list.',
+      outputFormat: 'Return the reversed linked list as an array.',
+      constraints: 'The number of nodes in the list is the range [0, 5000].\n' +
+        '-5000 <= Node.val <= 5000',
+      sampleInput: '[1,2,3,4,5]',
+      sampleOutput: '[5,4,3,2,1]',
+      testCases: [Array],
+      _id: '1744660301964',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:41.964Z'
+    },
+    {
+      title: 'Merge K Sorted Lists',
+      description: 'Merge k sorted linked lists into one sorted linked list',
+      difficulty: 'Hard',
+      timeLimit: 90,
+      problemStatement: 'You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it. The linked lists are represented as arrays for simplicity.',
+      inputFormat: 'The input is an array of arrays, where each inner array represents a linked list.',
+      outputFormat: 'Return the merged linked list as an array.',
+      constraints: 'k == lists.length\n' +
+        '0 <= k <= 10^4\n' +
+        '0 <= lists[i].length <= 500\n' +
+        '-10^4 <= lists[i][j] <= 10^4\n' +
+        'lists[i] is sorted in ascending order.\n' +
+        'The sum of lists[i].length will not exceed 10^4.',
+      sampleInput: '[[1,4,5],[1,3,4],[2,6]]',
+      sampleOutput: '[1,1,2,3,4,4,5,6]',
+      testCases: [Array],
+      _id: '1744660308403',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:48.403Z'
+    },
+    {
+      title: 'Valid Parentheses',
+      description: 'Determine if a string of parentheses is valid',
+      difficulty: 'Easy',
+      timeLimit: 45,
+      problemStatement: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets, and open brackets must be closed in the correct order.",
+      inputFormat: 'A string containing only parentheses characters: (){}[]',
+      outputFormat: 'Return true if the string is valid, false otherwise.',
+      constraints: "1 <= s.length <= 10^4\ns consists of parentheses only '()[]{}'.",
+      sampleInput: '()[]{}',
+      sampleOutput: 'true',
+      testCases: [Array],
+      _id: '1744660313541',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:53.541Z'
+    }
+  ]
+}
+User found: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'trt9uh', userId: '0wobsr', isCreator: false }
+Invitation check for user su assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Found test: 1744660298055 Two Sum
+Found test: 1744660301964 Reverse Linked List
+Found test: 1744660308403 Merge K Sorted Lists
+Found test: 1744660313541 Valid Parentheses
+Test details count: 4
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: su Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'Testsdf',
+  description: '',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T14:21',
+  endTime: '2025-04-21T14:21',
+  maxAttempts: '3',
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:53:30.226Z',
+  attemptsUsed: 0,
+  testDetails: [
+    {
+      title: 'Two Sum',
+      description: 'Find two numbers that add up to a target',
+      difficulty: 'Easy',
+      timeLimit: 60,
+      problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      inputFormat: 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: 'Return the indices of the two numbers that add up to the target.',
+      constraints: '2 <= nums.length <= 10^4\n' +
+        '-10^9 <= nums[i] <= 10^9\n' +
+        '-10^9 <= target <= 10^9\n' +
+        'Only one valid answer exists.',
+      sampleInput: '[2,7,11,15]\n9',
+      sampleOutput: '[0,1]',
+      testCases: [Array],
+      _id: '1744660298055',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:38.055Z'
+    },
+    {
+      title: 'Reverse Linked List',
+      description: 'Reverse a singly linked list',
+      difficulty: 'Medium',
+      timeLimit: 60,
+      problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list. The linked list is represented as an array for simplicity.',
+      inputFormat: 'The input is an array representing the linked list.',
+      outputFormat: 'Return the reversed linked list as an array.',
+      constraints: 'The number of nodes in the list is the range [0, 5000].\n' +
+        '-5000 <= Node.val <= 5000',
+      sampleInput: '[1,2,3,4,5]',
+      sampleOutput: '[5,4,3,2,1]',
+      testCases: [Array],
+      _id: '1744660301964',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:41.964Z'
+    },
+    {
+      title: 'Merge K Sorted Lists',
+      description: 'Merge k sorted linked lists into one sorted linked list',
+      difficulty: 'Hard',
+      timeLimit: 90,
+      problemStatement: 'You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it. The linked lists are represented as arrays for simplicity.',
+      inputFormat: 'The input is an array of arrays, where each inner array represents a linked list.',
+      outputFormat: 'Return the merged linked list as an array.',
+      constraints: 'k == lists.length\n' +
+        '0 <= k <= 10^4\n' +
+        '0 <= lists[i].length <= 500\n' +
+        '-10^4 <= lists[i][j] <= 10^4\n' +
+        'lists[i] is sorted in ascending order.\n' +
+        'The sum of lists[i].length will not exceed 10^4.',
+      sampleInput: '[[1,4,5],[1,3,4],[2,6]]',
+      sampleOutput: '[1,1,2,3,4,4,5,6]',
+      testCases: [Array],
+      _id: '1744660308403',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:48.403Z'
+    },
+    {
+      title: 'Valid Parentheses',
+      description: 'Determine if a string of parentheses is valid',
+      difficulty: 'Easy',
+      timeLimit: 45,
+      problemStatement: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets, and open brackets must be closed in the correct order.",
+      inputFormat: 'A string containing only parentheses characters: (){}[]',
+      outputFormat: 'Return true if the string is valid, false otherwise.',
+      constraints: "1 <= s.length <= 10^4\ns consists of parentheses only '()[]{}'.",
+      sampleInput: '()[]{}',
+      sampleOutput: 'true',
+      testCases: [Array],
+      _id: '1744660313541',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:53.541Z'
+    }
+  ]
+}
+User found: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'trt9uh', userId: '0wobsr', isCreator: false }
+Invitation check for user su assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Found test: 1744660298055 Two Sum
+Found test: 1744660301964 Reverse Linked List
+Found test: 1744660308403 Merge K Sorted Lists
+Found test: 1744660313541 Valid Parentheses
+Test details count: 4
+Getting attempts for test 1744660313541 in assessment assessment_1 for user su
+User su has used 0 of 3 attempts for test 1744660313541
+GET /api/tests/:id - Auth Header: Bearer test-token Email: su Test ID: 1744660313541
+Found user for test access check: 0wobsr su
+Looking for test with ID: 1744660313541
+Available tests: [
+  { id: undefined, _id: '1744660298055', title: 'Two Sum' },
+  { id: undefined, _id: '1744660301964', title: 'Reverse Linked List' },
+  {
+    id: undefined,
+    _id: '1744660308403',
+    title: 'Merge K Sorted Lists'
+  },
+  { id: undefined, _id: '1744660313541', title: 'Valid Parentheses' }
+]
+Test found: { id: undefined, _id: '1744660313541', title: 'Valid Parentheses' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744660313541 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744660313541
+Assessment assessment_1 contains test 1744660313541
+Assessment assessment_1 is public
+Permission check for test access: {
+  testId: '1744660313541',
+  userId: '0wobsr',
+  userEmail: 'su',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744660313541 for user su
+Getting attempts for test 1744660313541 in assessment assessment_1 for user su
+User su has used 0 of 3 attempts for test 1744660313541
+GET /api/tests/:id - Auth Header: Bearer test-token Email: su Test ID: 1744660313541
+Found user for test access check: 0wobsr su
+Looking for test with ID: 1744660313541
+Available tests: [
+  { id: undefined, _id: '1744660298055', title: 'Two Sum' },
+  { id: undefined, _id: '1744660301964', title: 'Reverse Linked List' },
+  {
+    id: undefined,
+    _id: '1744660308403',
+    title: 'Merge K Sorted Lists'
+  },
+  { id: undefined, _id: '1744660313541', title: 'Valid Parentheses' }
+]
+Test found: { id: undefined, _id: '1744660313541', title: 'Valid Parentheses' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744660313541 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744660313541
+Assessment assessment_1 contains test 1744660313541
+Assessment assessment_1 is public
+Permission check for test access: {
+  testId: '1744660313541',
+  userId: '0wobsr',
+  userEmail: 'su',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744660313541 for user su
 Execute code request: { language: 'python', assessmentId: 'assessment_1' }
-Code to execute: def solve():
-    s = input().strip()
-    stack = []
-    bracket_map = {')': '(', '}': '{', ']': '['}
+Code to execute: # Read input from stdin and solve the problem
+# Example:
+# n = int(input())
+# arr = list(map(int, input().split()))
 
-    for char in s:
-        if char in bracket_map.values():  # open brackets
-            stack.append(char)
-        elif char in bracket_map:  # closing brackets
-            if not stack or stack[-1] != bracket_map[char]:
-                print(False)
-                return
-            stack.pop()
-        else:
-            # In case the input contains invalid characters, optional safeguard
-            print(False)
-            return
-    
-    print(True if not stack else False)
+def solve():
+    # Your solution here
+    pass
 
 if __name__ == "__main__":
+    # Call the solve function
     solve()
-
 Input: ()[]{}
 Executing code in Docker container...
-Starting Python execution with ID: f4f7ba67-950c-44ad-9d18-054da2990ddb
-Code length: 623 characters
+Starting Python execution with ID: 59d41fab-8bc6-49c9-a090-4663a35d5bf6
+Code length: 233 characters
 Input length: 6 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_f4f7ba67-950c-44ad-9d18-054da2990ddb.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_f4f7ba67-950c-44ad-9d18-054da2990ddb       -i python:3.9-slim       bash
-Python execution result: { stdout: 'True\n', stderr: '', executionTime: 325 }
+Executing Python code with Docker command: cat /tmp/run_59d41fab-8bc6-49c9-a090-4663a35d5bf6.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_59d41fab-8bc6-49c9-a090-4663a35d5bf6       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 458 }
 Temporary files cleaned up
-Execution result: { output: 'True\n', error: '', executionTime: 325, memoryUsed: 50 }
-Execute code request: { language: 'python', assessmentId: 'assessment_1' }
-Code to execute: def solve():
-    s = input().strip()
-    stack = []
-    bracket_map = {')': '(', '}': '{', ']': '['}
-
-    for char in s:
-        if char in bracket_map.values():  # open brackets
-            stack.append(char)
-        elif char in bracket_map:  # closing brackets
-            if not stack or stack[-1] != bracket_map[char]:
-                print(False)
-                return
-            stack.pop()
-        else:
-            # In case the input contains invalid characters, optional safeguard
-            print(False)
-            return
-    print("hi")
-    print(True if not stack else False)
-
-if __name__ == "__main__":
-    solve()
-
-Input: ()[]{}
-Executing code in Docker container...
-Starting Python execution with ID: 97ec259d-412b-47a2-bfb7-31159aaeab35
-Code length: 634 characters
-Input length: 6 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_97ec259d-412b-47a2-bfb7-31159aaeab35.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_97ec259d-412b-47a2-bfb7-31159aaeab35       -i python:3.9-slim       bash
-Python execution result: { stdout: 'hi\nTrue\n', stderr: '', executionTime: 413 }
-Temporary files cleaned up
-Execution result: { output: 'hi\nTrue\n', error: '', executionTime: 413, memoryUsed: 50 }
+Execution result: { output: '', error: '', executionTime: 458, memoryUsed: 0 }
 Run test cases request: {
-  testId: '1744659189430',
+  testId: '1744660313541',
   language: 'python',
   assessmentId: 'assessment_1'
 }
-Starting Python execution with ID: 0a6d0545-3aae-4a82-8f1d-1542bd2ed119
-Code length: 634 characters
+Starting Python execution with ID: 369794b1-90a2-420b-a3d3-7779ecd8b3cd
+Code length: 233 characters
 Input length: 6 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_0a6d0545-3aae-4a82-8f1d-1542bd2ed119.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_0a6d0545-3aae-4a82-8f1d-1542bd2ed119       -i python:3.9-slim       bash
-Python execution result: { stdout: 'hi\nTrue\n', stderr: '', executionTime: 357 }
+Executing Python code with Docker command: cat /tmp/run_369794b1-90a2-420b-a3d3-7779ecd8b3cd.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_369794b1-90a2-420b-a3d3-7779ecd8b3cd       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 363 }
 Temporary files cleaned up
-Starting Python execution with ID: 8835551f-4a77-4772-90c5-32d5a318d1d3
-Code length: 634 characters
+Starting Python execution with ID: c81f99b2-3354-4e24-8c5d-e373268bc9dd
+Code length: 233 characters
 Input length: 4 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_8835551f-4a77-4772-90c5-32d5a318d1d3.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_8835551f-4a77-4772-90c5-32d5a318d1d3       -i python:3.9-slim       bash
-Python execution result: { stdout: 'False\n', stderr: '', executionTime: 383 }
+Executing Python code with Docker command: cat /tmp/run_c81f99b2-3354-4e24-8c5d-e373268bc9dd.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_c81f99b2-3354-4e24-8c5d-e373268bc9dd       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 421 }
 Temporary files cleaned up
-Starting Python execution with ID: 49431f30-2a9c-4389-a02f-acd2cce1602f
-Code length: 634 characters
+Starting Python execution with ID: e86f767b-3cca-4a3c-8d88-cb0bb63b9c96
+Code length: 233 characters
 Input length: 4 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_49431f30-2a9c-4389-a02f-acd2cce1602f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_49431f30-2a9c-4389-a02f-acd2cce1602f       -i python:3.9-slim       bash
-Python execution result: { stdout: 'hi\nTrue\n', stderr: '', executionTime: 380 }
-Temporary files cleaned up
-Execute code request: { language: 'python', assessmentId: 'assessment_1' }
-Code to execute: def solve():
-    s = input().strip()
-    stack = []
-    bracket_map = {')': '(', '}': '{', ']': '['}
-
-    for char in s:
-        if char in bracket_map.values():  # open brackets
-            stack.append(char)
-        elif char in bracket_map:  # closing brackets
-            if not stack or stack[-1] != bracket_map[char]:
-                print(False)
-                return
-            stack.pop()
-        else:
-            # In case the input contains invalid characters, optional safeguard
-            print(False)
-            return
-    # print("hi")
-    print(True if not stack else False)
-
-if __name__ == "__main__":
-    solve()
-
-Input: ()[]{}
-Executing code in Docker container...
-Starting Python execution with ID: fa8eef2f-1ad4-476b-9cc8-f5d8bdf0f34e
-Code length: 636 characters
-Input length: 6 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_fa8eef2f-1ad4-476b-9cc8-f5d8bdf0f34e.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_fa8eef2f-1ad4-476b-9cc8-f5d8bdf0f34e       -i python:3.9-slim       bash
-Python execution result: { stdout: 'True\n', stderr: '', executionTime: 387 }
-Temporary files cleaned up
-Execution result: { output: 'True\n', error: '', executionTime: 387, memoryUsed: 50 }
-Run test cases request: {
-  testId: '1744659189430',
-  language: 'python',
-  assessmentId: 'assessment_1'
-}
-Starting Python execution with ID: 7106508d-c833-48c6-8859-16ce1bc9f58c
-Code length: 636 characters
-Input length: 6 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_7106508d-c833-48c6-8859-16ce1bc9f58c.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_7106508d-c833-48c6-8859-16ce1bc9f58c       -i python:3.9-slim       bash
-Python execution result: { stdout: 'True\n', stderr: '', executionTime: 378 }
-Temporary files cleaned up
-Starting Python execution with ID: db342404-f662-472d-9ba6-a182d7c3c12b
-Code length: 636 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_db342404-f662-472d-9ba6-a182d7c3c12b.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_db342404-f662-472d-9ba6-a182d7c3c12b       -i python:3.9-slim       bash
-Python execution result: { stdout: 'False\n', stderr: '', executionTime: 387 }
-Temporary files cleaned up
-Starting Python execution with ID: ca764d43-937f-4950-bbb3-01da86aa8f4f
-Code length: 636 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_ca764d43-937f-4950-bbb3-01da86aa8f4f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_ca764d43-937f-4950-bbb3-01da86aa8f4f       -i python:3.9-slim       bash
-Python execution result: { stdout: 'True\n', stderr: '', executionTime: 326 }
-Temporary files cleaned up
-Run test cases request: {
-  testId: '1744659189430',
-  language: 'python',
-  assessmentId: 'assessment_1'
-}
-Starting Python execution with ID: 2b3d64ab-fb83-41c6-bd67-2f78f4550bb7
-Code length: 656 characters
-Input length: 6 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_2b3d64ab-fb83-41c6-bd67-2f78f4550bb7.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_2b3d64ab-fb83-41c6-bd67-2f78f4550bb7       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 310 }
-Temporary files cleaned up
-Starting Python execution with ID: e890be63-68f9-4cb2-a069-96691b93ce8d
-Code length: 656 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_e890be63-68f9-4cb2-a069-96691b93ce8d.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_e890be63-68f9-4cb2-a069-96691b93ce8d       -i python:3.9-slim       bash
-Python execution result: { stdout: 'False\n', stderr: '', executionTime: 457 }
-Temporary files cleaned up
-Starting Python execution with ID: 509d8cb0-efd8-4b47-85cf-d25bc4fba716
-Code length: 656 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_509d8cb0-efd8-4b47-85cf-d25bc4fba716.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_509d8cb0-efd8-4b47-85cf-d25bc4fba716       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 371 }
+Executing Python code with Docker command: cat /tmp/run_e86f767b-3cca-4a3c-8d88-cb0bb63b9c96.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_e86f767b-3cca-4a3c-8d88-cb0bb63b9c96       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 377 }
 Temporary files cleaned up
 Submit code request: {
-  testId: '1744659189430',
+  testId: '1744660313541',
   language: 'python',
   assessmentId: 'assessment_1'
 }
-User s has used 0 of 1 attempts for test 1744659189430 in assessment assessment_1
-Starting Python execution with ID: ad1b4533-db13-411d-b021-f3586d15b87a
-Code length: 656 characters
+User su has used 0 of 3 attempts for test 1744660313541 in assessment assessment_1
+Starting Python execution with ID: a74120c4-d4f5-4e8c-83d1-477e1f3048e1
+Code length: 233 characters
 Input length: 6 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_ad1b4533-db13-411d-b021-f3586d15b87a.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_ad1b4533-db13-411d-b021-f3586d15b87a       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 304 }
+Executing Python code with Docker command: cat /tmp/run_a74120c4-d4f5-4e8c-83d1-477e1f3048e1.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_a74120c4-d4f5-4e8c-83d1-477e1f3048e1       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 384 }
 Temporary files cleaned up
-Starting Python execution with ID: c01c43fe-b35c-434c-a21e-42b64e3cfa6c
-Code length: 656 characters
+Starting Python execution with ID: 1621793b-a025-4209-b6bb-fb2212b9aed8
+Code length: 233 characters
 Input length: 4 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_c01c43fe-b35c-434c-a21e-42b64e3cfa6c.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_c01c43fe-b35c-434c-a21e-42b64e3cfa6c       -i python:3.9-slim       bash
-Python execution result: { stdout: 'False\n', stderr: '', executionTime: 323 }
+Executing Python code with Docker command: cat /tmp/run_1621793b-a025-4209-b6bb-fb2212b9aed8.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_1621793b-a025-4209-b6bb-fb2212b9aed8       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 353 }
 Temporary files cleaned up
-Starting Python execution with ID: 532adc5a-5988-49c9-9487-ad01051ea75a
-Code length: 656 characters
+Starting Python execution with ID: 734c2e4d-26e5-4c40-9127-d0f56a810138
+Code length: 233 characters
 Input length: 4 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_532adc5a-5988-49c9-9487-ad01051ea75a.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_532adc5a-5988-49c9-9487-ad01051ea75a       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 317 }
+Executing Python code with Docker command: cat /tmp/run_734c2e4d-26e5-4c40-9127-d0f56a810138.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_734c2e4d-26e5-4c40-9127-d0f56a810138       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 350 }
 Temporary files cleaned up
-Starting Python execution with ID: 530174b4-4fe3-4894-972c-9f9d00350098
-Code length: 656 characters
+Starting Python execution with ID: 29f72547-0207-4f3a-b4c5-9e4096cc6c13
+Code length: 233 characters
 Input length: 2 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_530174b4-4fe3-4894-972c-9f9d00350098.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_530174b4-4fe3-4894-972c-9f9d00350098       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 320 }
+Executing Python code with Docker command: cat /tmp/run_29f72547-0207-4f3a-b4c5-9e4096cc6c13.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_29f72547-0207-4f3a-b4c5-9e4096cc6c13       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 329 }
 Temporary files cleaned up
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'sdfsad',
-  description: '',
-  tests: [ '1744659184845', '1744659189430' ],
-  startTime: '2025-04-14T19:33',
-  endTime: '2025-04-21T19:33',
-  maxAttempts: 1,
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'j5l3gl',
-  createdAt: '2025-04-14T19:33:20.021Z',
-  updatedAt: '2025-04-14T19:33:20.021Z',
-  attemptsUsed: 0,
-  testAttempts: { '76ukr': { '1744659189430': 1 } }
-}
-User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
-Invitation check for user s assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744659184845', '1744659189430' ]
-Found test: 1744659184845 Merge K Sorted Lists
-Found test: 1744659189430 Valid Parentheses
-Test details count: 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'sdfsad',
-  description: '',
-  tests: [ '1744659184845', '1744659189430' ],
-  startTime: '2025-04-14T19:33',
-  endTime: '2025-04-21T19:33',
-  maxAttempts: 1,
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'j5l3gl',
-  createdAt: '2025-04-14T19:33:20.021Z',
-  updatedAt: '2025-04-14T19:33:20.021Z',
-  attemptsUsed: 0,
-  testAttempts: { '76ukr': { '1744659189430': 1 } }
-}
-User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
-Invitation check for user s assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744659184845', '1744659189430' ]
-Found test: 1744659184845 Merge K Sorted Lists
-Found test: 1744659189430 Valid Parentheses
-Test details count: 2
-GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659184845
-Found user for test access check: 76ukr s
-Looking for test with ID: 1744659184845
-Available tests: [
-  {
-    id: undefined,
-    _id: '1744659184845',
-    title: 'Merge K Sorted Lists'
-  },
-  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
-]
-Test found: { id: undefined, _id: '1744659184845', title: 'Merge K Sorted Lists' }
-Specific assessment ID from query: assessment_1
-Filtering to check only assessment assessment_1
-Is test 1744659184845 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744659184845
-Assessment assessment_1 contains test 1744659184845
-Assessment assessment_1 is public
-Permission check for test access: {
-  testId: '1744659184845',
-  userId: '76ukr',
-  userEmail: 's',
-  isCreator: false,
-  isPublic: undefined,
-  isInvited: true
-}
-Access granted to test 1744659184845 for user s
-GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659184845
-Found user for test access check: 76ukr s
-Looking for test with ID: 1744659184845
-Available tests: [
-  {
-    id: undefined,
-    _id: '1744659184845',
-    title: 'Merge K Sorted Lists'
-  },
-  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
-]
-Test found: { id: undefined, _id: '1744659184845', title: 'Merge K Sorted Lists' }
-Specific assessment ID from query: assessment_1
-Filtering to check only assessment assessment_1
-Is test 1744659184845 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744659184845
-Assessment assessment_1 contains test 1744659184845
-Assessment assessment_1 is public
-Permission check for test access: {
-  testId: '1744659184845',
-  userId: '76ukr',
-  userEmail: 's',
-  isCreator: false,
-  isPublic: undefined,
-  isInvited: true
-}
-Access granted to test 1744659184845 for user s
 Execute code request: { language: 'python', assessmentId: 'assessment_1' }
 Code to execute: def solve():
     s = input().strip()
@@ -913,214 +1775,907 @@ Code to execute: def solve():
             print(False)
             return
     
-    print(True if not stack else False)
-
-if __name__ == "__main__":
-    solve()
-
-Input: [[1,4,5],[1,3,4],[2,6]]
-Executing code in Docker container...
-Starting Python execution with ID: 9d61b374-d79e-4436-95f7-5c00082b6833
-Code length: 623 characters
-Input length: 23 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_9d61b374-d79e-4436-95f7-5c00082b6833.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_9d61b374-d79e-4436-95f7-5c00082b6833       -i python:3.9-slim       bash
-Python execution result: { stdout: 'False\n', stderr: '', executionTime: 409 }
-Temporary files cleaned up
-Execution result: { output: 'False\n', error: '', executionTime: 409, memoryUsed: 50 }
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'sdfsad',
-  description: '',
-  tests: [ '1744659184845', '1744659189430' ],
-  startTime: '2025-04-14T19:33',
-  endTime: '2025-04-21T19:33',
-  maxAttempts: 1,
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'j5l3gl',
-  createdAt: '2025-04-14T19:33:20.021Z',
-  updatedAt: '2025-04-14T19:33:20.021Z',
-  attemptsUsed: 0,
-  testAttempts: { '76ukr': { '1744659189430': 1 } }
-}
-User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
-Invitation check for user s assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744659184845', '1744659189430' ]
-Found test: 1744659184845 Merge K Sorted Lists
-Found test: 1744659189430 Valid Parentheses
-Test details count: 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: s Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'sdfsad',
-  description: '',
-  tests: [ '1744659184845', '1744659189430' ],
-  startTime: '2025-04-14T19:33',
-  endTime: '2025-04-21T19:33',
-  maxAttempts: 1,
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'j5l3gl',
-  createdAt: '2025-04-14T19:33:20.021Z',
-  updatedAt: '2025-04-14T19:33:20.021Z',
-  attemptsUsed: 0,
-  testAttempts: { '76ukr': { '1744659189430': 1 } }
-}
-User found: { id: '76ukr', name: 's', email: 's', password: '1', role: 'assessee' }
-Creator check: { assessmentCreatedBy: 'j5l3gl', userId: '76ukr', isCreator: false }
-Invitation check for user s assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744659184845', '1744659189430' ]
-Found test: 1744659184845 Merge K Sorted Lists
-Found test: 1744659189430 Valid Parentheses
-Test details count: 2
-GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659189430
-Found user for test access check: 76ukr s
-Looking for test with ID: 1744659189430
-Available tests: [
-  {
-    id: undefined,
-    _id: '1744659184845',
-    title: 'Merge K Sorted Lists'
-  },
-  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
-]
-Test found: { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
-Specific assessment ID from query: assessment_1
-Filtering to check only assessment assessment_1
-Is test 1744659189430 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744659189430
-Assessment assessment_1 contains test 1744659189430
-Assessment assessment_1 is public
-Permission check for test access: {
-  testId: '1744659189430',
-  userId: '76ukr',
-  userEmail: 's',
-  isCreator: false,
-  isPublic: undefined,
-  isInvited: true
-}
-Access granted to test 1744659189430 for user s
-GET /api/tests/:id - Auth Header: Bearer test-token Email: s Test ID: 1744659189430
-Found user for test access check: 76ukr s
-Looking for test with ID: 1744659189430
-Available tests: [
-  {
-    id: undefined,
-    _id: '1744659184845',
-    title: 'Merge K Sorted Lists'
-  },
-  { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
-]
-Test found: { id: undefined, _id: '1744659189430', title: 'Valid Parentheses' }
-Specific assessment ID from query: assessment_1
-Filtering to check only assessment assessment_1
-Is test 1744659189430 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744659189430
-Assessment assessment_1 contains test 1744659189430
-Assessment assessment_1 is public
-Permission check for test access: {
-  testId: '1744659189430',
-  userId: '76ukr',
-  userEmail: 's',
-  isCreator: false,
-  isPublic: undefined,
-  isInvited: true
-}
-Access granted to test 1744659189430 for user s
-Execute code request: { language: 'python', assessmentId: 'assessment_1' }
-Code to execute: def solve():
-    s = input().strip()
-    stack = []
-    bracket_map = {')': '(', '}': '{', ']': '['}
-
-    for char in s:
-        if char in bracket_map.values():  # open brackets
-            stack.append(char)
-        elif char in bracket_map:  # closing brackets
-            if not stack or stack[-1] != bracket_map[char]:
-                print(False)
-                return
-            stack.pop()
-        else:
-            # In case the input contains invalid characters, optional safeguard
-            print(False)
-            return
-    
-    print(True if not stack else False)
+    print("true" if not stack else "false")
 
 if __name__ == "__main__":
     solve()
 
 Input: ()[]{}
 Executing code in Docker container...
-Starting Python execution with ID: 9c30c78a-8901-4014-9770-9e7ac48055de
-Code length: 623 characters
+Starting Python execution with ID: 735671c7-9d76-49c6-be9d-2c127937f329
+Code length: 627 characters
 Input length: 6 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_9c30c78a-8901-4014-9770-9e7ac48055de.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_9c30c78a-8901-4014-9770-9e7ac48055de       -i python:3.9-slim       bash
-Python execution result: { stdout: 'True\n', stderr: '', executionTime: 349 }
+Executing Python code with Docker command: cat /tmp/run_735671c7-9d76-49c6-be9d-2c127937f329.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_735671c7-9d76-49c6-be9d-2c127937f329       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 360 }
 Temporary files cleaned up
-Execution result: { output: 'True\n', error: '', executionTime: 349, memoryUsed: 50 }
+Execution result: { output: 'true\n', error: '', executionTime: 360, memoryUsed: 0 }
 Run test cases request: {
-  testId: '1744659189430',
+  testId: '1744660313541',
   language: 'python',
   assessmentId: 'assessment_1'
 }
-Starting Python execution with ID: 333e2dfe-c8eb-4063-9bb9-0d467c8ca9d2
-Code length: 623 characters
+Starting Python execution with ID: e27f50dd-4701-404e-a6fc-180863e23e60
+Code length: 627 characters
 Input length: 6 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_333e2dfe-c8eb-4063-9bb9-0d467c8ca9d2.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_333e2dfe-c8eb-4063-9bb9-0d467c8ca9d2       -i python:3.9-slim       bash
-Python execution result: { stdout: 'True\n', stderr: '', executionTime: 344 }
+Executing Python code with Docker command: cat /tmp/run_e27f50dd-4701-404e-a6fc-180863e23e60.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_e27f50dd-4701-404e-a6fc-180863e23e60       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 329 }
 Temporary files cleaned up
-Starting Python execution with ID: 8903669f-dd85-4516-a4a4-b8f289fd6384
-Code length: 623 characters
+Starting Python execution with ID: 6dd7a6d0-c3c6-404b-a16d-6ce06dfb2062
+Code length: 627 characters
 Input length: 4 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_8903669f-dd85-4516-a4a4-b8f289fd6384.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_8903669f-dd85-4516-a4a4-b8f289fd6384       -i python:3.9-slim       bash
-Python execution result: { stdout: 'False\n', stderr: '', executionTime: 404 }
+Executing Python code with Docker command: cat /tmp/run_6dd7a6d0-c3c6-404b-a16d-6ce06dfb2062.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_6dd7a6d0-c3c6-404b-a16d-6ce06dfb2062       -i python:3.9-slim       bash
+Python execution result: { stdout: 'False\n', stderr: '', executionTime: 357 }
 Temporary files cleaned up
-Starting Python execution with ID: 0c36652c-d880-4ad9-b0d4-2e9439d5bca3
-Code length: 623 characters
+Starting Python execution with ID: ffd530e8-9308-450e-9466-ad09cf537f73
+Code length: 627 characters
 Input length: 4 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_0c36652c-d880-4ad9-b0d4-2e9439d5bca3.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_0c36652c-d880-4ad9-b0d4-2e9439d5bca3       -i python:3.9-slim       bash
-Python execution result: { stdout: 'True\n', stderr: '', executionTime: 380 }
+Executing Python code with Docker command: cat /tmp/run_ffd530e8-9308-450e-9466-ad09cf537f73.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_ffd530e8-9308-450e-9466-ad09cf537f73       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 310 }
 Temporary files cleaned up
+Run test cases request: {
+  testId: '1744660313541',
+  language: 'python',
+  assessmentId: 'assessment_1'
+}
+Starting Python execution with ID: 8fca34e9-5b06-403f-b098-27b4c759ae70
+Code length: 631 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_8fca34e9-5b06-403f-b098-27b4c759ae70.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_8fca34e9-5b06-403f-b098-27b4c759ae70       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 359 }
+Temporary files cleaned up
+Starting Python execution with ID: 938e1238-c34e-47f7-b810-20a7afcafff3
+Code length: 631 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_938e1238-c34e-47f7-b810-20a7afcafff3.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_938e1238-c34e-47f7-b810-20a7afcafff3       -i python:3.9-slim       bash
+Python execution result: { stdout: 'false\n', stderr: '', executionTime: 395 }
+Temporary files cleaned up
+Starting Python execution with ID: 1f01434d-e79d-4f2d-9385-9e3bb7754aac
+Code length: 631 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_1f01434d-e79d-4f2d-9385-9e3bb7754aac.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_1f01434d-e79d-4f2d-9385-9e3bb7754aac       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 354 }
+Temporary files cleaned up
+Submit code request: {
+  testId: '1744660313541',
+  language: 'python',
+  assessmentId: 'assessment_1'
+}
+User su has used 1 of 3 attempts for test 1744660313541 in assessment assessment_1
+Starting Python execution with ID: 608d0e02-9e31-4e53-8bc8-31017d961b8c
+Code length: 631 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_608d0e02-9e31-4e53-8bc8-31017d961b8c.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_608d0e02-9e31-4e53-8bc8-31017d961b8c       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 338 }
+Temporary files cleaned up
+Starting Python execution with ID: aaf74af5-ae49-4924-8ac2-9220d1d21359
+Code length: 631 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_aaf74af5-ae49-4924-8ac2-9220d1d21359.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_aaf74af5-ae49-4924-8ac2-9220d1d21359       -i python:3.9-slim       bash
+Python execution result: { stdout: 'false\n', stderr: '', executionTime: 331 }
+Temporary files cleaned up
+Starting Python execution with ID: a01f479a-d468-4afe-9672-fb6b73333ae0
+Code length: 631 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_a01f479a-d468-4afe-9672-fb6b73333ae0.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_a01f479a-d468-4afe-9672-fb6b73333ae0       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 333 }
+Temporary files cleaned up
+Starting Python execution with ID: 2b5f2d53-a471-4bbe-9275-8d07137ee9ee
+Code length: 631 characters
+Input length: 2 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_2b5f2d53-a471-4bbe-9275-8d07137ee9ee.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_2b5f2d53-a471-4bbe-9275-8d07137ee9ee       -i python:3.9-slim       bash
+Python execution result: { stdout: 'false\n', stderr: '', executionTime: 340 }
+Temporary files cleaned up
+Submit assessment request: { assessmentId: 'assessment_1' }
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: su Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'Testsdf',
+  description: '',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T14:21',
+  endTime: '2025-04-21T14:21',
+  maxAttempts: '3',
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:53:30.226Z',
+  attemptsUsed: 0,
+  testDetails: [
+    {
+      title: 'Two Sum',
+      description: 'Find two numbers that add up to a target',
+      difficulty: 'Easy',
+      timeLimit: 60,
+      problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      inputFormat: 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: 'Return the indices of the two numbers that add up to the target.',
+      constraints: '2 <= nums.length <= 10^4\n' +
+        '-10^9 <= nums[i] <= 10^9\n' +
+        '-10^9 <= target <= 10^9\n' +
+        'Only one valid answer exists.',
+      sampleInput: '[2,7,11,15]\n9',
+      sampleOutput: '[0,1]',
+      testCases: [Array],
+      _id: '1744660298055',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:38.055Z'
+    },
+    {
+      title: 'Reverse Linked List',
+      description: 'Reverse a singly linked list',
+      difficulty: 'Medium',
+      timeLimit: 60,
+      problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list. The linked list is represented as an array for simplicity.',
+      inputFormat: 'The input is an array representing the linked list.',
+      outputFormat: 'Return the reversed linked list as an array.',
+      constraints: 'The number of nodes in the list is the range [0, 5000].\n' +
+        '-5000 <= Node.val <= 5000',
+      sampleInput: '[1,2,3,4,5]',
+      sampleOutput: '[5,4,3,2,1]',
+      testCases: [Array],
+      _id: '1744660301964',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:41.964Z'
+    },
+    {
+      title: 'Merge K Sorted Lists',
+      description: 'Merge k sorted linked lists into one sorted linked list',
+      difficulty: 'Hard',
+      timeLimit: 90,
+      problemStatement: 'You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it. The linked lists are represented as arrays for simplicity.',
+      inputFormat: 'The input is an array of arrays, where each inner array represents a linked list.',
+      outputFormat: 'Return the merged linked list as an array.',
+      constraints: 'k == lists.length\n' +
+        '0 <= k <= 10^4\n' +
+        '0 <= lists[i].length <= 500\n' +
+        '-10^4 <= lists[i][j] <= 10^4\n' +
+        'lists[i] is sorted in ascending order.\n' +
+        'The sum of lists[i].length will not exceed 10^4.',
+      sampleInput: '[[1,4,5],[1,3,4],[2,6]]',
+      sampleOutput: '[1,1,2,3,4,4,5,6]',
+      testCases: [Array],
+      _id: '1744660308403',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:48.403Z'
+    },
+    {
+      title: 'Valid Parentheses',
+      description: 'Determine if a string of parentheses is valid',
+      difficulty: 'Easy',
+      timeLimit: 45,
+      problemStatement: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets, and open brackets must be closed in the correct order.",
+      inputFormat: 'A string containing only parentheses characters: (){}[]',
+      outputFormat: 'Return true if the string is valid, false otherwise.',
+      constraints: "1 <= s.length <= 10^4\ns consists of parentheses only '()[]{}'.",
+      sampleInput: '()[]{}',
+      sampleOutput: 'true',
+      testCases: [Array],
+      _id: '1744660313541',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:53.541Z'
+    }
+  ],
+  testAttempts: { '0wobsr': { '1744660313541': 2 } },
+  submissions: {
+    '0wobsr': { submittedAt: '2025-04-14T19:54:47.915Z', status: 'completed' }
+  }
+}
+User found: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'trt9uh', userId: '0wobsr', isCreator: false }
+Invitation check for user su assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Found test: 1744660298055 Two Sum
+Found test: 1744660301964 Reverse Linked List
+Found test: 1744660308403 Merge K Sorted Lists
+Found test: 1744660313541 Valid Parentheses
+Test details count: 4
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: su Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'Testsdf',
+  description: '',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T14:21',
+  endTime: '2025-04-21T14:21',
+  maxAttempts: '3',
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:53:30.226Z',
+  attemptsUsed: 0,
+  testDetails: [
+    {
+      title: 'Two Sum',
+      description: 'Find two numbers that add up to a target',
+      difficulty: 'Easy',
+      timeLimit: 60,
+      problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      inputFormat: 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: 'Return the indices of the two numbers that add up to the target.',
+      constraints: '2 <= nums.length <= 10^4\n' +
+        '-10^9 <= nums[i] <= 10^9\n' +
+        '-10^9 <= target <= 10^9\n' +
+        'Only one valid answer exists.',
+      sampleInput: '[2,7,11,15]\n9',
+      sampleOutput: '[0,1]',
+      testCases: [Array],
+      _id: '1744660298055',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:38.055Z'
+    },
+    {
+      title: 'Reverse Linked List',
+      description: 'Reverse a singly linked list',
+      difficulty: 'Medium',
+      timeLimit: 60,
+      problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list. The linked list is represented as an array for simplicity.',
+      inputFormat: 'The input is an array representing the linked list.',
+      outputFormat: 'Return the reversed linked list as an array.',
+      constraints: 'The number of nodes in the list is the range [0, 5000].\n' +
+        '-5000 <= Node.val <= 5000',
+      sampleInput: '[1,2,3,4,5]',
+      sampleOutput: '[5,4,3,2,1]',
+      testCases: [Array],
+      _id: '1744660301964',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:41.964Z'
+    },
+    {
+      title: 'Merge K Sorted Lists',
+      description: 'Merge k sorted linked lists into one sorted linked list',
+      difficulty: 'Hard',
+      timeLimit: 90,
+      problemStatement: 'You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it. The linked lists are represented as arrays for simplicity.',
+      inputFormat: 'The input is an array of arrays, where each inner array represents a linked list.',
+      outputFormat: 'Return the merged linked list as an array.',
+      constraints: 'k == lists.length\n' +
+        '0 <= k <= 10^4\n' +
+        '0 <= lists[i].length <= 500\n' +
+        '-10^4 <= lists[i][j] <= 10^4\n' +
+        'lists[i] is sorted in ascending order.\n' +
+        'The sum of lists[i].length will not exceed 10^4.',
+      sampleInput: '[[1,4,5],[1,3,4],[2,6]]',
+      sampleOutput: '[1,1,2,3,4,4,5,6]',
+      testCases: [Array],
+      _id: '1744660308403',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:48.403Z'
+    },
+    {
+      title: 'Valid Parentheses',
+      description: 'Determine if a string of parentheses is valid',
+      difficulty: 'Easy',
+      timeLimit: 45,
+      problemStatement: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets, and open brackets must be closed in the correct order.",
+      inputFormat: 'A string containing only parentheses characters: (){}[]',
+      outputFormat: 'Return true if the string is valid, false otherwise.',
+      constraints: "1 <= s.length <= 10^4\ns consists of parentheses only '()[]{}'.",
+      sampleInput: '()[]{}',
+      sampleOutput: 'true',
+      testCases: [Array],
+      _id: '1744660313541',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:53.541Z'
+    }
+  ],
+  testAttempts: { '0wobsr': { '1744660313541': 2 } },
+  submissions: {
+    '0wobsr': { submittedAt: '2025-04-14T19:54:47.915Z', status: 'completed' }
+  }
+}
+User found: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'trt9uh', userId: '0wobsr', isCreator: false }
+Invitation check for user su assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Found test: 1744660298055 Two Sum
+Found test: 1744660301964 Reverse Linked List
+Found test: 1744660308403 Merge K Sorted Lists
+Found test: 1744660313541 Valid Parentheses
+Test details count: 4
+Getting attempts for test 1744660298055 in assessment assessment_1 for user su
+User su has used 0 of 3 attempts for test 1744660298055
+GET /api/tests/:id - Auth Header: Bearer test-token Email: su Test ID: 1744660298055
+Found user for test access check: 0wobsr su
+Looking for test with ID: 1744660298055
+Available tests: [
+  { id: undefined, _id: '1744660298055', title: 'Two Sum' },
+  { id: undefined, _id: '1744660301964', title: 'Reverse Linked List' },
+  {
+    id: undefined,
+    _id: '1744660308403',
+    title: 'Merge K Sorted Lists'
+  },
+  { id: undefined, _id: '1744660313541', title: 'Valid Parentheses' }
+]
+Test found: { id: undefined, _id: '1744660298055', title: 'Two Sum' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744660298055 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744660298055
+Assessment assessment_1 contains test 1744660298055
+Assessment assessment_1 is public
+Permission check for test access: {
+  testId: '1744660298055',
+  userId: '0wobsr',
+  userEmail: 'su',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744660298055 for user su
+Getting attempts for test 1744660298055 in assessment assessment_1 for user su
+User su has used 0 of 3 attempts for test 1744660298055
+GET /api/tests/:id - Auth Header: Bearer test-token Email: su Test ID: 1744660298055
+Found user for test access check: 0wobsr su
+Looking for test with ID: 1744660298055
+Available tests: [
+  { id: undefined, _id: '1744660298055', title: 'Two Sum' },
+  { id: undefined, _id: '1744660301964', title: 'Reverse Linked List' },
+  {
+    id: undefined,
+    _id: '1744660308403',
+    title: 'Merge K Sorted Lists'
+  },
+  { id: undefined, _id: '1744660313541', title: 'Valid Parentheses' }
+]
+Test found: { id: undefined, _id: '1744660298055', title: 'Two Sum' }
+Specific assessment ID from query: assessment_1
+Filtering to check only assessment assessment_1
+Is test 1744660298055 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744660298055
+Assessment assessment_1 contains test 1744660298055
+Assessment assessment_1 is public
+Permission check for test access: {
+  testId: '1744660298055',
+  userId: '0wobsr',
+  userEmail: 'su',
+  isCreator: false,
+  isPublic: undefined,
+  isInvited: true
+}
+Access granted to test 1744660298055 for user su
+Submit code request: {
+  testId: '1744660298055',
+  language: 'python',
+  assessmentId: 'assessment_1'
+}
+User su has used 0 of 3 attempts for test 1744660298055 in assessment assessment_1
+Starting Python execution with ID: 69bfaf40-e338-4e45-80e2-5bafabf2233d
+Code length: 233 characters
+Input length: 13 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_69bfaf40-e338-4e45-80e2-5bafabf2233d.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_69bfaf40-e338-4e45-80e2-5bafabf2233d       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 426 }
+Temporary files cleaned up
+Starting Python execution with ID: 9e46d1d5-65d1-46dd-b7dc-cf0fc427ffb6
+Code length: 233 characters
+Input length: 9 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_9e46d1d5-65d1-46dd-b7dc-cf0fc427ffb6.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_9e46d1d5-65d1-46dd-b7dc-cf0fc427ffb6       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 334 }
+Temporary files cleaned up
+Starting Python execution with ID: 1295671f-f75e-47e4-aeea-60027913f9dc
+Code length: 233 characters
+Input length: 7 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_1295671f-f75e-47e4-aeea-60027913f9dc.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_1295671f-f75e-47e4-aeea-60027913f9dc       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 314 }
+Temporary files cleaned up
+Submit code request: {
+  testId: '1744660298055',
+  language: 'python',
+  assessmentId: 'assessment_1'
+}
+User su has used 1 of 3 attempts for test 1744660298055 in assessment assessment_1
+Starting Python execution with ID: c545050e-9bbb-4d2f-bc98-0db3dc5f0478
+Code length: 233 characters
+Input length: 13 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_c545050e-9bbb-4d2f-bc98-0db3dc5f0478.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_c545050e-9bbb-4d2f-bc98-0db3dc5f0478       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 295 }
+Temporary files cleaned up
+Starting Python execution with ID: 57371ea9-08c8-4324-b7f2-8ed93a77a444
+Code length: 233 characters
+Input length: 9 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_57371ea9-08c8-4324-b7f2-8ed93a77a444.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_57371ea9-08c8-4324-b7f2-8ed93a77a444       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 319 }
+Temporary files cleaned up
+Starting Python execution with ID: 5b289294-4903-4361-a4f8-b1960f51694d
+Code length: 233 characters
+Input length: 7 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_5b289294-4903-4361-a4f8-b1960f51694d.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_5b289294-4903-4361-a4f8-b1960f51694d       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 323 }
+Temporary files cleaned up
+Submit code request: {
+  testId: '1744660298055',
+  language: 'python',
+  assessmentId: 'assessment_1'
+}
+User su has used 2 of 3 attempts for test 1744660298055 in assessment assessment_1
+Starting Python execution with ID: b5feed21-9b6a-45cc-b77c-e825320fb194
+Code length: 233 characters
+Input length: 13 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_b5feed21-9b6a-45cc-b77c-e825320fb194.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_b5feed21-9b6a-45cc-b77c-e825320fb194       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 384 }
+Temporary files cleaned up
+Starting Python execution with ID: 04e2c809-80f3-4b0d-801e-1295026d31bc
+Code length: 233 characters
+Input length: 9 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_04e2c809-80f3-4b0d-801e-1295026d31bc.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_04e2c809-80f3-4b0d-801e-1295026d31bc       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 333 }
+Temporary files cleaned up
+Starting Python execution with ID: 0b045882-6316-4893-9e69-634a3bea780c
+Code length: 233 characters
+Input length: 7 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_0b045882-6316-4893-9e69-634a3bea780c.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_0b045882-6316-4893-9e69-634a3bea780c       -i python:3.9-slim       bash
+Python execution result: { stdout: '', stderr: '', executionTime: 287 }
+Temporary files cleaned up
+Submit assessment request: { assessmentId: 'assessment_1' }
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: su Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'Testsdf',
+  description: '',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T14:21',
+  endTime: '2025-04-21T14:21',
+  maxAttempts: '3',
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:53:30.226Z',
+  attemptsUsed: 0,
+  testDetails: [
+    {
+      title: 'Two Sum',
+      description: 'Find two numbers that add up to a target',
+      difficulty: 'Easy',
+      timeLimit: 60,
+      problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      inputFormat: 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: 'Return the indices of the two numbers that add up to the target.',
+      constraints: '2 <= nums.length <= 10^4\n' +
+        '-10^9 <= nums[i] <= 10^9\n' +
+        '-10^9 <= target <= 10^9\n' +
+        'Only one valid answer exists.',
+      sampleInput: '[2,7,11,15]\n9',
+      sampleOutput: '[0,1]',
+      testCases: [Array],
+      _id: '1744660298055',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:38.055Z'
+    },
+    {
+      title: 'Reverse Linked List',
+      description: 'Reverse a singly linked list',
+      difficulty: 'Medium',
+      timeLimit: 60,
+      problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list. The linked list is represented as an array for simplicity.',
+      inputFormat: 'The input is an array representing the linked list.',
+      outputFormat: 'Return the reversed linked list as an array.',
+      constraints: 'The number of nodes in the list is the range [0, 5000].\n' +
+        '-5000 <= Node.val <= 5000',
+      sampleInput: '[1,2,3,4,5]',
+      sampleOutput: '[5,4,3,2,1]',
+      testCases: [Array],
+      _id: '1744660301964',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:41.964Z'
+    },
+    {
+      title: 'Merge K Sorted Lists',
+      description: 'Merge k sorted linked lists into one sorted linked list',
+      difficulty: 'Hard',
+      timeLimit: 90,
+      problemStatement: 'You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it. The linked lists are represented as arrays for simplicity.',
+      inputFormat: 'The input is an array of arrays, where each inner array represents a linked list.',
+      outputFormat: 'Return the merged linked list as an array.',
+      constraints: 'k == lists.length\n' +
+        '0 <= k <= 10^4\n' +
+        '0 <= lists[i].length <= 500\n' +
+        '-10^4 <= lists[i][j] <= 10^4\n' +
+        'lists[i] is sorted in ascending order.\n' +
+        'The sum of lists[i].length will not exceed 10^4.',
+      sampleInput: '[[1,4,5],[1,3,4],[2,6]]',
+      sampleOutput: '[1,1,2,3,4,4,5,6]',
+      testCases: [Array],
+      _id: '1744660308403',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:48.403Z'
+    },
+    {
+      title: 'Valid Parentheses',
+      description: 'Determine if a string of parentheses is valid',
+      difficulty: 'Easy',
+      timeLimit: 45,
+      problemStatement: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets, and open brackets must be closed in the correct order.",
+      inputFormat: 'A string containing only parentheses characters: (){}[]',
+      outputFormat: 'Return true if the string is valid, false otherwise.',
+      constraints: "1 <= s.length <= 10^4\ns consists of parentheses only '()[]{}'.",
+      sampleInput: '()[]{}',
+      sampleOutput: 'true',
+      testCases: [Array],
+      _id: '1744660313541',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:53.541Z'
+    }
+  ],
+  testAttempts: { '0wobsr': { '1744660313541': 2, '1744660298055': 3 } },
+  submissions: {
+    '0wobsr': { submittedAt: '2025-04-14T19:55:14.867Z', status: 'completed' }
+  }
+}
+User found: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'trt9uh', userId: '0wobsr', isCreator: false }
+Invitation check for user su assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Found test: 1744660298055 Two Sum
+Found test: 1744660301964 Reverse Linked List
+Found test: 1744660308403 Merge K Sorted Lists
+Found test: 1744660313541 Valid Parentheses
+Test details count: 4
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer test-token Email: su Assessment ID: assessment_1
+Looking for assessment with ID: assessment_1
+Available assessments: [ 'assessment_1' ]
+Assessment found: {
+  id: 'assessment_1',
+  title: 'Testsdf',
+  description: '',
+  tests: [
+    '1744660298055',
+    '1744660301964',
+    '1744660308403',
+    '1744660313541'
+  ],
+  startTime: '2025-04-14T14:21',
+  endTime: '2025-04-21T14:21',
+  maxAttempts: '3',
+  isPublic: true,
+  invitedStudents: [],
+  createdBy: 'trt9uh',
+  createdAt: '2025-04-14T19:52:05.943Z',
+  updatedAt: '2025-04-14T19:53:30.226Z',
+  attemptsUsed: 0,
+  testDetails: [
+    {
+      title: 'Two Sum',
+      description: 'Find two numbers that add up to a target',
+      difficulty: 'Easy',
+      timeLimit: 60,
+      problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      inputFormat: 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: 'Return the indices of the two numbers that add up to the target.',
+      constraints: '2 <= nums.length <= 10^4\n' +
+        '-10^9 <= nums[i] <= 10^9\n' +
+        '-10^9 <= target <= 10^9\n' +
+        'Only one valid answer exists.',
+      sampleInput: '[2,7,11,15]\n9',
+      sampleOutput: '[0,1]',
+      testCases: [Array],
+      _id: '1744660298055',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:38.055Z'
+    },
+    {
+      title: 'Reverse Linked List',
+      description: 'Reverse a singly linked list',
+      difficulty: 'Medium',
+      timeLimit: 60,
+      problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list. The linked list is represented as an array for simplicity.',
+      inputFormat: 'The input is an array representing the linked list.',
+      outputFormat: 'Return the reversed linked list as an array.',
+      constraints: 'The number of nodes in the list is the range [0, 5000].\n' +
+        '-5000 <= Node.val <= 5000',
+      sampleInput: '[1,2,3,4,5]',
+      sampleOutput: '[5,4,3,2,1]',
+      testCases: [Array],
+      _id: '1744660301964',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:41.964Z'
+    },
+    {
+      title: 'Merge K Sorted Lists',
+      description: 'Merge k sorted linked lists into one sorted linked list',
+      difficulty: 'Hard',
+      timeLimit: 90,
+      problemStatement: 'You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it. The linked lists are represented as arrays for simplicity.',
+      inputFormat: 'The input is an array of arrays, where each inner array represents a linked list.',
+      outputFormat: 'Return the merged linked list as an array.',
+      constraints: 'k == lists.length\n' +
+        '0 <= k <= 10^4\n' +
+        '0 <= lists[i].length <= 500\n' +
+        '-10^4 <= lists[i][j] <= 10^4\n' +
+        'lists[i] is sorted in ascending order.\n' +
+        'The sum of lists[i].length will not exceed 10^4.',
+      sampleInput: '[[1,4,5],[1,3,4],[2,6]]',
+      sampleOutput: '[1,1,2,3,4,4,5,6]',
+      testCases: [Array],
+      _id: '1744660308403',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:48.403Z'
+    },
+    {
+      title: 'Valid Parentheses',
+      description: 'Determine if a string of parentheses is valid',
+      difficulty: 'Easy',
+      timeLimit: 45,
+      problemStatement: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets, and open brackets must be closed in the correct order.",
+      inputFormat: 'A string containing only parentheses characters: (){}[]',
+      outputFormat: 'Return true if the string is valid, false otherwise.',
+      constraints: "1 <= s.length <= 10^4\ns consists of parentheses only '()[]{}'.",
+      sampleInput: '()[]{}',
+      sampleOutput: 'true',
+      testCases: [Array],
+      _id: '1744660313541',
+      createdBy: 'admin123',
+      createdAt: '2025-04-14T19:51:53.541Z'
+    }
+  ],
+  testAttempts: { '0wobsr': { '1744660313541': 2, '1744660298055': 3 } },
+  submissions: {
+    '0wobsr': { submittedAt: '2025-04-14T19:55:14.867Z', status: 'completed' }
+  }
+}
+User found: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Creator check: { assessmentCreatedBy: 'trt9uh', userId: '0wobsr', isCreator: false }
+Invitation check for user su assessment assessment_1 : {
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasInvitationNotification: true,
+  hasValidToken: false,
+  isInvited: true
+}
+Permission check: {
+  isCreator: false,
+  isPublic: true,
+  isInvited: true,
+  isInvitedById: false,
+  isInvitedByEmail: false,
+  hasValidToken: false
+}
+Looking up tests: [ '1744660298055', '1744660301964', '1744660308403', '1744660313541' ]
+Found test: 1744660298055 Two Sum
+Found test: 1744660301964 Reverse Linked List
+Found test: 1744660308403 Merge K Sorted Lists
+Found test: 1744660313541 Valid Parentheses
+Test details count: 4
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: su
+Found user by email: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: su
+Found/created user for notifications: 0wobsr su
+Found notification for user: {
+  id: '1744660394195r9p5ibw',
+  userId: '0wobsr',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T19:53:14.195Z',
+  read: true
+}
+Notifications for user su : [
+  {
+    id: '1744660394195r9p5ibw',
+    userId: '0wobsr',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T19:53:14.195Z',
+    read: true
+  }
+]
+Auth header for /me: Bearer test-token
+Token for /me: test-token
+Email from query: su
+Found user by email: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Returning user for /me: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+GET /api/notifications - Auth Header: Bearer test-token Email: su
+Found/created user for notifications: 0wobsr su
+Found notification for user: {
+  id: '1744660394195r9p5ibw',
+  userId: '0wobsr',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T19:53:14.195Z',
+  read: true
+}
+Notifications for user su : [
+  {
+    id: '1744660394195r9p5ibw',
+    userId: '0wobsr',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-14T19:53:14.195Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: su
+User found/created: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: su 0wobsr
+All assessments: [ { id: 'assessment_1', title: 'Testsdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user su (0wobsr) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744660394195r9p5ibw',
+  userId: '0wobsr',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T19:53:14.195Z',
+  read: true
+}
+User su is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: su
+User found/created: {
+  id: '0wobsr',
+  name: 's',
+  email: 'su',
+  password: '1',
+  role: 'assessee'
+}
+Checking assigned assessments for user: su 0wobsr
+All assessments: [ { id: 'assessment_1', title: 'Testsdf' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user su (0wobsr) is invited to assessment assessment_1
+Found matching notification: {
+  id: '1744660394195r9p5ibw',
+  userId: '0wobsr',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-14T19:53:14.195Z',
+  read: true
+}
+User su is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
