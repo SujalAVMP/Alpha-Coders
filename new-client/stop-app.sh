@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Stopping Hackerrank Clone application..."
-kill -9 1859095 1859262 2>/dev/null || true
+kill -9 1867714 1867891 2>/dev/null || true
 pkill -f "node server/test-server.js" 2>/dev/null || true
 pkill -f "vite" 2>/dev/null || true
 kill -9 $(lsof -t -i:5002) 2>/dev/null || true

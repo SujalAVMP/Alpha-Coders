@@ -76,7 +76,8 @@ const AssessmentEditor = () => {
     endTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16), // 1 week from now
     maxAttempts: 1,
     isPublic: false,
-    invitedStudents: []
+    invitedStudents: [],
+    invitedUsers: []
   });
 
   // Invite students dialog
@@ -175,14 +176,19 @@ const AssessmentEditor = () => {
           lastAttempt: null
         }));
 
+        // Update both invitedStudents and invitedUsers arrays
         setAssessment({
           ...assessment,
-          invitedStudents: [...assessment.invitedStudents, ...newStudents]
+          invitedStudents: [...assessment.invitedStudents, ...newStudents],
+          invitedUsers: [...assessment.invitedUsers, ...newStudents]
         });
+
+        console.log('Added students to local state:', newStudents);
       } else {
         // For existing assessments, send the invitation through the API
         console.log(`Inviting students to assessment ${assessmentId}:`, emails);
-        await inviteStudentsByEmail(assessmentId, emails.join(','));
+        const response = await inviteStudentsByEmail(assessmentId, emails.join(','));
+        console.log('Invitation API response:', response);
 
         // Add to local state as well
         const newStudents = emails.map(email => ({
@@ -191,10 +197,14 @@ const AssessmentEditor = () => {
           lastAttempt: null
         }));
 
+        // Update both invitedStudents and invitedUsers arrays
         setAssessment({
           ...assessment,
-          invitedStudents: [...assessment.invitedStudents, ...newStudents]
+          invitedStudents: [...assessment.invitedStudents, ...newStudents],
+          invitedUsers: [...(assessment.invitedUsers || []), ...newStudents]
         });
+
+        console.log('Updated local state with new invites');
       }
 
       setInviteEmails('');
@@ -210,8 +220,14 @@ const AssessmentEditor = () => {
   const handleRemoveStudent = (email) => {
     setAssessment({
       ...assessment,
-      invitedStudents: assessment.invitedStudents.filter(student => student.email !== email)
+      invitedStudents: assessment.invitedStudents.filter(student =>
+        typeof student === 'object' && student.email !== email
+      ),
+      invitedUsers: (assessment.invitedUsers || []).filter(user =>
+        !(typeof user === 'object' && user.email === email)
+      )
     });
+    console.log(`Removed student with email ${email} from local state`);
   };
 
   const handleSaveAssessment = async () => {
@@ -238,9 +254,12 @@ const AssessmentEditor = () => {
         // Convert dates to ISO strings if they aren't already
         startTime: typeof assessment.startTime === 'string' ? assessment.startTime : assessment.startTime.toISOString(),
         endTime: typeof assessment.endTime === 'string' ? assessment.endTime : assessment.endTime.toISOString(),
-        // Include invitedStudents to ensure they're saved with the assessment
-        invitedStudents: assessment.invitedStudents
+        // Include both invitedStudents and invitedUsers to ensure they're saved with the assessment
+        invitedStudents: assessment.invitedStudents,
+        invitedUsers: assessment.invitedUsers || []
       };
+
+      console.log('Saving assessment data:', assessmentData);
 
       let result;
       if (isNewAssessment) {
@@ -249,20 +268,30 @@ const AssessmentEditor = () => {
         console.log('Assessment created:', result);
 
         // If we have invited students during creation, send invitations now
-        if (assessment.invitedStudents && assessment.invitedStudents.length > 0) {
-          console.log('Sending invitations for newly created assessment:', assessment.invitedStudents);
+        if ((assessment.invitedStudents && assessment.invitedStudents.length > 0) ||
+            (assessment.invitedUsers && assessment.invitedUsers.length > 0)) {
+          console.log('Sending invitations for newly created assessment');
+          console.log('invitedStudents:', assessment.invitedStudents);
+          console.log('invitedUsers:', assessment.invitedUsers);
 
-          // Extract emails from invitedStudents objects
-          const emails = assessment.invitedStudents
+          // Extract emails from both invitedStudents and invitedUsers objects
+          const emailsFromStudents = (assessment.invitedStudents || [])
             .filter(student => typeof student === 'object' && student.email)
-            .map(student => student.email)
-            .join(',');
+            .map(student => student.email);
 
-          if (emails) {
-            console.log('Sending invitations to emails:', emails);
+          const emailsFromUsers = (assessment.invitedUsers || [])
+            .filter(user => typeof user === 'object' && user.email)
+            .map(user => user.email);
+
+          // Combine and remove duplicates
+          const allEmails = [...new Set([...emailsFromStudents, ...emailsFromUsers])].join(',');
+
+          if (allEmails) {
+            console.log('Sending invitations to emails:', allEmails);
             try {
-              await inviteStudentsByEmail(result.assessment.id, emails);
-              console.log('Invitations sent successfully');
+              const assessmentId = result.assessment._id || result.assessment.id;
+              const response = await inviteStudentsByEmail(assessmentId, allEmails);
+              console.log('Invitations sent successfully:', response);
             } catch (inviteError) {
               console.error('Error sending invitations:', inviteError);
               // Don't fail the whole operation if invitations fail
@@ -536,7 +565,10 @@ const AssessmentEditor = () => {
             <>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
                 <Typography variant="h6">
-                  Invited Students: {assessment.invitedStudents.length}
+                  Invited Students: {[
+                    ...(assessment.invitedStudents || []).filter(s => typeof s === 'object' && s.email),
+                    ...(assessment.invitedUsers || []).filter(u => typeof u === 'object' && u.email)
+                  ].length}
                 </Typography>
 
                 <Button
@@ -549,68 +581,105 @@ const AssessmentEditor = () => {
                 </Button>
               </Box>
 
-              {assessment.invitedStudents.length === 0 ? (
-                <Alert severity="info">
-                  No students have been invited yet. Click the button above to invite students.
-                </Alert>
-              ) : (
-                <TableContainer component={Paper} variant="outlined">
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Email</TableCell>
-                        <TableCell>Status</TableCell>
-                        <TableCell>Last Attempt</TableCell>
-                        <TableCell align="right">Actions</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {assessment.invitedStudents.map((student) => (
-                        <TableRow key={student.email}>
-                          <TableCell>{student.email}</TableCell>
-                          <TableCell>
-                            <Chip
-                              label={student.status}
-                              size="small"
-                              color={
-                                student.status === 'Invited' ? 'primary' :
-                                student.status === 'Started' ? 'warning' :
-                                student.status === 'Completed' ? 'success' : 'default'
-                              }
-                            />
-                          </TableCell>
-                          <TableCell>
-                            {student.lastAttempt ? new Date(student.lastAttempt).toLocaleString() : 'N/A'}
-                          </TableCell>
-                          <TableCell align="right">
-                            {!isNewAssessment && (
-                              <Button
-                                size="small"
-                                variant="outlined"
-                                onClick={() => {
-                                  const link = generateInvitationLink(assessmentId, student.email);
-                                  navigator.clipboard.writeText(link);
-                                  alert(`Invitation link copied to clipboard:\n${link}`);
-                                }}
-                                sx={{ mr: 1 }}
-                              >
-                                Copy Link
-                              </Button>
-                            )}
-                            <IconButton
-                              color="error"
-                              onClick={() => handleRemoveStudent(student.email)}
-                              title="Remove student"
-                            >
-                              <DeleteIcon />
-                            </IconButton>
-                          </TableCell>
+              {/* Combine and deduplicate invitedStudents and invitedUsers */}
+              {(() => {
+                // Get all invited students from both arrays
+                const studentsFromInvitedStudents = (assessment.invitedStudents || [])
+                  .filter(student => typeof student === 'object' && student.email)
+                  .map(student => ({
+                    email: student.email,
+                    status: student.status || 'Invited',
+                    lastAttempt: student.lastAttempt || null
+                  }));
+
+                const studentsFromInvitedUsers = (assessment.invitedUsers || [])
+                  .filter(user => typeof user === 'object' && user.email)
+                  .map(user => ({
+                    email: user.email,
+                    status: user.status || 'Invited',
+                    lastAttempt: user.lastAttempt || null
+                  }));
+
+                // Combine and deduplicate by email
+                const allStudents = [];
+                const emailSet = new Set();
+
+                [...studentsFromInvitedStudents, ...studentsFromInvitedUsers].forEach(student => {
+                  if (!emailSet.has(student.email)) {
+                    emailSet.add(student.email);
+                    allStudents.push(student);
+                  }
+                });
+
+                console.log('Combined invited students:', allStudents);
+
+                if (allStudents.length === 0) {
+                  return (
+                    <Alert severity="info">
+                      No students have been invited yet. Click the button above to invite students.
+                    </Alert>
+                  );
+                }
+
+                return (
+                  <TableContainer component={Paper} variant="outlined">
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Email</TableCell>
+                          <TableCell>Status</TableCell>
+                          <TableCell>Last Attempt</TableCell>
+                          <TableCell align="right">Actions</TableCell>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              )}
+                      </TableHead>
+                      <TableBody>
+                        {allStudents.map((student, index) => (
+                          <TableRow key={student.email || index}>
+                            <TableCell>{student.email}</TableCell>
+                            <TableCell>
+                              <Chip
+                                label={student.status || 'Invited'}
+                                size="small"
+                                color={
+                                  student.status === 'Started' ? 'warning' :
+                                  student.status === 'Completed' ? 'success' :
+                                  'primary' // Default to primary for 'Invited'
+                                }
+                              />
+                            </TableCell>
+                            <TableCell>
+                              {student.lastAttempt ? new Date(student.lastAttempt).toLocaleString() : 'N/A'}
+                            </TableCell>
+                            <TableCell align="right">
+                              {!isNewAssessment && (
+                                <Button
+                                  size="small"
+                                  variant="outlined"
+                                  onClick={() => {
+                                    const link = generateInvitationLink(assessmentId, student.email);
+                                    navigator.clipboard.writeText(link);
+                                    alert(`Invitation link copied to clipboard:\n${link}`);
+                                  }}
+                                  sx={{ mr: 1 }}
+                                >
+                                  Copy Link
+                                </Button>
+                              )}
+                              <IconButton
+                                color="error"
+                                onClick={() => handleRemoveStudent(student.email)}
+                                title="Remove student"
+                              >
+                                <DeleteIcon />
+                              </IconButton>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                );
+              })()} {/* Immediately invoke the function */}
             </>
           )}
         </Box>
