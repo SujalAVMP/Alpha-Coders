@@ -56,8 +56,9 @@ const TestPage = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [attemptsUsed, setAttemptsUsed] = useState(0);
   const [maxAttempts, setMaxAttempts] = useState(1);
+  const [assessmentSubmitted, setAssessmentSubmitted] = useState(false);
 
-  // Fetch attempts information when the component loads
+  // Fetch attempts information and assessment status when the component loads
   useEffect(() => {
     if (assessmentId && id) {
       // Fetch attempts information from the server
@@ -74,6 +75,11 @@ const TestPage = () => {
             console.log('Attempts data:', data);
             setAttemptsUsed(data.attemptsUsed || 0);
             setMaxAttempts(data.maxAttempts || 1);
+            setAssessmentSubmitted(data.assessmentSubmitted || false);
+
+            if (data.assessmentSubmitted) {
+              toast.info('This assessment has been submitted. You cannot make further submissions.');
+            }
           }
         } catch (error) {
           console.error('Error fetching attempts:', error);
@@ -173,9 +179,14 @@ int main() {
         console.log('Fetched test data:', data);
         setTest(data);
 
-        // Always use standard templates
-        console.log(`Using standard template for ${language}:`, standardTemplates[language]);
-        setCode(standardTemplates[language]);
+        // Use custom boilerplate if available and enabled, otherwise use standard templates
+        if (data.useCustomBoilerplate && data.customBoilerplate && data.customBoilerplate[language]) {
+          console.log(`Using custom boilerplate for ${language}:`, data.customBoilerplate[language]);
+          setCode(data.customBoilerplate[language]);
+        } else {
+          console.log(`Using standard template for ${language}:`, standardTemplates[language]);
+          setCode(standardTemplates[language]);
+        }
       } catch (error) {
         console.error('Error fetching test:', error);
         // Provide a more user-friendly error message
@@ -202,9 +213,14 @@ int main() {
 
     console.log('Language changed to:', newLanguage);
 
-    // Always use standard templates
-    console.log(`Using standard template for ${newLanguage}:`, standardTemplates[newLanguage]);
-    setCode(standardTemplates[newLanguage]);
+    // Use custom boilerplate if available and enabled, otherwise use standard templates
+    if (test && test.useCustomBoilerplate && test.customBoilerplate && test.customBoilerplate[newLanguage]) {
+      console.log(`Using custom boilerplate for ${newLanguage}:`, test.customBoilerplate[newLanguage]);
+      setCode(test.customBoilerplate[newLanguage]);
+    } else {
+      console.log(`Using standard template for ${newLanguage}:`, standardTemplates[newLanguage]);
+      setCode(standardTemplates[newLanguage]);
+    }
   };
 
   const handleCodeChange = (value) => {
@@ -320,6 +336,13 @@ int main() {
       if (attemptsUsed >= maxAttempts) {
         toast.error(`Maximum attempts (${maxAttempts}) reached for this test.`);
         setOutput(`Error: You have reached the maximum number of attempts (${maxAttempts}) for this test.`);
+        return;
+      }
+
+      // Check if the assessment has been submitted
+      if (assessmentSubmitted) {
+        toast.error('This assessment has been submitted. You cannot make further submissions.');
+        setOutput('Error: This assessment has been submitted. You cannot make further submissions.');
         return;
       }
 
@@ -727,7 +750,7 @@ int main() {
                   variant="contained"
                   color="success"
                   onClick={handleSubmit}
-                  disabled={executing || submitting || submittingAssessment || attemptsUsed >= maxAttempts}
+                  disabled={executing || submitting || submittingAssessment || attemptsUsed >= maxAttempts || assessmentSubmitted}
                   sx={{ ml: 'auto', px: 4, py: 2, borderRadius: 2, fontWeight: 'bold', fontSize: '1rem', minWidth: '150px' }}
                 >
                   {submitting ? 'Submitting...' : 'Submit Solution'}

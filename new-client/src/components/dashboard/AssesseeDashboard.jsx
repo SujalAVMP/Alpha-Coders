@@ -332,7 +332,9 @@ const AssesseeDashboard = () => {
                           <CardActions>
                             <Button
                               component={Link}
-                              to={`/submissions/${submission.id}?email=${encodeURIComponent(user?.email || '')}`}
+                              to={submission.assessmentId ?
+                                `/assessments/submissions/${submission.assessmentId}` :
+                                `/submissions/${submission.id}?email=${encodeURIComponent(user?.email || '')}`}
                               variant="contained"
                               color="primary"
                               fullWidth

@@ -23,7 +23,9 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListItemSecondaryAction
+  ListItemSecondaryAction,
+  FormControlLabel,
+  Switch
 } from '@mui/material';
 import {
   Save as SaveIcon,
@@ -56,7 +58,12 @@ const TestEditor = () => {
     constraints: '',
     sampleInput: '',
     sampleOutput: '',
-    testCases: []
+    testCases: [],
+    customBoilerplate: {
+      python: '',
+      cpp: ''
+    },
+    useCustomBoilerplate: false
   });
 
   // UI state
@@ -156,6 +163,11 @@ const TestEditor = () => {
             sampleInput: template.sampleInput || '',
             sampleOutput: template.sampleOutput || '',
             testCases: Array.isArray(template.testCases) ? [...template.testCases] : [],
+            customBoilerplate: template.customBoilerplate || {
+              python: '',
+              cpp: ''
+            },
+            useCustomBoilerplate: template.useCustomBoilerplate || false,
 
           };
 
@@ -350,6 +362,7 @@ const TestEditor = () => {
               <Tab label="Basic Info" />
               <Tab label="Problem Statement" />
               <Tab label="Test Cases" />
+              <Tab label="Custom Boilerplate" />
             </Tabs>
           </Box>
 
@@ -595,6 +608,121 @@ const TestEditor = () => {
           )}
 
 
+
+          {/* Custom Boilerplate Tab */}
+          {tabValue === 3 && (
+            <Paper sx={{ p: 3 }}>
+              <Typography variant="h6" gutterBottom>
+                Custom Boilerplate Code (Optional)
+              </Typography>
+              <Typography variant="body2" color="textSecondary" sx={{ mb: 3 }}>
+                You can provide custom boilerplate code for each language. This is useful for problems that require specific class definitions or imports.
+                If not provided, the standard boilerplate will be used.
+              </Typography>
+
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={test.useCustomBoilerplate}
+                    onChange={(e) => setTest(prev => ({
+                      ...prev,
+                      useCustomBoilerplate: e.target.checked
+                    }))}
+                  />
+                }
+                label="Use Custom Boilerplate"
+                sx={{ mb: 2 }}
+              />
+
+              {test.useCustomBoilerplate && (
+                <Grid container spacing={3}>
+                  <Grid item xs={12} md={6}>
+                    <Typography variant="subtitle1" gutterBottom>
+                      Python Boilerplate
+                    </Typography>
+                    <TextField
+                      fullWidth
+                      multiline
+                      rows={10}
+                      value={test.customBoilerplate.python}
+                      onChange={(e) => setTest(prev => ({
+                        ...prev,
+                        customBoilerplate: {
+                          ...prev.customBoilerplate,
+                          python: e.target.value
+                        }
+                      }))}
+                      placeholder={`# Enter Python boilerplate code here
+# Example:
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+def solve():
+    # Your solution here
+    pass
+
+if __name__ == "__main__":
+    solve()`}
+                      InputProps={{
+                        style: { fontFamily: 'monospace' }
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Typography variant="subtitle1" gutterBottom>
+                      C++ Boilerplate
+                    </Typography>
+                    <TextField
+                      fullWidth
+                      multiline
+                      rows={10}
+                      value={test.customBoilerplate.cpp}
+                      onChange={(e) => setTest(prev => ({
+                        ...prev,
+                        customBoilerplate: {
+                          ...prev.customBoilerplate,
+                          cpp: e.target.value
+                        }
+                      }))}
+                      placeholder={`// Enter C++ boilerplate code here
+// Example:
+// struct ListNode {
+//     int val;
+//     ListNode *next;
+//     ListNode() : val(0), next(nullptr) {}
+//     ListNode(int x) : val(x), next(nullptr) {}
+//     ListNode(int x, ListNode *next) : val(x), next(next) {}
+// };
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+void solve() {
+    // Your solution here
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    solve();
+
+    return 0;
+}`}
+                      InputProps={{
+                        style: { fontFamily: 'monospace' }
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+              )}
+            </Paper>
+          )}
 
           {/* Save button */}
           <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>

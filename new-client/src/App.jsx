@@ -19,6 +19,7 @@ import SubmissionsList from './components/dashboard/SubmissionsList';
 import Profile from './components/dashboard/Profile';
 import TestPage from './components/coding/TestPage';
 import SubmissionDetails from './components/coding/SubmissionDetails';
+import AssessmentSubmissionDetails from './components/assessments/AssessmentSubmissionDetails';
 
 // New Components
 import TestEditor from './components/tests/TestEditor';
@@ -187,6 +188,7 @@ function App() {
                   <Route path="/assessments/:assessmentId/details" element={<AssessmentDetails />} />
                   <Route path="/assessments/:assessmentId/view" element={<AssessmentView />} />
                   <Route path="/assessments/:assessmentId/invitation" element={<InvitationAcceptance />} />
+                  <Route path="/assessments/submissions/:id" element={<AssessmentSubmissionDetails />} />
                 </Route>
 
                 {/* Fallback Route */}
