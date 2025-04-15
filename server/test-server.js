@@ -2131,8 +2131,62 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
 });
 
 app.get('/api/code/submissions', (req, res) => {
-  // Always return an empty array for all users
-  return res.json([]);
+  // Get the user email from the request
+  const userEmail = req.query.email;
+
+  if (!userEmail) {
+    return res.status(400).json({ error: 'Email is required' });
+  }
+
+  // Find the user
+  const user = users.find(u => u.email === userEmail);
+
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  // Create mock submissions for assessments that have been submitted
+  const userSubmissions = [];
+
+  assessments.forEach(assessment => {
+    // Check if this assessment has been submitted by this user
+    if (assessment.submissions && assessment.submissions[user.id]) {
+      // For each test in the assessment, create a submission
+      if (assessment.tests && Array.isArray(assessment.tests)) {
+        assessment.tests.forEach((testId, index) => {
+          // Find the test
+          const test = tests.find(t => t._id === testId);
+          if (test) {
+            // Get the number of attempts used
+            const attemptsUsed = assessment.testAttempts &&
+                               assessment.testAttempts[user.id] &&
+                               assessment.testAttempts[user.id][testId] ?
+                               assessment.testAttempts[user.id][testId] : 0;
+
+            // Calculate a mock score based on attempts
+            const score = Math.min(100, Math.max(0, 100 - (attemptsUsed * 10)));
+
+            // Create a submission record
+            userSubmissions.push({
+              id: `${assessment.id}_${testId}_${user.id}`,
+              testId: testId,
+              testTitle: test.title,
+              assessmentId: assessment.id,
+              assessmentTitle: assessment.title,
+              language: 'python', // Default language
+              submittedAt: assessment.submissions[user.id].submittedAt,
+              status: 'Completed',
+              score: score,
+              testCasesPassed: Math.floor((score / 100) * (test.testCases?.length || 3)),
+              totalTestCases: test.testCases?.length || 3
+            });
+          }
+        });
+      }
+    }
+  });
+
+  return res.json(userSubmissions);
 });
 
 // Submit an entire assessment
@@ -2181,51 +2235,123 @@ app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
 });
 
 app.get('/api/code/submissions/:id', (req, res) => {
-  // Simulate getting a submission by ID
+  // Get the submission ID from the request
   const submissionId = req.params.id;
+  const userEmail = req.query.email;
 
-  // In a real app, we would fetch the submission from a database
-  // For now, we'll return a sample submission with test results
-  res.json({
+  if (!userEmail) {
+    return res.status(400).json({ error: 'Email is required' });
+  }
+
+  // Find the user
+  const user = users.find(u => u.email === userEmail);
+
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  // Parse the submission ID to get the assessment ID and test ID
+  const [assessmentId, testId] = submissionId.split('_');
+
+  // Find the assessment
+  const assessment = assessments.find(a => a.id === assessmentId);
+
+  if (!assessment) {
+    return res.status(404).json({ error: 'Assessment not found' });
+  }
+
+  // Check if the assessment has been submitted by this user
+  if (!assessment.submissions || !assessment.submissions[user.id]) {
+    return res.status(404).json({ error: 'Submission not found' });
+  }
+
+  // Find the test
+  const test = tests.find(t => t._id === testId);
+
+  if (!test) {
+    return res.status(404).json({ error: 'Test not found' });
+  }
+
+  // Get the number of attempts used
+  const attemptsUsed = assessment.testAttempts &&
+                     assessment.testAttempts[user.id] &&
+                     assessment.testAttempts[user.id][testId] ?
+                     assessment.testAttempts[user.id][testId] : 0;
+
+  // Calculate a mock score based on attempts
+  const score = Math.min(100, Math.max(0, 100 - (attemptsUsed * 10)));
+
+  // Create mock test results
+  const testResults = [];
+
+  if (test.testCases && Array.isArray(test.testCases)) {
+    test.testCases.forEach((testCase, index) => {
+      // Determine if this test case passed based on the score
+      const passed = Math.random() < (score / 100);
+
+      testResults.push({
+        testCaseNumber: index + 1,
+        input: testCase.isHidden ? 'Hidden' : testCase.input,
+        expected: testCase.isHidden ? 'Hidden' : testCase.expected,
+        actual: passed ? (testCase.isHidden ? 'Hidden' : testCase.expected) : 'Incorrect output',
+        passed: passed,
+        executionTime: Math.floor(Math.random() * 100) + 50, // Random execution time between 50-150ms
+        memoryUsed: Math.floor(Math.random() * 20) + 10 // Random memory usage between 10-30MB
+      });
+    });
+  } else {
+    // Create some default test results if no test cases are defined
+    for (let i = 0; i < 3; i++) {
+      const passed = Math.random() < (score / 100);
+
+      testResults.push({
+        testCaseNumber: i + 1,
+        input: i === 2 ? 'Hidden' : `Sample Input ${i + 1}`,
+        expected: i === 2 ? 'Hidden' : `Sample Output ${i + 1}`,
+        actual: passed ? (i === 2 ? 'Hidden' : `Sample Output ${i + 1}`) : 'Incorrect output',
+        passed: passed,
+        executionTime: Math.floor(Math.random() * 100) + 50,
+        memoryUsed: Math.floor(Math.random() * 20) + 10
+      });
+    }
+  }
+
+  // Create the submission object
+  const submission = {
     _id: submissionId,
     user: {
-      id: '123',
-      name: 'Test User',
-      email: 'test@gmail.com'
+      id: user.id,
+      name: user.name,
+      email: user.email
     },
     test: {
-      _id: '1',
-      title: 'Two Sum'
+      _id: testId,
+      title: test.title
     },
-    code: 'def two_sum(nums, target):\n    num_map = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in num_map:\n            return [num_map[complement], i]\n        num_map[num] = i\n    return []\n\n# Read input\nnums = eval(input().strip())\ntarget = int(input().strip())\n\n# Call function and print result\nprint(two_sum(nums, target))',
+    assessment: {
+      _id: assessmentId,
+      title: assessment.title
+    },
+    code: `# This is a mock code submission for ${test.title}
+
+def solve():
+    # Solution implementation
+    pass
+
+if __name__ == "__main__":
+    solve()`,
     language: 'python',
-    status: 'Accepted',
-    testCasesPassed: 2,
-    totalTestCases: 2,
-    executionTime: 120,
-    memoryUsed: 24,
-    submittedAt: new Date(Date.now() - 3600000).toISOString(),
-    testResults: [
-      {
-        testCaseNumber: 1,
-        input: '[2, 7, 11, 15]\n9',
-        expected: '[0, 1]',
-        actual: '[0, 1]',
-        passed: true,
-        executionTime: 110,
-        memoryUsed: 22
-      },
-      {
-        testCaseNumber: 2,
-        input: '[3, 2, 4]\n6',
-        expected: '[1, 2]',
-        actual: '[1, 2]',
-        passed: true,
-        executionTime: 130,
-        memoryUsed: 26
-      }
-    ]
-  });
+    status: score >= 70 ? 'Accepted' : 'Failed',
+    testCasesPassed: testResults.filter(tc => tc.passed).length,
+    totalTestCases: testResults.length,
+    score: score,
+    executionTime: Math.floor(Math.random() * 100) + 50,
+    memoryUsed: Math.floor(Math.random() * 20) + 10,
+    submittedAt: assessment.submissions[user.id].submittedAt,
+    testResults: testResults
+  };
+
+  res.json(submission);
 });
 
 // Delete a submission
@@ -2238,9 +2364,65 @@ app.delete('/api/code/submissions/:id', (req, res) => {
 
 // Delete user account
 app.delete('/api/users/me', (req, res) => {
-  // In a real app, we would delete the user's account and all associated data
-  console.log('Deleting user account');
-  res.status(200).json({ message: 'User account deleted successfully' });
+  // Get the user email from the request
+  const userEmail = req.query.email;
+  console.log('Deleting user account for email:', userEmail);
+
+  if (!userEmail) {
+    return res.status(400).json({ message: 'Email is required' });
+  }
+
+  // Find the user index
+  const userIndex = users.findIndex(u => u.email === userEmail);
+
+  if (userIndex === -1) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  // Get the user ID before removing
+  const userId = users[userIndex].id;
+
+  // Remove the user from the users array
+  users.splice(userIndex, 1);
+
+  console.log(`User with email ${userEmail} deleted successfully`);
+
+  // Also clean up any data associated with this user
+  // 1. Remove user from assessment invitations
+  assessments.forEach(assessment => {
+    if (assessment.invitedStudents && Array.isArray(assessment.invitedStudents)) {
+      assessment.invitedStudents = assessment.invitedStudents.filter(student => {
+        if (typeof student === 'string') {
+          return student !== userId;
+        } else if (typeof student === 'object' && student.email) {
+          return student.email !== userEmail;
+        }
+        return true;
+      });
+    }
+  });
+
+  // 2. Remove user's notifications
+  const notificationIndices = [];
+  notifications.forEach((notification, index) => {
+    if (notification.userId === userId) {
+      notificationIndices.push(index);
+    }
+  });
+
+  // Remove notifications in reverse order to avoid index shifting
+  for (let i = notificationIndices.length - 1; i >= 0; i--) {
+    notifications.splice(notificationIndices[i], 1);
+  }
+
+  // 3. Remove user's test attempts
+  assessments.forEach(assessment => {
+    if (assessment.testAttempts && assessment.testAttempts[userId]) {
+      delete assessment.testAttempts[userId];
+    }
+  });
+
+  res.status(200).json({ message: 'User account and associated data deleted successfully' });
 });
 
 // Get attempts information for a test in an assessment

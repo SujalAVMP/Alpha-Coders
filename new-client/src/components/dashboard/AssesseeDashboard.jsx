@@ -183,13 +183,27 @@ const AssesseeDashboard = () => {
 
   return (
     <Box sx={{ width: '100%', mx: 'auto', p: 3 }} className="dashboard-container">
-      <Typography variant="h4" component="h1" gutterBottom>
-        {viewingSubmissions ? 'My Submissions' : 'Active Tests'}
-      </Typography>
-
-      <Typography variant="subtitle1" gutterBottom>
-        Welcome, {user?.name || 'Student'}!
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+        <Box>
+          <Typography variant="h4" component="h1" gutterBottom>
+            {viewingSubmissions ? 'My Submissions' : 'Active Tests'}
+          </Typography>
+          <Typography variant="subtitle1" gutterBottom>
+            Welcome, {user?.name || 'Student'}!
+          </Typography>
+        </Box>
+        <Button
+          variant="contained"
+          color={viewingSubmissions ? 'primary' : 'secondary'}
+          onClick={() => {
+            const newView = !viewingSubmissions;
+            setViewingSubmissions(newView);
+            navigate(newView ? '?tab=submissions' : '?tab=tests');
+          }}
+        >
+          {viewingSubmissions ? 'View Active Tests' : 'View My Submissions'}
+        </Button>
+      </Box>
 
       {error && (
         <Alert severity="error" sx={{ mb: 3 }}>
@@ -273,62 +287,65 @@ const AssesseeDashboard = () => {
           <>
             {submissions.length === 0 ? (
               <Alert severity="info">
-                You haven't submitted any tests yet.
+                You haven't submitted any assessments yet. After submitting an assessment, your results will appear here.
               </Alert>
             ) : (
-              <List>
-                {submissions.map((submission) => {
-                  const test = getTestById(submission.testId);
-
-                  return (
-                    <Paper key={submission.id} variant="outlined" sx={{ mb: 2 }}>
-                      <ListItem
-                        component={Link}
-                        to={`/submissions/${submission.id}`}
-                        sx={{ textDecoration: 'none', color: 'inherit' }}
-                      >
-                        <ListItemText
-                          primary={
-                            <Typography variant="h6">
-                              {test.title}
+              <>
+                <Typography variant="h6" gutterBottom>
+                  Assessment Submissions
+                </Typography>
+                <Grid container spacing={3}>
+                  {submissions.map((submission) => {
+                    return (
+                      <Grid item xs={12} sm={6} md={4} key={submission.id}>
+                        <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                          <CardContent sx={{ flexGrow: 1 }}>
+                            <Typography variant="h6" component="h2" gutterBottom>
+                              {submission.testTitle || 'Unknown Test'}
                             </Typography>
-                          }
-                          secondary={
-                            <Box sx={{ mt: 1 }}>
-                              <Typography variant="body2" color="textSecondary">
-                                Submitted: {new Date(submission.submittedAt).toLocaleString()}
-                              </Typography>
-                              <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, flexWrap: 'wrap', gap: 1 }}>
-                                <Chip
-                                  label={submission.language.toUpperCase()}
-                                  size="small"
-                                  variant="outlined"
-                                />
-                                <Chip
-                                  label={`Score: ${submission.score}%`}
-                                  size="small"
-                                  color={submission.score >= 70 ? 'success' : 'error'}
-                                  icon={submission.score >= 70 ? <CheckCircleIcon /> : <ErrorIcon />}
-                                />
-                              </Box>
+                            <Typography variant="body2" color="text.secondary" gutterBottom>
+                              From: {submission.assessmentTitle || 'Unknown Assessment'}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              Submitted: {new Date(submission.submittedAt).toLocaleString()}
+                            </Typography>
+                            <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                              <Chip
+                                label={submission.language.toUpperCase()}
+                                size="small"
+                                variant="outlined"
+                              />
+                              <Chip
+                                label={`${submission.testCasesPassed}/${submission.totalTestCases} Tests`}
+                                size="small"
+                                color="primary"
+                                variant="outlined"
+                              />
+                              <Chip
+                                label={`Score: ${submission.score}%`}
+                                size="small"
+                                color={submission.score >= 70 ? 'success' : 'error'}
+                                icon={submission.score >= 70 ? <CheckCircleIcon /> : <ErrorIcon />}
+                              />
                             </Box>
-                          }
-                        />
-                        <ListItemSecondaryAction>
-                          <Button
-                            variant="outlined"
-                            size="small"
-                            component={Link}
-                            to={`/submissions/${submission.id}`}
-                          >
-                            View Details
-                          </Button>
-                        </ListItemSecondaryAction>
-                      </ListItem>
-                    </Paper>
-                  );
-                })}
-              </List>
+                          </CardContent>
+                          <CardActions>
+                            <Button
+                              component={Link}
+                              to={`/submissions/${submission.id}?email=${encodeURIComponent(user?.email || '')}`}
+                              variant="contained"
+                              color="primary"
+                              fullWidth
+                            >
+                              View Details
+                            </Button>
+                          </CardActions>
+                        </Card>
+                      </Grid>
+                    );
+                  })}
+                </Grid>
+              </>
             )}
           </>
         )}

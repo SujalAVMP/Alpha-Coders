@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { toast } from 'react-toastify';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
 import { getTestById, executeCode, runTestCases, submitCode, submitAssessment, fetchAPI } from '../../utils/api';
 import Editor from '@monaco-editor/react';
@@ -343,20 +344,21 @@ int main() {
 
       // Show test results if available
       if (data.testResults) {
-        setTestResults(data.testResults);
+        setTestResults({
+          results: data.testResults,
+          summary: {
+            totalTestCases: data.totalTestCases || data.testResults.length,
+            passedTestCases: data.testCasesPassed || data.testResults.filter(tc => tc.passed).length,
+            failedTestCases: (data.totalTestCases || data.testResults.length) -
+                            (data.testCasesPassed || data.testResults.filter(tc => tc.passed).length),
+            status: data.status || 'Completed'
+          }
+        });
         setTab(1); // Switch to test results tab
       }
 
       setSubmitSuccess(true);
       toast.success(`Solution submitted successfully! You have used ${attemptsUsed + 1} of ${maxAttempts} attempts.`);
-
-      setTimeout(() => {
-        if (assessmentId) {
-          navigate(`/assessments/${assessmentId}/view`);
-        } else {
-          navigate(`/submissions/${data._id}`);
-        }
-      }, 1500);
     } catch (error) {
       console.error('Error submitting code:', error);
 
@@ -765,7 +767,7 @@ int main() {
                   boxShadow: 2
                 }}
               >
-                Solution submitted successfully! Redirecting to submission details...
+                Solution submitted successfully! Check the Test Results tab for details.
               </Alert>
             )}
 

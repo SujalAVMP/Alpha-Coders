@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
-import { getAssessmentById, getTestById } from '../../utils/api';
+import { getAssessmentById, getTestById, submitAssessment } from '../../utils/api';
+import { toast } from 'react-toastify';
 import {
   Box,
   Container,
@@ -40,6 +41,8 @@ const AssessmentView = () => {
   const [selectedTestId, setSelectedTestId] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   useEffect(() => {
     const fetchAssessment = async () => {
@@ -126,6 +129,27 @@ const AssessmentView = () => {
       console.log('Starting test with ID:', selectedTestId, 'from assessment:', assessmentId);
       // Pass the assessmentId as a query parameter to ensure permissions work properly
       navigate(`/tests/${selectedTestId}?assessmentId=${assessmentId}`);
+    }
+  };
+
+  const handleSubmitAssessment = async () => {
+    try {
+      setSubmitting(true);
+
+      // Submit the entire assessment
+      await submitAssessment(assessmentId);
+
+      setSubmitSuccess(true);
+      toast.success('Assessment submitted successfully!');
+
+      // Refresh the assessment data to update the status
+      const updatedAssessment = await getAssessmentById(assessmentId);
+      setAssessment(updatedAssessment);
+    } catch (error) {
+      console.error('Error submitting assessment:', error);
+      toast.error(`Error: ${error.message || 'Failed to submit assessment'}`);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -291,15 +315,41 @@ const AssessmentView = () => {
         )}
       </Paper>
 
-      <Button
-        component={RouterLink}
-        to="/dashboard"
-        startIcon={<ArrowBackIcon />}
-        variant="outlined"
-        size={isMobile ? "small" : "medium"}
-      >
-        Back to Dashboard
-      </Button>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Button
+          component={RouterLink}
+          to="/dashboard"
+          startIcon={<ArrowBackIcon />}
+          variant="outlined"
+          size={isMobile ? "small" : "medium"}
+        >
+          Back to Dashboard
+        </Button>
+
+        {isAssessmentActive() && tests.length > 0 && (
+          <Button
+            variant="contained"
+            color="secondary"
+            size={isMobile ? "small" : "medium"}
+            onClick={handleSubmitAssessment}
+            disabled={submitting || assessment.submitted}
+          >
+            {submitting ? 'Submitting...' : 'Submit Assessment'}
+          </Button>
+        )}
+      </Box>
+
+      {submitSuccess && (
+        <Alert severity="success" sx={{ mt: 2 }}>
+          Assessment submitted successfully! You can no longer make changes to your submissions.
+        </Alert>
+      )}
+
+      {assessment.submitted && !submitSuccess && (
+        <Alert severity="info" sx={{ mt: 2 }}>
+          This assessment has already been submitted. You can no longer make changes to your submissions.
+        </Alert>
+      )}
     </Container>
   );
 };
