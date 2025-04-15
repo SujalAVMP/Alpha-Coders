@@ -10,7 +10,7 @@ Test server running on port 5002
 Register request body: { name: '1', email: '1', password: '1', role: 'assessor' }
 GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: 1
 User found for my assessments: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
@@ -19,7 +19,7 @@ User found for my assessments: {
 Found assessments count: 0
 GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: 1
 User found for my assessments: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
@@ -28,7 +28,7 @@ User found for my assessments: {
 Found assessments count: 0
 GET /api/tests - Auth Header: Bearer test-token Email: 1
 User found: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
@@ -37,7 +37,7 @@ User found: {
 Returning all tests for assessor
 GET /api/tests - Auth Header: Bearer test-token Email: 1
 User found: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
@@ -46,7 +46,7 @@ User found: {
 Returning all tests for assessor
 GET /api/tests - Auth Header: Bearer test-token Email: 1
 User found: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
@@ -55,7 +55,7 @@ User found: {
 Returning all tests for assessor
 GET /api/tests - Auth Header: Bearer test-token Email: 1
 User found: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
@@ -64,7 +64,7 @@ User found: {
 Returning all tests for assessor
 GET /api/tests - Auth Header: Bearer test-token Email: 1
 User found: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
@@ -73,25 +73,7 @@ User found: {
 Returning all tests for assessor
 GET /api/tests - Auth Header: Bearer test-token Email: 1
 User found: {
-  id: 'on2oz5',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: 1
-User found: {
-  id: 'on2oz5',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: 1
-User found: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
@@ -100,7 +82,7 @@ User found: {
 Returning all tests for assessor
 GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: 1
 User found for my assessments: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
@@ -109,7 +91,7 @@ User found for my assessments: {
 Found assessments count: 0
 GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: 1
 User found for my assessments: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
@@ -118,7 +100,7 @@ User found for my assessments: {
 Found assessments count: 0
 GET /api/tests - Auth Header: Bearer test-token Email: 1
 User found: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
@@ -127,7 +109,7 @@ User found: {
 Returning all tests for assessor
 GET /api/tests - Auth Header: Bearer test-token Email: 1
 User found: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
@@ -137,57 +119,57 @@ Returning all tests for assessor
 Create assessment request body: {
   title: 'Testing bro',
   description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
+  tests: [ '1744699811608', '1744699817124' ],
+  startTime: '2025-04-15T06:50',
+  endTime: '2025-04-22T06:50',
   maxAttempts: '3',
   isPublic: true,
   invitedStudents: []
 }
 POST /api/assessments - Auth Header: Bearer test-token Email: 1
 User found for assessment creation: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
   role: 'assessor'
 }
-Tests array for assessment: [ '1744698456981', '1744698452300', '1744698461488' ]
+Tests array for assessment: [ '1744699811608', '1744699817124' ]
 Filtered invitedStudents for new assessment: []
 New assessment being created: {
   id: 'assessment_1',
   title: 'Testing bro',
   description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
+  tests: [ '1744699811608', '1744699817124' ],
+  startTime: '2025-04-15T06:50',
+  endTime: '2025-04-22T06:50',
   maxAttempts: '3',
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z'
+  createdBy: '0tzh3q',
+  createdAt: '2025-04-15T06:50:41.713Z',
+  updatedAt: '2025-04-15T06:50:41.713Z'
 }
 GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: 1
 User found for my assessments: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
   role: 'assessor'
 }
-Checking assessment: assessment_1 createdBy: on2oz5 user.id: on2oz5
+Checking assessment: assessment_1 createdBy: 0tzh3q user.id: 0tzh3q
 Found assessments count: 1
 Assessment assessment_1 invited users: []
 GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: 1
 User found for my assessments: {
-  id: 'on2oz5',
+  id: '0tzh3q',
   name: '1',
   email: '1',
   password: '1',
   role: 'assessor'
 }
-Checking assessment: assessment_1 createdBy: on2oz5 user.id: on2oz5
+Checking assessment: assessment_1 createdBy: 0tzh3q user.id: 0tzh3q
 Found assessments count: 1
 Assessment assessment_1 invited users: []
 Register request body: { name: '2', email: '2', password: '2', role: 'assessee' }
@@ -195,119 +177,121 @@ Auth header for /me: Bearer test-token
 Token for /me: test-token
 Email from query: 2
 Found user by email: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
 Returning user for /me: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
 GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: nxizrj 2
+Found/created user for notifications: itseru 2
 Notifications for user 2 : []
 No notifications found for user, creating a sample one
 Created sample notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
+  createdAt: '2025-04-15T06:51:01.911Z',
   read: false
 }
-Marked notification as read: 1744698482252xnl76m7
+Marked notification as read: 17446998619111rsksk1
 Auth header for /me: Bearer test-token
 Token for /me: test-token
 Email from query: 2
 Found user by email: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
 Returning user for /me: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
 GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: nxizrj 2
+Found/created user for notifications: itseru 2
 Found notification for user: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
+  createdAt: '2025-04-15T06:51:01.911Z',
   read: true
 }
 Notifications for user 2 : [
   {
-    id: '1744698482252xnl76m7',
-    userId: 'nxizrj',
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
     type: 'invitation',
     title: 'New Assessment Invitation',
     message: 'You have been invited to take a sample assessment',
     assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:28:02.252Z',
+    createdAt: '2025-04-15T06:51:01.911Z',
     read: true
   }
 ]
 GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
 User found/created: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Checking assigned assessments for user: 2 nxizrj
+Checking assigned assessments for user: 2 itseru
 All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
 Assessment assessment_1 invitedStudents: []
-Checking if user 2 (nxizrj) is invited to assessment assessment_1
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is NOT submitted by user itseru
 Found matching notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
+  createdAt: '2025-04-15T06:51:01.911Z',
   read: true
 }
 User 2 is invited to assessment assessment_1 through notification
 Assigned assessments count: 1
 GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
 User found/created: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Checking assigned assessments for user: 2 nxizrj
+Checking assigned assessments for user: 2 itseru
 All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
 Assessment assessment_1 invitedStudents: []
-Checking if user 2 (nxizrj) is invited to assessment assessment_1
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is NOT submitted by user itseru
 Found matching notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
+  createdAt: '2025-04-15T06:51:01.911Z',
   read: true
 }
 User 2 is invited to assessment assessment_1 through notification
@@ -320,25 +304,26 @@ Assessment found: {
   id: 'assessment_1',
   title: 'Testing bro',
   description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
+  tests: [ '1744699811608', '1744699817124' ],
+  startTime: '2025-04-15T06:50',
+  endTime: '2025-04-22T06:50',
   maxAttempts: '3',
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0
+  createdBy: '0tzh3q',
+  createdAt: '2025-04-15T06:50:41.713Z',
+  updatedAt: '2025-04-15T06:50:41.713Z',
+  attemptsUsed: 0,
+  submitted: false
 }
 User found: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
+Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
 Invitation check for user 2 assessment assessment_1 : {
   isInvitedById: false,
   isInvitedByEmail: false,
@@ -354,11 +339,10 @@ Permission check: {
   isInvitedByEmail: false,
   hasValidToken: false
 }
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
+Looking up tests: [ '1744699811608', '1744699817124' ]
+Found test: 1744699811608 Valid Parentheses
+Found test: 1744699817124 Maximum Subarray
+Test details count: 2
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
 GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
@@ -367,25 +351,26 @@ Assessment found: {
   id: 'assessment_1',
   title: 'Testing bro',
   description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
+  tests: [ '1744699811608', '1744699817124' ],
+  startTime: '2025-04-15T06:50',
+  endTime: '2025-04-22T06:50',
   maxAttempts: '3',
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0
+  createdBy: '0tzh3q',
+  createdAt: '2025-04-15T06:50:41.713Z',
+  updatedAt: '2025-04-15T06:50:41.713Z',
+  attemptsUsed: 0,
+  submitted: false
 }
 User found: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
+Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
 Invitation check for user 2 assessment assessment_1 : {
   isInvitedById: false,
   isInvitedByEmail: false,
@@ -401,202 +386,101 @@ Permission check: {
   isInvitedByEmail: false,
   hasValidToken: false
 }
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: false
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: false
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698452300. Assessment submitted: false
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698452300. Assessment submitted: false
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698461488. Assessment submitted: false
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698461488. Assessment submitted: false
-GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744698452300
-Found user for test access check: nxizrj 2
-Looking for test with ID: 1744698452300
+Looking up tests: [ '1744699811608', '1744699817124' ]
+Found test: 1744699811608 Valid Parentheses
+Found test: 1744699817124 Maximum Subarray
+Test details count: 2
+Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
+User 2 has used 0 of 3 attempts for test 1744699811608. Assessment submitted: false
+Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
+User 2 has used 0 of 3 attempts for test 1744699811608. Assessment submitted: false
+Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
+User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: false
+Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
+User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: false
+GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744699811608
+Found user for test access check: itseru 2
+Looking for test with ID: 1744699811608
 Available tests: [
-  { id: undefined, _id: '1744698452300', title: 'Valid Parentheses' },
-  { id: undefined, _id: '1744698456981', title: 'Maximum Subarray' },
-  {
-    id: undefined,
-    _id: '1744698461488',
-    title: 'Merge K Sorted Lists'
-  }
+  { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' },
+  { id: undefined, _id: '1744699817124', title: 'Maximum Subarray' }
 ]
-Test found: { id: undefined, _id: '1744698452300', title: 'Valid Parentheses' }
+Test found: { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' }
 Specific assessment ID from query: assessment_1
 Filtering to check only assessment assessment_1
-Is test 1744698452300 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744698452300
-Assessment assessment_1 contains test 1744698452300
+Is test 1744699811608 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744699811608
+Assessment assessment_1 contains test 1744699811608
 Assessment assessment_1 is public
 Permission check for test access: {
-  testId: '1744698452300',
-  userId: 'nxizrj',
+  testId: '1744699811608',
+  userId: 'itseru',
   userEmail: '2',
   isCreator: false,
   isPublic: undefined,
   isInvited: true
 }
-Access granted to test 1744698452300 for user 2
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698452300. Assessment submitted: false
-GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744698452300
-Found user for test access check: nxizrj 2
-Looking for test with ID: 1744698452300
+Access granted to test 1744699811608 for user 2
+Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
+User 2 has used 0 of 3 attempts for test 1744699811608. Assessment submitted: false
+GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744699811608
+Found user for test access check: itseru 2
+Looking for test with ID: 1744699811608
 Available tests: [
-  { id: undefined, _id: '1744698452300', title: 'Valid Parentheses' },
-  { id: undefined, _id: '1744698456981', title: 'Maximum Subarray' },
-  {
-    id: undefined,
-    _id: '1744698461488',
-    title: 'Merge K Sorted Lists'
-  }
+  { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' },
+  { id: undefined, _id: '1744699817124', title: 'Maximum Subarray' }
 ]
-Test found: { id: undefined, _id: '1744698452300', title: 'Valid Parentheses' }
+Test found: { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' }
 Specific assessment ID from query: assessment_1
 Filtering to check only assessment assessment_1
-Is test 1744698452300 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744698452300
-Assessment assessment_1 contains test 1744698452300
+Is test 1744699811608 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744699811608
+Assessment assessment_1 contains test 1744699811608
 Assessment assessment_1 is public
 Permission check for test access: {
-  testId: '1744698452300',
-  userId: 'nxizrj',
+  testId: '1744699811608',
+  userId: 'itseru',
   userEmail: '2',
   isCreator: false,
   isPublic: undefined,
   isInvited: true
 }
-Access granted to test 1744698452300 for user 2
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698452300. Assessment submitted: false
-Run test cases request: {
-  testId: '1744698452300',
-  language: 'python',
-  assessmentId: 'assessment_1'
-}
-Starting Python execution with ID: e935c60a-9c97-4f5b-943a-dd21c1b5e186
-Code length: 607 characters
-Input length: 6 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_e935c60a-9c97-4f5b-943a-dd21c1b5e186.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_e935c60a-9c97-4f5b-943a-dd21c1b5e186       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 316 }
-Temporary files cleaned up
-Starting Python execution with ID: d6f1535c-bc63-48de-8784-e7152066f69c
-Code length: 607 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_d6f1535c-bc63-48de-8784-e7152066f69c.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_d6f1535c-bc63-48de-8784-e7152066f69c       -i python:3.9-slim       bash
-Python execution result: { stdout: 'false\n', stderr: '', executionTime: 420 }
-Temporary files cleaned up
-Starting Python execution with ID: efff349b-dd45-4709-bad6-e672fa6095a6
-Code length: 607 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_efff349b-dd45-4709-bad6-e672fa6095a6.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_efff349b-dd45-4709-bad6-e672fa6095a6       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 398 }
-Temporary files cleaned up
+Access granted to test 1744699811608 for user 2
+Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
+User 2 has used 0 of 3 attempts for test 1744699811608. Assessment submitted: false
 Submit code request: {
-  testId: '1744698452300',
+  testId: '1744699811608',
   language: 'python',
   assessmentId: 'assessment_1'
 }
-User 2 has used 0 of 3 attempts for test 1744698452300 in assessment assessment_1
-Starting Python execution with ID: 7a106efb-0094-4b30-b968-aa1c01f402ad
-Code length: 607 characters
+User 2 has used 0 of 3 attempts for test 1744699811608 in assessment assessment_1
+Starting Python execution with ID: a7b010c7-08a4-4be9-95a9-9a7e0eb5fd09
+Code length: 217 characters
 Input length: 6 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_7a106efb-0094-4b30-b968-aa1c01f402ad.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_7a106efb-0094-4b30-b968-aa1c01f402ad       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 370 }
+Executing Python code with Docker command: cat /tmp/run_a7b010c7-08a4-4be9-95a9-9a7e0eb5fd09.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_a7b010c7-08a4-4be9-95a9-9a7e0eb5fd09       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 387 }
 Temporary files cleaned up
-Starting Python execution with ID: 04603027-22b5-4fec-b10d-45f3f6f836ec
-Code length: 607 characters
+Starting Python execution with ID: db3db394-8b68-4d24-8f21-0f128d8be69f
+Code length: 217 characters
 Input length: 4 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_04603027-22b5-4fec-b10d-45f3f6f836ec.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_04603027-22b5-4fec-b10d-45f3f6f836ec       -i python:3.9-slim       bash
-Python execution result: { stdout: 'false\n', stderr: '', executionTime: 309 }
+Executing Python code with Docker command: cat /tmp/run_db3db394-8b68-4d24-8f21-0f128d8be69f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_db3db394-8b68-4d24-8f21-0f128d8be69f       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 355 }
 Temporary files cleaned up
-Starting Python execution with ID: 6f63a6f3-b6e1-44ff-af36-b796895a8fa3
-Code length: 607 characters
+Starting Python execution with ID: 2c726bb1-4c51-4e0b-8f7f-4360df48145f
+Code length: 217 characters
 Input length: 4 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_6f63a6f3-b6e1-44ff-af36-b796895a8fa3.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_6f63a6f3-b6e1-44ff-af36-b796895a8fa3       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 369 }
+Executing Python code with Docker command: cat /tmp/run_2c726bb1-4c51-4e0b-8f7f-4360df48145f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_2c726bb1-4c51-4e0b-8f7f-4360df48145f       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 324 }
 Temporary files cleaned up
-Starting Python execution with ID: 4387c57e-c10c-4e48-980a-23a869dfde5a
-Code length: 607 characters
+Starting Python execution with ID: a9d47c28-1456-4b6f-bf38-a713a0748ea5
+Code length: 217 characters
 Input length: 2 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_4387c57e-c10c-4e48-980a-23a869dfde5a.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_4387c57e-c10c-4e48-980a-23a869dfde5a       -i python:3.9-slim       bash
-Python execution result: { stdout: 'false\n', stderr: '', executionTime: 336 }
-Temporary files cleaned up
-Run test cases request: {
-  testId: '1744698452300',
-  language: 'python',
-  assessmentId: 'assessment_1'
-}
-Starting Python execution with ID: 4e89de91-0d49-4a22-bdb1-286341b52760
-Code length: 71 characters
-Input length: 6 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_4e89de91-0d49-4a22-bdb1-286341b52760.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_4e89de91-0d49-4a22-bdb1-286341b52760       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 400 }
-Temporary files cleaned up
-Starting Python execution with ID: 7d346a4e-7860-4b8f-b1f7-741c6fa5fb3d
-Code length: 71 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_7d346a4e-7860-4b8f-b1f7-741c6fa5fb3d.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_7d346a4e-7860-4b8f-b1f7-741c6fa5fb3d       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 420 }
-Temporary files cleaned up
-Starting Python execution with ID: 0466f59c-e2fd-4e46-888c-afa4ff4a82df
-Code length: 71 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_0466f59c-e2fd-4e46-888c-afa4ff4a82df.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_0466f59c-e2fd-4e46-888c-afa4ff4a82df       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 362 }
-Temporary files cleaned up
-Submit code request: {
-  testId: '1744698452300',
-  language: 'python',
-  assessmentId: 'assessment_1'
-}
-User 2 has used 1 of 3 attempts for test 1744698452300 in assessment assessment_1
-Starting Python execution with ID: cbb85a3b-71e7-41ff-a1d9-1301f5a00f8c
-Code length: 71 characters
-Input length: 6 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_cbb85a3b-71e7-41ff-a1d9-1301f5a00f8c.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_cbb85a3b-71e7-41ff-a1d9-1301f5a00f8c       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 350 }
-Temporary files cleaned up
-Starting Python execution with ID: d0d69774-5d96-44fe-be19-3719c001b934
-Code length: 71 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_d0d69774-5d96-44fe-be19-3719c001b934.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_d0d69774-5d96-44fe-be19-3719c001b934       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 365 }
-Temporary files cleaned up
-Starting Python execution with ID: d0116c88-c3a8-4e62-826a-91d48c4f17a6
-Code length: 71 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_d0116c88-c3a8-4e62-826a-91d48c4f17a6.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_d0116c88-c3a8-4e62-826a-91d48c4f17a6       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 344 }
-Temporary files cleaned up
-Starting Python execution with ID: 2e0f2c78-e2c1-4bb8-9033-5b68486bd329
-Code length: 71 characters
-Input length: 2 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_2e0f2c78-e2c1-4bb8-9033-5b68486bd329.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_2e0f2c78-e2c1-4bb8-9033-5b68486bd329       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 335 }
+Executing Python code with Docker command: cat /tmp/run_a9d47c28-1456-4b6f-bf38-a713a0748ea5.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_a9d47c28-1456-4b6f-bf38-a713a0748ea5       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 373 }
 Temporary files cleaned up
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
 GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
@@ -606,27 +490,28 @@ Assessment found: {
   id: 'assessment_1',
   title: 'Testing bro',
   description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
+  tests: [ '1744699811608', '1744699817124' ],
+  startTime: '2025-04-15T06:50',
+  endTime: '2025-04-22T06:50',
   maxAttempts: '3',
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
+  createdBy: '0tzh3q',
+  createdAt: '2025-04-15T06:50:41.713Z',
+  updatedAt: '2025-04-15T06:50:41.713Z',
   attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2 } },
-  testResults: { nxizrj: { '1744698452300': [Object] } }
+  submitted: false,
+  testAttempts: { itseru: { '1744699811608': 1 } },
+  testResults: { itseru: { '1744699811608': [Object] } }
 }
 User found: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
+Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
 Invitation check for user 2 assessment assessment_1 : {
   isInvitedById: false,
   isInvitedByEmail: false,
@@ -642,11 +527,10 @@ Permission check: {
   isInvitedByEmail: false,
   hasValidToken: false
 }
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
+Looking up tests: [ '1744699811608', '1744699817124' ]
+Found test: 1744699811608 Valid Parentheses
+Found test: 1744699817124 Maximum Subarray
+Test details count: 2
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
 GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
@@ -655,27 +539,28 @@ Assessment found: {
   id: 'assessment_1',
   title: 'Testing bro',
   description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
+  tests: [ '1744699811608', '1744699817124' ],
+  startTime: '2025-04-15T06:50',
+  endTime: '2025-04-22T06:50',
   maxAttempts: '3',
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
+  createdBy: '0tzh3q',
+  createdAt: '2025-04-15T06:50:41.713Z',
+  updatedAt: '2025-04-15T06:50:41.713Z',
   attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2 } },
-  testResults: { nxizrj: { '1744698452300': [Object] } }
+  submitted: false,
+  testAttempts: { itseru: { '1744699811608': 1 } },
+  testResults: { itseru: { '1744699811608': [Object] } }
 }
 User found: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
+Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
 Invitation check for user 2 assessment assessment_1 : {
   isInvitedById: false,
   isInvitedByEmail: false,
@@ -691,129 +576,68 @@ Permission check: {
   isInvitedByEmail: false,
   hasValidToken: false
 }
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: false
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: false
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: false
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698461488. Assessment submitted: false
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: false
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698461488. Assessment submitted: false
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698461488. Assessment submitted: false
-GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744698461488
-Found user for test access check: nxizrj 2
-Looking for test with ID: 1744698461488
+Looking up tests: [ '1744699811608', '1744699817124' ]
+Found test: 1744699811608 Valid Parentheses
+Found test: 1744699817124 Maximum Subarray
+Test details count: 2
+Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
+User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: false
+Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
+User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: false
+Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
+User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: false
+Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
+User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: false
+Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
+User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: false
+GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744699811608
+Found user for test access check: itseru 2
+Looking for test with ID: 1744699811608
 Available tests: [
-  { id: undefined, _id: '1744698452300', title: 'Valid Parentheses' },
-  { id: undefined, _id: '1744698456981', title: 'Maximum Subarray' },
-  {
-    id: undefined,
-    _id: '1744698461488',
-    title: 'Merge K Sorted Lists'
-  }
+  { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' },
+  { id: undefined, _id: '1744699817124', title: 'Maximum Subarray' }
 ]
-Test found: { id: undefined, _id: '1744698461488', title: 'Merge K Sorted Lists' }
+Test found: { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' }
 Specific assessment ID from query: assessment_1
 Filtering to check only assessment assessment_1
-Is test 1744698461488 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744698461488
-Assessment assessment_1 contains test 1744698461488
+Is test 1744699811608 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744699811608
+Assessment assessment_1 contains test 1744699811608
 Assessment assessment_1 is public
 Permission check for test access: {
-  testId: '1744698461488',
-  userId: 'nxizrj',
+  testId: '1744699811608',
+  userId: 'itseru',
   userEmail: '2',
   isCreator: false,
   isPublic: undefined,
   isInvited: true
 }
-Access granted to test 1744698461488 for user 2
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698461488. Assessment submitted: false
-GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744698461488
-Found user for test access check: nxizrj 2
-Looking for test with ID: 1744698461488
+Access granted to test 1744699811608 for user 2
+Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
+User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: false
+GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744699811608
+Found user for test access check: itseru 2
+Looking for test with ID: 1744699811608
 Available tests: [
-  { id: undefined, _id: '1744698452300', title: 'Valid Parentheses' },
-  { id: undefined, _id: '1744698456981', title: 'Maximum Subarray' },
-  {
-    id: undefined,
-    _id: '1744698461488',
-    title: 'Merge K Sorted Lists'
-  }
+  { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' },
+  { id: undefined, _id: '1744699817124', title: 'Maximum Subarray' }
 ]
-Test found: { id: undefined, _id: '1744698461488', title: 'Merge K Sorted Lists' }
+Test found: { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' }
 Specific assessment ID from query: assessment_1
 Filtering to check only assessment assessment_1
-Is test 1744698461488 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744698461488
-Assessment assessment_1 contains test 1744698461488
+Is test 1744699811608 part of assessment assessment_1? true
+Checking assessment assessment_1 for test 1744699811608
+Assessment assessment_1 contains test 1744699811608
 Assessment assessment_1 is public
 Permission check for test access: {
-  testId: '1744698461488',
-  userId: 'nxizrj',
+  testId: '1744699811608',
+  userId: 'itseru',
   userEmail: '2',
   isCreator: false,
   isPublic: undefined,
   isInvited: true
 }
-Access granted to test 1744698461488 for user 2
-Run test cases request: {
-  testId: '1744698461488',
-  language: 'python',
-  assessmentId: 'assessment_1'
-}
-Starting Python execution with ID: a2f6f033-2452-40df-bb2e-269e52d7131e
-Code length: 216 characters
-Input length: 23 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_a2f6f033-2452-40df-bb2e-269e52d7131e.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_a2f6f033-2452-40df-bb2e-269e52d7131e       -i python:3.9-slim       bash
-Python execution result: { stdout: 'Hi!\n', stderr: '', executionTime: 335 }
-Temporary files cleaned up
-Starting Python execution with ID: b5247e8c-c08d-4e20-b044-d3511aac0dbc
-Code length: 216 characters
-Input length: 2 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_b5247e8c-c08d-4e20-b044-d3511aac0dbc.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_b5247e8c-c08d-4e20-b044-d3511aac0dbc       -i python:3.9-slim       bash
-Python execution result: { stdout: 'Hi!\n', stderr: '', executionTime: 359 }
-Temporary files cleaned up
-Submit code request: {
-  testId: '1744698461488',
-  language: 'python',
-  assessmentId: 'assessment_1'
-}
-User 2 has used 0 of 3 attempts for test 1744698461488 in assessment assessment_1
-Starting Python execution with ID: 19a07e88-6592-43a5-a9ea-250c454863ac
-Code length: 216 characters
-Input length: 23 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_19a07e88-6592-43a5-a9ea-250c454863ac.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_19a07e88-6592-43a5-a9ea-250c454863ac       -i python:3.9-slim       bash
-Python execution result: { stdout: 'Hi!\n', stderr: '', executionTime: 376 }
-Temporary files cleaned up
-Starting Python execution with ID: 3bb90800-a7b0-4bb2-b97d-0e9eb3482289
-Code length: 216 characters
-Input length: 2 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_3bb90800-a7b0-4bb2-b97d-0e9eb3482289.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_3bb90800-a7b0-4bb2-b97d-0e9eb3482289       -i python:3.9-slim       bash
-Python execution result: { stdout: 'Hi!\n', stderr: '', executionTime: 348 }
-Temporary files cleaned up
-Starting Python execution with ID: 1ac2e7bd-dae4-470c-b176-6ade2a542817
-Code length: 216 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_1ac2e7bd-dae4-470c-b176-6ade2a542817.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_1ac2e7bd-dae4-470c-b176-6ade2a542817       -i python:3.9-slim       bash
-Python execution result: { stdout: 'Hi!\n', stderr: '', executionTime: 371 }
-Temporary files cleaned up
+Access granted to test 1744699811608 for user 2
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
 GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
@@ -822,27 +646,28 @@ Assessment found: {
   id: 'assessment_1',
   title: 'Testing bro',
   description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
+  tests: [ '1744699811608', '1744699817124' ],
+  startTime: '2025-04-15T06:50',
+  endTime: '2025-04-22T06:50',
   maxAttempts: '3',
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
+  createdBy: '0tzh3q',
+  createdAt: '2025-04-15T06:50:41.713Z',
+  updatedAt: '2025-04-15T06:50:41.713Z',
   attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } }
+  submitted: false,
+  testAttempts: { itseru: { '1744699811608': 1 } },
+  testResults: { itseru: { '1744699811608': [Object] } }
 }
 User found: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
+Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
 Invitation check for user 2 assessment assessment_1 : {
   isInvitedById: false,
   isInvitedByEmail: false,
@@ -858,11 +683,10 @@ Permission check: {
   isInvitedByEmail: false,
   hasValidToken: false
 }
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
+Looking up tests: [ '1744699811608', '1744699817124' ]
+Found test: 1744699811608 Valid Parentheses
+Found test: 1744699817124 Maximum Subarray
+Test details count: 2
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
 GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
@@ -871,27 +695,28 @@ Assessment found: {
   id: 'assessment_1',
   title: 'Testing bro',
   description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
+  tests: [ '1744699811608', '1744699817124' ],
+  startTime: '2025-04-15T06:50',
+  endTime: '2025-04-22T06:50',
   maxAttempts: '3',
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
+  createdBy: '0tzh3q',
+  createdAt: '2025-04-15T06:50:41.713Z',
+  updatedAt: '2025-04-15T06:50:41.713Z',
   attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } }
+  submitted: false,
+  testAttempts: { itseru: { '1744699811608': 1 } },
+  testResults: { itseru: { '1744699811608': [Object] } }
 }
 User found: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
+Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
 Invitation check for user 2 assessment assessment_1 : {
   isInvitedById: false,
   isInvitedByEmail: false,
@@ -907,24 +732,26 @@ Permission check: {
   isInvitedByEmail: false,
   hasValidToken: false
 }
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: false
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: false
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: false
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: false
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: false
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: false
+Looking up tests: [ '1744699811608', '1744699817124' ]
+Found test: 1744699811608 Valid Parentheses
+Found test: 1744699817124 Maximum Subarray
+Test details count: 2
+Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
+User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: false
+Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
+User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: false
+Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
+User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: false
+Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
+User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: false
 Submit assessment request: { assessmentId: 'assessment_1' }
+Assessment assessment_1 marked as submitted for user itseru
+Updated assessment: {
+  id: 'assessment_1',
+  title: 'Testing bro',
+  submitted: true,
+  submittedAt: '2025-04-15T06:51:40.497Z'
+}
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
 GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
 Looking for assessment with ID: assessment_1
@@ -933,30 +760,32 @@ Assessment found: {
   id: 'assessment_1',
   title: 'Testing bro',
   description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
+  tests: [ '1744699811608', '1744699817124' ],
+  startTime: '2025-04-15T06:50',
+  endTime: '2025-04-22T06:50',
   maxAttempts: '3',
   isPublic: true,
   invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
+  createdBy: '0tzh3q',
+  createdAt: '2025-04-15T06:50:41.713Z',
+  updatedAt: '2025-04-15T06:50:41.713Z',
   attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
+  submitted: true,
+  testAttempts: { itseru: { '1744699811608': 1 } },
+  testResults: { itseru: { '1744699811608': [Object] } },
   submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:30:04.651Z', status: 'completed' }
-  }
+    itseru: { submittedAt: '2025-04-15T06:51:40.497Z', status: 'completed' }
+  },
+  submittedAt: '2025-04-15T06:51:40.497Z'
 }
 User found: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
+Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
 Invitation check for user 2 assessment assessment_1 : {
   isInvitedById: false,
   isInvitedByEmail: false,
@@ -972,61 +801,65 @@ Permission check: {
   isInvitedByEmail: false,
   hasValidToken: false
 }
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
+Looking up tests: [ '1744699811608', '1744699817124' ]
+Found test: 1744699811608 Valid Parentheses
+Found test: 1744699817124 Maximum Subarray
+Test details count: 2
+Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
+User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: true
+Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
+User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: true
+Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
+User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: true
+Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
+User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: true
+Login request body: { email: '2', password: '2' }
+Found user: {
+  id: 'itseru',
+  name: '2',
+  email: '2',
+  password: '2',
+  role: 'assessee'
+}
+Login successful for user: 2
 Auth header for /me: Bearer test-token
 Token for /me: test-token
 Email from query: 2
 Found user by email: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
 Returning user for /me: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
 GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: nxizrj 2
+Found/created user for notifications: itseru 2
 Found notification for user: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
+  createdAt: '2025-04-15T06:51:01.911Z',
   read: true
 }
 Notifications for user 2 : [
   {
-    id: '1744698482252xnl76m7',
-    userId: 'nxizrj',
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
     type: 'invitation',
     title: 'New Assessment Invitation',
     message: 'You have been invited to take a sample assessment',
     assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:28:02.252Z',
+    createdAt: '2025-04-15T06:51:01.911Z',
     read: true
   }
 ]
@@ -1034,964 +867,89 @@ Auth header for /me: Bearer test-token
 Token for /me: test-token
 Email from query: 2
 Found user by email: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
 Returning user for /me: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
 GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: nxizrj 2
+Found/created user for notifications: itseru 2
 Found notification for user: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
+  createdAt: '2025-04-15T06:51:01.911Z',
   read: true
 }
 Notifications for user 2 : [
   {
-    id: '1744698482252xnl76m7',
-    userId: 'nxizrj',
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
     type: 'invitation',
     title: 'New Assessment Invitation',
     message: 'You have been invited to take a sample assessment',
     assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:28:02.252Z',
+    createdAt: '2025-04-15T06:51:01.911Z',
     read: true
   }
 ]
 GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
 User found/created: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Checking assigned assessments for user: 2 nxizrj
+Checking assigned assessments for user: 2 itseru
 All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
 Assessment assessment_1 invitedStudents: []
-Checking if user 2 (nxizrj) is invited to assessment assessment_1
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
 Found matching notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
+  createdAt: '2025-04-15T06:51:01.911Z',
   read: true
 }
 User 2 is invited to assessment assessment_1 through notification
 Assigned assessments count: 1
 GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
 User found/created: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Checking assigned assessments for user: 2 nxizrj
+Checking assigned assessments for user: 2 itseru
 All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
 Assessment assessment_1 invitedStudents: []
-Checking if user 2 (nxizrj) is invited to assessment assessment_1
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
 Found matching notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: 2
-Found user by email: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Returning user for /me: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: nxizrj 2
-Found notification for user: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '1744698482252xnl76m7',
-    userId: 'nxizrj',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:28:02.252Z',
-    read: true
-  }
-]
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: 2
-Found user by email: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Returning user for /me: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: nxizrj 2
-Found notification for user: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '1744698482252xnl76m7',
-    userId: 'nxizrj',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:28:02.252Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 nxizrj
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (nxizrj) is invited to assessment assessment_1
-Found matching notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 nxizrj
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (nxizrj) is invited to assessment assessment_1
-Found matching notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:30:04.651Z', status: 'completed' }
-  }
-}
-User found: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:30:04.651Z', status: 'completed' }
-  }
-}
-User found: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Submit assessment request: { assessmentId: 'assessment_1' }
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:31:54.346Z', status: 'completed' }
-  }
-}
-User found: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Submit assessment request: { assessmentId: 'assessment_1' }
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:31:57.998Z', status: 'completed' }
-  }
-}
-User found: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Submit assessment request: { assessmentId: 'assessment_1' }
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:31:59.655Z', status: 'completed' }
-  }
-}
-User found: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Submit assessment request: { assessmentId: 'assessment_1' }
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:32:00.893Z', status: 'completed' }
-  }
-}
-User found: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Submit assessment request: { assessmentId: 'assessment_1' }
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:32:02.133Z', status: 'completed' }
-  }
-}
-User found: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744698456981
-Found user for test access check: nxizrj 2
-Looking for test with ID: 1744698456981
-Available tests: [
-  { id: undefined, _id: '1744698452300', title: 'Valid Parentheses' },
-  { id: undefined, _id: '1744698456981', title: 'Maximum Subarray' },
-  {
-    id: undefined,
-    _id: '1744698461488',
-    title: 'Merge K Sorted Lists'
-  }
-]
-Test found: { id: undefined, _id: '1744698456981', title: 'Maximum Subarray' }
-Specific assessment ID from query: assessment_1
-Filtering to check only assessment assessment_1
-Is test 1744698456981 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744698456981
-Assessment assessment_1 contains test 1744698456981
-Assessment assessment_1 is public
-Permission check for test access: {
-  testId: '1744698456981',
-  userId: 'nxizrj',
-  userEmail: '2',
-  isCreator: false,
-  isPublic: undefined,
-  isInvited: true
-}
-Access granted to test 1744698456981 for user 2
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744698456981
-Found user for test access check: nxizrj 2
-Looking for test with ID: 1744698456981
-Available tests: [
-  { id: undefined, _id: '1744698452300', title: 'Valid Parentheses' },
-  { id: undefined, _id: '1744698456981', title: 'Maximum Subarray' },
-  {
-    id: undefined,
-    _id: '1744698461488',
-    title: 'Merge K Sorted Lists'
-  }
-]
-Test found: { id: undefined, _id: '1744698456981', title: 'Maximum Subarray' }
-Specific assessment ID from query: assessment_1
-Filtering to check only assessment assessment_1
-Is test 1744698456981 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744698456981
-Assessment assessment_1 contains test 1744698456981
-Assessment assessment_1 is public
-Permission check for test access: {
-  testId: '1744698456981',
-  userId: 'nxizrj',
-  userEmail: '2',
-  isCreator: false,
-  isPublic: undefined,
-  isInvited: true
-}
-Access granted to test 1744698456981 for user 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:32:02.133Z', status: 'completed' }
-  }
-}
-User found: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:32:02.133Z', status: 'completed' }
-  }
-}
-User found: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: 2
-Found user by email: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Returning user for /me: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: 2
-Found user by email: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Returning user for /me: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: nxizrj 2
-Found notification for user: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '1744698482252xnl76m7',
-    userId: 'nxizrj',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:28:02.252Z',
-    read: true
-  }
-]
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: nxizrj 2
-Found notification for user: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '1744698482252xnl76m7',
-    userId: 'nxizrj',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:28:02.252Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 nxizrj
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (nxizrj) is invited to assessment assessment_1
-Found matching notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 nxizrj
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (nxizrj) is invited to assessment assessment_1
-Found matching notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
+  createdAt: '2025-04-15T06:51:01.911Z',
   read: true
 }
 User 2 is invited to assessment assessment_1 through notification
@@ -2000,396 +958,40 @@ Auth header for /me: Bearer test-token
 Token for /me: test-token
 Email from query: 2
 Found user by email: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
 Returning user for /me: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: 2
-Found user by email: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Returning user for /me: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
 GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: nxizrj 2
+Found/created user for notifications: itseru 2
 Found notification for user: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
+  createdAt: '2025-04-15T06:51:01.911Z',
   read: true
 }
 Notifications for user 2 : [
   {
-    id: '1744698482252xnl76m7',
-    userId: 'nxizrj',
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
     type: 'invitation',
     title: 'New Assessment Invitation',
     message: 'You have been invited to take a sample assessment',
     assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:28:02.252Z',
-    read: true
-  }
-]
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: nxizrj 2
-Found notification for user: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '1744698482252xnl76m7',
-    userId: 'nxizrj',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:28:02.252Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 nxizrj
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (nxizrj) is invited to assessment assessment_1
-Found matching notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 nxizrj
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (nxizrj) is invited to assessment assessment_1
-Found matching notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:32:02.133Z', status: 'completed' }
-  }
-}
-User found: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:32:02.133Z', status: 'completed' }
-  }
-}
-User found: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744698456981
-Found user for test access check: nxizrj 2
-Looking for test with ID: 1744698456981
-Available tests: [
-  { id: undefined, _id: '1744698452300', title: 'Valid Parentheses' },
-  { id: undefined, _id: '1744698456981', title: 'Maximum Subarray' },
-  {
-    id: undefined,
-    _id: '1744698461488',
-    title: 'Merge K Sorted Lists'
-  }
-]
-Test found: { id: undefined, _id: '1744698456981', title: 'Maximum Subarray' }
-Specific assessment ID from query: assessment_1
-Filtering to check only assessment assessment_1
-Is test 1744698456981 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744698456981
-Assessment assessment_1 contains test 1744698456981
-Assessment assessment_1 is public
-Permission check for test access: {
-  testId: '1744698456981',
-  userId: 'nxizrj',
-  userEmail: '2',
-  isCreator: false,
-  isPublic: undefined,
-  isInvited: true
-}
-Access granted to test 1744698456981 for user 2
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744698456981
-Found user for test access check: nxizrj 2
-Looking for test with ID: 1744698456981
-Available tests: [
-  { id: undefined, _id: '1744698452300', title: 'Valid Parentheses' },
-  { id: undefined, _id: '1744698456981', title: 'Maximum Subarray' },
-  {
-    id: undefined,
-    _id: '1744698461488',
-    title: 'Merge K Sorted Lists'
-  }
-]
-Test found: { id: undefined, _id: '1744698456981', title: 'Maximum Subarray' }
-Specific assessment ID from query: assessment_1
-Filtering to check only assessment assessment_1
-Is test 1744698456981 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744698456981
-Assessment assessment_1 contains test 1744698456981
-Assessment assessment_1 is public
-Permission check for test access: {
-  testId: '1744698456981',
-  userId: 'nxizrj',
-  userEmail: '2',
-  isCreator: false,
-  isPublic: undefined,
-  isInvited: true
-}
-Access granted to test 1744698456981 for user 2
-Run test cases request: {
-  testId: '1744698456981',
-  language: 'python',
-  assessmentId: 'assessment_1'
-}
-Starting Python execution with ID: c4efedaf-1af1-408a-bd05-6630f4305864
-Code length: 233 characters
-Input length: 23 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_c4efedaf-1af1-408a-bd05-6630f4305864.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_c4efedaf-1af1-408a-bd05-6630f4305864       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 408 }
-Temporary files cleaned up
-Starting Python execution with ID: cba67374-e08b-4ece-94bc-8a4a279fd2dc
-Code length: 233 characters
-Input length: 3 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_cba67374-e08b-4ece-94bc-8a4a279fd2dc.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_cba67374-e08b-4ece-94bc-8a4a279fd2dc       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 390 }
-Temporary files cleaned up
-Starting Python execution with ID: 09e34493-3e8d-452c-9d36-512f32eb0788
-Code length: 233 characters
-Input length: 12 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_09e34493-3e8d-452c-9d36-512f32eb0788.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_09e34493-3e8d-452c-9d36-512f32eb0788       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 365 }
-Temporary files cleaned up
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: 2
-Found user by email: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Returning user for /me: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: nxizrj 2
-Found notification for user: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '1744698482252xnl76m7',
-    userId: 'nxizrj',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:28:02.252Z',
-    read: true
-  }
-]
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: nxizrj 2
-Found notification for user: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '1744698482252xnl76m7',
-    userId: 'nxizrj',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:28:02.252Z',
+    createdAt: '2025-04-15T06:51:01.911Z',
     read: true
   }
 ]
@@ -2397,180 +999,580 @@ Auth header for /me: Bearer test-token
 Token for /me: test-token
 Email from query: 2
 Found user by email: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
 Returning user for /me: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'nxizrj',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 nxizrj
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (nxizrj) is invited to assessment assessment_1
-Found matching notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
+GET /api/notifications - Auth Header: Bearer test-token Email: 2
+Found/created user for notifications: itseru 2
+Found notification for user: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+Notifications for user 2 : [
+  {
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-15T06:51:01.911Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
+User found/created: {
+  id: 'itseru',
+  name: '2',
+  email: '2',
+  password: '2',
+  role: 'assessee'
+}
+Checking assigned assessments for user: 2 itseru
+All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
+Found matching notification: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
   read: true
 }
 User 2 is invited to assessment assessment_1 through notification
 Assigned assessments count: 1
 GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
 User found/created: {
-  id: 'nxizrj',
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Checking assigned assessments for user: 2 nxizrj
+Checking assigned assessments for user: 2 itseru
 All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
 Assessment assessment_1 invitedStudents: []
-Checking if user 2 (nxizrj) is invited to assessment assessment_1
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
 Found matching notification: {
-  id: '1744698482252xnl76m7',
-  userId: 'nxizrj',
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
   type: 'invitation',
   title: 'New Assessment Invitation',
   message: 'You have been invited to take a sample assessment',
   assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:28:02.252Z',
+  createdAt: '2025-04-15T06:51:01.911Z',
   read: true
 }
 User 2 is invited to assessment assessment_1 through notification
 Assigned assessments count: 1
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:32:02.133Z', status: 'completed' }
-  }
+GET /api/notifications - Auth Header: Bearer test-token Email: 2
+Found/created user for notifications: itseru 2
+Found notification for user: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
 }
-User found: {
-  id: 'nxizrj',
+Notifications for user 2 : [
+  {
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-15T06:51:01.911Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
+User found/created: {
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
+Checking assigned assessments for user: 2 itseru
+All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
+Found matching notification: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
 }
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
+User 2 is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/notifications - Auth Header: Bearer test-token Email: 2
+Found/created user for notifications: itseru 2
+Found notification for user: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
 }
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744698456981', '1744698452300', '1744698461488' ],
-  startTime: '2025-04-15T06:27',
-  endTime: '2025-04-22T06:27',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: 'on2oz5',
-  createdAt: '2025-04-15T06:27:55.148Z',
-  updatedAt: '2025-04-15T06:27:55.148Z',
-  attemptsUsed: 0,
-  testAttempts: { nxizrj: { '1744698452300': 2, '1744698461488': 1 } },
-  testResults: { nxizrj: { '1744698452300': [Object], '1744698461488': [Object] } },
-  submissions: {
-    nxizrj: { submittedAt: '2025-04-15T06:32:02.133Z', status: 'completed' }
+Notifications for user 2 : [
+  {
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-15T06:51:01.911Z',
+    read: true
   }
-}
-User found: {
-  id: 'nxizrj',
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
+User found/created: {
+  id: 'itseru',
   name: '2',
   email: '2',
   password: '2',
   role: 'assessee'
 }
-Creator check: { assessmentCreatedBy: 'on2oz5', userId: 'nxizrj', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
+Checking assigned assessments for user: 2 itseru
+All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
+Found matching notification: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
 }
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
+User 2 is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/notifications - Auth Header: Bearer test-token Email: 2
+Found/created user for notifications: itseru 2
+Found notification for user: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
 }
-Looking up tests: [ '1744698456981', '1744698452300', '1744698461488' ]
-Found test: 1744698456981 Maximum Subarray
-Found test: 1744698452300 Valid Parentheses
-Found test: 1744698461488 Merge K Sorted Lists
-Test details count: 3
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698456981 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744698456981. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698452300 in assessment assessment_1 for user 2
-User 2 has used 2 of 3 attempts for test 1744698452300. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
-Getting attempts for test 1744698461488 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744698461488. Assessment submitted: true
+Notifications for user 2 : [
+  {
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-15T06:51:01.911Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
+User found/created: {
+  id: 'itseru',
+  name: '2',
+  email: '2',
+  password: '2',
+  role: 'assessee'
+}
+Checking assigned assessments for user: 2 itseru
+All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
+Found matching notification: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+User 2 is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/notifications - Auth Header: Bearer test-token Email: 2
+Found/created user for notifications: itseru 2
+Found notification for user: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+Notifications for user 2 : [
+  {
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-15T06:51:01.911Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
+User found/created: {
+  id: 'itseru',
+  name: '2',
+  email: '2',
+  password: '2',
+  role: 'assessee'
+}
+Checking assigned assessments for user: 2 itseru
+All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
+Found matching notification: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+User 2 is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/notifications - Auth Header: Bearer test-token Email: 2
+Found/created user for notifications: itseru 2
+Found notification for user: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+Notifications for user 2 : [
+  {
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-15T06:51:01.911Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
+User found/created: {
+  id: 'itseru',
+  name: '2',
+  email: '2',
+  password: '2',
+  role: 'assessee'
+}
+Checking assigned assessments for user: 2 itseru
+All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
+Found matching notification: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+User 2 is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/notifications - Auth Header: Bearer test-token Email: 2
+Found/created user for notifications: itseru 2
+Found notification for user: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+Notifications for user 2 : [
+  {
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-15T06:51:01.911Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
+User found/created: {
+  id: 'itseru',
+  name: '2',
+  email: '2',
+  password: '2',
+  role: 'assessee'
+}
+Checking assigned assessments for user: 2 itseru
+All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
+Found matching notification: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+User 2 is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/notifications - Auth Header: Bearer test-token Email: 2
+Found/created user for notifications: itseru 2
+Found notification for user: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+Notifications for user 2 : [
+  {
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-15T06:51:01.911Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
+User found/created: {
+  id: 'itseru',
+  name: '2',
+  email: '2',
+  password: '2',
+  role: 'assessee'
+}
+Checking assigned assessments for user: 2 itseru
+All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
+Found matching notification: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+User 2 is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/notifications - Auth Header: Bearer test-token Email: 2
+Found/created user for notifications: itseru 2
+Found notification for user: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+Notifications for user 2 : [
+  {
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-15T06:51:01.911Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
+User found/created: {
+  id: 'itseru',
+  name: '2',
+  email: '2',
+  password: '2',
+  role: 'assessee'
+}
+Checking assigned assessments for user: 2 itseru
+All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
+Found matching notification: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+User 2 is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/notifications - Auth Header: Bearer test-token Email: 2
+Found/created user for notifications: itseru 2
+Found notification for user: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+Notifications for user 2 : [
+  {
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-15T06:51:01.911Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
+User found/created: {
+  id: 'itseru',
+  name: '2',
+  email: '2',
+  password: '2',
+  role: 'assessee'
+}
+Checking assigned assessments for user: 2 itseru
+All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
+Found matching notification: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+User 2 is invited to assessment assessment_1 through notification
+Assigned assessments count: 1
+GET /api/notifications - Auth Header: Bearer test-token Email: 2
+Found/created user for notifications: itseru 2
+Found notification for user: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+Notifications for user 2 : [
+  {
+    id: '17446998619111rsksk1',
+    userId: 'itseru',
+    type: 'invitation',
+    title: 'New Assessment Invitation',
+    message: 'You have been invited to take a sample assessment',
+    assessmentId: 'assessment_1',
+    createdAt: '2025-04-15T06:51:01.911Z',
+    read: true
+  }
+]
+GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
+User found/created: {
+  id: 'itseru',
+  name: '2',
+  email: '2',
+  password: '2',
+  role: 'assessee'
+}
+Checking assigned assessments for user: 2 itseru
+All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
+Assessment assessment_1 invitedStudents: []
+Checking if user 2 (itseru) is invited to assessment assessment_1
+Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
+Found matching notification: {
+  id: '17446998619111rsksk1',
+  userId: 'itseru',
+  type: 'invitation',
+  title: 'New Assessment Invitation',
+  message: 'You have been invited to take a sample assessment',
+  assessmentId: 'assessment_1',
+  createdAt: '2025-04-15T06:51:01.911Z',
+  read: true
+}
+User 2 is invited to assessment assessment_1 through notification
+Assigned assessments count: 1

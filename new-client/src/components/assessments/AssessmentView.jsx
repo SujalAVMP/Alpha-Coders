@@ -207,18 +207,28 @@ const AssessmentView = () => {
       setSubmitting(true);
       setConfirmDialogOpen(false);
 
+      console.log('Submitting assessment:', assessmentId);
+
       // Submit the entire assessment
-      await submitAssessment(assessmentId);
+      const result = await submitAssessment(assessmentId);
+      console.log('Assessment submission result:', result);
 
       setSubmitSuccess(true);
       toast.success('Assessment submitted successfully!');
 
       // Refresh the assessment data to update the status
+      console.log('Refreshing assessment data...');
       const updatedAssessment = await getAssessmentById(assessmentId);
+      console.log('Updated assessment data:', updatedAssessment);
       setAssessment(updatedAssessment);
 
       // Refresh test status
       fetchTestStatus();
+
+      // Force a refresh of the dashboard to show the submitted assessment in Past Tests
+      setTimeout(() => {
+        window.location.href = '/dashboard';
+      }, 2000);
     } catch (error) {
       console.error('Error submitting assessment:', error);
       toast.error(`Error: ${error.message || 'Failed to submit assessment'}`);

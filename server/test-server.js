@@ -1080,6 +1080,16 @@ app.get('/api/assessments/assigned', (req, res) => {
     if (!assessment.attemptsUsed) assessment.attemptsUsed = 0;
     if (!assessment.maxAttempts) assessment.maxAttempts = 1;
 
+    // Check if the assessment has been submitted
+    if (assessment.submissions && assessment.submissions[user.id]) {
+      assessment.submitted = true;
+      assessment.submittedAt = assessment.submissions[user.id].submittedAt;
+      console.log(`Assessment ${assessment.id} is submitted by user ${user.id}, submittedAt: ${assessment.submittedAt}`);
+    } else {
+      assessment.submitted = false;
+      console.log(`Assessment ${assessment.id} is NOT submitted by user ${user.id}`);
+    }
+
     // For testing purposes, always include the assessment if it was created in this session
     if (assessment.id.includes(Date.now().toString().substring(0, 8))) {
       console.log(`Assessment ${assessment.id} was created in this session, including it`);
@@ -2269,10 +2279,23 @@ app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
       assessment.submissions = {};
     }
 
+    const submittedAt = new Date().toISOString();
     assessment.submissions[user.id] = {
-      submittedAt: new Date().toISOString(),
+      submittedAt: submittedAt,
       status: 'completed'
     };
+
+    // Also set the submitted flag directly on the assessment
+    assessment.submitted = true;
+    assessment.submittedAt = submittedAt;
+
+    console.log(`Assessment ${assessmentId} marked as submitted for user ${user.id}`);
+    console.log('Updated assessment:', {
+      id: assessment.id,
+      title: assessment.title,
+      submitted: assessment.submitted,
+      submittedAt: assessment.submittedAt
+    });
 
     // Return success response
     res.status(200).json({

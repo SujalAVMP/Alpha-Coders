@@ -69,94 +69,114 @@ const AssesseeDashboard = () => {
     loadUser();
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
+  // Define the fetchData function outside useEffect so it can be reused
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      setError('');
+
+      // Initialize with empty arrays
+      setTests([]);
+      setAssessments([]);
+
+      // Ensure we have user data before proceeding
+      if (!user || !user.email) {
+        console.log('No user data available, skipping data fetch');
+        setLoading(false);
+        return;
+      }
+
+      // Fetch notifications first
       try {
-        setLoading(true);
-        setError('');
+        console.log('Fetching notifications for user:', user.email);
+        const notificationsData = await getNotifications();
+        console.log('Received notifications:', notificationsData);
+        setNotifications(notificationsData || []);
 
-        // Initialize with empty arrays
-        setTests([]);
-        setAssessments([]);
+        // Check for unread invitation notifications
+        const unreadInvitations = notificationsData?.filter(n =>
+          n.type === 'invitation'
+        ) || [];
 
-        // Ensure we have user data before proceeding
-        if (!user || !user.email) {
-          console.log('No user data available, skipping data fetch');
-          setLoading(false);
-          return;
+        console.log('Invitation notifications:', unreadInvitations);
+
+        if (unreadInvitations.length > 0) {
+          setError(
+            <Alert severity="info" sx={{ mb: 3 }}>
+              You have {unreadInvitations.length} assessment invitation(s).
+            </Alert>
+          );
         }
+      } catch (err) {
+        console.error('Error fetching notifications:', err);
+      }
 
-        // Fetch notifications first
-        try {
-          console.log('Fetching notifications for user:', user.email);
-          const notificationsData = await getNotifications();
-          console.log('Received notifications:', notificationsData);
-          setNotifications(notificationsData || []);
+      // Fetch assigned assessments - these are the only ones the assessee should see
+      try {
+        console.log('Fetching assigned assessments for user:', user?.email);
+        const assignedAssessmentsData = await getAssignedAssessments();
+        console.log('Received assigned assessments:', assignedAssessmentsData);
 
-          // Check for unread invitation notifications
-          const unreadInvitations = notificationsData?.filter(n =>
-            n.type === 'invitation'
-          ) || [];
+        // The API now only returns assessments the user is specifically invited to
+        if (assignedAssessmentsData?.length > 0) {
+          // Make sure each assessment has the required properties
+          const processedAssessments = assignedAssessmentsData.map(assessment => ({
+            ...assessment,
+            attemptsUsed: assessment.attemptsUsed || 0,
+            maxAttempts: assessment.maxAttempts || 1,
+            isNewInvitation: assessment.isNewInvitation || false,
+            submitted: assessment.submitted || false,
+            submittedAt: assessment.submittedAt || null
+          }));
 
-          console.log('Invitation notifications:', unreadInvitations);
+          // Log each assessment's submission status
+          processedAssessments.forEach(assessment => {
+            console.log('Assessment submission status:', {
+              id: assessment.id,
+              title: assessment.title,
+              submitted: assessment.submitted,
+              submittedAt: assessment.submittedAt
+            });
+          });
 
-          if (unreadInvitations.length > 0) {
-            setError(
-              <Alert severity="info" sx={{ mb: 3 }}>
-                You have {unreadInvitations.length} assessment invitation(s).
-              </Alert>
-            );
-          }
-        } catch (err) {
-          console.error('Error fetching notifications:', err);
-        }
-
-        // Fetch assigned assessments - these are the only ones the assessee should see
-        try {
-          console.log('Fetching assigned assessments for user:', user?.email);
-          const assignedAssessmentsData = await getAssignedAssessments();
-          console.log('Received assigned assessments:', assignedAssessmentsData);
-
-          // The API now only returns assessments the user is specifically invited to
-          if (assignedAssessmentsData?.length > 0) {
-            // Make sure each assessment has the required properties
-            const processedAssessments = assignedAssessmentsData.map(assessment => ({
-              ...assessment,
-              attemptsUsed: assessment.attemptsUsed || 0,
-              maxAttempts: assessment.maxAttempts || 1,
-              isNewInvitation: assessment.isNewInvitation || false
-            }));
-
-            setAssessments(processedAssessments);
-            console.log('Set assessments state with:', processedAssessments);
-          } else {
-            console.log('No assigned assessments found');
-            setAssessments([]);
-          }
-        } catch (err) {
-          console.error('Error fetching assigned assessments:', err);
+          setAssessments(processedAssessments);
+          console.log('Set assessments state with:', processedAssessments);
+        } else {
+          console.log('No assigned assessments found');
           setAssessments([]);
         }
-
-        // Fetch user submissions
-        try {
-          const submissionsData = await getUserSubmissions();
-          setSubmissions(submissionsData || []);
-        } catch (err) {
-          console.error('Error fetching user submissions:', err);
-          setSubmissions([]);
-        }
-
       } catch (err) {
-        console.error('Error fetching dashboard data:', err);
-        setError('Failed to load dashboard data. Please try again.');
-      } finally {
-        setLoading(false);
+        console.error('Error fetching assigned assessments:', err);
+        setAssessments([]);
       }
-    };
 
+      // Fetch user submissions
+      try {
+        const submissionsData = await getUserSubmissions();
+        setSubmissions(submissionsData || []);
+      } catch (err) {
+        console.error('Error fetching user submissions:', err);
+        setSubmissions([]);
+      }
+
+    } catch (err) {
+      console.error('Error fetching dashboard data:', err);
+      setError('Failed to load dashboard data. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Use the fetchData function in useEffect
+  useEffect(() => {
     fetchData();
   }, [user]);
+
+  // Add a refresh function
+  const refreshDashboard = () => {
+    console.log('Refreshing dashboard...');
+    fetchData();
+  };
 
   const getTestById = (testId) => {
     return tests.find(test => test._id === testId) || { title: 'Unknown Test' };
@@ -166,7 +186,12 @@ const AssesseeDashboard = () => {
     const now = new Date();
     const startTime = new Date(assessment.startTime);
     const endTime = new Date(assessment.endTime);
-    return now >= startTime && now <= endTime;
+    return now >= startTime && now <= endTime && !assessment.submitted;
+  };
+
+  const isAssessmentSubmitted = (assessment) => {
+    console.log('Checking if assessment is submitted:', assessment.id, assessment.title, assessment.submitted);
+    return assessment.submitted === true;
   };
 
   const canTakeAssessment = (assessment) => {
@@ -186,23 +211,32 @@ const AssesseeDashboard = () => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <Box>
           <Typography variant="h4" component="h1" gutterBottom>
-            {viewingSubmissions ? 'My Submissions' : 'Active Tests'}
+            {viewingSubmissions ? 'My Submissions' : 'My Assessments'}
           </Typography>
           <Typography variant="subtitle1" gutterBottom>
             Welcome, {user?.name || 'Student'}!
           </Typography>
         </Box>
-        <Button
-          variant="contained"
-          color={viewingSubmissions ? 'primary' : 'secondary'}
-          onClick={() => {
-            const newView = !viewingSubmissions;
-            setViewingSubmissions(newView);
-            navigate(newView ? '?tab=submissions' : '?tab=tests');
-          }}
-        >
-          {viewingSubmissions ? 'View Active Tests' : 'View My Submissions'}
-        </Button>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={refreshDashboard}
+          >
+            Refresh
+          </Button>
+          <Button
+            variant="contained"
+            color={viewingSubmissions ? 'primary' : 'secondary'}
+            onClick={() => {
+              const newView = !viewingSubmissions;
+              setViewingSubmissions(newView);
+              navigate(newView ? '?tab=submissions' : '?tab=tests');
+            }}
+          >
+            {viewingSubmissions ? 'View My Assessments' : 'View My Submissions'}
+          </Button>
+        </Box>
       </Box>
 
       {error && (
@@ -220,23 +254,27 @@ const AssesseeDashboard = () => {
               Tests will appear here when an assessor invites you to take them. You can only see tests that you've been specifically invited to.
             </Alert>
 
-            {assessments.length === 0 ? (
-              <Paper sx={{ p: 3, textAlign: 'center', bgcolor: 'background.paper' }}>
+            {/* Active Tests Section */}
+            <Typography variant="h6" gutterBottom sx={{ mb: 2 }}>
+              Active Tests
+            </Typography>
+
+            {assessments.filter(a => isAssessmentActive(a)).length === 0 ? (
+              <Paper sx={{ p: 3, textAlign: 'center', bgcolor: 'background.paper', mb: 4 }}>
                 <Typography variant="body1" color="textSecondary">
-                  You haven't been invited to any tests yet.
+                  You don't have any active tests at the moment.
                 </Typography>
               </Paper>
             ) : (
-              <Grid container spacing={3}>
-                {assessments.map(assessment => {
+              <Grid container spacing={3} sx={{ mb: 4 }}>
+                {assessments.filter(assessment => isAssessmentActive(assessment)).map(assessment => {
                   return (
                     <Grid item xs={12} sm={6} md={4} key={assessment.id}>
                       <Card sx={{
                         height: '100%',
                         display: 'flex',
                         flexDirection: 'column',
-                        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-                        opacity: isAssessmentActive(assessment) ? 1 : 0.7
+                        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
                       }}>
                         <CardContent sx={{ flexGrow: 1 }}>
                           <Typography variant="h6" component="h2" gutterBottom>
@@ -269,10 +307,9 @@ const AssesseeDashboard = () => {
                             variant="contained"
                             color="primary"
                             fullWidth
-                            disabled={!isAssessmentActive(assessment)}
                             sx={{ py: 1 }}
                           >
-                            {isAssessmentActive(assessment) ? 'View Assessment' : 'Assessment Unavailable'}
+                            View Assessment
                           </Button>
                         </CardActions>
                       </Card>
@@ -280,6 +317,80 @@ const AssesseeDashboard = () => {
                   );
                 })}
               </Grid>
+            )}
+
+            {/* Past Tests Section */}
+            <Typography variant="h6" gutterBottom sx={{ mb: 2, mt: 4 }}>
+              Past Tests
+            </Typography>
+
+            {assessments.filter(a => isAssessmentSubmitted(a)).length === 0 ? (
+              <Paper sx={{ p: 3, textAlign: 'center', bgcolor: 'background.paper' }}>
+                <Typography variant="body1" color="textSecondary">
+                  You haven't submitted any tests yet.
+                </Typography>
+              </Paper>
+            ) : (
+              <Grid container spacing={3}>
+                {assessments.filter(assessment => isAssessmentSubmitted(assessment)).map(assessment => {
+                  return (
+                    <Grid item xs={12} sm={6} md={4} key={assessment.id}>
+                      <Card sx={{
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                        bgcolor: '#f5f5f5'
+                      }}>
+                        <CardContent sx={{ flexGrow: 1 }}>
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                            <Typography variant="h6" component="h2" gutterBottom>
+                              {assessment.title}
+                            </Typography>
+                            <Chip label="Submitted" size="small" color="success" />
+                          </Box>
+                          <Typography variant="body2" color="text.secondary" paragraph>
+                            {assessment.description || 'No description provided'}
+                          </Typography>
+                          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 1 }}>
+                            <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center' }}>
+                              <AccessTimeIcon fontSize="small" sx={{ mr: 1 }} />
+                              Submitted: {assessment.submittedAt ? new Date(assessment.submittedAt).toLocaleDateString() : 'Unknown'}
+                            </Typography>
+                            <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center' }}>
+                              <CodeIcon fontSize="small" sx={{ mr: 1 }} />
+                              Tests: {Array.isArray(assessment.tests) ? assessment.tests.length : 0}
+                            </Typography>
+                          </Box>
+                        </CardContent>
+
+                        <Divider />
+
+                        <CardActions>
+                          <Button
+                            component={Link}
+                            to={`/assessments/submissions/${assessment.id}`}
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            sx={{ py: 1 }}
+                          >
+                            View Results
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            )}
+
+            {assessments.length === 0 && (
+              <Paper sx={{ p: 3, textAlign: 'center', bgcolor: 'background.paper', mt: 4 }}>
+                <Typography variant="body1" color="textSecondary">
+                  You haven't been invited to any tests yet.
+                </Typography>
+              </Paper>
             )}
           </>
         ) : (
