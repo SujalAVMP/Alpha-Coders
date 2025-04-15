@@ -1,1578 +1,1196 @@
 Checking Docker and pulling required images...
+(node:1859095) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1859095) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+MongoDB Connected: localhost
 Docker version: Docker version 28.0.4, build b8034c0
 
 Pulling Python image...
+Found 5 existing template tests. Skipping seed.
 Python image pulled successfully
 Pulling GCC image...
 GCC image pulled successfully
 Docker setup completed
 Test server running on port 5002
-Register request body: { name: '1', email: '1', password: '1', role: 'assessor' }
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: 1
-User found for my assessments: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Found assessments count: 0
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: 1
-User found for my assessments: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Found assessments count: 0
-GET /api/tests - Auth Header: Bearer test-token Email: 1
-User found: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: 1
-User found: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: 1
-User found: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: 1
-User found: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: 1
-User found: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: 1
-User found: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: 1
-User found for my assessments: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Found assessments count: 0
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: 1
-User found for my assessments: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Found assessments count: 0
-GET /api/tests - Auth Header: Bearer test-token Email: 1
-User found: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer test-token Email: 1
-User found: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
-}
-Returning all tests for assessor
 Create assessment request body: {
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744699811608', '1744699817124' ],
-  startTime: '2025-04-15T06:50',
-  endTime: '2025-04-22T06:50',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: []
+  title: 'Invite Test Assessment',
+  description: 'Testing the invite functionality',
+  tests: [ '67fe8fdbeda20e39d6c9246f' ],
+  startTime: '2025-04-15T00:00:00.000Z',
+  endTime: '2025-04-30T23:59:59.000Z',
+  maxAttempts: 3,
+  isPublic: false
 }
-POST /api/assessments - Auth Header: Bearer test-token Email: 1
+POST /api/assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNzI3N2I5MGZmYmNmM2JkZTQ0YzgiLCJzZXNzaW9uSWQiOiJtOWlwYXp6bzFoa3RuZzdrOWM5IiwidGltZXN0YW1wIjoxNzQ0NzMzNTQ1OTcxfQ== Email: teacher@example.com
 User found for assessment creation: {
-  id: '0tzh3q',
-  name: '1',
-  email: '1',
-  password: '1',
-  role: 'assessor'
+  _id: new ObjectId('67fe7277b90ffbcf3bde44c8'),
+  name: 'Test Teacher',
+  email: 'teacher@example.com',
+  password: '$2b$10$g3GoLURdGyJoAwIFNTLbPORvYLFzxY5z1lYpi.xEXx6EGpO12fmR.',
+  role: 'assessor',
+  createdAt: 2025-04-15T14:51:35.009Z,
+  updatedAt: 2025-04-15T14:51:35.009Z,
+  __v: 0
 }
-Tests array for assessment: [ '1744699811608', '1744699817124' ]
+Tests array for assessment: [ '67fe8fdbeda20e39d6c9246f' ]
 Filtered invitedStudents for new assessment: []
 New assessment being created: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744699811608', '1744699817124' ],
-  startTime: '2025-04-15T06:50',
-  endTime: '2025-04-22T06:50',
-  maxAttempts: '3',
-  isPublic: true,
+  title: 'Invite Test Assessment',
+  description: 'Testing the invite functionality',
+  startTime: 2025-04-15T00:00:00.000Z,
+  endTime: 2025-04-30T23:59:59.000Z,
+  maxAttempts: 3,
+  isPublic: false,
+  tests: [ new ObjectId('67fe8fdbeda20e39d6c9246f') ],
   invitedStudents: [],
-  createdBy: '0tzh3q',
-  createdAt: '2025-04-15T06:50:41.713Z',
-  updatedAt: '2025-04-15T06:50:41.713Z'
+  invitedUsers: [],
+  createdBy: new ObjectId('67fe7277b90ffbcf3bde44c8'),
+  createdAt: 2025-04-15T16:58:04.559Z,
+  _id: new ObjectId('67fe901ceda20e39d6c92474'),
+  updatedAt: 2025-04-15T16:58:04.559Z,
+  testAttempts: [],
+  submissions: []
 }
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: 1
+POST /api/assessments/:id/invite - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNzI3N2I5MGZmYmNmM2JkZTQ0YzgiLCJzZXNzaW9uSWQiOiJtOWlwYXp6bzFoa3RuZzdrOWM5IiwidGltZXN0YW1wIjoxNzQ0NzMzNTQ1OTcxfQ== Email: teacher@example.com Assessment ID: 67fe901ceda20e39d6c92474
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNzI3N2I5MGZmYmNmM2JkZTQ0YzgiLCJzZXNzaW9uSWQiOiJtOWlwYXp6bzFoa3RuZzdrOWM5IiwidGltZXN0YW1wIjoxNzQ0NzMzNTQ1OTcxfQ== Email: teacher@example.com Assessment ID: 67fe901ceda20e39d6c92474
+Assessment found: new ObjectId('67fe901ceda20e39d6c92474')
+User found: teacher@example.com
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 1
+POST /api/assessments/:id/invite - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNzI3N2I5MGZmYmNmM2JkZTQ0YzgiLCJzZXNzaW9uSWQiOiJtOWlwYXp6bzFoa3RuZzdrOWM5IiwidGltZXN0YW1wIjoxNzQ0NzMzNTQ1OTcxfQ== Email: teacher@example.com Assessment ID: 67fe901ceda20e39d6c92474
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNzI3N2I5MGZmYmNmM2JkZTQ0YzgiLCJzZXNzaW9uSWQiOiJtOWlwYXp6bzFoa3RuZzdrOWM5IiwidGltZXN0YW1wIjoxNzQ0NzMzNTQ1OTcxfQ== Email: teacher@example.com Assessment ID: 67fe901ceda20e39d6c92474
+Assessment found: new ObjectId('67fe901ceda20e39d6c92474')
+User found: teacher@example.com
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 1
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Session ID for /me: m9iqkt0epk1lmzry6wk
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ==
+Session ID for /me: m9iqk8tpot3fjzuitpo
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ==
+Token validation successful, user: 2
+Token validation successful, user: 1
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Session ID for /me: m9iqkt0epk1lmzry6wk
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Token validation successful, user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ==
+Session ID for /me: m9iqk8tpot3fjzuitpo
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ==
+Token validation successful, user: 1
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Session ID for /me: m9iqkt0epk1lmzry6wk
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Token validation successful, user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Session ID for /me: m9iqkt0epk1lmzry6wk
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Token validation successful, user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 2
+Returning notifications for user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 2
+Returning notifications for user: 2
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
 User found for my assessments: {
-  id: '0tzh3q',
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
   name: '1',
   email: '1',
-  password: '1',
-  role: 'assessor'
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-Checking assessment: assessment_1 createdBy: 0tzh3q user.id: 0tzh3q
-Found assessments count: 1
-Assessment assessment_1 invited users: []
-GET /api/assessments/my-assessments - Auth Header: Bearer test-token Email: 1
+Found 3 assessments created by user 1
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 2
+Returning notifications for user: 2
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
 User found for my assessments: {
-  id: '0tzh3q',
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
   name: '1',
   email: '1',
-  password: '1',
-  role: 'assessor'
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-Checking assessment: assessment_1 createdBy: 0tzh3q user.id: 0tzh3q
-Found assessments count: 1
-Assessment assessment_1 invited users: []
-Register request body: { name: '2', email: '2', password: '2', role: 'assessee' }
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: 2
-Found user by email: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Returning user for /me: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Notifications for user 2 : []
-No notifications found for user, creating a sample one
-Created sample notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: false
-}
-Marked notification as read: 17446998619111rsksk1
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: 2
-Found user by email: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Returning user for /me: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is NOT submitted by user itseru
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is NOT submitted by user itseru
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744699811608', '1744699817124' ],
-  startTime: '2025-04-15T06:50',
-  endTime: '2025-04-22T06:50',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: '0tzh3q',
-  createdAt: '2025-04-15T06:50:41.713Z',
-  updatedAt: '2025-04-15T06:50:41.713Z',
-  attemptsUsed: 0,
-  submitted: false
-}
-User found: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744699811608', '1744699817124' ]
-Found test: 1744699811608 Valid Parentheses
-Found test: 1744699817124 Maximum Subarray
-Test details count: 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744699811608', '1744699817124' ],
-  startTime: '2025-04-15T06:50',
-  endTime: '2025-04-22T06:50',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: '0tzh3q',
-  createdAt: '2025-04-15T06:50:41.713Z',
-  updatedAt: '2025-04-15T06:50:41.713Z',
-  attemptsUsed: 0,
-  submitted: false
-}
-User found: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744699811608', '1744699817124' ]
-Found test: 1744699811608 Valid Parentheses
-Found test: 1744699817124 Maximum Subarray
-Test details count: 2
-Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744699811608. Assessment submitted: false
-Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744699811608. Assessment submitted: false
-Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: false
-Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: false
-GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744699811608
-Found user for test access check: itseru 2
-Looking for test with ID: 1744699811608
-Available tests: [
-  { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' },
-  { id: undefined, _id: '1744699817124', title: 'Maximum Subarray' }
-]
-Test found: { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' }
-Specific assessment ID from query: assessment_1
-Filtering to check only assessment assessment_1
-Is test 1744699811608 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744699811608
-Assessment assessment_1 contains test 1744699811608
-Assessment assessment_1 is public
-Permission check for test access: {
-  testId: '1744699811608',
-  userId: 'itseru',
-  userEmail: '2',
-  isCreator: false,
-  isPublic: undefined,
-  isInvited: true
-}
-Access granted to test 1744699811608 for user 2
-Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744699811608. Assessment submitted: false
-GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744699811608
-Found user for test access check: itseru 2
-Looking for test with ID: 1744699811608
-Available tests: [
-  { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' },
-  { id: undefined, _id: '1744699817124', title: 'Maximum Subarray' }
-]
-Test found: { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' }
-Specific assessment ID from query: assessment_1
-Filtering to check only assessment assessment_1
-Is test 1744699811608 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744699811608
-Assessment assessment_1 contains test 1744699811608
-Assessment assessment_1 is public
-Permission check for test access: {
-  testId: '1744699811608',
-  userId: 'itseru',
-  userEmail: '2',
-  isCreator: false,
-  isPublic: undefined,
-  isInvited: true
-}
-Access granted to test 1744699811608 for user 2
-Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744699811608. Assessment submitted: false
-Submit code request: {
-  testId: '1744699811608',
-  language: 'python',
-  assessmentId: 'assessment_1'
-}
-User 2 has used 0 of 3 attempts for test 1744699811608 in assessment assessment_1
-Starting Python execution with ID: a7b010c7-08a4-4be9-95a9-9a7e0eb5fd09
-Code length: 217 characters
-Input length: 6 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_a7b010c7-08a4-4be9-95a9-9a7e0eb5fd09.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_a7b010c7-08a4-4be9-95a9-9a7e0eb5fd09       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 387 }
-Temporary files cleaned up
-Starting Python execution with ID: db3db394-8b68-4d24-8f21-0f128d8be69f
-Code length: 217 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_db3db394-8b68-4d24-8f21-0f128d8be69f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_db3db394-8b68-4d24-8f21-0f128d8be69f       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 355 }
-Temporary files cleaned up
-Starting Python execution with ID: 2c726bb1-4c51-4e0b-8f7f-4360df48145f
-Code length: 217 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_2c726bb1-4c51-4e0b-8f7f-4360df48145f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_2c726bb1-4c51-4e0b-8f7f-4360df48145f       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 324 }
-Temporary files cleaned up
-Starting Python execution with ID: a9d47c28-1456-4b6f-bf38-a713a0748ea5
-Code length: 217 characters
-Input length: 2 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_a9d47c28-1456-4b6f-bf38-a713a0748ea5.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_a9d47c28-1456-4b6f-bf38-a713a0748ea5       -i python:3.9-slim       bash
-Python execution result: { stdout: 'true\n', stderr: '', executionTime: 373 }
-Temporary files cleaned up
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744699811608', '1744699817124' ],
-  startTime: '2025-04-15T06:50',
-  endTime: '2025-04-22T06:50',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: '0tzh3q',
-  createdAt: '2025-04-15T06:50:41.713Z',
-  updatedAt: '2025-04-15T06:50:41.713Z',
-  attemptsUsed: 0,
-  submitted: false,
-  testAttempts: { itseru: { '1744699811608': 1 } },
-  testResults: { itseru: { '1744699811608': [Object] } }
-}
-User found: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744699811608', '1744699817124' ]
-Found test: 1744699811608 Valid Parentheses
-Found test: 1744699817124 Maximum Subarray
-Test details count: 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744699811608', '1744699817124' ],
-  startTime: '2025-04-15T06:50',
-  endTime: '2025-04-22T06:50',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: '0tzh3q',
-  createdAt: '2025-04-15T06:50:41.713Z',
-  updatedAt: '2025-04-15T06:50:41.713Z',
-  attemptsUsed: 0,
-  submitted: false,
-  testAttempts: { itseru: { '1744699811608': 1 } },
-  testResults: { itseru: { '1744699811608': [Object] } }
-}
-User found: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744699811608', '1744699817124' ]
-Found test: 1744699811608 Valid Parentheses
-Found test: 1744699817124 Maximum Subarray
-Test details count: 2
-Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: false
-Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: false
-Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: false
-Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: false
-Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: false
-GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744699811608
-Found user for test access check: itseru 2
-Looking for test with ID: 1744699811608
-Available tests: [
-  { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' },
-  { id: undefined, _id: '1744699817124', title: 'Maximum Subarray' }
-]
-Test found: { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' }
-Specific assessment ID from query: assessment_1
-Filtering to check only assessment assessment_1
-Is test 1744699811608 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744699811608
-Assessment assessment_1 contains test 1744699811608
-Assessment assessment_1 is public
-Permission check for test access: {
-  testId: '1744699811608',
-  userId: 'itseru',
-  userEmail: '2',
-  isCreator: false,
-  isPublic: undefined,
-  isInvited: true
-}
-Access granted to test 1744699811608 for user 2
-Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: false
-GET /api/tests/:id - Auth Header: Bearer test-token Email: 2 Test ID: 1744699811608
-Found user for test access check: itseru 2
-Looking for test with ID: 1744699811608
-Available tests: [
-  { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' },
-  { id: undefined, _id: '1744699817124', title: 'Maximum Subarray' }
-]
-Test found: { id: undefined, _id: '1744699811608', title: 'Valid Parentheses' }
-Specific assessment ID from query: assessment_1
-Filtering to check only assessment assessment_1
-Is test 1744699811608 part of assessment assessment_1? true
-Checking assessment assessment_1 for test 1744699811608
-Assessment assessment_1 contains test 1744699811608
-Assessment assessment_1 is public
-Permission check for test access: {
-  testId: '1744699811608',
-  userId: 'itseru',
-  userEmail: '2',
-  isCreator: false,
-  isPublic: undefined,
-  isInvited: true
-}
-Access granted to test 1744699811608 for user 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744699811608', '1744699817124' ],
-  startTime: '2025-04-15T06:50',
-  endTime: '2025-04-22T06:50',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: '0tzh3q',
-  createdAt: '2025-04-15T06:50:41.713Z',
-  updatedAt: '2025-04-15T06:50:41.713Z',
-  attemptsUsed: 0,
-  submitted: false,
-  testAttempts: { itseru: { '1744699811608': 1 } },
-  testResults: { itseru: { '1744699811608': [Object] } }
-}
-User found: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744699811608', '1744699817124' ]
-Found test: 1744699811608 Valid Parentheses
-Found test: 1744699817124 Maximum Subarray
-Test details count: 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744699811608', '1744699817124' ],
-  startTime: '2025-04-15T06:50',
-  endTime: '2025-04-22T06:50',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: '0tzh3q',
-  createdAt: '2025-04-15T06:50:41.713Z',
-  updatedAt: '2025-04-15T06:50:41.713Z',
-  attemptsUsed: 0,
-  submitted: false,
-  testAttempts: { itseru: { '1744699811608': 1 } },
-  testResults: { itseru: { '1744699811608': [Object] } }
-}
-User found: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744699811608', '1744699817124' ]
-Found test: 1744699811608 Valid Parentheses
-Found test: 1744699817124 Maximum Subarray
-Test details count: 2
-Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: false
-Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: false
-Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: false
-Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: false
-Submit assessment request: { assessmentId: 'assessment_1' }
-Assessment assessment_1 marked as submitted for user itseru
-Updated assessment: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  submitted: true,
-  submittedAt: '2025-04-15T06:51:40.497Z'
-}
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer test-token Email: 2 Assessment ID: assessment_1
-Looking for assessment with ID: assessment_1
-Available assessments: [ 'assessment_1' ]
-Assessment found: {
-  id: 'assessment_1',
-  title: 'Testing bro',
-  description: '',
-  tests: [ '1744699811608', '1744699817124' ],
-  startTime: '2025-04-15T06:50',
-  endTime: '2025-04-22T06:50',
-  maxAttempts: '3',
-  isPublic: true,
-  invitedStudents: [],
-  createdBy: '0tzh3q',
-  createdAt: '2025-04-15T06:50:41.713Z',
-  updatedAt: '2025-04-15T06:50:41.713Z',
-  attemptsUsed: 0,
-  submitted: true,
-  testAttempts: { itseru: { '1744699811608': 1 } },
-  testResults: { itseru: { '1744699811608': [Object] } },
-  submissions: {
-    itseru: { submittedAt: '2025-04-15T06:51:40.497Z', status: 'completed' }
-  },
-  submittedAt: '2025-04-15T06:51:40.497Z'
-}
-User found: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Creator check: { assessmentCreatedBy: '0tzh3q', userId: 'itseru', isCreator: false }
-Invitation check for user 2 assessment assessment_1 : {
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasInvitationNotification: true,
-  hasValidToken: false,
-  isInvited: true
-}
-Permission check: {
-  isCreator: false,
-  isPublic: true,
-  isInvited: true,
-  isInvitedById: false,
-  isInvitedByEmail: false,
-  hasValidToken: false
-}
-Looking up tests: [ '1744699811608', '1744699817124' ]
-Found test: 1744699811608 Valid Parentheses
-Found test: 1744699817124 Maximum Subarray
-Test details count: 2
-Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: true
-Getting attempts for test 1744699811608 in assessment assessment_1 for user 2
-User 2 has used 1 of 3 attempts for test 1744699811608. Assessment submitted: true
-Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: true
-Getting attempts for test 1744699817124 in assessment assessment_1 for user 2
-User 2 has used 0 of 3 attempts for test 1744699817124. Assessment submitted: true
+Found 3 assessments created by user 1
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 4 assigned assessments for user 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 4 assigned assessments for user 2
+Found 1 submissions for user 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 4 assigned assessments for user 2
+Found 1 submissions for user 2
+Found 1 submissions for user 2
 Login request body: { email: '2', password: '2' }
-Found user: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
+Session ID for login: m9ir22y2hxcourx8ncw
+Found user: 2
 Login successful for user: 2
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: 2
-Found user by email: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ==
+Session ID for /me: m9ir22y2hxcourx8ncw
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ==
+Token validation successful, user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 2
+Returning notifications for user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ==
+Session ID for /me: m9ir22y2hxcourx8ncw
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ==
+Token validation successful, user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 2
+Returning notifications for user: 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 4 assigned assessments for user 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 4 assigned assessments for user 2
+Found 1 submissions for user 2
+Found 1 submissions for user 2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2 Assessment ID: 67fe8e1448eb5ef04def3153
+Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 3
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2 Assessment ID: 67fe8e1448eb5ef04def3153
+Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 3
+Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
+GET /api/tests/:id - Test ID: 67fe5207dd496f0837ae199e
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2
+Found user for test access check: new ObjectId('67fe560af1fb316299ef149b') 2
+Test found: { id: new ObjectId('67fe5207dd496f0837ae199e'), title: 'Two Sum' }
+Specific assessment ID from query: 67fe8e1448eb5ef04def3153
+Checking assessment 67fe8e1448eb5ef04def3153 for test 67fe5207dd496f0837ae199e
+Is test 67fe5207dd496f0837ae199e part of assessment 67fe8e1448eb5ef04def3153? true
+Permission check for test access: {
+  testId: '67fe5207dd496f0837ae199e',
+  userId: new ObjectId('67fe560af1fb316299ef149b'),
+  userEmail: '2',
+  isCreator: undefined,
+  isPublic: true,
+  isInvited: false
 }
-Returning user for /me: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+Access granted to test 67fe5207dd496f0837ae199e for user 2
+Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
+GET /api/tests/:id - Test ID: 67fe5207dd496f0837ae199e
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2
+Found user for test access check: new ObjectId('67fe560af1fb316299ef149b') 2
+Test found: { id: new ObjectId('67fe5207dd496f0837ae199e'), title: 'Two Sum' }
+Specific assessment ID from query: 67fe8e1448eb5ef04def3153
+Checking assessment 67fe8e1448eb5ef04def3153 for test 67fe5207dd496f0837ae199e
+Is test 67fe5207dd496f0837ae199e part of assessment 67fe8e1448eb5ef04def3153? true
+Permission check for test access: {
+  testId: '67fe5207dd496f0837ae199e',
+  userId: new ObjectId('67fe560af1fb316299ef149b'),
+  userEmail: '2',
+  isCreator: undefined,
+  isPublic: true,
+  isInvited: false
 }
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+Access granted to test 67fe5207dd496f0837ae199e for user 2
+Run test cases request: {
+  testId: '67fe5207dd496f0837ae199e',
+  language: 'python',
+  assessmentId: '67fe8e1448eb5ef04def3153'
 }
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: 2
-Found user by email: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+Test found: Yes new ObjectId('67fe5207dd496f0837ae199e')
+Starting Python execution with ID: 08809f28-cbe2-4e95-a7e8-7e46298e4dbf
+Code length: 217 characters
+Input length: 13 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_08809f28-cbe2-4e95-a7e8-7e46298e4dbf.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_08809f28-cbe2-4e95-a7e8-7e46298e4dbf       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 325 }
+Temporary files cleaned up
+Starting Python execution with ID: ae2ef52b-5c4b-4b28-8ff8-95836954f7a4
+Code length: 217 characters
+Input length: 9 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_ae2ef52b-5c4b-4b28-8ff8-95836954f7a4.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_ae2ef52b-5c4b-4b28-8ff8-95836954f7a4       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 361 }
+Temporary files cleaned up
+Execute code request: { language: 'python', assessmentId: '67fe8e1448eb5ef04def3153' }
+Code to execute: def solve():
+    import sys
+    import ast
+
+    # Read input
+    nums = ast.literal_eval(sys.stdin.readline().strip())  # Safely parse the array
+    target = int(sys.stdin.readline().strip())
+
+    # Hash map to store value to index
+    num_map = {}
+
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in num_map:
+            print([num_map[complement], i])
+            return
+        num_map[num] = i
+
+if __name__ == "__main__":
+    solve()
+
+Input: [2,7,11,15]
+9
+Executing code in Docker container...
+Starting Python execution with ID: 33d51e23-97e0-41c6-8f9e-70000914f1b6
+Code length: 481 characters
+Input length: 13 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_33d51e23-97e0-41c6-8f9e-70000914f1b6.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_33d51e23-97e0-41c6-8f9e-70000914f1b6       -i python:3.9-slim       bash
+Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 388 }
+Temporary files cleaned up
+Execution result: { output: '[0, 1]\n', error: '', executionTime: 388, memoryUsed: 0 }
+Run test cases request: {
+  testId: '67fe5207dd496f0837ae199e',
+  language: 'python',
+  assessmentId: '67fe8e1448eb5ef04def3153'
 }
-Returning user for /me: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+Test found: Yes new ObjectId('67fe5207dd496f0837ae199e')
+Starting Python execution with ID: 9f70414e-d612-423e-972c-e72030393933
+Code length: 481 characters
+Input length: 13 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_9f70414e-d612-423e-972c-e72030393933.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_9f70414e-d612-423e-972c-e72030393933       -i python:3.9-slim       bash
+Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 342 }
+Temporary files cleaned up
+Starting Python execution with ID: 4c8aad85-5ac5-4b0b-867f-55366e530fe5
+Code length: 481 characters
+Input length: 9 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_4c8aad85-5ac5-4b0b-867f-55366e530fe5.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_4c8aad85-5ac5-4b0b-867f-55366e530fe5       -i python:3.9-slim       bash
+Python execution result: { stdout: '[1, 2]\n', stderr: '', executionTime: 359 }
+Temporary files cleaned up
+Submit code request: {
+  testId: '67fe5207dd496f0837ae199e',
+  language: 'python',
+  assessmentId: '67fe8e1448eb5ef04def3153'
 }
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+Test found: Yes new ObjectId('67fe5207dd496f0837ae199e')
+User 2 has used 0 of 1 attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153
+Starting Python execution with ID: c5a938b5-5f81-4dd4-82f6-6781ba82b287
+Code length: 481 characters
+Input length: 13 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_c5a938b5-5f81-4dd4-82f6-6781ba82b287.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_c5a938b5-5f81-4dd4-82f6-6781ba82b287       -i python:3.9-slim       bash
+Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 371 }
+Temporary files cleaned up
+Starting Python execution with ID: 894c6baf-d94c-4c47-abfd-1cffa30448a6
+Code length: 481 characters
+Input length: 9 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_894c6baf-d94c-4c47-abfd-1cffa30448a6.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_894c6baf-d94c-4c47-abfd-1cffa30448a6       -i python:3.9-slim       bash
+Python execution result: { stdout: '[1, 2]\n', stderr: '', executionTime: 369 }
+Temporary files cleaned up
+Starting Python execution with ID: 22a8d9c6-1460-476b-9905-46b5cc77f1e7
+Code length: 481 characters
+Input length: 7 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_22a8d9c6-1460-476b-9905-46b5cc77f1e7.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_22a8d9c6-1460-476b-9905-46b5cc77f1e7       -i python:3.9-slim       bash
+Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 361 }
+Temporary files cleaned up
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2 Assessment ID: 67fe8e1448eb5ef04def3153
+Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 3
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2 Assessment ID: 67fe8e1448eb5ef04def3153
+Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 3
+Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe8e1448eb5ef04def3153 for user null
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
+Session ID for /me: m9iqn4adm1ggqlrsdi
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
+Token validation successful, user: 3
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
+Session ID for /me: m9iqn4adm1ggqlrsdi
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
+Token validation successful, user: 3
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
+Session ID for /me: m9iqn4adm1ggqlrsdi
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
+Token validation successful, user: 3
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9 Email: 3
+Found user for notifications: new ObjectId('67fe58aef1fb316299ef1b0d') 3
+Notifications for user 3 : 1
+Returning notifications for user: 1
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
+Session ID for /me: m9iqn4adm1ggqlrsdi
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
+Token validation successful, user: 3
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9 Email: 3
+Found user for notifications: new ObjectId('67fe58aef1fb316299ef1b0d') 3
+Notifications for user 3 : 1
+Returning notifications for user: 1
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9 Email: 3
+User found: 3 new ObjectId('67fe58aef1fb316299ef1b0d')
+Found 3 assigned assessments for user 3
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9 Email: 3
+User found: 3 new ObjectId('67fe58aef1fb316299ef1b0d')
+Found 3 assigned assessments for user 3
+Found 3 submissions for user 3
+Found 3 submissions for user 3
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ==
+Session ID for /me: m9iqk8tpot3fjzuitpo
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ==
+Token validation successful, user: 1
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ==
+Session ID for /me: m9iqk8tpot3fjzuitpo
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ==
+Token validation successful, user: 1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+Found 3 assessments created by user 1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+Found 3 assessments created by user 1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
+Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 3
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
+Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 3
+POST /api/assessments/:id/invite - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
+Update assessment 67fe8e1448eb5ef04def3153 request body: {
+  _id: '67fe8e1448eb5ef04def3153',
+  title: 'Sasdf',
+  description: '',
+  startTime: '2025-04-15T16:47',
+  endTime: '2025-04-22T16:47',
+  maxAttempts: 1,
+  isPublic: false,
+  tests: [
+    '67fe5207dd496f0837ae199e',
+    '67fe5207dd496f0837ae19a4',
+    '67fe5207dd496f0837ae19aa'
+  ],
+  invitedStudents: [ '[object Object]' ],
+  invitedUsers: [
+    { email: '2', status: 'Invited', lastAttempt: null },
+    '67fe58aef1fb316299ef1b0d'
+  ],
+  createdBy: '67fe5250dd496f0837ae19c4',
+  createdAt: '2025-04-15T16:49:24.655Z',
+  updatedAt: '2025-04-15T16:53:23.664Z',
+  testAttempts: [],
+  submissions: [],
+  __v: 1,
+  testDetails: [
+    {
+      _id: '67fe5207dd496f0837ae199e',
+      title: 'Two Sum',
+      description: 'Find two numbers that add up to a target',
+      difficulty: 'Easy',
+      timeLimit: 60,
+      problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      inputFormat: 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: 'Return the indices of the two numbers that add up to the target.',
+      constraints: '2 <= nums.length <= 10^4\n' +
+        '-10^9 <= nums[i] <= 10^9\n' +
+        '-10^9 <= target <= 10^9\n' +
+        'Only one valid answer exists.',
+      sampleInput: '[2,7,11,15]\n9',
+      sampleOutput: '[0,1]',
+      testCases: [Array],
+      codeTemplates: [Array],
+      isPublic: true,
+      isTemplate: true,
+      createdAt: '2025-04-15T12:33:11.800Z',
+      __v: 0,
+      updatedAt: '2025-04-15T12:33:11.805Z',
+      id: '67fe5207dd496f0837ae199e'
+    },
+    {
+      _id: '67fe5207dd496f0837ae19a4',
+      title: 'Reverse Linked List',
+      description: 'Reverse a singly linked list',
+      difficulty: 'Medium',
+      timeLimit: 60,
+      problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list. The linked list is represented as an array for simplicity.',
+      inputFormat: 'The input is an array representing the linked list.',
+      outputFormat: 'Return the reversed linked list as an array.',
+      constraints: 'The number of nodes in the list is the range [0, 5000].\n' +
+        '-5000 <= Node.val <= 5000',
+      sampleInput: '[1,2,3,4,5]',
+      sampleOutput: '[5,4,3,2,1]',
+      testCases: [Array],
+      codeTemplates: [Array],
+      isPublic: true,
+      isTemplate: true,
+      createdAt: '2025-04-15T12:33:11.801Z',
+      __v: 0,
+      updatedAt: '2025-04-15T12:33:11.806Z',
+      id: '67fe5207dd496f0837ae19a4'
+    },
+    {
+      _id: '67fe5207dd496f0837ae19aa',
+      title: 'Merge K Sorted Lists',
+      description: 'Merge k sorted linked lists into one sorted linked list',
+      difficulty: 'Hard',
+      timeLimit: 90,
+      problemStatement: 'You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it. The linked lists are represented as arrays for simplicity.',
+      inputFormat: 'The input is an array of arrays, where each inner array represents a linked list.',
+      outputFormat: 'Return the merged linked list as an array.',
+      constraints: 'k == lists.length\n' +
+        '0 <= k <= 10^4\n' +
+        '0 <= lists[i].length <= 500\n' +
+        '-10^4 <= lists[i][j] <= 10^4\n' +
+        'lists[i] is sorted in ascending order.\n' +
+        'The sum of lists[i].length will not exceed 10^4.',
+      sampleInput: '[[1,4,5],[1,3,4],[2,6]]',
+      sampleOutput: '[1,1,2,3,4,4,5,6]',
+      testCases: [Array],
+      codeTemplates: [Array],
+      isPublic: true,
+      isTemplate: true,
+      createdAt: '2025-04-15T12:33:11.801Z',
+      __v: 0,
+      updatedAt: '2025-04-15T12:33:11.806Z',
+      id: '67fe5207dd496f0837ae19aa'
+    }
+  ],
+  id: '67fe8e1448eb5ef04def3153'
 }
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+PUT /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
+User found for assessment update: {
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+Assessment found: {
+  _id: new ObjectId('67fe8e1448eb5ef04def3153'),
+  title: 'Sasdf',
+  description: '',
+  startTime: 2025-04-15T16:47:00.000Z,
+  endTime: 2025-04-22T16:47:00.000Z,
+  maxAttempts: 1,
+  isPublic: false,
+  tests: [
+    new ObjectId('67fe5207dd496f0837ae199e'),
+    new ObjectId('67fe5207dd496f0837ae19a4'),
+    new ObjectId('67fe5207dd496f0837ae19aa')
+  ],
+  invitedStudents: [],
+  invitedUsers: [
+    { email: '2', status: 'Invited', lastAttempt: null },
+    new ObjectId('67fe58aef1fb316299ef1b0d'),
+    new ObjectId('67fe560af1fb316299ef149b')
+  ],
+  createdBy: new ObjectId('67fe5250dd496f0837ae19c4'),
+  createdAt: 2025-04-15T16:49:24.655Z,
+  updatedAt: 2025-04-15T17:03:25.069Z,
+  testAttempts: [],
+  submissions: [],
+  __v: 2
 }
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: 2
-Found user by email: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+Updated assessment: {
+  _id: new ObjectId('67fe8e1448eb5ef04def3153'),
+  title: 'Sasdf',
+  description: '',
+  startTime: 2025-04-15T11:17:00.000Z,
+  endTime: 2025-04-22T11:17:00.000Z,
+  maxAttempts: 1,
+  isPublic: false,
+  tests: [
+    new ObjectId('67fe5207dd496f0837ae199e'),
+    new ObjectId('67fe5207dd496f0837ae19a4'),
+    new ObjectId('67fe5207dd496f0837ae19aa')
+  ],
+  invitedStudents: [],
+  invitedUsers: [ '[object Object]' ],
+  createdBy: new ObjectId('67fe5250dd496f0837ae19c4'),
+  createdAt: 2025-04-15T16:49:24.655Z,
+  updatedAt: 2025-04-15T17:03:26.093Z,
+  testAttempts: [],
+  submissions: [],
+  __v: 3
 }
-Returning user for /me: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+Found 3 assessments created by user 1
+Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
+    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
+  stringValue: '"[object Object]"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '[object Object]',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
+      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
+      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
+      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
+  valueType: 'string'
 }
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-Auth header for /me: Bearer test-token
-Token for /me: test-token
-Email from query: 2
-Found user by email: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-Returning user for /me: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+Found 3 assessments created by user 1
+Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
+    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
+  stringValue: '"[object Object]"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '[object Object]',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
+      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
+      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
+      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
+  valueType: 'string'
 }
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 3
+Returning notifications for user: 3
+Marked notification as read: new ObjectId('67fe915deda20e39d6c92858')
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 3 assigned assessments for user 2
+Found 2 submissions for user 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 3
+Returning notifications for user: 3
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 3 assigned assessments for user 2
+Found 2 submissions for user 2
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
+Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 3
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
+Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 3
+POST /api/assessments/:id/invite - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
+Update assessment 67fe8e1448eb5ef04def3153 request body: {
+  _id: '67fe8e1448eb5ef04def3153',
+  title: 'Sasdf',
+  description: '',
+  startTime: '2025-04-15T11:17',
+  endTime: '2025-04-22T11:17',
+  maxAttempts: 1,
+  isPublic: false,
+  tests: [
+    '67fe5207dd496f0837ae199e',
+    '67fe5207dd496f0837ae19a4',
+    '67fe5207dd496f0837ae19aa'
+  ],
+  invitedStudents: [ '[object Object]' ],
+  invitedUsers: [ '[object Object]' ],
+  createdBy: '67fe5250dd496f0837ae19c4',
+  createdAt: '2025-04-15T16:49:24.655Z',
+  updatedAt: '2025-04-15T17:03:26.093Z',
+  testAttempts: [],
+  submissions: [],
+  __v: 3,
+  testDetails: [
+    {
+      _id: '67fe5207dd496f0837ae199e',
+      title: 'Two Sum',
+      description: 'Find two numbers that add up to a target',
+      difficulty: 'Easy',
+      timeLimit: 60,
+      problemStatement: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      inputFormat: 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: 'Return the indices of the two numbers that add up to the target.',
+      constraints: '2 <= nums.length <= 10^4\n' +
+        '-10^9 <= nums[i] <= 10^9\n' +
+        '-10^9 <= target <= 10^9\n' +
+        'Only one valid answer exists.',
+      sampleInput: '[2,7,11,15]\n9',
+      sampleOutput: '[0,1]',
+      testCases: [Array],
+      codeTemplates: [Array],
+      isPublic: true,
+      isTemplate: true,
+      createdAt: '2025-04-15T12:33:11.800Z',
+      __v: 0,
+      updatedAt: '2025-04-15T12:33:11.805Z',
+      id: '67fe5207dd496f0837ae199e'
+    },
+    {
+      _id: '67fe5207dd496f0837ae19a4',
+      title: 'Reverse Linked List',
+      description: 'Reverse a singly linked list',
+      difficulty: 'Medium',
+      timeLimit: 60,
+      problemStatement: 'Given the head of a singly linked list, reverse the list, and return the reversed list. The linked list is represented as an array for simplicity.',
+      inputFormat: 'The input is an array representing the linked list.',
+      outputFormat: 'Return the reversed linked list as an array.',
+      constraints: 'The number of nodes in the list is the range [0, 5000].\n' +
+        '-5000 <= Node.val <= 5000',
+      sampleInput: '[1,2,3,4,5]',
+      sampleOutput: '[5,4,3,2,1]',
+      testCases: [Array],
+      codeTemplates: [Array],
+      isPublic: true,
+      isTemplate: true,
+      createdAt: '2025-04-15T12:33:11.801Z',
+      __v: 0,
+      updatedAt: '2025-04-15T12:33:11.806Z',
+      id: '67fe5207dd496f0837ae19a4'
+    },
+    {
+      _id: '67fe5207dd496f0837ae19aa',
+      title: 'Merge K Sorted Lists',
+      description: 'Merge k sorted linked lists into one sorted linked list',
+      difficulty: 'Hard',
+      timeLimit: 90,
+      problemStatement: 'You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it. The linked lists are represented as arrays for simplicity.',
+      inputFormat: 'The input is an array of arrays, where each inner array represents a linked list.',
+      outputFormat: 'Return the merged linked list as an array.',
+      constraints: 'k == lists.length\n' +
+        '0 <= k <= 10^4\n' +
+        '0 <= lists[i].length <= 500\n' +
+        '-10^4 <= lists[i][j] <= 10^4\n' +
+        'lists[i] is sorted in ascending order.\n' +
+        'The sum of lists[i].length will not exceed 10^4.',
+      sampleInput: '[[1,4,5],[1,3,4],[2,6]]',
+      sampleOutput: '[1,1,2,3,4,4,5,6]',
+      testCases: [Array],
+      codeTemplates: [Array],
+      isPublic: true,
+      isTemplate: true,
+      createdAt: '2025-04-15T12:33:11.801Z',
+      __v: 0,
+      updatedAt: '2025-04-15T12:33:11.806Z',
+      id: '67fe5207dd496f0837ae19aa'
+    }
+  ],
+  id: '67fe8e1448eb5ef04def3153'
 }
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+PUT /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
+User found for assessment update: {
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+Assessment found: {
+  _id: new ObjectId('67fe8e1448eb5ef04def3153'),
+  title: 'Sasdf',
+  description: '',
+  startTime: 2025-04-15T11:17:00.000Z,
+  endTime: 2025-04-22T11:17:00.000Z,
+  maxAttempts: 1,
+  isPublic: false,
+  tests: [
+    new ObjectId('67fe5207dd496f0837ae199e'),
+    new ObjectId('67fe5207dd496f0837ae19a4'),
+    new ObjectId('67fe5207dd496f0837ae19aa')
+  ],
+  invitedStudents: [],
+  invitedUsers: [ '[object Object]', new ObjectId('67fe560af1fb316299ef149b') ],
+  createdBy: new ObjectId('67fe5250dd496f0837ae19c4'),
+  createdAt: 2025-04-15T16:49:24.655Z,
+  updatedAt: 2025-04-15T17:03:38.110Z,
+  testAttempts: [],
+  submissions: [],
+  __v: 4
 }
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+Updated assessment: {
+  _id: new ObjectId('67fe8e1448eb5ef04def3153'),
+  title: 'Sasdf',
+  description: '',
+  startTime: 2025-04-15T05:47:00.000Z,
+  endTime: 2025-04-22T05:47:00.000Z,
+  maxAttempts: 1,
+  isPublic: false,
+  tests: [
+    new ObjectId('67fe5207dd496f0837ae199e'),
+    new ObjectId('67fe5207dd496f0837ae19a4'),
+    new ObjectId('67fe5207dd496f0837ae19aa')
+  ],
+  invitedStudents: [],
+  invitedUsers: [ '[object Object]' ],
+  createdBy: new ObjectId('67fe5250dd496f0837ae19c4'),
+  createdAt: 2025-04-15T16:49:24.655Z,
+  updatedAt: 2025-04-15T17:03:38.923Z,
+  testAttempts: [],
+  submissions: [],
+  __v: 5
 }
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+Found 3 assessments created by user 1
+Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
+    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
+  stringValue: '"[object Object]"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '[object Object]',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
+      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
+      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
+      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
+  valueType: 'string'
 }
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+Found 3 assessments created by user 1
+Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
+    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
+  stringValue: '"[object Object]"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '[object Object]',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
+      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
+      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
+      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
+  valueType: 'string'
 }
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Session ID for /me: m9iqkt0epk1lmzry6wk
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Token validation successful, user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Session ID for /me: m9iqkt0epk1lmzry6wk
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Token validation successful, user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Session ID for /me: m9iqkt0epk1lmzry6wk
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Token validation successful, user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 4
+Returning notifications for user: 4
+Marked notification as read: new ObjectId('67fe916aeda20e39d6c929da')
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Session ID for /me: m9iqkt0epk1lmzry6wk
+Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Token validation successful, user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 4
+Returning notifications for user: 4
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 4
+Returning notifications for user: 4
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 3 assigned assessments for user 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 3 assigned assessments for user 2
+Found 2 submissions for user 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 3 assigned assessments for user 2
+Found 2 submissions for user 2
+Found 2 submissions for user 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 4
+Returning notifications for user: 4
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 3 assigned assessments for user 2
+Found 2 submissions for user 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 4
+Returning notifications for user: 4
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 3 assigned assessments for user 2
+Found 2 submissions for user 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 4
+Returning notifications for user: 4
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 3 assigned assessments for user 2
+Found 2 submissions for user 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 4
+Returning notifications for user: 4
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 3 assigned assessments for user 2
+Found 2 submissions for user 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 4
+Returning notifications for user: 4
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 3 assigned assessments for user 2
+Found 2 submissions for user 2
+POST /api/assessments/:id/invite - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+Found 3 assessments created by user 1
+Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
+    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
+  stringValue: '"[object Object]"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '[object Object]',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
+      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
+      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
+      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
+  valueType: 'string'
 }
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
+Notifications for user 2 : 5
+Returning notifications for user: 5
+Marked notification as read: new ObjectId('67fe9174eda20e39d6c92bcc')
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
+User found: 2 new ObjectId('67fe560af1fb316299ef149b')
+Found 4 assigned assessments for user 2
+Found 2 submissions for user 2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2 Assessment ID: 67fe8e1448eb5ef04def3153
+Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 3
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2 Assessment ID: 67fe8e1448eb5ef04def3153
+Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 3
+Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe8e1448eb5ef04def3153 for user null
+Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe8e1448eb5ef04def3153 for user null
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
+Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 3
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
+Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 3
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+Found 3 assessments created by user 1
+Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
+    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
+  stringValue: '"[object Object]"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '[object Object]',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
+      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
+      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
+      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
+  valueType: 'string'
 }
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  role: 'assessor',
+  createdAt: 2025-04-15T12:34:24.945Z,
+  updatedAt: 2025-04-15T12:34:24.945Z,
+  __v: 0
 }
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
+Found 3 assessments created by user 1
+Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
+    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
+  stringValue: '"[object Object]"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: '[object Object]',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
+      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
+      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
+      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
+      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
+      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
+      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
+      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
+      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
+      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
+  valueType: 'string'
 }
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1
-GET /api/notifications - Auth Header: Bearer test-token Email: 2
-Found/created user for notifications: itseru 2
-Found notification for user: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-Notifications for user 2 : [
-  {
-    id: '17446998619111rsksk1',
-    userId: 'itseru',
-    type: 'invitation',
-    title: 'New Assessment Invitation',
-    message: 'You have been invited to take a sample assessment',
-    assessmentId: 'assessment_1',
-    createdAt: '2025-04-15T06:51:01.911Z',
-    read: true
-  }
-]
-GET /api/assessments/assigned - Auth Header: Bearer test-token Email: 2
-User found/created: {
-  id: 'itseru',
-  name: '2',
-  email: '2',
-  password: '2',
-  role: 'assessee'
-}
-Checking assigned assessments for user: 2 itseru
-All assessments: [ { id: 'assessment_1', title: 'Testing bro' } ]
-Assessment assessment_1 invitedStudents: []
-Checking if user 2 (itseru) is invited to assessment assessment_1
-Assessment assessment_1 is submitted by user itseru, submittedAt: 2025-04-15T06:51:40.497Z
-Found matching notification: {
-  id: '17446998619111rsksk1',
-  userId: 'itseru',
-  type: 'invitation',
-  title: 'New Assessment Invitation',
-  message: 'You have been invited to take a sample assessment',
-  assessmentId: 'assessment_1',
-  createdAt: '2025-04-15T06:51:01.911Z',
-  read: true
-}
-User 2 is invited to assessment assessment_1 through notification
-Assigned assessments count: 1

@@ -36,7 +36,7 @@ import {
   Email as EmailIcon,
   ArrowBack as ArrowBackIcon
 } from '@mui/icons-material';
-import { getAllTests, getAssessmentById } from '../../utils/api';
+import { getAllTests, getAssessmentById, deleteAssessment } from '../../utils/api';
 
 const AssessmentDetails = () => {
   const { assessmentId } = useParams();
@@ -64,6 +64,46 @@ const AssessmentDetails = () => {
           console.log('Fetching assessment with ID:', assessmentId);
           const assessmentData = await getAssessmentById(assessmentId);
           console.log('Assessment data received:', assessmentData);
+
+          // Process invitedUsers data for display
+          if (assessmentData && assessmentData.invitedUsers) {
+            console.log('Processing invitedUsers:', assessmentData.invitedUsers);
+
+            // Ensure invitedUsers is properly formatted for display
+            assessmentData.processedInvitedUsers = assessmentData.invitedUsers.map(user => {
+              // If user is an object with email property, it's an unregistered user
+              if (typeof user === 'object' && user.email) {
+                return {
+                  email: user.email,
+                  status: user.status || 'Invited'
+                };
+              }
+              // If user is an object with _id property, it's a registered user
+              else if (typeof user === 'object' && (user._id || user.id)) {
+                return {
+                  id: user._id || user.id,
+                  email: user.email || 'Unknown',
+                  status: user.status || 'Invited'
+                };
+              }
+              // If user is a string, it might be just an email or an ID
+              else if (typeof user === 'string') {
+                return {
+                  id: user,
+                  email: user.includes('@') ? user : 'Unknown ID: ' + user,
+                  status: 'Invited'
+                };
+              }
+              // Default case
+              return {
+                email: 'Unknown',
+                status: 'Invited'
+              };
+            });
+
+            console.log('Processed invitedUsers:', assessmentData.processedInvitedUsers);
+          }
+
           setAssessment(assessmentData);
         } catch (error) {
           console.error('Error fetching assessment:', error);
@@ -86,12 +126,19 @@ const AssessmentDetails = () => {
     }
   }, [assessmentId, user?.id]);
 
-  const handleDeleteAssessment = () => {
-    // In a real app, we would delete the assessment here
-    console.log('Deleting assessment:', assessmentId);
-
-    // Navigate back to dashboard
-    navigate('/dashboard');
+  const handleDeleteAssessment = async () => {
+    try {
+      setLoading(true);
+      const response = await deleteAssessment(assessmentId);
+      console.log('Assessment deleted successfully:', response);
+      // Close the dialog and navigate back to assessments list
+      setOpenDeleteDialog(false);
+      navigate('/assessments');
+    } catch (err) {
+      console.error('Failed to delete assessment:', err);
+      setError(`Failed to delete assessment: ${err.message || 'Please try again.'}`);
+      setLoading(false);
+    }
   };
 
   const getTestById = (testId) => {
@@ -99,7 +146,7 @@ const AssessmentDetails = () => {
   };
 
   const isAssessor = user?.role === 'assessor';
-  const isCreator = assessment?.createdBy === user?.id;
+  const isCreator = assessment?.createdBy === user?._id;
 
   if (loading) {
     return (
@@ -304,7 +351,7 @@ const AssessmentDetails = () => {
                 </Typography>
                 <Divider sx={{ mb: 2 }} />
 
-                {(assessment.invitedUsers || []).length === 0 ? (
+                {(!assessment.processedInvitedUsers || assessment.processedInvitedUsers.length === 0) ? (
                   <Alert severity="info">
                     No students have been invited yet.
                   </Alert>
@@ -319,8 +366,8 @@ const AssessmentDetails = () => {
                           </TableRow>
                         </TableHead>
                         <TableBody>
-                          {(assessment.invitedUsers || []).map((student) => (
-                            <TableRow key={student.id || student.email}>
+                          {assessment.processedInvitedUsers.map((student, index) => (
+                            <TableRow key={student.id || student.email || index}>
                               <TableCell>{student.email || 'Unknown'}</TableCell>
                               <TableCell>
                                 <Chip

@@ -3,6 +3,23 @@ import { getCurrentUser, login, register, deleteUserAccount } from '../utils/api
 
 export const AuthContext = createContext();
 
+// Helper functions for session storage
+const getSessionToken = () => sessionStorage.getItem('token');
+const getSessionId = () => sessionStorage.getItem('sessionId');
+const getSessionEmail = () => sessionStorage.getItem('userEmail');
+
+const setSessionData = (token, sessionId, email) => {
+  sessionStorage.setItem('token', token);
+  sessionStorage.setItem('sessionId', sessionId);
+  sessionStorage.setItem('userEmail', email);
+};
+
+const clearSessionData = () => {
+  sessionStorage.removeItem('token');
+  sessionStorage.removeItem('sessionId');
+  sessionStorage.removeItem('userEmail');
+};
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -14,10 +31,27 @@ export const AuthProvider = ({ children }) => {
     const loadUser = async () => {
       try {
         console.log('Loading user...');
-        // Clear any existing tokens to ensure no one is logged in initially
-        localStorage.removeItem('token');
-        localStorage.removeItem('userEmail');
-        console.log('Cleared any existing tokens');
+        const token = getSessionToken();
+        const sessionId = getSessionId();
+        const email = getSessionEmail();
+
+        if (token && sessionId && email) {
+          console.log('Found session data, attempting to restore session');
+          try {
+            // Try to get the current user with the stored token and session ID
+            const userData = await getCurrentUser(email);
+            setUser(userData);
+            setIsAuthenticated(true);
+            console.log('Session restored successfully');
+          } catch (sessionErr) {
+            console.error('Failed to restore session:', sessionErr);
+            clearSessionData();
+          }
+        } else {
+          console.log('No session data found');
+          clearSessionData();
+        }
+
         setLoading(false);
       } catch (err) {
         console.error('Error in initial auth setup:', err);
@@ -37,8 +71,10 @@ export const AuthProvider = ({ children }) => {
       setError(null);
       const data = await register(userData);
       console.log('Registration response:', data);
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('userEmail', userData.email);
+
+      // Store session data
+      setSessionData(data.token, data.sessionId, userData.email);
+
       setUser(data.user);
       setIsAuthenticated(true);
       return data;
@@ -59,8 +95,10 @@ export const AuthProvider = ({ children }) => {
       setError(null);
       const data = await login(userData);
       console.log('Login response:', data);
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('userEmail', userData.email);
+
+      // Store session data
+      setSessionData(data.token, data.sessionId, userData.email);
+
       setUser(data.user);
       setIsAuthenticated(true);
       return data;
@@ -74,11 +112,29 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Logout user
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userEmail');
-    setUser(null);
-    setIsAuthenticated(false);
+  const logout = async () => {
+    try {
+      // Call the logout API endpoint
+      const response = await fetch('http://localhost:5002/api/auth/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getSessionToken()}`,
+          'X-Session-ID': getSessionId()
+        }
+      });
+
+      if (!response.ok) {
+        console.error('Logout API call failed:', response.statusText);
+      }
+    } catch (err) {
+      console.error('Error during logout:', err);
+    } finally {
+      // Clear session data regardless of API call success
+      clearSessionData();
+      setUser(null);
+      setIsAuthenticated(false);
+    }
   };
 
   // Delete account
@@ -87,8 +143,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       setError(null);
       await deleteUserAccount();
-      localStorage.removeItem('token');
-      localStorage.removeItem('userEmail');
+      clearSessionData();
       setUser(null);
       setIsAuthenticated(false);
       return { success: true, message: 'Account deleted successfully' };
@@ -111,7 +166,9 @@ export const AuthProvider = ({ children }) => {
         registerUser,
         loginUser,
         logout,
-        deleteAccount
+        deleteAccount,
+        getSessionId, // Expose session ID getter for API calls
+        getSessionToken // Expose token getter for API calls
       }}
     >
       {children}

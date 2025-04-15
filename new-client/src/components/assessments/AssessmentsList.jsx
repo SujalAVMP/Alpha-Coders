@@ -5,15 +5,13 @@ import {
   Box,
   Typography,
   Button,
-  Container,
+  CircularProgress,
+  Alert,
   Grid,
   Card,
   CardContent,
   CardActions,
   Chip,
-  CircularProgress,
-  Alert,
-  Divider,
   IconButton,
   Dialog,
   DialogTitle,
@@ -38,134 +36,190 @@ const AssessmentsList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-
-  // Dialog states
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [openInviteDialog, setOpenInviteDialog] = useState(false);
   const [selectedAssessment, setSelectedAssessment] = useState(null);
   const [inviteEmails, setInviteEmails] = useState('');
   const [inviting, setInviting] = useState(false);
 
-  // Fetch assessments on component mount
+  // Fetch assessments with better error handling
   useEffect(() => {
     fetchAssessments();
   }, []);
 
-  // Fetch assessments from API
   const fetchAssessments = async () => {
     try {
       setLoading(true);
       setError('');
+      console.log('Fetching assessments...');
       const data = await getMyAssessments();
       console.log('Fetched assessments:', data);
-      setAssessments(data || []);
+
+      // Ensure all assessments have both id and _id properties
+      const normalizedAssessments = data.map(assessment => {
+        const normalized = { ...assessment };
+        if (normalized._id && !normalized.id) {
+          normalized.id = normalized._id;
+        } else if (normalized.id && !normalized._id) {
+          normalized._id = normalized.id;
+        }
+        return normalized;
+      });
+
+      setAssessments(normalizedAssessments);
+      console.log('Assessments state set:', normalizedAssessments);
     } catch (err) {
       console.error('Error fetching assessments:', err);
-      setError('Failed to load assessments. Please try again.');
+      setError(`Failed to load assessments: ${err.message || 'Unknown error'}`);
     } finally {
       setLoading(false);
     }
   };
 
-  // Handle delete assessment
+  // Enhanced delete functionality with better error handling
   const handleDeleteAssessment = async () => {
-    if (!selectedAssessment) return;
+    if (!selectedAssessment) {
+      console.error('No assessment selected for deletion');
+      return;
+    }
+
+    // Ensure we get the correct ID regardless of whether id or _id is used
+    const assessmentId = selectedAssessment._id || selectedAssessment.id;
+
+    if (!assessmentId) {
+      console.error('Invalid assessment ID for deletion');
+      setError('Invalid assessment ID');
+      setOpenDeleteDialog(false);
+      return;
+    }
 
     try {
-      await deleteAssessment(selectedAssessment.id);
-      setAssessments(assessments.filter(a => a.id !== selectedAssessment.id));
+      console.log(`Attempting to delete assessment with ID: ${assessmentId}`);
+      console.log('Assessment details:', selectedAssessment);
+
+      // Get user email from session storage
+      const userEmail = sessionStorage.getItem('userEmail') || localStorage.getItem('userEmail');
+      console.log('User email for deletion request:', userEmail);
+
+      // Call the delete API
+      const response = await deleteAssessment(assessmentId);
+      console.log(`Successfully deleted assessment with ID: ${assessmentId}`, response);
+
+      // Remove the deleted assessment from the local state
+      setAssessments(prevAssessments =>
+        prevAssessments.filter(assessment =>
+          (assessment._id !== assessmentId) && (assessment.id !== assessmentId)
+        )
+      );
+
       setSuccess('Assessment deleted successfully');
       setOpenDeleteDialog(false);
       setSelectedAssessment(null);
 
-      // Clear success message after 3 seconds
-      setTimeout(() => setSuccess(''), 3000);
+      // Refresh the assessments list after a short delay
+      setTimeout(() => {
+        fetchAssessments();
+      }, 500);
     } catch (err) {
-      console.error('Error deleting assessment:', err);
-      setError('Failed to delete assessment. Please try again.');
+      console.error('Failed to delete assessment:', err);
+      // Display more specific error message if available
+      setError(`Failed to delete assessment: ${err.message || 'Please try again.'}`);
       setOpenDeleteDialog(false);
     }
   };
 
-  // Handle invite students
+  // Enhanced invite functionality
   const handleInviteStudents = async () => {
-    if (!selectedAssessment || !inviteEmails.trim()) {
+    if (!selectedAssessment) {
+      setError('No assessment selected');
+      return;
+    }
+
+    // Ensure we get the correct ID regardless of whether id or _id is used
+    const assessmentId = selectedAssessment._id || selectedAssessment.id;
+
+    if (!assessmentId) {
+      setError('Invalid assessment ID');
+      setOpenInviteDialog(false);
+      return;
+    }
+
+    if (!inviteEmails.trim()) {
       setError('Please enter at least one email address');
       return;
     }
 
     try {
       setInviting(true);
-      setError('');
-
-      // Clean up the email list - split by commas and trim whitespace
-      const emailList = inviteEmails
-        .split(',')
-        .map(email => email.trim())
-        .filter(email => email.length > 0);
-
-      // Validate email format
-      const invalidEmails = emailList.filter(email => {
-        // Simple email validation regex
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return !emailRegex.test(email);
-      });
-
-      if (invalidEmails.length > 0) {
-        setError(`Invalid email format: ${invalidEmails.join(', ')}`);
-        setInviting(false);
-        return;
-      }
-
-      const cleanedEmails = emailList.join(',');
-      console.log('Sending invitation to emails:', cleanedEmails);
-
-      // Send invitation
-      const response = await inviteStudentsByEmail(selectedAssessment.id, cleanedEmails);
-      console.log('Invitation response:', response);
-
-      // Refresh assessments to show updated invited users
-      await fetchAssessments();
-
-      // Display appropriate success message
-      if (response.success) {
-        let successMessage = response.message || `Invitations sent successfully to ${cleanedEmails}`;
-
-        // If there are unregistered emails, add a note about them
-        if (response.notFoundEmails && response.notFoundEmails.length > 0) {
-          console.log('Unregistered emails invited:', response.notFoundEmails);
-          successMessage += `. Note: ${response.notFoundEmails.length} email(s) are for unregistered users who will see the assessment when they register.`;
-        }
-
-        setSuccess(successMessage);
+      const emailList = inviteEmails.split(',').map(email => email.trim()).filter(email => email);
+      const response = await inviteStudentsByEmail(assessmentId, emailList);
+      if (response?.success) {
+        setSuccess('Invitations sent successfully');
+        setOpenInviteDialog(false);
+        setSelectedAssessment(null);
+        setInviteEmails('');
+        await fetchAssessments();
       } else {
-        throw new Error(response.message || 'Failed to send invitations');
+        throw new Error(response?.message || 'Failed to send invitations');
       }
-
-      setOpenInviteDialog(false);
-      setSelectedAssessment(null);
-      setInviteEmails('');
-
-      // Clear success message after 5 seconds
-      setTimeout(() => setSuccess(''), 5000);
     } catch (err) {
-      console.error('Error inviting students:', err);
       setError(err.message || 'Failed to send invitations. Please try again.');
     } finally {
       setInviting(false);
     }
   };
 
-  // Open delete dialog
+  // Dialog openers
   const openDeleteConfirmation = (assessment) => {
     setSelectedAssessment(assessment);
     setOpenDeleteDialog(true);
   };
-
-  // Open invite dialog
   const openInviteStudentsDialog = (assessment) => {
     setSelectedAssessment(assessment);
     setOpenInviteDialog(true);
+  };
+
+  // Render assessment card actions
+  const renderAssessmentActions = (assessment) => {
+    if (user?.role !== 'assessor') return null;
+
+    return (
+      <>
+        <IconButton
+          size="small"
+          color="primary"
+          onClick={() => {
+            setSelectedAssessment(assessment);
+            setOpenInviteDialog(true);
+          }}
+          title="Invite Students"
+          disabled={loading}
+        >
+          <PeopleIcon />
+        </IconButton>
+        <IconButton
+          size="small"
+          color="primary"
+          onClick={() => navigate(`/assessments/${assessment._id}/edit`)}
+          title="Edit Assessment"
+          disabled={loading}
+        >
+          <EditIcon />
+        </IconButton>
+        <IconButton
+          size="small"
+          color="error"
+          onClick={() => {
+            setSelectedAssessment(assessment);
+            setOpenDeleteDialog(true);
+          }}
+          title="Delete Assessment"
+          disabled={loading}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </>
+    );
   };
 
   return (
@@ -198,7 +252,7 @@ const AssessmentsList = () => {
           <Typography variant="h6" color="textSecondary" gutterBottom>
             No assessments found
           </Typography>
-          {user?.role === 'assessor' ? (
+          {user?.role === 'assessor' && (
             <Button
               variant="contained"
               color="primary"
@@ -208,16 +262,12 @@ const AssessmentsList = () => {
             >
               Create Your First Assessment
             </Button>
-          ) : (
-            <Typography variant="body1" color="textSecondary">
-              You haven't been assigned any assessments yet.
-            </Typography>
           )}
         </Box>
       ) : (
         <Grid container spacing={3}>
           {assessments.map((assessment) => (
-            <Grid key={assessment.id} style={{ padding: '12px', width: { xs: '100%', md: '50%', lg: '33.33%' } }}>
+            <Grid key={assessment._id} item xs={12} sm={6} md={4}>
               <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
@@ -225,18 +275,14 @@ const AssessmentsList = () => {
                       {assessment.title}
                     </Typography>
                     <Chip
-                      label={assessment.tests?.length === 1 ? '1 Test' : `${assessment.tests?.length || 0} Tests`}
+                      label={`${assessment.tests?.length || 0} Tests`}
                       color="primary"
                       size="small"
                     />
                   </Box>
-
                   <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
                     {assessment.description || 'No description provided'}
                   </Typography>
-
-                  <Divider sx={{ my: 1 }} />
-
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
                     <Typography variant="body2">
                       <strong>Start:</strong> {new Date(assessment.startTime).toLocaleDateString()}
@@ -245,67 +291,19 @@ const AssessmentsList = () => {
                       <strong>End:</strong> {new Date(assessment.endTime).toLocaleDateString()}
                     </Typography>
                   </Box>
-
                   <Typography variant="body2" sx={{ mt: 1 }}>
                     <strong>Max Attempts:</strong> {assessment.maxAttempts || 'Unlimited'}
                   </Typography>
                 </CardContent>
-
                 <CardActions sx={{ p: 2, pt: 0 }}>
                   <Button
                     size="small"
-                    onClick={() => {
-                      // Log the assessment object for debugging
-                      console.log('Viewing assessment details:', assessment);
-
-                      // Handle both id and _id formats
-                      const assessmentId = assessment.id || assessment._id;
-                      console.log('Using assessment ID:', assessmentId);
-
-                      if (!assessmentId) {
-                        console.error('Assessment ID is missing or invalid:', assessment);
-                        alert('Error: Assessment ID is missing. Please try again.');
-                        return;
-                      }
-
-                      // Navigate to the assessment details view
-                      navigate(`/assessments/${assessmentId}`);
-                    }}
+                    onClick={() => navigate(`/assessments/${assessment._id}`)}
                     sx={{ mr: 'auto' }}
                   >
                     View Details
                   </Button>
-
-                  {user?.role === 'assessor' && (
-                    <>
-                      <IconButton
-                        size="small"
-                        color="primary"
-                        onClick={() => openInviteStudentsDialog(assessment)}
-                        title="Invite Students"
-                      >
-                        <PeopleIcon />
-                      </IconButton>
-
-                      <IconButton
-                        size="small"
-                        color="primary"
-                        onClick={() => navigate(`/assessments/${assessment.id}/edit`)}
-                        title="Edit Assessment"
-                      >
-                        <EditIcon />
-                      </IconButton>
-
-                      <IconButton
-                        size="small"
-                        color="error"
-                        onClick={() => openDeleteConfirmation(assessment)}
-                        title="Delete Assessment"
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </>
-                  )}
+                  {renderAssessmentActions(assessment)}
                 </CardActions>
               </Card>
             </Grid>

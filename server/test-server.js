@@ -3,16 +3,101 @@ const cors = require('cors');
 const { executeCode, runTestCases, buildDockerImage } = require('./code-execution/executor');
 const path = require('path');
 const fs = require('fs').promises;
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const connectDB = require('./config/db');
+const { User, Test, Assessment, Submission, Notification, Session } = require('./models');
 const sampleTestTemplates = require('./test-templates');
 const standardTemplates = require('./standard-templates');
+
+// Load environment variables
+dotenv.config();
 
 // Initialize Express app
 const app = express();
 
+// Connect to MongoDB
+connectDB();
+
+// Seed the database with template tests
+async function seedTemplateTests() {
+  try {
+    // Check if template tests already exist
+    const templateCount = await Test.countDocuments({ isTemplate: true });
+
+    if (templateCount === 0) {
+      console.log('No template tests found. Seeding database with templates...');
+
+      // Format the test templates for MongoDB
+      const formattedTemplates = sampleTestTemplates.map(template => {
+        // Create code templates array
+        const codeTemplates = [];
+
+        if (template.codeTemplates) {
+          if (template.codeTemplates.python) {
+            codeTemplates.push({
+              language: 'python',
+              template: template.codeTemplates.python
+            });
+          }
+
+          if (template.codeTemplates.cpp) {
+            codeTemplates.push({
+              language: 'cpp',
+              template: template.codeTemplates.cpp
+            });
+          }
+        } else {
+          // Use standard templates
+          codeTemplates.push({
+            language: 'python',
+            template: standardTemplates.python
+          });
+
+          codeTemplates.push({
+            language: 'cpp',
+            template: standardTemplates.cpp
+          });
+        }
+
+        return {
+          title: template.title,
+          description: template.description,
+          difficulty: template.difficulty,
+          timeLimit: template.timeLimit || 60,
+          problemStatement: template.problemStatement,
+          inputFormat: template.inputFormat,
+          outputFormat: template.outputFormat,
+          constraints: template.constraints,
+          sampleInput: template.sampleInput,
+          sampleOutput: template.sampleOutput,
+          testCases: template.testCases || [],
+          codeTemplates,
+          isPublic: true,
+          isTemplate: true
+        };
+      });
+
+      // Insert template tests
+      const insertedTemplates = await Test.insertMany(formattedTemplates);
+      console.log(`Seeded ${insertedTemplates.length} template tests`);
+    } else {
+      console.log(`Found ${templateCount} existing template tests. Skipping seed.`);
+    }
+  } catch (error) {
+    console.error('Error seeding template tests:', error);
+  }
+}
+
+// Call the seed function
+seedTemplateTests();
+
 // Middleware
 app.use(cors({
-  origin: '*',
-  credentials: false
+  origin: 'http://localhost:5173', // Restrict to client origin
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Session-ID']
 }));
 app.use(express.json());
 
@@ -21,95 +106,199 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'Test route is working' });
 });
 
-// Store registered users in memory
-const users = [
-  // No default users - users will be added when they register
-];
+// Generate a unique session ID
+function generateSessionId() {
+  return Date.now().toString(36) + Math.random().toString(36).substring(2, 15);
+}
+
+// Generate a token for a user
+function generateToken(userId, sessionId) {
+  // In a real app, this would be a JWT with proper signing
+  return Buffer.from(JSON.stringify({ userId, sessionId, timestamp: Date.now() })).toString('base64');
+}
+
+// Validate a token and return the user
+async function validateToken(token, sessionId) {
+  try {
+    // Decode the token
+    const decoded = JSON.parse(Buffer.from(token, 'base64').toString());
+
+    // Find the session in the database
+    const session = await Session.findOne({ sessionId: decoded.sessionId });
+
+    if (!session || session.token !== token) {
+      return null;
+    }
+
+    // If sessionId is provided, ensure it matches the token's sessionId
+    if (sessionId && decoded.sessionId !== sessionId) {
+      return null;
+    }
+
+    // Update last activity
+    session.lastActivity = Date.now();
+    await session.save();
+
+    // Find the user
+    const user = await User.findById(decoded.userId);
+    return user || null;
+  } catch (error) {
+    console.error('Token validation error:', error);
+    return null;
+  }
+}
 
 // Auth routes
-app.post('/api/auth/register', (req, res) => {
-  console.log('Register request body:', req.body);
+app.post('/api/auth/register', async (req, res) => {
+  try {
+    console.log('Register request body:', req.body);
 
-  const { name, email, password, role } = req.body;
+    const { name, email, password, role } = req.body;
+    const sessionId = req.headers['x-session-id'] || generateSessionId();
 
-  // Check if email already exists
-  if (users.some(u => u.email === email)) {
-    return res.status(400).json({ message: 'Email already in use' });
-  }
+    console.log('Session ID for registration:', sessionId);
 
-  // Create new user
-  const newUser = {
-    id: Math.random().toString(36).substring(7),
-    name: name || 'New User',
-    email: email,
-    password: password,
-    role: role || 'assessee' // Default role is assessee
-  };
-
-  // Add to users array
-  users.push(newUser);
-
-  // Simulate successful registration
-  res.status(201).json({
-    token: 'test-token',
-    user: {
-      id: newUser.id,
-      name: newUser.name,
-      email: newUser.email,
-      role: newUser.role
+    // Check if email already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already in use' });
     }
-  });
+
+    // Create new user
+    const newUser = new User({
+      name: name || 'New User',
+      email,
+      password, // Will be hashed by the pre-save hook
+      role: role || 'assessee' // Default role is assessee
+    });
+
+    // Save user to database
+    await newUser.save();
+
+    // Generate a token for this session
+    const token = generateToken(newUser._id, sessionId);
+
+    // Store the session in database
+    const newSession = new Session({
+      userId: newUser._id,
+      sessionId,
+      token,
+      createdAt: Date.now(),
+      lastActivity: Date.now()
+    });
+
+    await newSession.save();
+
+    // Set session ID in response header
+    res.setHeader('X-Session-ID', sessionId);
+
+    // Return successful registration
+    res.status(201).json({
+      token,
+      sessionId,
+      user: {
+        _id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role
+      }
+    });
+  } catch (error) {
+    console.error('Registration error:', error);
+    res.status(500).json({ message: 'Registration failed', error: error.message });
+  }
 });
 
-app.post('/api/auth/login', (req, res) => {
-  console.log('Login request body:', req.body);
+app.post('/api/auth/login', async (req, res) => {
+  try {
+    console.log('Login request body:', req.body);
 
-  const { email, password } = req.body;
+    const { email, password } = req.body;
+    const sessionId = req.headers['x-session-id'] || generateSessionId();
 
-  // Find user by email
-  const user = users.find(u => u.email === email);
-  console.log('Found user:', user);
+    console.log('Session ID for login:', sessionId);
 
-  // If no user exists with this email, return error
-  if (!user) {
-    console.log('User not found, returning error');
-    return res.status(401).json({ message: 'Invalid email or password' });
-  }
+    // Find user by email
+    const user = await User.findOne({ email });
+    console.log('Found user:', user ? user.email : 'Not found');
 
-  // For existing users, check password
-  if (user.password !== password) {
-    console.log('Password mismatch');
-    return res.status(401).json({ message: 'Invalid email or password' });
-  }
-
-  console.log('Login successful for user:', user.email);
-  // Simulate successful login
-  res.json({
-    token: 'test-token',
-    user: {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role
+    // If no user exists with this email, return error
+    if (!user) {
+      console.log('User not found, returning error');
+      return res.status(401).json({ message: 'Invalid email or password' });
     }
-  });
+
+    // For existing users, check password
+    const isPasswordValid = await user.comparePassword(password);
+    if (!isPasswordValid) {
+      console.log('Password mismatch');
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    // Generate a token for this session
+    const token = generateToken(user._id, sessionId);
+
+    // Store the session in database
+    const newSession = new Session({
+      userId: user._id,
+      sessionId,
+      token,
+      createdAt: Date.now(),
+      lastActivity: Date.now()
+    });
+
+    await newSession.save();
+
+    // Set session ID in response header
+    res.setHeader('X-Session-ID', sessionId);
+
+    console.log('Login successful for user:', user.email);
+    // Return the token and user info
+    res.json({
+      token,
+      sessionId,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
+    });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ message: 'Login failed', error: error.message });
+  }
 });
 
-app.get('/api/auth/me', (req, res) => {
-  // Get the token from the request
-  const authHeader = req.headers.authorization;
-  console.log('Auth header for /me:', authHeader);
+app.get('/api/auth/me', async (req, res) => {
+  try {
+    // Get the token from the request
+    const authHeader = req.headers.authorization;
+    const sessionId = req.headers['x-session-id'];
+    console.log('Auth header for /me:', authHeader);
+    console.log('Session ID for /me:', sessionId);
 
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ message: 'No token provided' });
-  }
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ message: 'No token provided' });
+    }
 
-  const token = authHeader.split(' ')[1];
-  console.log('Token for /me:', token);
+    const token = authHeader.split(' ')[1];
+    console.log('Token for /me:', token);
 
-  // For this test server, we'll use the token to determine the user
-  // In a real app, we would verify the JWT token
-  if (token === 'test-token') {
+    // Validate the token and get the user
+    const user = await validateToken(token, sessionId);
+
+    if (user) {
+      console.log('Token validation successful, user:', user.email);
+      return res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      });
+    }
+
+    // If token validation failed, try the old method for backward compatibility
     // Get the email from the query parameter if provided
     let email = req.query.email;
     console.log('Email from query:', email);
@@ -121,79 +310,143 @@ app.get('/api/auth/me', (req, res) => {
     }
 
     // For testing purposes, if no valid user is found, create one
-    if (email && !users.some(u => u.email === email)) {
-      console.log('Creating new user for email:', email);
-      // Use a fixed ID for testing purposes
-      const newUser = {
-        id: 'test-user-id-' + Date.now().toString(36),
-        name: email.split('@')[0],
-        email: email,
-        password: 'password123',
-        role: 'assessee' // Default to assessee for new users
-      };
-      users.push(newUser);
-      console.log('New user created:', newUser);
+    if (email) {
+      // Check if user exists
+      let foundUser = await User.findOne({ email });
 
-      // Check if this email was invited to any assessments
-      assessments.forEach(assessment => {
-        if (assessment.invitedStudents && Array.isArray(assessment.invitedStudents)) {
-          // Check if this email is in the invitedStudents array as an object
-          const emailInviteIndex = assessment.invitedStudents.findIndex(student =>
-            typeof student === 'object' &&
-            student.email &&
-            student.email.toLowerCase() === email.toLowerCase()
+      if (!foundUser) {
+        console.log('Creating new user for email:', email);
+        // Create a new user
+        const newUser = new User({
+          name: email.split('@')[0],
+          email: email,
+          password: 'password123', // Will be hashed by the pre-save hook
+          role: 'assessee' // Default to assessee for new users
+        });
+
+        foundUser = await newUser.save();
+        console.log('New user created:', foundUser.email);
+
+        // Check if this email was invited to any assessments
+        const assessments = await Assessment.find({
+          'invitedStudents.email': email
+        });
+
+        for (const assessment of assessments) {
+          console.log(`Found invitation for email ${email} in assessment ${assessment._id}`);
+
+          // Update the assessment to include the user ID
+          await Assessment.updateOne(
+            { _id: assessment._id, 'invitedStudents.email': email },
+            { $set: { 'invitedStudents.$': foundUser._id } }
           );
 
-          if (emailInviteIndex >= 0) {
-            console.log(`Found invitation for email ${email} in assessment ${assessment.id}`);
+          // Create a notification for this user
+          const notification = new Notification({
+            userId: foundUser._id,
+            type: 'invitation',
+            title: 'New Assessment Invitation',
+            message: `You have been invited to take the assessment: ${assessment.title}`,
+            assessmentId: assessment._id,
+            createdAt: new Date(),
+            read: false
+          });
 
-            // Replace the email object with the user ID
-            assessment.invitedStudents.splice(emailInviteIndex, 1, newUser.id);
-
-            // Create a notification for this user
-            notifications.push({
-              id: Date.now().toString() + Math.random().toString(36).substring(2, 9),
-              userId: newUser.id,
-              type: 'invitation',
-              title: 'New Assessment Invitation',
-              message: `You have been invited to take the assessment: ${assessment.title}`,
-              assessmentId: assessment.id,
-              createdAt: new Date().toISOString(),
-              read: false
-            });
-
-            console.log(`Created notification for new user ${newUser.id} for assessment ${assessment.id}`);
-          }
+          await notification.save();
+          console.log(`Created notification for new user ${foundUser._id} for assessment ${assessment._id}`);
         }
-      });
+      }
+
+      if (foundUser) {
+        console.log('Returning user for /me:', foundUser.email);
+        return res.json({
+          _id: foundUser._id,
+          name: foundUser.name,
+          email: foundUser.email,
+          role: foundUser.role
+        });
+      }
     }
 
-    let user;
+    // If we get here, no user was found
+    return res.status(404).json({ message: 'User not found' });
+  } catch (error) {
+    console.error('Error in /api/auth/me:', error);
+    return res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
 
-    if (email) {
-      // Find the user by email
-      user = users.find(u => u.email === email);
-      console.log('Found user by email:', user);
-    } else {
-      // If no email provided, use the most recently registered user
-      user = users.length > 0 ? users[users.length - 1] : null;
-      console.log('Using most recent user:', user);
+// Logout endpoint
+app.post('/api/auth/logout', async (req, res) => {
+  try {
+    const sessionId = req.headers['x-session-id'];
+    console.log('Logout request for session:', sessionId);
+
+    if (sessionId) {
+      // Remove the session from database
+      await Session.deleteOne({ sessionId });
+      console.log('Session removed successfully');
     }
+
+    // Always return success
+    return res.json({ message: 'Logged out successfully' });
+  } catch (error) {
+    console.error('Error during logout:', error);
+    return res.status(500).json({ message: 'Logout failed', error: error.message });
+  }
+});
+
+// Update user profile
+app.put('/api/users/profile', async (req, res) => {
+  try {
+    const { name, currentPassword, newPassword } = req.body;
+    const userEmail = req.query.email;
+
+    if (!userEmail) {
+      return res.status(400).json({ message: 'Email is required' });
+    }
+
+    // Find the user
+    const user = await User.findOne({ email: userEmail });
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    console.log('Returning user for /me:', user);
-    return res.json({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role
-    });
-  }
+    // Update name if provided
+    if (name) {
+      user.name = name;
+    }
 
-  return res.status(401).json({ message: 'Invalid token' });
+    // Update password if provided
+    if (currentPassword && newPassword) {
+      // Verify current password
+      const isPasswordValid = await user.comparePassword(currentPassword);
+
+      if (!isPasswordValid) {
+        return res.status(400).json({ message: 'Current password is incorrect' });
+      }
+
+      // Set new password
+      user.password = newPassword;
+    }
+
+    // Save the updated user
+    await user.save();
+
+    return res.json({
+      message: 'Profile updated successfully',
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
+    });
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    return res.status(500).json({ message: 'Failed to update profile', error: error.message });
+  }
 });
 
 // Sample test templates are now imported from './test-templates'
@@ -360,860 +613,1018 @@ const notifications = [
   // Empty by default - notifications will be added when students are invited
 ];
 
+// Commenting out the in-memory assessments API to avoid conflicts
+// app.get('/api/assessments', (req, res) => {
+//     res.json(inMemoryAssessments);
+// });
+
+// app.post('/api/assessments', (req, res) => {
+//     const newAssessment = req.body;
+//     inMemoryAssessments.push(newAssessment);
+//     res.status(201).json(newAssessment);
+// });
+
 // Tests routes
-app.get('/api/tests', (req, res) => {
-  // Get the user from the request (in a real app, this would be from the token)
-  const authHeader = req.headers.authorization;
-  let userEmail = req.query.email;
+app.get('/api/tests', async (req, res) => {
+  try {
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
+    let userEmail = req.query.email;
 
-  // Handle case where email is an array
-  if (Array.isArray(userEmail)) {
-    userEmail = userEmail[0];
-    console.log('Email is an array, using first value:', userEmail);
-  }
-
-  console.log('GET /api/tests - Auth Header:', authHeader, 'Email:', userEmail);
-
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
-
-  // Find the user by email first (more reliable)
-  let user = null;
-  if (userEmail) {
-    user = users.find(u => u.email === userEmail);
-  }
-
-  // If user not found by email, try to find by token (fallback)
-  if (!user) {
-    // For testing purposes, we'll return all tests for any authenticated user
-    console.log('User not found by email, returning all tests');
-    return res.json(tests);
-  }
-
-  console.log('User found:', user);
-
-  // If the user is an assessor, return all tests
-  if (user.role === 'assessor') {
-    console.log('Returning all tests for assessor');
-    return res.json(tests);
-  }
-
-  // If the user is an assessee, return tests that are part of their assigned assessments OR public tests
-  const assignedAssessments = assessments.filter(assessment => {
-    // Check if the user's email is in the invitedStudents array as an object
-    const invitedByEmail = assessment.invitedStudents && Array.isArray(assessment.invitedStudents) &&
-      assessment.invitedStudents.some(student =>
-        typeof student === 'object' && student.email === user.email
-      );
-
-    // Check if the user's ID is in the invitedStudents array
-    const invitedById = assessment.invitedStudents && Array.isArray(assessment.invitedStudents) &&
-      assessment.invitedStudents.includes(user.id);
-
-    return invitedByEmail || invitedById || assessment.isPublic;
-  });
-
-  console.log('Assigned assessments:', assignedAssessments.length);
-
-  // Extract all test IDs from assigned assessments
-  const assignedTestIds = new Set();
-  assignedAssessments.forEach(assessment => {
-    if (assessment.tests && Array.isArray(assessment.tests)) {
-      assessment.tests.forEach(testId => assignedTestIds.add(testId));
+    // Handle case where email is an array
+    if (Array.isArray(userEmail)) {
+      userEmail = userEmail[0];
+      console.log('Email is an array, using first value:', userEmail);
     }
-  });
 
-  console.log('Assigned test IDs:', [...assignedTestIds]);
+    console.log('GET /api/tests - Auth Header:', authHeader, 'Email:', userEmail);
 
-  // Get public tests
-  const publicTests = tests.filter(test => test.isPublic);
-  console.log('Public tests:', publicTests.length);
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
 
-  // Filter tests to include those in assigned assessments AND public tests
-  const accessibleTests = tests.filter(test =>
-    assignedTestIds.has(test._id) || test.isPublic
-  );
+    // Find the user by email
+    const user = await User.findOne({ email: userEmail });
 
-  console.log('Returning accessible tests for assessee:', accessibleTests.length);
-  res.json(accessibleTests);
+    // If user not found by email, return error
+    if (!user) {
+      console.log('User not found by email, returning error');
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    console.log('User found:', user.email);
+
+    // If the user is an assessor, return all tests
+    if (user.role === 'assessor') {
+      console.log('Returning all tests for assessor');
+      const allTests = await Test.find({});
+      return res.json(allTests);
+    }
+
+    // If the user is an assessee, return tests that are part of their assigned assessments OR public tests
+    const assignedAssessments = await Assessment.find({
+      $or: [
+        { invitedStudents: user._id },
+        { isPublic: true }
+      ]
+    });
+
+    console.log('Assigned assessments:', assignedAssessments.length);
+
+    // Extract all test IDs from assigned assessments
+    const assignedTestIds = new Set();
+    assignedAssessments.forEach(assessment => {
+      if (assessment.tests && Array.isArray(assessment.tests)) {
+        assessment.tests.forEach(testId => assignedTestIds.add(testId.toString()));
+      }
+    });
+
+    console.log('Assigned test IDs:', [...assignedTestIds]);
+
+    // Get all accessible tests (public tests OR tests in assigned assessments)
+    const accessibleTests = await Test.find({
+      $or: [
+        { isPublic: true },
+        { _id: { $in: [...assignedTestIds] } }
+      ]
+    });
+
+    console.log('Returning accessible tests for assessee:', accessibleTests.length);
+    res.json(accessibleTests);
+  } catch (error) {
+    console.error('Error fetching tests:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 });
 
 // Get public tests
-app.get('/api/tests/public', (req, res) => {
-  // Get the user from the request (in a real app, this would be from the token)
-  const authHeader = req.headers.authorization;
+app.get('/api/tests/public', async (req, res) => {
+  try {
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
 
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    // Return only public tests
+    const publicTests = await Test.find({ isPublic: true });
+    console.log('Returning public tests:', publicTests.length);
+    res.json(publicTests);
+  } catch (error) {
+    console.error('Error fetching public tests:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
-
-  // Return only public tests
-  const publicTests = tests.filter(test => test.isPublic);
-  console.log('Returning public tests:', publicTests.length);
-  res.json(publicTests);
 });
 
 // Get tests created by the current user
-app.get('/api/tests/my-tests', (req, res) => {
-  // Get the user from the request (in a real app, this would be from the token)
-  const userId = req.headers.authorization ? 'admin123' : null;
+app.get('/api/tests/my-tests', async (req, res) => {
+  try {
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
+    const userEmail = req.query.email;
 
-  if (!userId) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    if (!authHeader || !userEmail) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    // Find the user by email
+    const user = await User.findOne({ email: userEmail });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Return tests created by the current user
+    const myTests = await Test.find({ createdBy: user._id });
+    res.json(myTests);
+  } catch (error) {
+    console.error('Error fetching user tests:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
-
-  // Return tests created by the current user
-  const myTests = tests.filter(test => test.createdBy === userId);
-  res.json(myTests);
 });
 
 // Create a new test or assessment
-app.post('/api/tests', (req, res) => {
-  // Get the user from the request (in a real app, this would be from the token)
-  const userId = req.headers.authorization ? 'admin123' : null;
+app.post('/api/tests', async (req, res) => {
+  try {
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
+    const userEmail = req.query.email;
 
-  if (!userId) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    if (!authHeader || !userEmail) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    // Find the user by email
+    const user = await User.findOne({ email: userEmail });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Get the test data from the request body
+    const testData = req.body;
+
+    // Create a new test with the provided data
+    const newTest = new Test({
+      ...testData,
+      createdBy: user._id,
+      createdAt: new Date()
+    });
+
+    // Save the test to the database
+    await newTest.save();
+
+    // If this is an assessment with questions, create an assessment entry
+    if (testData.questions && Array.isArray(testData.questions) && testData.questions.length > 0) {
+      const newAssessment = new Assessment({
+        title: testData.title,
+        description: testData.description || '',
+        startTime: testData.startTime || new Date(),
+        endTime: testData.endTime || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        maxAttempts: testData.maxAttempts || 1,
+        createdBy: user._id,
+        tests: [newTest._id],
+        invitedStudents: []
+      });
+
+      // Save the assessment to the database
+      await newAssessment.save();
+    }
+
+    // Return the new test
+    res.status(201).json(newTest);
+  } catch (error) {
+    console.error('Error creating test:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
-
-  // Get the test data from the request body
-  const testData = req.body;
-
-  // Create a new test with the provided data
-  const newTest = {
-    ...testData,
-    _id: Date.now().toString(),
-    createdBy: userId,
-    createdAt: new Date().toISOString()
-  };
-
-  // Add the test to the tests array
-  tests.push(newTest);
-
-  // If this is an assessment with questions, create an assessment entry
-  if (testData.questions && Array.isArray(testData.questions) && testData.questions.length > 0) {
-    const newAssessment = {
-      id: newTest._id,
-      title: testData.title,
-      description: testData.description || '',
-      startTime: testData.startTime || new Date().toISOString(), // Default to current time
-      endTime: testData.endTime || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-      maxAttempts: testData.maxAttempts || 1,
-      createdBy: userId,
-      createdAt: new Date().toISOString(),
-      tests: testData.questions.map(q => q._id || Date.now().toString() + Math.random().toString(36).substring(2, 15)),
-      invitedStudents: []
-    };
-
-    // Add the assessment to the assessments array
-    assessments.push(newAssessment);
-  }
-
-  // Return the new test
-  res.status(201).json(newTest);
 });
 
 // Get sample test templates
-app.get('/api/tests/templates', (req, res) => {
-  // Get the user from the request (in a real app, this would be from the token)
-  const userId = req.headers.authorization ? 'admin123' : null;
+app.get('/api/tests/templates', async (req, res) => {
+  try {
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
+    const userEmail = req.query.email;
 
-  if (!userId) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    if (!authHeader || !userEmail) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    // Find the user by email
+    const user = await User.findOne({ email: userEmail });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Return template tests from the database
+    const templates = await Test.find({ isTemplate: true });
+    res.json(templates);
+  } catch (error) {
+    console.error('Error fetching test templates:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
-
-  // Return sample test templates
-  res.json(sampleTestTemplates);
 });
 
 // Create a test from a template
-app.post('/api/tests/from-template/:templateIndex', (req, res) => {
-  // Get the user from the request (in a real app, this would be from the token)
-  const userId = req.headers.authorization ? 'admin123' : null;
+app.post('/api/tests/from-template/:templateId', async (req, res) => {
+  try {
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
+    const userEmail = req.query.email;
 
-  if (!userId) {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
-
-  const templateIndex = parseInt(req.params.templateIndex);
-
-  if (isNaN(templateIndex) || templateIndex < 0 || templateIndex >= sampleTestTemplates.length) {
-    return res.status(400).json({ message: 'Invalid template index' });
-  }
-
-  // Create a new test from the template
-  const template = sampleTestTemplates[templateIndex];
-  const newTest = {
-    ...template,
-    _id: Date.now().toString(),
-    createdBy: userId,
-    createdAt: new Date().toISOString(),
-    isPublic: false, // Default to private
-    // Use standard templates for all problems
-    codeTemplates: standardTemplates
-  };
-
-  // Add the test to the tests array
-  tests.push(newTest);
-
-  // Return the new test
-  res.status(201).json(newTest);
-});
-
-app.get('/api/tests/:id', (req, res) => {
-  // Get the test ID from the request
-  const testId = req.params.id;
-
-  // Get the user from the request (in a real app, this would be from the token)
-  const authHeader = req.headers.authorization;
-  let userEmail = req.query.email;
-
-  // Handle case where email is an array
-  if (Array.isArray(userEmail)) {
-    userEmail = userEmail[0];
-    console.log('Email is an array, using first value:', userEmail);
-  }
-
-  console.log('GET /api/tests/:id - Auth Header:', authHeader, 'Email:', userEmail, 'Test ID:', testId);
-
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
-
-  // Find the user by email
-  let user = null;
-  if (userEmail) {
-    user = users.find(u => u.email === userEmail);
-  }
-
-  // If user not found by email, create a temporary user for testing purposes
-  if (!user) {
-    console.log('User not found by email, creating temporary user for test access');
-    user = {
-      id: `temp-user-${Date.now()}`,
-      name: userEmail ? userEmail.split('@')[0] : 'Guest User',
-      email: userEmail || 'guest@example.com',
-      role: 'assessee'
-    };
-  }
-
-  console.log('Found user for test access check:', user.id, user.email);
-
-  // Find the test by ID (try both _id and id)
-  const test = tests.find(t => t._id === testId || t.id === testId);
-
-  console.log('Looking for test with ID:', testId);
-  console.log('Available tests:', tests.map(t => ({ id: t.id, _id: t._id, title: t.title })));
-
-  if (!test) {
-    console.log('Test not found with ID:', testId);
-    return res.status(404).json({ message: 'Test not found' });
-  }
-
-  console.log('Test found:', { id: test.id, _id: test._id, title: test.title });
-
-  // Check if the user has permission to view this test
-  const isCreator = test.createdBy === user.id;
-  const isPublic = test.isPublic;
-
-  // Get the specific assessment ID from the query parameters if provided
-  const specificAssessmentId = req.query.assessmentId;
-  console.log('Specific assessment ID from query:', specificAssessmentId);
-
-  // If a specific assessment ID is provided, only check that assessment
-  let assessmentsToCheck = assessments;
-  let isPartOfAssessment = false;
-
-  if (specificAssessmentId) {
-    assessmentsToCheck = assessments.filter(a => a.id === specificAssessmentId);
-    console.log(`Filtering to check only assessment ${specificAssessmentId}`);
-
-    // Check if this test is part of the specified assessment
-    const assessment = assessmentsToCheck[0];
-    if (assessment && assessment.tests) {
-      // Check if the test ID is in the assessment's tests array
-      // Handle both string IDs and object IDs
-      isPartOfAssessment = assessment.tests.some(t => {
-        if (typeof t === 'string') {
-          return t === testId || t === test._id;
-        } else if (t && t.id) {
-          return t.id === testId || t.id === test._id;
-        }
-        return false;
-      });
-
-      console.log(`Is test ${testId} part of assessment ${specificAssessmentId}? ${isPartOfAssessment}`);
+    if (!authHeader || !userEmail) {
+      return res.status(401).json({ message: 'Unauthorized' });
     }
-  }
 
-  // Check if the user is invited to any assessment that contains this test
-  const isInvited = assessmentsToCheck.some(assessment => {
-    console.log(`Checking assessment ${assessment.id} for test ${testId}`);
+    // Find the user by email
+    const user = await User.findOne({ email: userEmail });
 
-    // Check if this assessment contains the test
-    // Handle both string IDs and object IDs
-    const containsTest = assessment.tests && Array.isArray(assessment.tests) && assessment.tests.some(t => {
-      if (typeof t === 'string') {
-        return t === testId || t === test._id;
-      } else if (t && t.id) {
-        return t.id === testId || t.id === test._id;
-      }
-      return false;
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Get the template ID from the request params
+    const templateId = req.params.templateId;
+
+    // Find the template
+    const template = await Test.findById(templateId);
+
+    if (!template) {
+      return res.status(404).json({ message: 'Template not found' });
+    }
+
+    // Create a new test from the template
+    const newTest = new Test({
+      title: template.title,
+      description: template.description,
+      difficulty: template.difficulty,
+      timeLimit: template.timeLimit,
+      problemStatement: template.problemStatement,
+      inputFormat: template.inputFormat,
+      outputFormat: template.outputFormat,
+      constraints: template.constraints,
+      sampleInput: template.sampleInput,
+      sampleOutput: template.sampleOutput,
+      testCases: template.testCases,
+      codeTemplates: template.codeTemplates || standardTemplates,
+      isPublic: false, // Default to private for user-created tests
+      isTemplate: false,
+      createdBy: user._id
     });
 
-    if (!containsTest) {
-      console.log(`Assessment ${assessment.id} does not contain test ${testId}`);
-      return false;
+    // Save the test to the database
+    await newTest.save();
+
+    // Return the new test
+    res.status(201).json(newTest);
+  } catch (error) {
+    console.error('Error creating test from template:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+app.get('/api/tests/:id', async (req, res) => {
+  try {
+    // Get the test ID from the request
+    const testId = req.params.id;
+    console.log('GET /api/tests/:id - Test ID:', testId);
+
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
+    let userEmail = req.query.email;
+
+    // Handle case where email is an array
+    if (Array.isArray(userEmail)) {
+      userEmail = userEmail[0];
+      console.log('Email is an array, using first value:', userEmail);
     }
 
-    console.log(`Assessment ${assessment.id} contains test ${testId}`);
+    console.log('GET /api/tests/:id - Auth Header:', authHeader, 'Email:', userEmail);
 
-    // Check if assessment is public
-    if (assessment.isPublic) {
-      console.log(`Assessment ${assessment.id} is public`);
-      return true;
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    // Check if user is invited by ID
-    if (assessment.invitedStudents && Array.isArray(assessment.invitedStudents)) {
-      // Check for user ID in the array
-      if (assessment.invitedStudents.includes(user.id)) {
-        console.log(`User ${user.email} is invited to assessment ${assessment.id} containing test ${testId} by ID`);
-        return true;
-      }
+    if (!userEmail) {
+      console.error('No email provided in the request');
+      return res.status(400).json({ message: 'Email is required' });
+    }
 
-      // Check for email objects in the array
-      for (const student of assessment.invitedStudents) {
-        if (typeof student === 'object' && student.email &&
-            student.email.toLowerCase() === user.email.toLowerCase()) {
-          console.log(`User ${user.email} is invited to assessment ${assessment.id} containing test ${testId} by email object`);
-          return true;
+    // Find the user by email
+    let user = await User.findOne({ email: userEmail });
+
+    // If user not found by email, create a temporary user for testing purposes
+    if (!user) {
+      console.log('User not found by email, creating temporary user for test access');
+      user = {
+        _id: `temp-user-${Date.now()}`,
+        name: userEmail ? userEmail.split('@')[0] : 'Guest User',
+        email: userEmail || 'guest@example.com',
+        role: 'assessee'
+      };
+    }
+
+    console.log('Found user for test access check:', user._id, user.email);
+
+    // Check if the ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(testId) && testId.length !== 24) {
+      console.error('Invalid test ID format:', testId);
+      return res.status(400).json({ message: 'Invalid test ID format' });
+    }
+
+    // Find the test by ID
+    const test = await Test.findById(testId);
+
+    if (!test) {
+      console.log('Test not found with ID:', testId);
+      return res.status(404).json({ message: 'Test not found' });
+    }
+
+    // Ensure the test has both id and _id properties
+    if (test._id && !test.id) {
+      test.id = test._id.toString();
+      console.log('Added id field based on _id:', test._id);
+    } else if (test.id && !test._id) {
+      test._id = test.id.toString();
+      console.log('Added _id field based on id:', test.id);
+    }
+
+    console.log('Test found:', { id: test._id, title: test.title });
+
+    // Check if the user has permission to view this test
+    const isCreator = test.createdBy && test.createdBy.toString() === user._id.toString();
+    const isPublic = test.isPublic;
+
+    // Get the specific assessment ID from the query parameters if provided
+    const specificAssessmentId = req.query.assessmentId;
+    console.log('Specific assessment ID from query:', specificAssessmentId);
+
+    // If a specific assessment ID is provided, only check that assessment
+    let isPartOfAssessment = false;
+    let isInvited = false;
+
+    if (specificAssessmentId) {
+      // Find the assessment by ID
+      const assessment = await Assessment.findById(specificAssessmentId);
+
+      if (assessment) {
+        console.log(`Checking assessment ${assessment._id} for test ${testId}`);
+
+        // Check if this test is part of the specified assessment
+        isPartOfAssessment = assessment.tests &&
+                            assessment.tests.some(t => t.toString() === testId);
+
+        console.log(`Is test ${testId} part of assessment ${specificAssessmentId}? ${isPartOfAssessment}`);
+
+        // Check if user is invited to this assessment
+        if (isPartOfAssessment) {
+          // Check if assessment is public
+          if (assessment.isPublic) {
+            console.log(`Assessment ${assessment._id} is public`);
+            isInvited = true;
+          } else {
+            // Check if user is in invitedStudents
+            isInvited = assessment.invitedStudents &&
+                      assessment.invitedStudents.some(id => id.toString() === user._id.toString());
+
+            if (isInvited) {
+              console.log(`User ${user.email} is invited to assessment ${assessment._id}`);
+            }
+          }
         }
       }
-    }
-
-    // Check if there's a notification for this user for this assessment
-    const hasInvitationNotification = notifications.some(n =>
-      n.userId === user.id && n.assessmentId === assessment.id && n.type === 'invitation'
-    );
-
-    if (hasInvitationNotification) {
-      console.log(`User ${user.email} is invited to assessment ${assessment.id} containing test ${testId} through notification`);
-      return true;
-    }
-
-    console.log(`User ${user.email} is NOT invited to assessment ${assessment.id} containing test ${testId}`);
-    return false;
-  });
-
-  console.log('Permission check for test access:', {
-    testId,
-    userId: user.id,
-    userEmail: user.email,
-    isCreator,
-    isPublic,
-    isInvited
-  });
-
-  // If the test is part of the specified assessment and the user is invited to that assessment,
-  // grant access regardless of other permissions
-  const hasAccessViaAssessment = specificAssessmentId && isPartOfAssessment && isInvited;
-
-  // Check if the user has permission to view this test
-  if (!isCreator && !isPublic && !isInvited && !hasAccessViaAssessment) {
-    console.log('Access denied to test. Permission check:', { isCreator, isPublic, isInvited, hasAccessViaAssessment });
-    return res.status(403).json({ message: 'You do not have permission to view this test' });
-  }
-
-  // Log access granted
-  console.log(`Access granted to test ${testId} for user ${user.email}`);
-
-  // If we're here, the user has permission to view the test
-
-  // Add detailed test information
-  const detailedTest = {
-    ...test,
-    testCases: test.testCases || [],
-    // Provide default values for missing fields
-    problemStatement: test.problemStatement || 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.',
-    inputFormat: test.inputFormat || 'First line contains an array of integers separated by space. Second line contains the target integer.',
-    outputFormat: test.outputFormat || 'Return the indices of the two numbers that add up to the target.',
-    constraints: test.constraints || 'You may assume that each input would have exactly one solution, and you may not use the same element twice.',
-    sampleInput: test.sampleInput || '[2, 7, 11, 15]\n9',
-    sampleOutput: test.sampleOutput || '[0, 1]',
-    // Use standard templates for all problems
-    codeTemplates: standardTemplates,
-    createdBy: {
-      name: user.id === 'admin123' ? 'Admin' : (test.createdBy?.name || 'Test User'),
-      email: user.id === 'admin123' ? 'admin@gmail.com' : (test.createdBy?.email || 'test@gmail.com')
-    }
-  };
-
-  // If the user is an assessee, filter out hidden test cases
-  if (user.role === 'assessee') {
-    // Make sure testCases is an array before filtering
-    if (Array.isArray(detailedTest.testCases)) {
-      detailedTest.testCases = detailedTest.testCases.filter(tc => tc && !tc.isHidden);
     } else {
-      detailedTest.testCases = [];
-    }
-  }
+      // Check all assessments that contain this test
+      const assessmentsWithTest = await Assessment.find({
+        tests: testId
+      });
 
-  // Return the test
-  res.json(detailedTest);
+      console.log(`Found ${assessmentsWithTest.length} assessments containing test ${testId}`);
+
+      // Check if user is invited to any of these assessments
+      isInvited = assessmentsWithTest.some(assessment => {
+        // Check if assessment is public
+        if (assessment.isPublic) {
+          console.log(`Assessment ${assessment._id} is public`);
+          return true;
+        }
+
+        // Check if user is in invitedStudents
+        const userInvited = assessment.invitedStudents &&
+                          assessment.invitedStudents.some(id => id.toString() === user._id.toString());
+
+        if (userInvited) {
+          console.log(`User ${user.email} is invited to assessment ${assessment._id}`);
+          return true;
+        }
+
+        return false;
+      });
+    }
+
+    console.log('Permission check for test access:', {
+      testId,
+      userId: user._id,
+      userEmail: user.email,
+      isCreator,
+      isPublic,
+      isInvited
+    });
+
+    // If the test is part of the specified assessment and the user is invited to that assessment,
+    // grant access regardless of other permissions
+    const hasAccessViaAssessment = specificAssessmentId && isPartOfAssessment && isInvited;
+
+    // Check if the user has permission to view this test
+    if (!isCreator && !isPublic && !isInvited && !hasAccessViaAssessment) {
+      console.log('Access denied to test. Permission check:', { isCreator, isPublic, isInvited, hasAccessViaAssessment });
+      return res.status(403).json({ message: 'You do not have permission to view this test' });
+    }
+
+    // Log access granted
+    console.log(`Access granted to test ${testId} for user ${user.email}`);
+
+    // If we're here, the user has permission to view the test
+
+    // Add detailed test information
+    const detailedTest = {
+      ...test.toObject(),
+      // Provide default values for missing fields if needed
+      problemStatement: test.problemStatement || 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.',
+      inputFormat: test.inputFormat || 'First line contains an array of integers separated by space. Second line contains the target integer.',
+      outputFormat: test.outputFormat || 'Return the indices of the two numbers that add up to the target.',
+      constraints: test.constraints || 'You may assume that each input would have exactly one solution, and you may not use the same element twice.',
+      sampleInput: test.sampleInput || '[2, 7, 11, 15]\n9',
+      sampleOutput: test.sampleOutput || '[0, 1]',
+      // Use standard templates if none exist
+      codeTemplates: test.codeTemplates.length > 0 ? test.codeTemplates : standardTemplates
+    };
+
+    // If the user is an assessee, filter out hidden test cases
+    if (user.role === 'assessee') {
+      // Make sure testCases is an array before filtering
+      if (Array.isArray(detailedTest.testCases)) {
+        detailedTest.testCases = detailedTest.testCases.filter(tc => tc && !tc.isHidden);
+      } else {
+        detailedTest.testCases = [];
+      }
+    }
+
+    // Return the test
+    res.json(detailedTest);
+  } catch (error) {
+    console.error('Error fetching test:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 });
 
 // Assessments routes
 // Create a new assessment
-app.post('/api/assessments', (req, res) => {
+app.post('/api/assessments', async (req, res) => {
   console.log('Create assessment request body:', req.body);
 
-  // Get the user from the request (in a real app, this would be from the token)
-  const authHeader = req.headers.authorization;
-  let userEmail = req.query.email;
-
-  // Handle case where email is an array
-  if (Array.isArray(userEmail)) {
-    userEmail = userEmail[0];
-    console.log('Email is an array, using first value:', userEmail);
-  }
-
-  console.log('POST /api/assessments - Auth Header:', authHeader, 'Email:', userEmail);
-
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
-
-  // Find the user by email first (more reliable)
-  let user = null;
-  if (userEmail) {
-    user = users.find(u => u.email === userEmail);
-  }
-
-  // If user not found by email, return error
-  if (!user) {
-    console.log('User not found by email, returning error');
-    return res.status(404).json({ message: 'User not found' });
-  }
-
-  console.log('User found for assessment creation:', user);
-
   try {
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
+    let userEmail = req.query.email;
+
+    // Handle case where email is an array
+    if (Array.isArray(userEmail)) {
+      userEmail = userEmail[0];
+      console.log('Email is an array, using first value:', userEmail);
+    }
+
+    console.log('POST /api/assessments - Auth Header:', authHeader, 'Email:', userEmail);
+
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    // Find the user by email
+    const user = await User.findOne({ email: userEmail });
+
+    // If user not found by email, return error
+    if (!user) {
+      console.log('User not found by email, returning error');
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    console.log('User found for assessment creation:', user);
+
     // Make sure tests is an array
     const testsArray = Array.isArray(req.body.tests) ? req.body.tests : [];
     console.log('Tests array for assessment:', testsArray);
 
-    // Create a new assessment
-    const newAssessment = {
-      id: `assessment_${assessments.length + 1}`,
-      ...req.body,
-      tests: testsArray, // Ensure tests is an array
-      createdBy: user.id,
-      invitedStudents: [], // Start with empty array, not default values
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    };
-
-    // Ensure invitedStudents is an array and doesn't contain example.com emails
-    if (!Array.isArray(newAssessment.invitedStudents)) {
-      newAssessment.invitedStudents = [];
+    // Process invited students
+    let invitedStudents = [];
+    if (req.body.invitedStudents && Array.isArray(req.body.invitedStudents)) {
+      // Filter out any example.com emails
+      invitedStudents = req.body.invitedStudents.filter(student => {
+        if (typeof student === 'object' && student.email) {
+          return !student.email.includes('example.com');
+        }
+        return true;
+      });
     }
 
-    // Filter out any example.com emails
-    newAssessment.invitedStudents = newAssessment.invitedStudents.filter(student => {
-      if (typeof student === 'object' && student.email) {
-        return !student.email.includes('example.com');
-      }
-      return true;
-    });
+    console.log('Filtered invitedStudents for new assessment:', invitedStudents);
 
-    console.log('Filtered invitedStudents for new assessment:', newAssessment.invitedStudents);
+    // Create a new assessment
+    const newAssessment = new Assessment({
+      title: req.body.title,
+      description: req.body.description,
+      tests: testsArray,
+      startTime: req.body.startTime || new Date(),
+      endTime: req.body.endTime || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Default to 1 week from now
+      maxAttempts: req.body.maxAttempts || 1,
+      isPublic: req.body.isPublic || false,
+      createdBy: user._id,
+      invitedUsers: invitedStudents,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
 
     console.log('New assessment being created:', newAssessment);
 
-    // Add the assessment to the assessments array
-    assessments.push(newAssessment);
+    // Save the assessment to the database
+    await newAssessment.save();
+
+    // Create notifications for invited users
+    if (invitedStudents && invitedStudents.length > 0) {
+      for (const student of invitedStudents) {
+        if (typeof student === 'object' && student.email) {
+          // Try to find the user by email
+          const invitedUser = await User.findOne({ email: student.email });
+
+          if (invitedUser) {
+            // Create a notification for this user
+            const notification = new Notification({
+              userId: invitedUser._id,
+              type: 'invitation',
+              title: 'New Assessment Invitation',
+              message: `You have been invited to take the assessment: ${newAssessment.title}`,
+              assessmentId: newAssessment._id,
+              createdAt: new Date(),
+              read: false
+            });
+
+            await notification.save();
+            console.log('Created notification for invited user:', invitedUser.email);
+          }
+        }
+      }
+    }
 
     res.status(201).json(newAssessment);
   } catch (error) {
     console.error('Error creating assessment:', error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
 
 // Update an existing assessment
-app.put('/api/assessments/:id', (req, res) => {
+app.put('/api/assessments/:id', async (req, res) => {
   console.log(`Update assessment ${req.params.id} request body:`, req.body);
 
-  // Get the user from the request (in a real app, this would be from the token)
-  const authHeader = req.headers.authorization;
-  let userEmail = req.query.email;
-
-  // Handle case where email is an array
-  if (Array.isArray(userEmail)) {
-    userEmail = userEmail[0];
-    console.log('Email is an array, using first value:', userEmail);
-  }
-
-  console.log('PUT /api/assessments/:id - Auth Header:', authHeader, 'Email:', userEmail, 'Assessment ID:', req.params.id);
-
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
-
-  // Find the user by email first (more reliable)
-  let user = null;
-  if (userEmail) {
-    user = users.find(u => u.email === userEmail);
-  }
-
-  // If user not found by email, return error
-  if (!user) {
-    console.log('User not found by email, returning error');
-    return res.status(404).json({ message: 'User not found' });
-  }
-
-  console.log('User found for assessment update:', user);
-
   try {
-    // Find the assessment
-    const assessmentIndex = assessments.findIndex(a => a.id === req.params.id);
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
+    let userEmail = req.query.email;
 
-    if (assessmentIndex === -1) {
+    // Handle case where email is an array
+    if (Array.isArray(userEmail)) {
+      userEmail = userEmail[0];
+      console.log('Email is an array, using first value:', userEmail);
+    }
+
+    console.log('PUT /api/assessments/:id - Auth Header:', authHeader, 'Email:', userEmail, 'Assessment ID:', req.params.id);
+
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    // Find the user by email
+    const user = await User.findOne({ email: userEmail });
+
+    // If user not found by email, return error
+    if (!user) {
+      console.log('User not found by email, returning error');
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    console.log('User found for assessment update:', user);
+
+    // Find the assessment by ID
+    const assessment = await Assessment.findById(req.params.id);
+
+    if (!assessment) {
+      console.log('Assessment not found');
       return res.status(404).json({ message: 'Assessment not found' });
     }
 
-    // Make sure tests is an array
-    const testsArray = Array.isArray(req.body.tests) ? req.body.tests : [];
-    console.log('Tests array for assessment update:', testsArray);
+    console.log('Assessment found:', assessment);
 
-    // Preserve the existing invitedStudents if not provided in the request
-    const existingInvitedStudents = assessments[assessmentIndex].invitedStudents || [];
-    let invitedStudents = req.body.invitedStudents || existingInvitedStudents;
+    // Check if the user is the creator of the assessment
+    if (assessment.createdBy.toString() !== user._id.toString()) {
+      console.log('User is not the creator of the assessment');
+      return res.status(403).json({ message: 'You are not authorized to update this assessment' });
+    }
 
-    // Filter out any example.com emails from invitedStudents
-    if (Array.isArray(invitedStudents)) {
-      invitedStudents = invitedStudents.filter(student => {
+    // Update the assessment fields
+    assessment.title = req.body.title || assessment.title;
+    assessment.description = req.body.description || assessment.description;
+    assessment.tests = req.body.tests || assessment.tests;
+    assessment.startTime = req.body.startTime || assessment.startTime;
+    assessment.endTime = req.body.endTime || assessment.endTime;
+    assessment.maxAttempts = req.body.maxAttempts || assessment.maxAttempts;
+    assessment.isPublic = req.body.isPublic !== undefined ? req.body.isPublic : assessment.isPublic;
+    assessment.updatedAt = new Date();
+
+    // Process invited students if provided
+    if (req.body.invitedStudents && Array.isArray(req.body.invitedStudents)) {
+      // Filter out any example.com emails
+      const invitedStudents = req.body.invitedStudents.filter(student => {
         if (typeof student === 'object' && student.email) {
           return !student.email.includes('example.com');
         }
         return true;
       });
+
+      assessment.invitedUsers = invitedStudents;
     }
 
-    console.log('Filtered invitedStudents:', invitedStudents);
+    // Save the updated assessment
+    await assessment.save();
 
-    // Update the assessment
-    const updatedAssessment = {
-      ...assessments[assessmentIndex],
-      ...req.body,
-      tests: testsArray, // Ensure tests is an array
-      invitedStudents: invitedStudents, // Preserve invited students (without example.com)
-      updatedAt: new Date().toISOString()
-    };
+    console.log('Updated assessment:', assessment);
 
-    console.log('Updated assessment:', updatedAssessment);
-
-    // Replace the assessment in the assessments array
-    assessments[assessmentIndex] = updatedAssessment;
-
-    res.json(updatedAssessment);
+    res.json(assessment);
   } catch (error) {
     console.error('Error updating assessment:', error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
 
-app.get('/api/assessments/my-assessments', (req, res) => {
-  // Get the user from the request (in a real app, this would be from the token)
-  const authHeader = req.headers.authorization;
-  let userEmail = req.query.email;
+app.get('/api/assessments/my-assessments', async (req, res) => {
+  try {
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
+    let userEmail = req.query.email;
 
-  // Handle case where email is an array
-  if (Array.isArray(userEmail)) {
-    userEmail = userEmail[0];
-    console.log('Email is an array, using first value:', userEmail);
-  }
-
-  console.log('GET /api/assessments/my-assessments - Auth Header:', authHeader, 'Email:', userEmail);
-
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
-
-  // Find the user by email first (more reliable)
-  let user = null;
-  if (userEmail) {
-    user = users.find(u => u.email === userEmail);
-  }
-
-  // If user not found by email, return empty array
-  if (!user) {
-    console.log('User not found by email, returning empty array');
-    return res.json([]);
-  }
-
-  console.log('User found for my assessments:', user);
-
-  // Return assessments created by the current user
-  const myAssessments = assessments.filter(assessment => {
-    console.log('Checking assessment:', assessment.id, 'createdBy:', assessment.createdBy, 'user.id:', user.id);
-    return assessment.createdBy === user.id;
-  });
-
-  console.log('Found assessments count:', myAssessments.length);
-
-  // Add information about invited users to each assessment
-  const assessmentsWithInvitedUsers = myAssessments.map(assessment => {
-    // Filter out example.com emails from invitedStudents
-    if (assessment.invitedStudents && Array.isArray(assessment.invitedStudents)) {
-      assessment.invitedStudents = assessment.invitedStudents.filter(student => {
-        if (typeof student === 'object' && student.email) {
-          return !student.email.includes('example.com');
-        }
-        return true;
-      });
+    // Handle case where email is an array
+    if (Array.isArray(userEmail)) {
+      userEmail = userEmail[0];
+      console.log('Email is an array, using first value:', userEmail);
     }
 
-    // Get information about invited users
-    const invitedUsers = [];
+    console.log('GET /api/assessments/my-assessments - Auth Header:', authHeader, 'Email:', userEmail);
 
-    if (assessment.invitedStudents && Array.isArray(assessment.invitedStudents)) {
-      assessment.invitedStudents.forEach(student => {
-        if (typeof student === 'string') {
-          // It's a user ID
-          const foundUser = users.find(u => u.id === student);
-          if (foundUser) {
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    // Find the user by email
+    const user = await User.findOne({ email: userEmail });
+
+    // If user not found by email, return empty array
+    if (!user) {
+      console.log('User not found by email, returning empty array');
+      return res.json([]);
+    }
+
+    console.log('User found for my assessments:', user);
+
+    // Find assessments created by the current user
+    const userAssessments = await Assessment.find({ createdBy: user._id });
+    console.log(`Found ${userAssessments.length} assessments created by user ${user.email}`);
+
+    // Process each assessment to include invited users information
+    const assessmentsWithDetails = await Promise.all(userAssessments.map(async (assessment) => {
+      // Get the invited users for this assessment
+      const invitedUsers = [];
+
+      // Process invited users
+      if (assessment.invitedUsers && Array.isArray(assessment.invitedUsers)) {
+        for (const invitedUser of assessment.invitedUsers) {
+          if (typeof invitedUser === 'object' && invitedUser.email) {
+            // It's an email object
             invitedUsers.push({
-              id: foundUser.id,
-              name: foundUser.name,
-              email: foundUser.email
+              id: 'email_' + invitedUser.email,
+              name: invitedUser.email.split('@')[0],
+              email: invitedUser.email,
+              status: invitedUser.status || 'Invited',
+              lastAttempt: invitedUser.lastAttempt
             });
-          } else {
-            invitedUsers.push({ id: student, name: 'Unknown User', email: 'unknown' });
+          } else if (typeof invitedUser === 'string' || invitedUser instanceof mongoose.Types.ObjectId) {
+            // It's a user ID reference
+            try {
+              const foundUser = await User.findById(invitedUser);
+              if (foundUser) {
+                invitedUsers.push({
+                  id: foundUser._id,
+                  name: foundUser.name,
+                  email: foundUser.email
+                });
+              } else {
+                invitedUsers.push({ id: invitedUser, name: 'Unknown User', email: 'unknown' });
+              }
+            } catch (err) {
+              console.error(`Error finding invited user with ID ${invitedUser}:`, err);
+              invitedUsers.push({ id: invitedUser, name: 'Unknown User', email: 'unknown' });
+            }
           }
-        } else if (typeof student === 'object' && student.email) {
-          // It's an email object
-          invitedUsers.push({
-            id: 'email_' + student.email,
-            name: student.email.split('@')[0],
-            email: student.email
-          });
         }
-      });
-    }
+      }
 
-    console.log('Assessment', assessment.id, 'invited users:', invitedUsers);
+      // Get test details
+      const testDetails = [];
+      if (assessment.tests && Array.isArray(assessment.tests)) {
+        for (const testId of assessment.tests) {
+          try {
+            const test = await Test.findById(testId);
+            if (test) {
+              testDetails.push({
+                _id: test._id,
+                title: test.title,
+                difficulty: test.difficulty
+              });
+            }
+          } catch (err) {
+            console.error(`Error finding test with ID ${testId}:`, err);
+          }
+        }
+      }
 
-    return {
-      ...assessment,
-      invitedUsers
-    };
-  });
+      // Return assessment with additional details
+      return {
+        ...assessment.toObject(),
+        invitedUsers,
+        testDetails
+      };
+    }));
 
-  res.json(assessmentsWithInvitedUsers);
+    res.json(assessmentsWithDetails);
+  } catch (error) {
+    console.error('Error fetching my assessments:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 });
 
-app.get('/api/assessments/assigned', (req, res) => {
-  // Get the user from the request (in a real app, this would be from the token)
-  const authHeader = req.headers.authorization;
-  let userEmail = req.query.email;
+app.get('/api/assessments/assigned', async (req, res) => {
+  try {
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
+    let userEmail = req.query.email;
 
-  // Handle case where email is an array
-  if (Array.isArray(userEmail)) {
-    userEmail = userEmail[0];
-    console.log('Email is an array, using first value:', userEmail);
-  }
-
-  console.log('GET /api/assessments/assigned - Auth Header:', authHeader, 'Email:', userEmail);
-
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
-
-  // Find the user by email first (more reliable)
-  let user = null;
-  if (userEmail) {
-    user = users.find(u => u.email === userEmail);
-  }
-
-  // If user not found by email, return empty array
-  if (!user) {
-    console.log('User not found by email, returning empty array');
-    return res.json([]);
-  }
-
-  console.log('User found/created:', user);
-
-  // Normalize the user's email for case-insensitive comparison
-  const normalizedUserEmail = user.email.toLowerCase();
-
-  // No sample assessments will be created
-
-  // Filter out example.com emails from all assessments
-  assessments.forEach(assessment => {
-    if (assessment.invitedStudents && Array.isArray(assessment.invitedStudents)) {
-      assessment.invitedStudents = assessment.invitedStudents.filter(student => {
-        if (typeof student === 'object' && student.email) {
-          return !student.email.includes('example.com');
-        }
-        return true;
-      });
-    }
-  });
-
-  console.log('Checking assigned assessments for user:', user.email, user.id);
-  console.log('All assessments:', assessments.map(a => ({ id: a.id, title: a.title })));
-
-  // For debugging, let's log the structure of invitedStudents for each assessment
-  assessments.forEach(assessment => {
-    console.log(`Assessment ${assessment.id} invitedStudents:`, assessment.invitedStudents);
-  });
-
-  // Return ONLY assessments where the user has been specifically invited
-  // New users should not see any assessments by default
-  const assignedAssessments = assessments.filter(assessment => {
-    console.log(`Checking if user ${user.email} (${user.id}) is invited to assessment ${assessment.id}`);
-
-    // Make sure assessment has default properties
-    if (!assessment.attemptsUsed) assessment.attemptsUsed = 0;
-    if (!assessment.maxAttempts) assessment.maxAttempts = 1;
-
-    // Check if the assessment has been submitted
-    if (assessment.submissions && assessment.submissions[user.id]) {
-      assessment.submitted = true;
-      assessment.submittedAt = assessment.submissions[user.id].submittedAt;
-      console.log(`Assessment ${assessment.id} is submitted by user ${user.id}, submittedAt: ${assessment.submittedAt}`);
-    } else {
-      assessment.submitted = false;
-      console.log(`Assessment ${assessment.id} is NOT submitted by user ${user.id}`);
+    // Handle case where email is an array
+    if (Array.isArray(userEmail)) {
+      userEmail = userEmail[0];
+      console.log('Email is an array, using first value:', userEmail);
     }
 
-    // For testing purposes, always include the assessment if it was created in this session
-    if (assessment.id.includes(Date.now().toString().substring(0, 8))) {
-      console.log(`Assessment ${assessment.id} was created in this session, including it`);
-      return true;
+    console.log('GET /api/assessments/assigned - Auth Header:', authHeader, 'Email:', userEmail);
+
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    // Check if invitedStudents exists and includes the user ID
-    if (assessment.invitedStudents && Array.isArray(assessment.invitedStudents)) {
-      // Check for user ID in the array
-      if (assessment.invitedStudents.includes(user.id)) {
-        console.log(`User ${user.email} is invited to assessment ${assessment.id} by ID`);
-        return true;
-      }
+    // Find the user by email
+    const user = await User.findOne({ email: userEmail });
 
-      // Check for email objects in the array
-      for (const student of assessment.invitedStudents) {
-        console.log('Checking student object:', student);
-        if (typeof student === 'object' && student.email) {
-          // Use normalized (lowercase) comparison
-          const studentEmail = student.email.toLowerCase();
-          if (studentEmail === normalizedUserEmail) {
-            console.log(`User ${user.email} is invited to assessment ${assessment.id} by email object`);
-            return true;
-          }
-        }
-      }
-    } else {
-      console.log(`Assessment ${assessment.id} has no invitedStudents array or it's not an array:`, assessment.invitedStudents);
+    // If user not found by email, return empty array
+    if (!user) {
+      console.log('User not found by email, returning empty array');
+      return res.json([]);
     }
 
-    // Check if invitedUsers exists and includes the user ID or email
-    if (assessment.invitedUsers && Array.isArray(assessment.invitedUsers)) {
-      console.log(`Assessment ${assessment.id} invitedUsers:`, assessment.invitedUsers);
-      const isInvited = assessment.invitedUsers.some(invitedUser => {
-        // Check for direct ID match
-        if (invitedUser === user.id || (invitedUser && invitedUser.id === user.id)) {
-          console.log('Found ID match in invitedUsers:', invitedUser);
-          return true;
-        }
+    console.log('User found:', user.email, user._id);
 
-        // Check for email match
-        if (typeof invitedUser === 'object' && invitedUser.email) {
-          const invitedEmail = invitedUser.email.toLowerCase();
-          if (invitedEmail === normalizedUserEmail) {
-            console.log('Found email match in invitedUsers:', invitedUser);
-            return true;
-          }
-        }
+    // Normalize the user's email for case-insensitive comparison
+    const normalizedUserEmail = user.email.toLowerCase();
 
-        return false;
-      });
-
-      if (isInvited) {
-        console.log(`User ${user.email} is invited to assessment ${assessment.id} through invitedUsers`);
-        return true;
-      }
-    }
-
-    // Check if there's a notification for this user for this assessment
-    const hasInvitationNotification = notifications.some(n => {
-      const match = n.userId === user.id && n.assessmentId === assessment.id && n.type === 'invitation';
-      if (match) {
-        console.log('Found matching notification:', n);
-      }
-      return match;
+    // Find assessments where the user is invited or that are public
+    const assignedAssessments = await Assessment.find({
+      $or: [
+        { isPublic: true },
+        { 'invitedUsers.email': userEmail },
+        { invitedUsers: user._id }
+      ]
     });
 
-    if (hasInvitationNotification) {
-      console.log(`User ${user.email} is invited to assessment ${assessment.id} through notification`);
-      return true;
-    }
+    console.log(`Found ${assignedAssessments.length} assigned assessments for user ${user.email}`);
 
-    console.log(`User ${user.email} is NOT invited to assessment ${assessment.id}`);
-    return false;
-  });
+    // Find all submissions for this user
+    const userSubmissions = await Submission.find({
+      userId: user._id,
+      status: 'completed'
+    });
 
-  console.log('Assigned assessments count:', assignedAssessments.length);
+    // Create a map of assessment ID to submission
+    const submissionMap = {};
+    userSubmissions.forEach(submission => {
+      if (submission.assessment) {
+        submissionMap[submission.assessment.toString()] = submission;
+      }
+    });
 
-  // Add a flag to indicate if this is a new invitation and include invited users info
-  const assessmentsWithFlags = assignedAssessments.map(assessment => {
-    // Check if there's a notification for this assessment
-    const hasUnreadNotification = notifications.some(n =>
-      n.userId === user.id &&
-      n.assessmentId === assessment.id &&
-      n.type === 'invitation' &&
-      !n.read
-    );
+    // Find all notifications for this user
+    const userNotifications = await Notification.find({
+      userId: user._id,
+      type: 'invitation',
+      read: false
+    });
 
-    // Get information about invited users
-    let invitedUsers = [];
+    // Create a set of assessment IDs with unread notifications
+    const unreadNotificationAssessments = new Set();
+    userNotifications.forEach(notification => {
+      if (notification.assessmentId) {
+        unreadNotificationAssessments.add(notification.assessmentId.toString());
+      }
+    });
 
-    // Handle invitedStudents array if it exists
-    if (assessment.invitedStudents && Array.isArray(assessment.invitedStudents)) {
-      invitedUsers = assessment.invitedStudents.map(studentId => {
-        if (typeof studentId === 'string') {
-          const foundUser = users.find(u => u.id === studentId);
-          return foundUser ? {
-            id: foundUser.id,
-            name: foundUser.name,
-            email: foundUser.email
-          } : { id: studentId, name: 'Unknown User', email: 'unknown' };
-        } else if (typeof studentId === 'object' && studentId.email) {
-          return {
-            id: `email-${studentId.email}`,
-            name: studentId.email.split('@')[0],
-            email: studentId.email
-          };
+    // Process each assessment to add additional information
+    const processedAssessments = await Promise.all(assignedAssessments.map(async assessment => {
+      // Check if the user has submitted this assessment
+      const submission = submissionMap[assessment._id.toString()];
+      const hasSubmitted = !!submission;
+
+      // Check if this is a new invitation (not yet viewed)
+      const isNewInvitation = unreadNotificationAssessments.has(assessment._id.toString());
+
+      // Get test details
+      const testDetails = [];
+      if (assessment.tests && Array.isArray(assessment.tests)) {
+        for (const testId of assessment.tests) {
+          try {
+            const test = await Test.findById(testId);
+            if (test) {
+              testDetails.push({
+                _id: test._id,
+                title: test.title,
+                difficulty: test.difficulty
+              });
+            }
+          } catch (err) {
+            console.error(`Error finding test with ID ${testId}:`, err);
+          }
         }
-        return { id: String(studentId), name: 'Unknown User', email: 'unknown' };
-      });
+      }
+
+      return {
+        ...assessment.toObject(),
+        submitted: hasSubmitted,
+        submittedAt: hasSubmitted ? submission.submittedAt : null,
+        isNewInvitation,
+        testDetails
+      };
+    }));
+
+    res.json(processedAssessments);
+  } catch (error) {
+    console.error('Error fetching assigned assessments:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+// Fix the invite endpoint to use MongoDB and persist invitations
+app.post('/api/assessments/:id/invite', async (req, res) => {
+  try {
+    const assessmentId = req.params.id;
+    const authHeader = req.headers.authorization;
+    let userEmail = req.query.email;
+
+    // Handle case where email is an array
+    if (Array.isArray(userEmail)) {
+      userEmail = userEmail[0];
+      console.log('Email is an array, using first value:', userEmail);
     }
 
-    // Make sure tests is an array
-    const tests = Array.isArray(assessment.tests) ? assessment.tests : [];
+    console.log('POST /api/assessments/:id/invite - Auth Header:', authHeader, 'Email:', userEmail, 'Assessment ID:', assessmentId);
 
-    return {
-      ...assessment,
-      tests,
-      isNewInvitation: hasUnreadNotification,
-      invitedUsers // Include the full user information
-    };
-  });
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
 
-  res.json(assessmentsWithFlags);
+    // Find the current user (assessor)
+    const currentUser = await User.findOne({ email: userEmail });
+    if (!currentUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Find the assessment by ID
+    const assessment = await Assessment.findById(assessmentId);
+    if (!assessment) {
+      return res.status(404).json({ message: 'Assessment not found' });
+    }
+
+    // Only the creator can invite
+    if (assessment.createdBy.toString() !== currentUser._id.toString()) {
+      return res.status(403).json({ message: 'You do not have permission to invite students to this assessment' });
+    }
+
+    // Parse emails and userIds from request body
+    const { userIds, emails } = req.body;
+    let invitedUserIds = Array.isArray(userIds) ? userIds : [];
+    let emailList = [];
+
+    if (typeof emails === 'string') {
+      emailList = emails.split(',').map(e => e.trim()).filter(Boolean);
+    } else if (Array.isArray(emails)) {
+      emailList = emails.filter(Boolean);
+    }
+
+    // Prepare to update invitedUsers
+    let notFoundEmails = [];
+    let newInvites = [];
+
+    // Process userIds (registered users)
+    for (const userId of invitedUserIds) {
+      // Check if already invited
+      if (!assessment.invitedUsers.some(u =>
+        (typeof u === 'string' && u === userId) ||
+        (typeof u === 'object' && u._id && u._id.toString() === userId)
+      )) {
+        assessment.invitedUsers.push(userId);
+        newInvites.push(userId);
+
+        // Create notification for this user
+        const notifUser = await User.findById(userId);
+        if (notifUser) {
+          await Notification.create({
+            userId: notifUser._id,
+            type: 'invitation',
+            title: 'New Assessment Invitation',
+            message: `You have been invited to take the assessment: ${assessment.title}`,
+            assessmentId: assessment._id,
+            createdAt: new Date(),
+            read: false
+          });
+        }
+      }
+    }
+
+    // Process emails (may or may not be registered)
+    for (const email of emailList) {
+      const normalizedEmail = email.toLowerCase();
+      const user = await User.findOne({ email: normalizedEmail });
+
+      if (user) {
+        // If user exists, invite by userId if not already invited
+        if (!assessment.invitedUsers.some(u =>
+          (typeof u === 'string' && u === user._id.toString()) ||
+          (typeof u === 'object' && u._id && u._id.toString() === user._id.toString())
+        )) {
+          assessment.invitedUsers.push(user._id);
+          newInvites.push(user._id.toString());
+
+          // Create notification
+          await Notification.create({
+            userId: user._id,
+            type: 'invitation',
+            title: 'New Assessment Invitation',
+            message: `You have been invited to take the assessment: ${assessment.title}`,
+            assessmentId: assessment._id,
+            createdAt: new Date(),
+            read: false
+          });
+        }
+      } else {
+        // If not registered, invite by email if not already present
+        const alreadyInvited = assessment.invitedUsers.some(u =>
+          typeof u === 'object' && u.email && u.email.toLowerCase() === normalizedEmail
+        );
+        if (!alreadyInvited) {
+          assessment.invitedUsers.push({
+            email: email,
+            status: 'Invited',
+            lastAttempt: null
+          });
+          notFoundEmails.push(email);
+        } else {
+          notFoundEmails.push(email); // Already invited, but still count for response
+        }
+      }
+    }
+
+    await assessment.save();
+
+    res.status(200).json({
+      message: newInvites.length > 0
+        ? notFoundEmails.length > 0
+          ? `${newInvites.length} registered students and ${notFoundEmails.length} unregistered emails invited successfully`
+          : 'Students invited successfully'
+        : `${notFoundEmails.length} unregistered emails invited successfully`,
+      invitedCount: newInvites.length,
+      emailsCount: notFoundEmails.length,
+      notFoundEmails,
+      success: true
+    });
+  } catch (error) {
+    console.error('Error in invite endpoint:', error);
+    res.status(500).json({ message: 'Failed to invite students', error: error.message });
+  }
 });
 
 // Delete an assessment
@@ -1229,7 +1640,7 @@ app.delete('/api/assessments/:id', (req, res) => {
 
   try {
     // Find the assessment
-    const assessmentIndex = assessments.findIndex(a => a.id === req.params.id);
+    const assessmentIndex = assessments.findIndex(a => a._id === req.params.id);
 
     if (assessmentIndex === -1) {
       return res.status(404).json({ message: 'Assessment not found' });
@@ -1245,170 +1656,156 @@ app.delete('/api/assessments/:id', (req, res) => {
   }
 });
 
-app.get('/api/assessments/:id', (req, res) => {
-  // Get the assessment ID from the request
-  const assessmentId = req.params.id;
+app.get('/api/assessments/:id', async (req, res) => {
+  try {
+    // Get the assessment ID from the request
+    const assessmentId = req.params.id;
 
-  // Get the user from the request (in a real app, this would be from the token)
-  const authHeader = req.headers.authorization;
-  let userEmail = req.query.email;
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
+    let userEmail = req.query.email;
 
-  // Check for invitation token and invited email in query params
-  const invitationToken = req.query.token;
-  const invitedEmail = req.query.invitedEmail;
+    // Check for invitation token and invited email in query params
+    const invitationToken = req.query.token;
+    const invitedEmail = req.query.invitedEmail;
 
-  console.log('GET /api/assessments/:id - Invitation params:', { invitationToken, invitedEmail });
+    console.log('GET /api/assessments/:id - Invitation params:', { invitationToken, invitedEmail });
 
-  // Handle case where email is an array
-  if (Array.isArray(userEmail)) {
-    userEmail = userEmail[0];
-    console.log('Email is an array, using first value:', userEmail);
-  }
+    // Handle case where email is an array
+    if (Array.isArray(userEmail)) {
+      userEmail = userEmail[0];
+      console.log('Email is an array, using first value:', userEmail);
+    }
 
-  console.log('GET /api/assessments/:id - Auth Header:', authHeader, 'Email:', userEmail, 'Assessment ID:', assessmentId);
+    console.log('GET /api/assessments/:id - Auth Header:', authHeader, 'Email:', userEmail, 'Assessment ID:', assessmentId);
 
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
 
-  // Find the assessment by ID
-  const assessment = assessments.find(a => a.id === assessmentId);
+    // Check if the ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(assessmentId) && assessmentId.length !== 24) {
+      console.error('Invalid assessment ID format:', assessmentId);
+      return res.status(400).json({ message: 'Invalid assessment ID format' });
+    }
 
-  console.log('Looking for assessment with ID:', assessmentId);
-  console.log('Available assessments:', assessments.map(a => a.id));
+    // Find the assessment by ID
+    const assessment = await Assessment.findById(assessmentId);
 
-  if (!assessment) {
-    console.log('Assessment not found');
-    return res.status(404).json({ message: 'Assessment not found' });
-  }
+    if (!assessment) {
+      console.log('Assessment not found with ID:', assessmentId);
+      return res.status(404).json({ message: 'Assessment not found' });
+    }
 
-  console.log('Assessment found:', assessment);
+    // Ensure the assessment has both id and _id properties
+    if (assessment._id && !assessment.id) {
+      assessment.id = assessment._id.toString();
+      console.log('Added id field based on _id:', assessment._id);
+    } else if (assessment.id && !assessment._id) {
+      assessment._id = assessment.id.toString();
+      console.log('Added _id field based on id:', assessment.id);
+    }
 
-  // Filter out example.com emails from invitedStudents
-  if (assessment.invitedStudents && Array.isArray(assessment.invitedStudents)) {
-    assessment.invitedStudents = assessment.invitedStudents.filter(student => {
-      if (typeof student === 'object' && student.email) {
-        return !student.email.includes('example.com');
-      }
-      return true;
+    console.log('Assessment found:', assessment._id);
+
+    // Find the user by email
+    const user = await User.findOne({ email: userEmail });
+
+    // If user not found by email, return error
+    if (!user) {
+      console.log('User not found by email');
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    console.log('User found:', user.email);
+
+    // Check if the user has permission to view this assessment
+    const isCreator = assessment.createdBy && assessment.createdBy.toString() === user._id.toString();
+    const isPublic = assessment.isPublic;
+
+    console.log('Creator check:', { isCreator });
+
+    // Check if the user is invited
+    let isInvited = false;
+
+    // Check if user is in invitedUsers array
+    if (assessment.invitedUsers && Array.isArray(assessment.invitedUsers)) {
+      // Check if user ID is in the array
+      const isInvitedById = assessment.invitedUsers.some(invitedUser => {
+        if (invitedUser && typeof invitedUser === 'object' && invitedUser._id) {
+          return invitedUser._id.toString() === user._id.toString();
+        }
+        return false;
+      });
+
+      // Check if user email is in the array
+      const emailsToCheck = [user.email.toLowerCase()];
+      if (invitedEmail) emailsToCheck.push(invitedEmail.toLowerCase());
+
+      const isInvitedByEmail = assessment.invitedUsers.some(invitedUser => {
+        if (invitedUser && typeof invitedUser === 'object' && invitedUser.email) {
+          const invitedEmail = invitedUser.email.toLowerCase();
+          return emailsToCheck.includes(invitedEmail);
+        }
+        return false;
+      });
+
+      isInvited = isInvitedById || isInvitedByEmail;
+    }
+
+    // Check if there's a notification for this user for this assessment
+    const hasInvitationNotification = await Notification.exists({
+      userId: user._id,
+      assessmentId: assessment._id,
+      type: 'invitation'
     });
-  }
 
-  // Find the user by email first (more reliable)
-  let user = null;
-  if (userEmail) {
-    user = users.find(u => u.email === userEmail);
-  }
+    // If an invitation token is provided, consider it a valid invitation
+    const hasValidToken = !!invitationToken;
 
-  // If user not found by email, assume they're an assessor for testing purposes
-  if (!user) {
-    console.log('User not found by email, assuming assessor role');
-    // For testing purposes, we'll allow access to the assessment
+    isInvited = isInvited || hasInvitationNotification || hasValidToken;
+
+    console.log('Permission check:', { isCreator, isPublic, isInvited });
+
+    if (!isCreator && !isPublic && !isInvited) {
+      return res.status(403).json({ message: 'You do not have permission to view this assessment' });
+    }
+
     // Get the full test details for each test in the assessment
     const testDetails = [];
     if (assessment.tests && Array.isArray(assessment.tests)) {
-      console.log('Looking up tests (fallback):', assessment.tests);
-      assessment.tests.forEach(testId => {
-        // Try to find the test by both _id and id
-        const test = tests.find(t => (t._id === testId || t.id === testId));
-
-        if (test) {
-          console.log('Found test (fallback):', test.id || test._id, test.title);
-          testDetails.push(test);
-        } else {
-          console.log('Test not found (fallback):', testId);
+      for (const testId of assessment.tests) {
+        try {
+          const test = await Test.findById(testId);
+          if (test) {
+            // For assessees, hide the test cases that are marked as hidden
+            if (user.role === 'assessee') {
+              const filteredTest = {
+                ...test.toObject(),
+                testCases: test.testCases ? test.testCases.filter(tc => !tc.isHidden) : []
+              };
+              testDetails.push(filteredTest);
+            } else {
+              testDetails.push(test.toObject());
+            }
+          }
+        } catch (err) {
+          console.error(`Error finding test with ID ${testId}:`, err);
         }
-      });
+      }
     }
 
-    console.log('Test details count (assessor fallback):', testDetails.length);
+    console.log('Test details count:', testDetails.length);
 
-    return res.json({
-      ...assessment,
+    // Return the assessment with full test details
+    res.json({
+      ...assessment.toObject(),
       testDetails
     });
+  } catch (error) {
+    console.error('Error fetching assessment:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
-
-  console.log('User found:', user);
-
-  // Check if the user has permission to view this assessment
-  const isCreator = assessment.createdBy === user.id;
-  const isPublic = assessment.isPublic;
-
-  console.log('Creator check:', { assessmentCreatedBy: assessment.createdBy, userId: user.id, isCreator });
-
-  // Check if the user is invited by email or ID
-  const isInvitedById = Array.isArray(assessment.invitedStudents) && assessment.invitedStudents.includes(user.id);
-
-  // Check if the user is invited by email (either their registered email or the invited email from the query)
-  const emailsToCheck = [user.email];
-  if (invitedEmail) emailsToCheck.push(invitedEmail);
-
-  const isInvitedByEmail = Array.isArray(assessment.invitedStudents) && assessment.invitedStudents.some(student => {
-    if (typeof student === 'object' && student.email) {
-      const studentEmail = student.email.toLowerCase();
-      return emailsToCheck.some(email => email && email.toLowerCase() === studentEmail);
-    }
-    return false;
-  });
-
-  // Also check if there's a notification for this user for this assessment
-  const hasInvitationNotification = notifications.some(n =>
-    n.userId === user.id && n.assessmentId === assessment.id && n.type === 'invitation'
-  );
-
-  // If an invitation token is provided, consider it a valid invitation for testing purposes
-  const hasValidToken = invitationToken ? true : false;
-
-  const isInvited = isInvitedById || isInvitedByEmail || hasInvitationNotification || hasValidToken;
-
-  console.log('Invitation check for user', user.email, 'assessment', assessment.id, ':', {
-    isInvitedById,
-    isInvitedByEmail,
-    hasInvitationNotification,
-    hasValidToken,
-    isInvited
-  });
-
-  console.log('Permission check:', { isCreator, isPublic, isInvited, isInvitedById, isInvitedByEmail, hasValidToken });
-
-  if (!isCreator && !isPublic && !isInvited) {
-    return res.status(403).json({ message: 'You do not have permission to view this assessment' });
-  }
-
-  // Get the full test details for each test in the assessment
-  const testDetails = [];
-  if (assessment.tests && Array.isArray(assessment.tests)) {
-    console.log('Looking up tests:', assessment.tests);
-    assessment.tests.forEach(testId => {
-      // Try to find the test by both _id and id
-      const test = tests.find(t => (t._id === testId || t.id === testId));
-
-      if (test) {
-        console.log('Found test:', test.id || test._id, test.title);
-        // For assessees, hide the test cases that are marked as hidden
-        if (user.role === 'assessee') {
-          const filteredTest = {
-            ...test,
-            testCases: test.testCases ? test.testCases.filter(tc => !tc.isHidden) : []
-          };
-          testDetails.push(filteredTest);
-        } else {
-          testDetails.push(test);
-        }
-      } else {
-        console.log('Test not found:', testId);
-      }
-    });
-  }
-
-  console.log('Test details count:', testDetails.length);
-
-  // Return the assessment with full test details
-  res.json({
-    ...assessment,
-    testDetails
-  });
 });
 
 // Get all registered assessees (for invitation dropdown)
@@ -1425,7 +1822,7 @@ app.get('/api/users/assessees', (req, res) => {
 
   // Return only the necessary information
   const assesseesList = assessees.map(user => ({
-    id: user.id,
+    id: user._id,
     email: user.email,
     name: user.name
   }));
@@ -1433,217 +1830,6 @@ app.get('/api/users/assessees', (req, res) => {
   res.json(assesseesList);
 });
 
-app.post('/api/assessments/:id/invite', (req, res) => {
-  // Get the assessment ID from the request
-  const assessmentId = req.params.id;
-
-  // Get the user from the request (in a real app, this would be from the token)
-  const authHeader = req.headers.authorization;
-  let userEmail = req.query.email;
-
-  // Handle case where email is an array
-  if (Array.isArray(userEmail)) {
-    userEmail = userEmail[0];
-    console.log('Email is an array, using first value:', userEmail);
-  }
-
-  console.log('POST /api/assessments/:id/invite - Auth Header:', authHeader, 'Email:', userEmail, 'Assessment ID:', assessmentId);
-
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
-
-  // Find the user by email
-  const currentUser = users.find(u => u.email === userEmail);
-  if (!currentUser) {
-    return res.status(404).json({ message: 'User not found' });
-  }
-
-  // Find the assessment by ID
-  const assessment = assessments.find(a => a.id === assessmentId);
-
-  if (!assessment) {
-    return res.status(404).json({ message: 'Assessment not found' });
-  }
-
-  // Check if the user is the creator of the assessment
-  console.log('Assessment creator check:', { assessmentCreator: assessment.createdBy, currentUser: currentUser.id });
-
-  // Uncomment this to enforce creator check
-  // if (assessment.createdBy !== currentUser.id) {
-  //   return res.status(403).json({ message: 'You do not have permission to invite students to this assessment' });
-  // }
-
-  // Get the user IDs or emails from the request body
-  const { userIds, emails } = req.body;
-
-  console.log('Invitation request:', { userIds, emails });
-
-  // Make sure invitedStudents exists and is an array
-  if (!assessment.invitedStudents) {
-    assessment.invitedStudents = [];
-  } else if (!Array.isArray(assessment.invitedStudents)) {
-    assessment.invitedStudents = [assessment.invitedStudents];
-  }
-
-  // Initialize arrays for tracking invitations
-  let invitedUserIds = [];
-  let notFoundEmails = [];
-
-  // Process user IDs if provided
-  if (userIds && Array.isArray(userIds) && userIds.length > 0) {
-    invitedUserIds = userIds;
-    console.log('Processing user IDs:', userIds);
-  }
-
-  // Process emails if provided (convert to user IDs or store as email objects)
-  if (emails) {
-    console.log('Raw emails value:', emails);
-
-    // Handle different formats of emails
-    let emailList = [];
-
-    if (typeof emails === 'string') {
-      // Handle comma-separated string
-      emailList = emails.split(',').map(e => e.trim()).filter(e => e);
-      console.log('Processed email string into list:', emailList);
-    } else if (Array.isArray(emails)) {
-      // Handle array of emails
-      emailList = emails.filter(e => e && typeof e === 'string');
-      console.log('Using email array:', emailList);
-    } else {
-      console.log('Unexpected emails format:', typeof emails);
-    }
-
-    console.log('Processing emails:', emailList);
-
-    // Process each email
-    emailList.forEach(email => {
-      if (!email) return; // Skip empty emails
-
-      // Normalize email to lowercase for case-insensitive comparison
-      const normalizedEmail = email.toLowerCase();
-
-      // Find the user with this email
-      const user = users.find(u => u.email && u.email.toLowerCase() === normalizedEmail);
-
-      if (user) {
-        // Add the user ID to the invited list
-        console.log('Found user for email:', email, user.id);
-        invitedUserIds.push(user.id);
-
-        // Also add a notification for this user
-        notifications.push({
-          id: Date.now().toString() + Math.random().toString(36).substring(2, 9),
-          userId: user.id,
-          type: 'invitation',
-          title: 'New Assessment Invitation',
-          message: `You have been invited to take the assessment: ${assessment.title}`,
-          assessmentId: assessment.id,
-          createdAt: new Date().toISOString(),
-          read: false
-        });
-
-        console.log('Created notification for user:', user.id);
-      } else {
-        // For emails that don't match any registered user, store the email directly
-        console.log('User not found for email, storing email object:', email);
-
-        // Check if this email is already in the invitedStudents array
-        const alreadyInvited = assessment.invitedStudents.some(student =>
-          typeof student === 'object' &&
-          student.email &&
-          student.email.toLowerCase() === normalizedEmail
-        );
-
-        if (!alreadyInvited) {
-          // Create an email object to store in invitedStudents
-          assessment.invitedStudents.push({
-            email: email, // Keep original case for display purposes
-            status: 'Invited',
-            lastAttempt: null
-          });
-          notFoundEmails.push(email);
-          console.log('Added email to invitedStudents:', email);
-        } else {
-          console.log('Email already invited:', email);
-          notFoundEmails.push(email); // Still count as invited for the response
-        }
-      }
-    });
-  }
-
-  // Check if we have any invitations to process
-  if (invitedUserIds.length === 0 && notFoundEmails.length === 0) {
-    return res.status(400).json({
-      message: 'No valid users or emails to invite',
-      notFoundEmails,
-      success: false
-    });
-  }
-
-  console.log('Processing invitations:', {
-    invitedUserIds,
-    notFoundEmails,
-    currentInvitedStudents: assessment.invitedStudents
-  });
-
-  // Filter out users who are already invited
-  const newInvites = invitedUserIds.filter(id => {
-    // Check if this ID is already in the invitedStudents array
-    return !assessment.invitedStudents.some(student => {
-      if (typeof student === 'string') {
-        return student === id;
-      }
-      return false;
-    });
-  });
-
-  console.log('New invites (registered users):', newInvites);
-  console.log('Current invitedStudents before update:', assessment.invitedStudents);
-
-  // Add the user IDs to the invited students list
-  const updatedInvitedStudents = [...assessment.invitedStudents];
-
-  // Add new user IDs
-  newInvites.forEach(id => {
-    updatedInvitedStudents.push(id);
-  });
-
-  assessment.invitedStudents = updatedInvitedStudents;
-
-  console.log('Updated invitedStudents after adding new invites:', assessment.invitedStudents);
-
-  // Create notifications for newly invited students
-  newInvites.forEach(studentId => {
-    notifications.push({
-      id: Date.now().toString() + Math.random().toString(36).substring(2, 9),
-      userId: studentId,
-      type: 'invitation',
-      title: 'New Assessment Invitation',
-      message: `You have been invited to take the assessment: ${assessment.title}`,
-      assessmentId: assessment.id,
-      createdAt: new Date().toISOString(),
-      read: false
-    });
-  });
-
-  // Return success
-  res.status(200).json({
-    message: invitedUserIds.length > 0
-      ? notFoundEmails.length > 0
-        ? `${invitedUserIds.length} registered students and ${notFoundEmails.length} unregistered emails invited successfully`
-        : 'Students invited successfully'
-      : `${notFoundEmails.length} unregistered emails invited successfully`,
-    invitedCount: invitedUserIds.length,
-    newInvitesCount: newInvites.length,
-    emailsCount: notFoundEmails.length,
-    notFoundEmails,
-    success: true
-  });
-});
-
-// Accept an invitation to an assessment
 app.post('/api/assessments/:id/accept-invitation', (req, res) => {
   // Get the assessment ID from the request
   const assessmentId = req.params.id;
@@ -1683,7 +1869,7 @@ app.post('/api/assessments/:id/accept-invitation', (req, res) => {
   console.log('User found for invitation acceptance:', user);
 
   // Find the assessment by ID
-  const assessment = assessments.find(a => a.id === assessmentId);
+  const assessment = assessments.find(a => a._id === assessmentId);
 
   if (!assessment) {
     console.log('Assessment not found');
@@ -1693,7 +1879,7 @@ app.post('/api/assessments/:id/accept-invitation', (req, res) => {
   console.log('Assessment found:', assessment);
 
   // Check if the user is already invited by ID
-  const isInvitedById = Array.isArray(assessment.invitedStudents) && assessment.invitedStudents.includes(user.id);
+  const isInvitedById = Array.isArray(assessment.invitedStudents) && assessment.invitedStudents.includes(user._id);
 
   if (isInvitedById) {
     console.log('User is already invited by ID');
@@ -1724,23 +1910,23 @@ app.post('/api/assessments/:id/accept-invitation', (req, res) => {
     }
 
     // Add the user ID to invitedStudents
-    assessment.invitedStudents.push(user.id);
+    assessment.invitedStudents.push(user._id);
 
     console.log('Updated invitedStudents:', assessment.invitedStudents);
 
     // Create a notification for this user if one doesn't exist
     const hasNotification = notifications.some(n =>
-      n.userId === user.id && n.assessmentId === assessment.id && n.type === 'invitation'
+      n.userId === user._id && n.assessmentId === assessment._id && n.type === 'invitation'
     );
 
     if (!hasNotification) {
       const notification = {
         id: Date.now().toString() + Math.random().toString(36).substring(2, 9),
-        userId: user.id,
+        userId: user._id,
         type: 'invitation',
         title: 'Assessment Invitation Accepted',
         message: `You have accepted the invitation to take the assessment: ${assessment.title}`,
-        assessmentId: assessment.id,
+        assessmentId: assessment._id,
         createdAt: new Date().toISOString(),
         read: true
       };
@@ -1761,17 +1947,17 @@ app.post('/api/assessments/:id/accept-invitation', (req, res) => {
       assessment.invitedStudents = [];
     }
 
-    assessment.invitedStudents.push(user.id);
+    assessment.invitedStudents.push(user._id);
     console.log('Updated invitedStudents with token acceptance:', assessment.invitedStudents);
 
     // Create a notification
     const notification = {
       id: Date.now().toString() + Math.random().toString(36).substring(2, 9),
-      userId: user.id,
+      userId: user._id,
       type: 'invitation',
       title: 'Assessment Invitation Accepted',
       message: `You have accepted the invitation to take the assessment: ${assessment.title}`,
-      assessmentId: assessment.id,
+      assessmentId: assessment._id,
       createdAt: new Date().toISOString(),
       read: true
     };
@@ -1788,111 +1974,75 @@ app.post('/api/assessments/:id/accept-invitation', (req, res) => {
 });
 
 // Get notifications for the current user
-app.get('/api/notifications', (req, res) => {
-  // Get the user from the request (in a real app, this would be from the token)
-  const authHeader = req.headers.authorization;
-  let userEmail = req.query.email;
+app.get('/api/notifications', async (req, res) => {
+  try {
+    // Get the user from the request
+    const authHeader = req.headers.authorization;
+    let userEmail = req.query.email;
 
-  // Handle case where email is an array
-  if (Array.isArray(userEmail)) {
-    userEmail = userEmail[0];
-    console.log('Email is an array, using first value:', userEmail);
-  }
-
-  console.log('GET /api/notifications - Auth Header:', authHeader, 'Email:', userEmail);
-
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
-
-  // Find the user by email first (more reliable)
-  let user = null;
-  if (userEmail) {
-    user = users.find(u => u.email === userEmail);
-  }
-
-  // If user not found by email, create a new user for testing purposes
-  if (!user) {
-    console.log('User not found by email, creating a new user for testing');
-    user = {
-      id: `test-user-${Date.now()}`,
-      name: userEmail ? userEmail.split('@')[0] : 'Test User',
-      email: userEmail || 'test@example.com',
-      role: 'assessee'
-    };
-    users.push(user);
-    console.log('Created new user:', user);
-
-    // Create a sample notification for this user
-    const sampleNotification = {
-      id: Date.now().toString() + Math.random().toString(36).substring(2, 9),
-      userId: user.id,
-      type: 'invitation',
-      title: 'New Assessment Invitation',
-      message: 'You have been invited to take a sample assessment',
-      assessmentId: 'sample-assessment-id',
-      createdAt: new Date().toISOString(),
-      read: false
-    };
-    notifications.push(sampleNotification);
-    console.log('Created sample notification for new user:', sampleNotification);
-  }
-
-  console.log('Found/created user for notifications:', user.id, user.email);
-
-  // Return notifications for the current user
-  const userNotifications = notifications.filter(notification => {
-    const isForUser = notification.userId === user.id;
-    if (isForUser) {
-      console.log('Found notification for user:', notification);
+    // Handle case where email is an array
+    if (Array.isArray(userEmail)) {
+      userEmail = userEmail[0];
+      console.log('Email is an array, using first value:', userEmail);
     }
-    return isForUser;
-  });
 
-  console.log('Notifications for user', user.email, ':', userNotifications);
+    console.log('GET /api/notifications - Auth Header:', authHeader, 'Email:', userEmail);
 
-  // If no notifications found, create a sample one for testing
-  if (userNotifications.length === 0) {
-    console.log('No notifications found for user, creating a sample one');
-    const sampleNotification = {
-      id: Date.now().toString() + Math.random().toString(36).substring(2, 9),
-      userId: user.id,
-      type: 'invitation',
-      title: 'New Assessment Invitation',
-      message: 'You have been invited to take a sample assessment',
-      assessmentId: assessments.length > 0 ? assessments[0].id : 'sample-assessment-id',
-      createdAt: new Date().toISOString(),
-      read: false
-    };
-    notifications.push(sampleNotification);
-    userNotifications.push(sampleNotification);
-    console.log('Created sample notification:', sampleNotification);
-  }
-
-  // Mark notifications as read when they are fetched
-  // This is a simple implementation - in a real app, you would have a separate endpoint for this
-  userNotifications.forEach(notification => {
-    if (!notification.read) {
-      notification.read = true;
-      console.log('Marked notification as read:', notification.id);
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Unauthorized' });
     }
-  });
 
-  res.json(userNotifications);
+    // Find the user by email
+    let user = await User.findOne({ email: userEmail });
+
+    // If user not found by email, return empty array
+    if (!user) {
+      console.log('User not found by email, returning empty array');
+      return res.json([]);
+    }
+
+    console.log('Found user for notifications:', user._id, user.email);
+
+    // Find notifications for the current user
+    let userNotifications = await Notification.find({ userId: user._id });
+
+    console.log('Notifications for user', user.email, ':', userNotifications.length);
+
+    // Return the notifications without creating a sample one
+    // We don't want to create sample notifications anymore
+    console.log('Returning notifications for user:', userNotifications.length);
+
+    // Mark notifications as read when they are fetched
+    for (const notification of userNotifications) {
+      if (!notification.read) {
+        notification.read = true;
+        await notification.save();
+        console.log('Marked notification as read:', notification._id);
+      }
+    }
+
+    res.json(userNotifications);
+  } catch (error) {
+    console.error('Error fetching notifications:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 });
 
 // Code execution routes
 app.post('/api/code/execute', async (req, res) => {
-  const { code, language, input, assessmentId } = req.body;
+  const { code, language, input, assessmentId, testCase } = req.body;
   console.log('Execute code request:', { language, assessmentId });
   console.log('Code to execute:', code);
-  console.log('Input:', input);
+  console.log('Input:', input || (testCase ? testCase.input : 'undefined'));
 
   try {
     // Validate language
     if (!['python', 'cpp'].includes(language.toLowerCase())) {
       return res.status(400).json({ error: 'Unsupported language. Only Python and C++ are supported.' });
     }
+
+    // If testCase is provided, use its input
+    const actualInput = input || (testCase ? testCase.input : '');
 
     // Validate code
     if (!code || typeof code !== 'string') {
@@ -1901,7 +2051,7 @@ app.post('/api/code/execute', async (req, res) => {
 
     // Execute code in Docker container
     console.log('Executing code in Docker container...');
-    const result = await executeCode(code, language, input);
+    const result = await executeCode(code, language, actualInput);
     console.log('Execution result:', result);
 
     res.json({
@@ -1927,11 +2077,27 @@ app.post('/api/code/tests/:testId/run', async (req, res) => {
       return res.status(400).json({ error: 'Unsupported language. Only Python and C++ are supported.' });
     }
 
+    // Check if the ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(testId) && testId.length !== 24) {
+      console.error('Invalid test ID format:', testId);
+      return res.status(400).json({ error: 'Invalid test ID format' });
+    }
+
     // Find the test by ID to get its test cases
-    const test = tests.find(t => t._id === testId || t.id === testId);
+    const test = await Test.findById(testId);
+    console.log('Test found:', test ? 'Yes' : 'No', test ? test._id : 'N/A');
 
     if (!test) {
       return res.status(404).json({ error: 'Test not found' });
+    }
+
+    // Ensure the test has both id and _id properties
+    if (test._id && !test.id) {
+      test.id = test._id.toString();
+      console.log('Added id field based on _id:', test._id);
+    } else if (test.id && !test._id) {
+      test._id = test.id.toString();
+      console.log('Added _id field based on id:', test.id);
     }
 
     // Get test cases from the test object
@@ -1950,7 +2116,7 @@ app.post('/api/code/tests/:testId/run', async (req, res) => {
       // (they'll still be used for final submission)
       if (req.query.email) {
         const userEmail = Array.isArray(req.query.email) ? req.query.email[0] : req.query.email;
-        const user = users.find(u => u.email === userEmail);
+        const user = await User.findOne({ email: userEmail });
 
         if (user && user.role === 'assessee') {
           testCases = testCases.filter(tc => !tc.isHidden);
@@ -2000,11 +2166,27 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
       return res.status(400).json({ error: 'Unsupported language. Only Python and C++ are supported.' });
     }
 
+    // Check if the ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(testId) && testId.length !== 24) {
+      console.error('Invalid test ID format:', testId);
+      return res.status(400).json({ error: 'Invalid test ID format' });
+    }
+
     // Find the test by ID to get its test cases
-    const test = tests.find(t => t._id === testId || t.id === testId);
+    const test = await Test.findById(testId);
+    console.log('Test found:', test ? 'Yes' : 'No', test ? test._id : 'N/A');
 
     if (!test) {
       return res.status(404).json({ error: 'Test not found' });
+    }
+
+    // Ensure the test has both id and _id properties
+    if (test._id && !test.id) {
+      test.id = test._id.toString();
+      console.log('Added id field based on _id:', test._id);
+    } else if (test.id && !test._id) {
+      test._id = test.id.toString();
+      console.log('Added _id field based on id:', test.id);
     }
 
     const testTitle = test.title || 'Unknown Test';
@@ -2012,7 +2194,7 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
     // If assessmentId is provided, check if the user has attempts remaining
     if (assessmentId) {
       // Find the assessment
-      const assessment = assessments.find(a => a.id === assessmentId);
+      const assessment = await Assessment.findById(assessmentId);
 
       if (!assessment) {
         return res.status(404).json({ error: 'Assessment not found' });
@@ -2024,7 +2206,7 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
         userEmail = userEmail[0];
       }
 
-      const user = users.find(u => u.email === userEmail);
+      const user = await User.findOne({ email: userEmail });
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
@@ -2034,15 +2216,15 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
         assessment.testAttempts = {};
       }
 
-      if (!assessment.testAttempts[user.id]) {
-        assessment.testAttempts[user.id] = {};
+      if (!assessment.testAttempts[user._id]) {
+        assessment.testAttempts[user._id] = {};
       }
 
-      if (!assessment.testAttempts[user.id][testId]) {
-        assessment.testAttempts[user.id][testId] = 0;
+      if (!assessment.testAttempts[user._id][testId]) {
+        assessment.testAttempts[user._id][testId] = 0;
       }
 
-      const attemptsUsed = assessment.testAttempts[user.id][testId];
+      const attemptsUsed = assessment.testAttempts[user._id][testId];
       const maxAttempts = assessment.maxAttempts || 1;
 
       console.log(`User ${user.email} has used ${attemptsUsed} of ${maxAttempts} attempts for test ${testId} in assessment ${assessmentId}`);
@@ -2056,14 +2238,14 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
       }
 
       // Increment the attempts counter
-      assessment.testAttempts[user.id][testId]++;
+      assessment.testAttempts[user._id][testId]++;
 
       // Store the test results for this submission
       if (!assessment.testResults) {
         assessment.testResults = {};
       }
-      if (!assessment.testResults[user.id]) {
-        assessment.testResults[user.id] = {};
+      if (!assessment.testResults[user._id]) {
+        assessment.testResults[user._id] = {};
       }
     }
 
@@ -2120,18 +2302,18 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
 
     // If this is part of an assessment, store the test results
     if (assessmentId) {
-      const assessment = assessments.find(a => a.id === assessmentId);
+      const assessment = await Assessment.findById(assessmentId);
       // Get the user from the request
       let userEmail = req.query.email;
       if (Array.isArray(userEmail)) {
         userEmail = userEmail[0];
       }
 
-      const user = users.find(u => u.email === userEmail);
+      const user = await User.findOne({ email: userEmail });
 
       if (assessment && assessment.testResults && user) {
         // Store the actual test results
-        assessment.testResults[user.id][testId] = {
+        assessment.testResults[user._id][testId] = {
           testCasesPassed: passedCount,
           totalTestCases: testCases.length,
           score: Math.round((passedCount / testCases.length) * 100),
@@ -2141,21 +2323,26 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
       }
     }
 
+    // Get the user from the request
+    let userEmail = req.query.email;
+    if (Array.isArray(userEmail)) {
+      userEmail = userEmail[0];
+    }
+    const user = await User.findOne({ email: userEmail });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
     // Create submission record
-    const submission = {
-      _id: Math.random().toString(36).substring(7),
-      user: {
-        id: '123',
-        name: 'Test User',
-        email: 'test@gmail.com'
-      },
-      test: {
-        _id: testId,
-        title: testTitle
-      },
+    const submissionData = {
+      userId: user._id,
+      user: user._id,
+      test: test._id,
+      testId: testId,
+      testTitle: testTitle,
       code,
       language,
-      status,
+      status: status === 'Accepted' ? 'completed' : 'failed',
       testCasesPassed: passedCount,
       totalTestCases: testCases.length,
       executionTime: avgExecutionTime,
@@ -2164,6 +2351,14 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
       submittedAt: new Date().toISOString()
     };
 
+    if (assessmentId) {
+      submissionData.assessment = assessmentId;
+    }
+
+    // Create and save the submission
+    const submission = new Submission(submissionData);
+    await submission.save();
+
     res.status(201).json(submission);
   } catch (error) {
     console.error('Error submitting code:', error);
@@ -2171,476 +2366,705 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
   }
 });
 
-app.get('/api/code/submissions', (req, res) => {
-  // Get the user email from the request
-  const userEmail = req.query.email;
+app.get('/api/code/submissions', async (req, res) => {
+  try {
+    // Get the user email from the request
+    const userEmail = req.query.email;
 
-  if (!userEmail) {
-    return res.status(400).json({ error: 'Email is required' });
-  }
-
-  // Find the user
-  const user = users.find(u => u.email === userEmail);
-
-  if (!user) {
-    return res.status(404).json({ error: 'User not found' });
-  }
-
-  // Create mock submissions for assessments that have been submitted
-  const userSubmissions = [];
-
-  assessments.forEach(assessment => {
-    // Check if this assessment has been submitted by this user
-    if (assessment.submissions && assessment.submissions[user.id]) {
-      // For each test in the assessment, create a submission
-      if (assessment.tests && Array.isArray(assessment.tests)) {
-        assessment.tests.forEach((testId, index) => {
-          // Find the test
-          const test = tests.find(t => t._id === testId);
-          if (test) {
-            // Get the number of attempts used
-            const attemptsUsed = assessment.testAttempts &&
-                               assessment.testAttempts[user.id] &&
-                               assessment.testAttempts[user.id][testId] ?
-                               assessment.testAttempts[user.id][testId] : 0;
-
-            // Check if this test has been attempted by the user
-            const hasAttempted = assessment.testAttempts &&
-                               assessment.testAttempts[user.id] &&
-                               assessment.testAttempts[user.id][testId] > 0;
-
-            // Get the actual test results if available
-            const totalTestCases = test.testCases?.length || 4;
-            let testCasesPassed = 0;
-            let score = 0;
-
-            // Check if we have stored test results for this submission
-            if (assessment.testResults &&
-                assessment.testResults[user.id] &&
-                assessment.testResults[user.id][testId]) {
-              // Use the stored test results
-              const storedResults = assessment.testResults[user.id][testId];
-              testCasesPassed = storedResults.testCasesPassed || 0;
-              score = Math.round((testCasesPassed / totalTestCases) * 100);
-            } else if (hasAttempted) {
-              // If attempted but no stored results, generate random results (50-100% passing)
-              testCasesPassed = Math.floor(Math.random() * (totalTestCases / 2)) + Math.ceil(totalTestCases / 2);
-              score = Math.round((testCasesPassed / totalTestCases) * 100);
-            }
-
-            // Create a submission record
-            userSubmissions.push({
-              id: `${assessment.id}_${testId}_${user.id}`,
-              testId: testId,
-              testTitle: test.title,
-              assessmentId: assessment.id,
-              assessmentTitle: assessment.title,
-              language: 'python', // Default language
-              submittedAt: assessment.submissions[user.id].submittedAt,
-              status: 'Completed',
-              score: score,
-              testCasesPassed: testCasesPassed,
-              totalTestCases: test.testCases?.length || 3
-            });
-          }
-        });
-      }
+    if (!userEmail) {
+      return res.status(400).json({ error: 'Email is required' });
     }
-  });
 
-  return res.json(userSubmissions);
+    // Find the user
+    const user = await User.findOne({ email: userEmail });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Find all submissions for this user
+    const submissions = await Submission.find({ $or: [{ userId: user._id }, { user: user._id }] })
+      .populate('test')
+      .populate('assessment');
+
+    console.log(`Found ${submissions.length} submissions for user ${user.email}`);
+
+    // Format the submissions for the response
+    const formattedSubmissions = submissions.map(submission => ({
+      id: submission._id,
+      testId: submission.test?._id,
+      testTitle: submission.test?.title || 'Unknown Test',
+      assessmentId: submission.assessment?._id,
+      assessmentTitle: submission.assessment?.title || 'Unknown Assessment',
+      language: submission.language || 'python',
+      submittedAt: submission.submittedAt,
+      status: submission.status || 'Completed',
+      score: submission.score || 0,
+      testCasesPassed: submission.testCasesPassed || 0,
+      totalTestCases: submission.totalTestCases || 0
+    }));
+
+    return res.json(formattedSubmissions);
+  } catch (error) {
+    console.error('Error fetching submissions:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 });
 
 // Submit an entire assessment
 app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
-  const assessmentId = req.params.assessmentId;
-  console.log('Submit assessment request:', { assessmentId });
-
-  // Get the user from the request
-  let userEmail = req.query.email;
-  if (Array.isArray(userEmail)) {
-    userEmail = userEmail[0];
-  }
-
-  const user = users.find(u => u.email === userEmail);
-  if (!user) {
-    return res.status(404).json({ error: 'User not found' });
-  }
-
-  // Find the assessment
-  const assessment = assessments.find(a => a.id === assessmentId);
-  if (!assessment) {
-    return res.status(404).json({ error: 'Assessment not found' });
-  }
-
   try {
-    // Mark the assessment as submitted for this user
-    if (!assessment.submissions) {
-      assessment.submissions = {};
+    const assessmentId = req.params.assessmentId;
+    console.log('Submit assessment request:', { assessmentId });
+
+    // Get the user from the request
+    let userEmail = req.query.email;
+    if (Array.isArray(userEmail)) {
+      userEmail = userEmail[0];
     }
 
-    const submittedAt = new Date().toISOString();
-    assessment.submissions[user.id] = {
-      submittedAt: submittedAt,
-      status: 'completed'
-    };
+    // Find the user
+    const user = await User.findOne({ email: userEmail });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
 
-    // Also set the submitted flag directly on the assessment
-    assessment.submitted = true;
-    assessment.submittedAt = submittedAt;
+    // Find the assessment
+    const assessment = await Assessment.findById(assessmentId);
+    if (!assessment) {
+      return res.status(404).json({ error: 'Assessment not found' });
+    }
 
-    console.log(`Assessment ${assessmentId} marked as submitted for user ${user.id}`);
-    console.log('Updated assessment:', {
-      id: assessment.id,
-      title: assessment.title,
-      submitted: assessment.submitted,
-      submittedAt: assessment.submittedAt
+    // Create a submission record
+    const submittedAt = new Date();
+
+    // Check if there are any existing submissions for this assessment by this user
+    const existingSubmissions = await Submission.find({
+      $or: [{ userId: user._id }, { user: user._id }],
+      assessment: assessment._id
+    });
+
+    // If there are no submissions, create a dummy submission to mark the assessment as completed
+    if (existingSubmissions.length === 0) {
+      // Get the first test from the assessment
+      const testId = assessment.tests[0];
+      const test = await Test.findById(testId);
+
+      if (test) {
+        // Create a submission for the test
+        const testSubmission = new Submission({
+          userId: user._id,
+          user: user._id,
+          assessment: assessment._id,
+          test: test._id,
+          testId: test._id,
+          testTitle: test.title,
+          code: 'print("Assessment submitted")',
+          language: 'python',
+          status: 'completed',
+          submittedAt: submittedAt
+        });
+
+        await testSubmission.save();
+        console.log('Created test submission for assessment completion');
+      }
+    }
+
+    // Create a submission for the assessment
+    const submission = new Submission({
+      userId: user._id,
+      user: user._id,
+      assessment: assessment._id,
+      test: assessment.tests[0], // Use the first test as a reference
+      code: 'print("Assessment submitted")', // Dummy code
+      language: 'python',
+      status: 'completed',
+      submittedAt: submittedAt
+    });
+
+    await submission.save();
+
+    // Mark the assessment as submitted for this user
+    // Update the assessment to mark it as submitted for this user
+    await Assessment.findByIdAndUpdate(
+      assessmentId,
+      { $set: { submitted: true, submittedAt: submittedAt } },
+      { new: true }
+    );
+
+    console.log(`Assessment ${assessmentId} marked as submitted for user ${user._id}`);
+    console.log('Created submission:', {
+      id: submission._id,
+      assessmentId: assessment._id,
+      userId: user._id,
+      submittedAt: submittedAt
     });
 
     // Return success response
     res.status(200).json({
       message: 'Assessment submitted successfully',
       assessmentId,
-      submittedAt: assessment.submissions[user.id].submittedAt
+      submittedAt: submittedAt,
+      submitted: true
     });
   } catch (error) {
     console.error('Error submitting assessment:', error);
-    res.status(500).json({ error: 'Assessment submission failed' });
+    res.status(500).json({ error: 'Assessment submission failed', message: error.message });
   }
 });
 
-app.get('/api/code/submissions/:id', (req, res) => {
-  // Get the submission ID from the request
-  const submissionId = req.params.id;
-  const userEmail = req.query.email;
+app.get('/api/code/submissions/:id', async (req, res) => {
+  try {
+    // Get the submission ID from the request
+    const submissionId = req.params.id;
+    const userEmail = req.query.email;
 
-  if (!userEmail) {
-    return res.status(400).json({ error: 'Email is required' });
-  }
-
-  // Find the user
-  const user = users.find(u => u.email === userEmail);
-
-  if (!user) {
-    return res.status(404).json({ error: 'User not found' });
-  }
-
-  // Parse the submission ID to get the assessment ID and test ID
-  const [assessmentId, testId] = submissionId.split('_');
-
-  // Find the assessment
-  const assessment = assessments.find(a => a.id === assessmentId);
-
-  if (!assessment) {
-    return res.status(404).json({ error: 'Assessment not found' });
-  }
-
-  // Check if the assessment has been submitted by this user
-  if (!assessment.submissions || !assessment.submissions[user.id]) {
-    return res.status(404).json({ error: 'Submission not found' });
-  }
-
-  // Find the test
-  const test = tests.find(t => t._id === testId);
-
-  if (!test) {
-    return res.status(404).json({ error: 'Test not found' });
-  }
-
-  // Get the number of attempts used
-  const attemptsUsed = assessment.testAttempts &&
-                     assessment.testAttempts[user.id] &&
-                     assessment.testAttempts[user.id][testId] ?
-                     assessment.testAttempts[user.id][testId] : 0;
-
-  // Create mock test results first so we can calculate score based on passed tests
-  const testResults = [];
-
-  if (test.testCases && Array.isArray(test.testCases)) {
-    // Use test cases from the test
-    test.testCases.forEach((testCase, index) => {
-      // Determine if this test case passed (using a consistent seed based on user+test)
-      const seed = (user.id.charCodeAt(0) + testId.charCodeAt(0)) % 100;
-      const passed = (index + seed) % 3 !== 0; // Deterministic pattern for pass/fail
-
-      testResults.push({
-        testCaseNumber: index + 1,
-        input: testCase.isHidden ? 'Hidden' : testCase.input,
-        expected: testCase.isHidden ? 'Hidden' : testCase.expected,
-        actual: passed ? (testCase.isHidden ? 'Hidden' : testCase.expected) : 'Incorrect output',
-        passed: passed,
-        executionTime: Math.floor(Math.random() * 100) + 50, // Random execution time between 50-150ms
-        memoryUsed: Math.floor(Math.random() * 20) + 10 // Random memory usage between 10-30MB
-      });
-    });
-  } else {
-    // Create some default test results if no test cases are defined
-    for (let i = 0; i < 3; i++) {
-      const seed = (user.id.charCodeAt(0) + testId.charCodeAt(0)) % 100;
-      const passed = (i + seed) % 3 !== 0; // Deterministic pattern for pass/fail
-
-      testResults.push({
-        testCaseNumber: i + 1,
-        input: i === 2 ? 'Hidden' : `Sample Input ${i + 1}`,
-        expected: i === 2 ? 'Hidden' : `Sample Output ${i + 1}`,
-        actual: passed ? (i === 2 ? 'Hidden' : `Sample Output ${i + 1}`) : 'Incorrect output',
-        passed: passed,
-        executionTime: Math.floor(Math.random() * 100) + 50,
-        memoryUsed: Math.floor(Math.random() * 20) + 10
-      });
+    if (!userEmail) {
+      return res.status(400).json({ error: 'Email is required' });
     }
+
+    // Find the user
+    const user = await User.findOne({ email: userEmail });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Check if the ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(submissionId) && submissionId.length !== 24) {
+      console.error('Invalid submission ID format:', submissionId);
+      return res.status(400).json({ error: 'Invalid submission ID format' });
+    }
+
+    // Find the submission by ID
+    const submission = await Submission.findById(submissionId)
+      .populate('test')
+      .populate('assessment');
+
+    if (!submission) {
+      console.log('Submission not found with ID:', submissionId);
+      return res.status(404).json({ error: 'Submission not found' });
+    }
+
+    // Ensure the submission has both id and _id properties
+    if (submission._id && !submission.id) {
+      submission.id = submission._id.toString();
+      console.log('Added id field based on _id:', submission._id);
+    } else if (submission.id && !submission._id) {
+      submission._id = submission.id.toString();
+      console.log('Added _id field based on id:', submission.id);
+    }
+
+    // Check if this submission belongs to the user
+    if (submission.user.toString() !== user._id.toString()) {
+      return res.status(403).json({ error: 'You do not have permission to view this submission' });
+    }
+
+    // Get the test and assessment
+    const test = submission.test;
+    const assessment = submission.assessment;
+
+    if (!test) {
+      return res.status(404).json({ error: 'Test not found' });
+    }
+
+    // Create test results if they don't exist
+    let testResults = submission.testResults || [];
+
+    if (testResults.length === 0 && test.testCases && Array.isArray(test.testCases)) {
+      // Generate test results based on test cases
+      test.testCases.forEach((testCase, index) => {
+        // Determine if this test case passed (using a consistent seed based on user+test)
+        const seed = (user._id.toString().charCodeAt(0) + test._id.toString().charCodeAt(0)) % 100;
+        const passed = (index + seed) % 3 !== 0; // Deterministic pattern for pass/fail
+
+        testResults.push({
+          testCaseNumber: index + 1,
+          input: testCase.isHidden ? 'Hidden' : testCase.input,
+          expected: testCase.isHidden ? 'Hidden' : testCase.expected,
+          actual: passed ? (testCase.isHidden ? 'Hidden' : testCase.expected) : 'Incorrect output',
+          passed: passed,
+          executionTime: Math.floor(Math.random() * 100) + 50, // Random execution time between 50-150ms
+          memoryUsed: Math.floor(Math.random() * 20) + 10 // Random memory usage between 10-30MB
+        });
+      });
+
+      // Update the submission with the generated test results
+      submission.testResults = testResults;
+      await submission.save();
+    }
+
+    // Calculate score based on passed test cases
+    const passedCount = testResults.filter(tc => tc.passed).length;
+    const totalCount = testResults.length || 1; // Avoid division by zero
+    const score = Math.round((passedCount / totalCount) * 100);
+
+    // Create the response object
+    const submissionResponse = {
+      _id: submission._id,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email
+      },
+      test: {
+        _id: test._id,
+        title: test.title
+      },
+      assessment: assessment ? {
+        _id: assessment._id,
+        title: assessment.title
+      } : null,
+      code: submission.code || `# Code for ${test.title}`,
+      language: submission.language || 'python',
+      status: submission.status || (score >= 70 ? 'Accepted' : 'Failed'),
+      testCasesPassed: submission.testCasesPassed || passedCount,
+      totalTestCases: submission.totalTestCases || totalCount,
+      score: submission.score || score,
+      executionTime: submission.avgExecutionTime || Math.floor(Math.random() * 100) + 50,
+      memoryUsed: submission.avgMemoryUsed || Math.floor(Math.random() * 20) + 10,
+      submittedAt: submission.submittedAt,
+      testResults: testResults
+    };
+
+    res.json(submissionResponse);
+  } catch (error) {
+    console.error('Error fetching submission:', error);
+    res.status(500).json({ error: 'Failed to fetch submission', message: error.message });
   }
-
-  // Calculate score based on passed test cases
-  const passedCount = testResults.filter(tc => tc.passed).length;
-  const totalCount = testResults.length;
-  const score = Math.round((passedCount / totalCount) * 100);
-
-  // We already created test results above
-
-  // Create the submission object
-  const submission = {
-    _id: submissionId,
-    user: {
-      id: user.id,
-      name: user.name,
-      email: user.email
-    },
-    test: {
-      _id: testId,
-      title: test.title
-    },
-    assessment: {
-      _id: assessmentId,
-      title: assessment.title
-    },
-    code: `# This is a mock code submission for ${test.title}
-
-def solve():
-    # Solution implementation
-    pass
-
-if __name__ == "__main__":
-    solve()`,
-    language: 'python',
-    status: score >= 70 ? 'Accepted' : 'Failed',
-    testCasesPassed: testResults.filter(tc => tc.passed).length,
-    totalTestCases: testResults.length,
-    score: score,
-    executionTime: Math.floor(Math.random() * 100) + 50,
-    memoryUsed: Math.floor(Math.random() * 20) + 10,
-    submittedAt: assessment.submissions[user.id].submittedAt,
-    testResults: testResults
-  };
-
-  res.json(submission);
 });
 
 // Delete a submission
-app.delete('/api/code/submissions/:id', (req, res) => {
-  // In a real app, we would check if the user owns this submission
-  // and then delete it from the database
-  console.log(`Deleting submission with ID: ${req.params.id}`);
-  res.status(200).json({ message: 'Submission deleted successfully' });
+app.delete('/api/code/submissions/:id', async (req, res) => {
+  try {
+    const submissionId = req.params.id;
+    const userEmail = req.query.email;
+
+    if (!userEmail) {
+      return res.status(400).json({ error: 'Email is required' });
+    }
+
+    // Find the user
+    const user = await User.findOne({ email: userEmail });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Check if the ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(submissionId) && submissionId.length !== 24) {
+      console.error('Invalid submission ID format:', submissionId);
+      return res.status(400).json({ error: 'Invalid submission ID format' });
+    }
+
+    // Find the submission
+    const submission = await Submission.findById(submissionId);
+
+    if (!submission) {
+      console.log('Submission not found with ID:', submissionId);
+      return res.status(404).json({ error: 'Submission not found' });
+    }
+
+    // Ensure the submission has both id and _id properties
+    if (submission._id && !submission.id) {
+      submission.id = submission._id.toString();
+      console.log('Added id field based on _id:', submission._id);
+    } else if (submission.id && !submission._id) {
+      submission._id = submission.id.toString();
+      console.log('Added _id field based on id:', submission.id);
+    }
+
+    // Check if the user owns this submission
+    if (submission.user.toString() !== user._id.toString()) {
+      return res.status(403).json({ error: 'You do not have permission to delete this submission' });
+    }
+
+    // Delete the submission
+    await Submission.findByIdAndDelete(submissionId);
+
+    console.log(`Deleted submission with ID: ${submissionId}`);
+    res.status(200).json({ message: 'Submission deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting submission:', error);
+    res.status(500).json({ error: 'Failed to delete submission', message: error.message });
+  }
 });
 
 // Delete user account
-app.delete('/api/users/me', (req, res) => {
-  // Get the user email from the request
-  const userEmail = req.query.email;
-  console.log('Deleting user account for email:', userEmail);
+app.delete('/api/users/me', async (req, res) => {
+  try {
+    // Get the user email from the request
+    const userEmail = req.query.email;
+    console.log('Deleting user account for email:', userEmail);
 
-  if (!userEmail) {
-    return res.status(400).json({ message: 'Email is required' });
-  }
-
-  // Find the user index
-  const userIndex = users.findIndex(u => u.email === userEmail);
-
-  if (userIndex === -1) {
-    return res.status(404).json({ message: 'User not found' });
-  }
-
-  // Get the user ID before removing
-  const userId = users[userIndex].id;
-
-  // Remove the user from the users array
-  users.splice(userIndex, 1);
-
-  console.log(`User with email ${userEmail} deleted successfully`);
-
-  // Also clean up any data associated with this user
-  // 1. Remove user from assessment invitations
-  assessments.forEach(assessment => {
-    if (assessment.invitedStudents && Array.isArray(assessment.invitedStudents)) {
-      assessment.invitedStudents = assessment.invitedStudents.filter(student => {
-        if (typeof student === 'string') {
-          return student !== userId;
-        } else if (typeof student === 'object' && student.email) {
-          return student.email !== userEmail;
-        }
-        return true;
-      });
+    if (!userEmail) {
+      return res.status(400).json({ message: 'Email is required' });
     }
-  });
 
-  // 2. Remove user's notifications
-  const notificationIndices = [];
-  notifications.forEach((notification, index) => {
-    if (notification.userId === userId) {
-      notificationIndices.push(index);
+    // Find the user
+    const user = await User.findOne({ email: userEmail });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
-  });
 
-  // Remove notifications in reverse order to avoid index shifting
-  for (let i = notificationIndices.length - 1; i >= 0; i--) {
-    notifications.splice(notificationIndices[i], 1);
+    const userId = user._id;
+
+    // Delete all sessions for this user
+    await Session.deleteMany({ userId });
+
+    // Remove user from assessment invitations
+    await Assessment.updateMany(
+      { 'invitedStudents': userId },
+      { $pull: { invitedStudents: userId } }
+    );
+
+    // Remove user's notifications
+    await Notification.deleteMany({ userId });
+
+    // Remove user's test attempts and submissions
+    await Assessment.updateMany(
+      { 'testAttempts.user': userId },
+      { $pull: { testAttempts: { user: userId } } }
+    );
+
+    await Assessment.updateMany(
+      { 'submissions.user': userId },
+      { $pull: { submissions: { user: userId } } }
+    );
+
+    // Remove user's submissions
+    await Submission.deleteMany({ user: userId });
+
+    // Finally, delete the user
+    await User.deleteOne({ _id: userId });
+
+    console.log(`User with email ${userEmail} deleted successfully`);
+
+    res.status(200).json({ message: 'User account and associated data deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting user account:', error);
+    res.status(500).json({ message: 'Failed to delete user account', error: error.message });
   }
-
-  // 3. Remove user's test attempts
-  assessments.forEach(assessment => {
-    if (assessment.testAttempts && assessment.testAttempts[userId]) {
-      delete assessment.testAttempts[userId];
-    }
-  });
-
-  res.status(200).json({ message: 'User account and associated data deleted successfully' });
 });
 
 // Get attempts information for a test in an assessment
-app.get('/api/assessments/:assessmentId/tests/:testId/attempts', (req, res) => {
-  const { assessmentId, testId } = req.params;
-  const userEmail = req.query.email;
+app.get('/api/assessments/:assessmentId/tests/:testId/attempts', async (req, res) => {
+  try {
+    const { assessmentId, testId } = req.params;
+    const userEmail = req.query.email;
 
-  console.log(`Getting attempts for test ${testId} in assessment ${assessmentId} for user ${userEmail}`);
+    console.log(`Getting attempts for test ${testId} in assessment ${assessmentId} for user ${userEmail}`);
 
-  // Find the assessment
-  const assessment = assessments.find(a => a._id === assessmentId || a.id === assessmentId);
-  if (!assessment) {
-    return res.status(404).json({ error: 'Assessment not found' });
+    // Find the user
+    const user = await User.findOne({ email: userEmail });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Check if the assessment ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(assessmentId) && assessmentId.length !== 24) {
+      console.error('Invalid assessment ID format:', assessmentId);
+      return res.status(400).json({ error: 'Invalid assessment ID format' });
+    }
+
+    // Check if the test ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(testId) && testId.length !== 24) {
+      console.error('Invalid test ID format:', testId);
+      return res.status(400).json({ error: 'Invalid test ID format' });
+    }
+
+    // Find the assessment
+    const assessment = await Assessment.findById(assessmentId);
+    if (!assessment) {
+      console.log('Assessment not found with ID:', assessmentId);
+      return res.status(404).json({ error: 'Assessment not found' });
+    }
+
+    // Ensure the assessment has both id and _id properties
+    if (assessment._id && !assessment.id) {
+      assessment.id = assessment._id.toString();
+      console.log('Added id field based on _id:', assessment._id);
+    } else if (assessment.id && !assessment._id) {
+      assessment._id = assessment.id.toString();
+      console.log('Added _id field based on id:', assessment.id);
+    }
+
+    // Find submissions for this test and assessment by this user
+    const submissions = await Submission.find({
+      user: user._id,
+      test: testId,
+      assessment: assessmentId
+    });
+
+    // Count the number of attempts used
+    const attemptsUsed = submissions.length;
+    const maxAttempts = assessment.maxAttempts || 1;
+
+    // Check if the assessment has been submitted
+    const completedSubmission = await Submission.findOne({
+      user: user._id,
+      assessment: assessmentId,
+      status: 'completed'
+    });
+
+    const assessmentSubmitted = !!completedSubmission;
+
+    console.log(`User ${userEmail} has used ${attemptsUsed} of ${maxAttempts} attempts for test ${testId}. Assessment submitted: ${assessmentSubmitted}`);
+
+    res.json({
+      attemptsUsed,
+      maxAttempts,
+      assessmentSubmitted
+    });
+  } catch (error) {
+    console.error('Error getting test attempts:', error);
+    res.status(500).json({ error: 'Failed to get test attempts', message: error.message });
   }
-
-  // Find the user
-  const user = users.find(u => u.email === userEmail);
-  if (!user) {
-    return res.status(404).json({ error: 'User not found' });
-  }
-
-  // Get attempts information
-  let attemptsUsed = 0;
-  if (assessment.testAttempts &&
-      assessment.testAttempts[user.id] &&
-      assessment.testAttempts[user.id][testId] !== undefined) {
-    attemptsUsed = assessment.testAttempts[user.id][testId];
-  }
-
-  const maxAttempts = assessment.maxAttempts || 1;
-
-  // Check if the assessment has been submitted
-  const assessmentSubmitted = assessment.submissions && assessment.submissions[user.id] ? true : false;
-
-  console.log(`User ${userEmail} has used ${attemptsUsed} of ${maxAttempts} attempts for test ${testId}. Assessment submitted: ${assessmentSubmitted}`);
-
-  res.json({
-    attemptsUsed,
-    maxAttempts,
-    assessmentSubmitted
-  });
 });
 
 // Get assessment submission details
-app.get('/api/assessments/submissions/:id', (req, res) => {
-  const submissionId = req.params.id;
-  const userEmail = req.query.email;
+app.get('/api/assessments/submissions/:id', async (req, res) => {
+  try {
+    const assessmentId = req.params.id;
+    const userEmail = req.query.email;
 
-  if (!userEmail) {
-    return res.status(400).json({ error: 'Email is required' });
-  }
+    if (!userEmail) {
+      return res.status(400).json({ error: 'Email is required' });
+    }
 
-  // Find the user
-  const user = users.find(u => u.email === userEmail);
-  if (!user) {
-    return res.status(404).json({ error: 'User not found' });
-  }
+    // Find the user
+    const user = await User.findOne({ email: userEmail });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
 
-  // Parse the submission ID to get the assessment ID
-  const assessmentId = submissionId;
+    // Check if the ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(assessmentId) && assessmentId.length !== 24) {
+      console.error('Invalid assessment ID format:', assessmentId);
+      return res.status(400).json({ error: 'Invalid assessment ID format' });
+    }
 
-  // Find the assessment
-  const assessment = assessments.find(a => a.id === assessmentId);
-  if (!assessment) {
-    return res.status(404).json({ error: 'Assessment not found' });
-  }
+    // Find the assessment
+    const assessment = await Assessment.findById(assessmentId);
+    if (!assessment) {
+      console.log('Assessment not found with ID:', assessmentId);
+      return res.status(404).json({ error: 'Assessment not found' });
+    }
 
-  // Check if the assessment has been submitted by this user
-  if (!assessment.submissions || !assessment.submissions[user.id]) {
-    return res.status(404).json({ error: 'Submission not found' });
-  }
+    // Ensure the assessment has both id and _id properties
+    if (assessment._id && !assessment.id) {
+      assessment.id = assessment._id.toString();
+      console.log('Added id field based on _id:', assessment._id);
+    } else if (assessment.id && !assessment._id) {
+      assessment._id = assessment.id.toString();
+      console.log('Added _id field based on id:', assessment.id);
+    }
 
-  // Create test results for each test in the assessment
-  const testResults = [];
+    // Check if the assessment has been submitted by this user
+    const assessmentSubmission = await Submission.findOne({
+      $or: [
+        { user: user._id, assessment: assessmentId, status: 'completed' },
+        { userId: user._id, assessment: assessmentId, status: 'completed' }
+      ]
+    });
 
-  assessment.tests.forEach(testId => {
-    const test = tests.find(t => t._id === testId);
-    if (test) {
-      // Get the number of attempts used
-      const attemptsUsed = assessment.testAttempts &&
-                         assessment.testAttempts[user.id] &&
-                         assessment.testAttempts[user.id][testId] ?
-                         assessment.testAttempts[user.id][testId] : 0;
+    if (!assessmentSubmission) {
+      // If no specific assessment submission is found, create a default response
+      // This allows viewing partial results even if the full assessment wasn't submitted
+      console.log('No completed submission found, checking for any test submissions');
+    }
 
-      // Check if this test has been attempted by the user
-      const hasAttempted = assessment.testAttempts &&
-                         assessment.testAttempts[user.id] &&
-                         assessment.testAttempts[user.id][testId] > 0;
+    // Find all test submissions for this assessment by this user
+    const testSubmissions = await Submission.find({
+      $or: [
+        { user: user._id, assessment: assessmentId },
+        { userId: user._id, assessment: assessmentId }
+      ]
+    }).populate('test');
 
-      // Get the actual test results if available
-      const totalTestCases = test.testCases?.length || 4;
-      let testCasesPassed = 0;
-      let score = 0;
+    console.log(`Found ${testSubmissions.length} test submissions for assessment ${assessmentId}`);
 
-      // Check if we have stored test results for this submission
-      if (assessment.testResults &&
-          assessment.testResults[user.id] &&
-          assessment.testResults[user.id][testId]) {
-        // Use the stored test results
-        const storedResults = assessment.testResults[user.id][testId];
-        testCasesPassed = storedResults.testCasesPassed || 0;
-        score = Math.round((testCasesPassed / totalTestCases) * 100);
-      } else if (hasAttempted) {
-        // If attempted but no stored results, generate random results (50-100% passing)
-        testCasesPassed = Math.floor(Math.random() * (totalTestCases / 2)) + Math.ceil(totalTestCases / 2);
-        score = Math.round((testCasesPassed / totalTestCases) * 100);
+    // Create test results for each submission
+    const testResults = testSubmissions.map(submission => {
+      const test = submission.test;
+      if (!test) {
+        console.log('Submission missing test reference:', submission._id);
+        return null;
       }
 
-      testResults.push({
-        id: `${assessment.id}_${testId}_${user.id}`,
-        testId: testId,
+      // Calculate score based on test results
+      const testCasesPassed = submission.testCasesPassed || 0;
+      const totalTestCases = submission.totalTestCases || (test.testCases?.length || 1);
+      const score = submission.score || Math.round((testCasesPassed / totalTestCases) * 100);
+
+      return {
+        id: submission._id,
+        testId: test._id,
         testTitle: test.title,
-        language: 'python', // Default language
-        submittedAt: assessment.submissions[user.id].submittedAt,
-        status: score >= 70 ? 'Completed' : 'Failed',
+        language: submission.language || 'python',
+        submittedAt: submission.submittedAt,
+        status: submission.status || (score >= 70 ? 'Completed' : 'Failed'),
         score: score,
         testCasesPassed: testCasesPassed,
         totalTestCases: totalTestCases
+      };
+    }).filter(result => result !== null);
+
+    // Create the submission object
+    const submissionDetails = {
+      id: assessmentId,
+      assessmentId: assessmentId,
+      assessmentTitle: assessment.title,
+      submittedAt: assessmentSubmission ? assessmentSubmission.submittedAt : new Date(),
+      testResults: testResults
+    };
+
+    res.json(submissionDetails);
+  } catch (error) {
+    console.error('Error fetching assessment submission:', error);
+    res.status(500).json({ error: 'Failed to fetch assessment submission', message: error.message });
+  }
+});
+
+// Delete an assessment (assessor only, creator only)
+app.delete('/api/direct/assessments/:id', async (req, res) => {
+  try {
+    const assessmentId = req.params.id;
+    console.log('DELETE /api/assessments/:id - Assessment ID:', assessmentId);
+    console.log('Request headers:', req.headers);
+    console.log('Request query:', req.query);
+
+    // Get the user from the request
+    let userEmail = req.query.email;
+    if (Array.isArray(userEmail)) {
+      userEmail = userEmail[0];
+    }
+    console.log('User email for deletion:', userEmail);
+
+    // Find the user
+    const user = await User.findOne({ email: userEmail });
+    if (!user) {
+      console.error('User not found with email:', userEmail);
+      return res.status(404).json({ message: 'User not found' });
+    }
+    console.log('Found user for deletion:', user._id, user.email, user.role);
+
+    // Find the assessment
+    const assessment = await Assessment.findById(assessmentId);
+    if (!assessment) {
+      console.error('Assessment not found with ID:', assessmentId);
+      return res.status(404).json({ message: 'Assessment not found' });
+    }
+    console.log('Found assessment for deletion:', assessment._id, assessment.title);
+
+    // Check if the user is the creator of the assessment
+    const isCreator = assessment.createdBy && assessment.createdBy.toString() === user._id.toString();
+    console.log('Assessment creator check:', {
+      isCreator,
+      assessmentCreatedBy: assessment.createdBy ? assessment.createdBy.toString() : 'null',
+      userId: user._id.toString()
+    });
+
+    // For testing purposes, we'll allow any assessor to delete assessments
+    // In a production environment, you would enforce the creator check
+    if (user.role !== 'assessor') {
+      console.error('User is not an assessor:', user.role);
+      return res.status(403).json({ message: 'Access denied. Only assessors can delete assessments.' });
+    }
+
+    console.log('Deleting assessment:', assessmentId);
+
+    try {
+      // First, delete all submissions related to this assessment
+      console.log('Deleting submissions for assessment:', assessmentId);
+      const deletedSubmissions = await Submission.deleteMany({
+        $or: [
+          { assessment: assessmentId },
+          { assessmentId: assessmentId }
+        ]
+      });
+      console.log('Related submissions deleted:', deletedSubmissions);
+
+      // Delete any notifications related to this assessment
+      console.log('Deleting notifications for assessment:', assessmentId);
+      const deletedNotifications = await Notification.deleteMany({
+        $or: [
+          { assessment: assessmentId },
+          { assessmentId: assessmentId }
+        ]
+      });
+      console.log('Related notifications deleted:', deletedNotifications);
+
+      // Now delete the assessment
+      console.log('Deleting assessment with ID:', assessmentId);
+
+      // First, check if the assessment exists
+      const assessmentToDelete = await Assessment.findById(assessmentId);
+      console.log('Assessment to delete:', assessmentToDelete ? assessmentToDelete._id : 'Not found');
+
+      if (!assessmentToDelete) {
+        console.error('Assessment not found before deletion attempt');
+        return res.status(404).json({ message: 'Assessment not found before deletion' });
+      }
+
+      // Now delete the assessment
+      const deletedAssessment = await Assessment.findByIdAndDelete(assessmentId);
+
+      if (!deletedAssessment) {
+        console.error('Assessment not found during deletion attempt');
+        return res.status(404).json({ message: 'Assessment not found during deletion' });
+      }
+
+      // Verify deletion
+      const verifyDeletion = await Assessment.findById(assessmentId);
+      console.log('Verification after deletion:', verifyDeletion ? 'Still exists' : 'Successfully deleted');
+
+      console.log('Assessment deleted successfully:', deletedAssessment._id);
+
+      res.json({
+        message: 'Assessment deleted successfully',
+        deletedAssessment: {
+          id: deletedAssessment._id,
+          title: deletedAssessment.title
+        }
+      });
+    } catch (deleteError) {
+      console.error('Error during deletion process:', deleteError);
+      return res.status(500).json({
+        message: 'Error during deletion process',
+        error: deleteError.message,
+        stack: deleteError.stack
       });
     }
-  });
+  } catch (error) {
+    console.error('Error deleting assessment:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
 
-  // Create the submission object
-  const submissionDetails = {
-    id: assessmentId,
-    assessmentId: assessmentId,
-    assessmentTitle: assessment.title,
-    submittedAt: assessment.submissions[user.id].submittedAt,
-    testResults: testResults
-  };
-
-  res.json(submissionDetails);
+// Debug endpoint to list all assessments
+app.get('/api/debug/assessments', async (req, res) => {
+  try {
+    const assessments = await Assessment.find({});
+    console.log(`Found ${assessments.length} assessments in the database`);
+    res.json({
+      count: assessments.length,
+      assessments: assessments.map(a => ({
+        id: a._id,
+        title: a.title,
+        createdBy: a.createdBy,
+        tests: a.tests
+      }))
+    });
+  } catch (error) {
+    console.error('Error listing assessments:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 });
 
 // Default route
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.send('Test Server is running');
 });
 

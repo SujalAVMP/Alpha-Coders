@@ -283,7 +283,8 @@ int main() {
         code,
         language,
         input,
-        assessmentId: assessmentId // Pass assessmentId for permission validation
+        assessmentId: assessmentId, // Pass assessmentId for permission validation
+        testId: id // Pass the test ID explicitly
       });
 
       console.log('Code execution response:', data);
@@ -316,7 +317,8 @@ int main() {
       const data = await runTestCases(id, {
         code,
         language,
-        assessmentId: assessmentId // Pass assessmentId for permission validation
+        assessmentId: assessmentId, // Pass assessmentId for permission validation
+        testId: id // Pass the test ID explicitly in case the API needs it
       });
 
       console.log('Test case execution response:', data);
@@ -353,7 +355,8 @@ int main() {
       const data = await submitCode(id, {
         code,
         language,
-        assessmentId: assessmentId // Pass assessmentId for permission validation
+        assessmentId: assessmentId, // Pass assessmentId for permission validation
+        testId: id // Pass the test ID explicitly in case the API needs it
       });
 
       // Update attempts information if returned from the server

@@ -149,8 +149,9 @@ const AssessmentView = () => {
 
             // Set the first test as selected by default if available
             if (fetchedTests.length > 0) {
+              // Use _id consistently
               const firstTest = fetchedTests[0];
-              const testId = firstTest._id || firstTest.id;
+              const testId = firstTest._id;
               console.log('Setting default selected test:', testId);
               setSelectedTestId(testId);
             }
@@ -246,6 +247,10 @@ const AssessmentView = () => {
     const endTime = new Date(assessment.endTime);
 
     return now >= startTime && now <= endTime;
+  };
+
+  const getTestById = (testId) => {
+    return tests.find(test => test._id === testId) || null;
   };
 
   if (loading) {

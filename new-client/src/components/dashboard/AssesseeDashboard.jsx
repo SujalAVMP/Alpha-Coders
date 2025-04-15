@@ -179,10 +179,13 @@ const AssesseeDashboard = () => {
   };
 
   const getTestById = (testId) => {
-    return tests.find(test => test._id === testId) || { title: 'Unknown Test' };
+    // Handle both _id and id formats
+    return tests.find(test => (test._id === testId || test.id === testId)) || { title: 'Unknown Test' };
   };
 
   const isAssessmentActive = (assessment) => {
+    if (!assessment) return false;
+
     const now = new Date();
     const startTime = new Date(assessment.startTime);
     const endTime = new Date(assessment.endTime);
@@ -190,12 +193,23 @@ const AssesseeDashboard = () => {
   };
 
   const isAssessmentSubmitted = (assessment) => {
-    console.log('Checking if assessment is submitted:', assessment.id, assessment.title, assessment.submitted);
+    if (!assessment) return false;
+
+    // Log both id and _id for debugging
+    const assessmentId = assessment.id || assessment._id;
+    console.log('Checking if assessment is submitted:', assessmentId, assessment.title, assessment.submitted);
     return assessment.submitted === true;
   };
 
   const canTakeAssessment = (assessment) => {
-    return isAssessmentActive(assessment) && assessment.attemptsUsed < assessment.maxAttempts;
+    if (!assessment) return false;
+
+    // Default maxAttempts to 1 if not specified
+    const maxAttempts = assessment.maxAttempts || 1;
+    // Default attemptsUsed to 0 if not specified
+    const attemptsUsed = assessment.attemptsUsed || 0;
+
+    return isAssessmentActive(assessment) && attemptsUsed < maxAttempts;
   };
 
   if (loading) {
@@ -303,7 +317,7 @@ const AssesseeDashboard = () => {
                         <CardActions>
                           <Button
                             component={Link}
-                            to={`/assessments/${assessment.id}/view`}
+                            to={`/assessments/${assessment._id}/view`}
                             variant="contained"
                             color="primary"
                             fullWidth
@@ -408,7 +422,7 @@ const AssesseeDashboard = () => {
                 <Grid container spacing={3}>
                   {submissions.map((submission) => {
                     return (
-                      <Grid item xs={12} sm={6} md={4} key={submission.id}>
+                      <Grid item xs={12} sm={6} md={4} key={submission._id}>
                         <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                           <CardContent sx={{ flexGrow: 1 }}>
                             <Typography variant="h6" component="h2" gutterBottom>

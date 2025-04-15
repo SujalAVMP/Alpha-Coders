@@ -33,7 +33,7 @@ const getMonacoLanguage = (language) => {
 };
 
 const SubmissionDetails = () => {
-  const { id } = useParams();
+  const { id: _id } = useParams();
   const [submission, setSubmission] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -41,7 +41,7 @@ const SubmissionDetails = () => {
   useEffect(() => {
     const fetchSubmission = async () => {
       try {
-        const data = await getSubmissionById(id);
+        const data = await getSubmissionById(_id);
         setSubmission(data);
       } catch (error) {
         console.error('Error fetching submission:', error);
@@ -52,7 +52,7 @@ const SubmissionDetails = () => {
     };
 
     fetchSubmission();
-  }, [id]);
+  }, [_id]);
 
   const formatDate = (dateString) => {
     const options = {

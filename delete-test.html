@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Assessment Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        input {
+            padding: 8px;
+            width: 300px;
+            margin-bottom: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Delete Assessment Test</h1>
+    
+    <div>
+        <label for="assessmentId">Assessment ID:</label>
+        <input type="text" id="assessmentId" placeholder="Enter assessment ID">
+    </div>
+    
+    <div>
+        <label for="userEmail">User Email:</label>
+        <input type="email" id="userEmail" placeholder="Enter user email" value="teacher@example.com">
+    </div>
+    
+    <div>
+        <label for="token">Auth Token:</label>
+        <input type="text" id="token" placeholder="Enter auth token" value="eyJ1c2VySWQiOiI2N2ZlNzI3N2I5MGZmYmNmM2JkZTQ0YzgiLCJzZXNzaW9uSWQiOiJtOWlwYXp6bzFoa3RuZzdrOWM5IiwidGltZXN0YW1wIjoxNzQ0NzMzNTQ1OTcxfQ==">
+    </div>
+    
+    <button id="deleteBtn">Delete Assessment</button>
+    
+    <div id="result">
+        <p>Results will appear here...</p>
+    </div>
+    
+    <script>
+        document.getElementById('deleteBtn').addEventListener('click', async () => {
+            const assessmentId = document.getElementById('assessmentId').value.trim();
+            const userEmail = document.getElementById('userEmail').value.trim();
+            const token = document.getElementById('token').value.trim();
+            const resultDiv = document.getElementById('result');
+            
+            if (!assessmentId) {
+                resultDiv.innerHTML = '<p style="color: red;">Please enter an assessment ID</p>';
+                return;
+            }
+            
+            if (!userEmail) {
+                resultDiv.innerHTML = '<p style="color: red;">Please enter a user email</p>';
+                return;
+            }
+            
+            if (!token) {
+                resultDiv.innerHTML = '<p style="color: red;">Please enter an auth token</p>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<p>Deleting assessment...</p>';
+            
+            try {
+                const response = await fetch(`http://localhost:5002/api/direct/assessments/${assessmentId}?email=${encodeURIComponent(userEmail)}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<p style="color: green;">Success! Assessment deleted.</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    resultDiv.innerHTML = `<p style="color: red;">Error: ${data.message || 'Unknown error'}</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

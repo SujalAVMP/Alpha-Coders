@@ -9,14 +9,20 @@ export const fetchAPI = async (url, options = {}) => {
       ...options.headers
     };
 
-    // Add auth token if available
-    const token = localStorage.getItem('token');
+    // Add auth token if available - check both storage locations
+    const token = sessionStorage.getItem('token') || localStorage.getItem('token');
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
 
-    // Get the user email from localStorage
-    const userEmail = localStorage.getItem('userEmail');
+    // Add session ID if available
+    const sessionId = sessionStorage.getItem('sessionId');
+    if (sessionId) {
+      headers['X-Session-ID'] = sessionId;
+    }
+
+    // Get the user email from sessionStorage
+    const userEmail = sessionStorage.getItem('userEmail');
 
     // Add email as query parameter if available
     let apiUrl = `${API_URL}${url}`;
@@ -30,7 +36,9 @@ export const fetchAPI = async (url, options = {}) => {
     }
 
     console.log('API Request URL:', apiUrl);
-    console.log('API Request Body:', options.body);
+    if (options.body) {
+      console.log('API Request Body:', options.body);
+    }
 
     // Make the request
     const response = await fetch(apiUrl, {
@@ -59,6 +67,68 @@ export const fetchAPI = async (url, options = {}) => {
       if (responseText.trim()) {
         try {
           data = JSON.parse(responseText);
+
+          // Normalize ID fields to ensure both id and _id are available
+          if (data && typeof data === 'object') {
+            // For single objects
+            if (data._id && !data.id) {
+              data.id = data._id;
+              console.log('Added id field based on _id:', data._id);
+            } else if (data.id && !data._id) {
+              data._id = data.id;
+              console.log('Added _id field based on id:', data.id);
+            }
+
+            // For arrays of objects
+            if (Array.isArray(data)) {
+              data.forEach(item => {
+                if (item && typeof item === 'object') {
+                  if (item._id && !item.id) {
+                    item.id = item._id;
+                    console.log('Added id field to array item based on _id:', item._id);
+                  } else if (item.id && !item._id) {
+                    item._id = item.id;
+                    console.log('Added _id field to array item based on id:', item.id);
+                  }
+                }
+              });
+            }
+
+            // Handle nested objects like test.testCases
+            const normalizeNestedObjects = (obj) => {
+              if (!obj || typeof obj !== 'object') return;
+
+              Object.keys(obj).forEach(key => {
+                const value = obj[key];
+                if (Array.isArray(value)) {
+                  value.forEach(item => {
+                    if (item && typeof item === 'object') {
+                      if (item._id && !item.id) {
+                        item.id = item._id;
+                      } else if (item.id && !item._id) {
+                        item._id = item.id;
+                      }
+                      normalizeNestedObjects(item);
+                    }
+                  });
+                } else if (value && typeof value === 'object') {
+                  if (value._id && !value.id) {
+                    value.id = value._id;
+                  } else if (value.id && !value._id) {
+                    value._id = value.id;
+                  }
+                  normalizeNestedObjects(value);
+                }
+              });
+            };
+
+            // Apply normalization to nested objects
+            if (!Array.isArray(data)) {
+              normalizeNestedObjects(data);
+            } else {
+              data.forEach(item => normalizeNestedObjects(item));
+            }
+          }
         } catch (jsonError) {
           console.error('Error parsing JSON:', jsonError);
           throw new Error(`Failed to parse response as JSON: ${responseText.substring(0, 100)}...`);
@@ -117,6 +187,11 @@ export const deleteUserAccount = () => fetchAPI('/users/me', {
   method: 'DELETE'
 });
 
+export const updateUserProfile = (profileData) => fetchAPI('/users/profile', {
+  method: 'PUT',
+  body: JSON.stringify(profileData)
+});
+
 // Tests API
 export const getAllTests = () => fetchAPI('/tests');
 export const getPublicTests = () => fetchAPI('/tests/public');
@@ -125,7 +200,26 @@ export const getTestTemplates = () => fetchAPI('/tests/templates');
 export const createTestFromTemplate = (templateIndex) => fetchAPI(`/tests/from-template/${templateIndex}`, {
   method: 'POST'
 });
-export const getTestById = (id) => fetchAPI(`/tests/${id}`);
+export const getTestById = (id) => {
+  if (!id) {
+    console.error('Invalid test ID:', id);
+    return Promise.reject(new Error('Invalid test ID'));
+  }
+
+  // Ensure we're using a string ID
+  const testId = id.toString();
+  console.log('Fetching test with ID:', testId);
+
+  return fetchAPI(`/tests/${testId}`)
+    .then(response => {
+      console.log('Test data received:', response);
+      return response;
+    })
+    .catch(error => {
+      console.error(`Error fetching test ${testId}:`, error);
+      throw error;
+    });
+};
 export const createTest = (testData) => fetchAPI('/tests', {
   method: 'POST',
   body: JSON.stringify(testData)
@@ -159,9 +253,38 @@ export const submitCode = (testId, submissionData) => fetchAPI(`/tests/${testId}
 });
 export const getTestSubmissions = (testId) => fetchAPI(`/tests/${testId}/submissions`);
 export const getUserSubmissions = () => fetchAPI('/code/submissions');
-export const getAssessmentSubmissionById = (id) => fetchAPI(`/assessments/submissions/${id}?email=${encodeURIComponent(localStorage.getItem('userEmail'))}`);
+export const getAssessmentSubmissionById = (id) => {
+  if (!id) {
+    console.error('Invalid assessment submission ID:', id);
+    return Promise.reject(new Error('Invalid assessment submission ID'));
+  }
+  console.log('Fetching assessment submission with ID:', id);
+  return fetchAPI(`/assessments/submissions/${id}?email=${encodeURIComponent(sessionStorage.getItem('userEmail') || '')}`);
+};
 
-export const getSubmissionById = (id) => fetchAPI(`/code/submissions/${id}?email=${encodeURIComponent(localStorage.getItem('userEmail'))}`);
+export const getSubmissionById = (id) => {
+  if (!id) {
+    console.error('Invalid submission ID:', id);
+    return Promise.reject(new Error('Invalid submission ID'));
+  }
+
+  // Ensure we're using a string ID
+  const submissionId = id.toString();
+  console.log('Fetching submission with ID:', submissionId);
+
+  const userEmail = sessionStorage.getItem('userEmail') || '';
+  console.log('User email for submission request:', userEmail);
+
+  return fetchAPI(`/code/submissions/${submissionId}`)
+    .then(response => {
+      console.log('Submission data received:', response);
+      return response;
+    })
+    .catch(error => {
+      console.error(`Error fetching submission ${submissionId}:`, error);
+      throw error;
+    });
+};
 export const deleteSubmission = (id) => fetchAPI(`/code/submissions/${id}`, {
   method: 'DELETE'
 });
@@ -186,24 +309,176 @@ export const runTestCases = (testId, codeData) => {
 // Assessments API
 export const getMyAssessments = () => fetchAPI('/assessments/my-assessments');
 export const getAssignedAssessments = () => fetchAPI('/assessments/assigned');
-export const getAssessmentById = (id) => fetchAPI(`/assessments/${id}`);
+export const getAssessmentById = (id) => {
+  if (!id) {
+    console.error('Invalid assessment ID:', id);
+    return Promise.reject(new Error('Invalid assessment ID'));
+  }
+
+  // Ensure we're using a string ID
+  const assessmentId = id.toString();
+  console.log('Fetching assessment with ID:', assessmentId);
+
+  return fetchAPI(`/assessments/${assessmentId}`)
+    .then(response => {
+      console.log('Assessment data received:', response);
+      return response;
+    })
+    .catch(error => {
+      console.error(`Error fetching assessment ${assessmentId}:`, error);
+      throw error;
+    });
+};
 export const createAssessment = (assessmentData) => fetchAPI('/assessments', {
   method: 'POST',
   body: JSON.stringify(assessmentData)
 });
-export const updateAssessment = (id, assessmentData) => fetchAPI(`/assessments/${id}`, {
-  method: 'PUT',
-  body: JSON.stringify(assessmentData)
-});
-export const deleteAssessment = (id) => fetchAPI(`/assessments/${id}`, {
-  method: 'DELETE'
-});
-export const addTestToAssessment = (assessmentId, testId) => fetchAPI(`/assessments/${assessmentId}/tests/${testId}`, {
-  method: 'POST'
-});
-export const removeTestFromAssessment = (assessmentId, testId) => fetchAPI(`/assessments/${assessmentId}/tests/${testId}`, {
-  method: 'DELETE'
-});
+export const updateAssessment = (id, assessmentData) => {
+  if (!id) {
+    console.error('Invalid assessment ID:', id);
+    return Promise.reject(new Error('Invalid assessment ID'));
+  }
+
+  // Ensure we're using the correct ID format
+  const assessmentId = (assessmentData.id || assessmentData._id || id).toString();
+  console.log('Updating assessment with ID:', assessmentId);
+
+  // Make a copy of the data to avoid modifying the original
+  const dataToSend = { ...assessmentData };
+
+  // Ensure both id and _id are set correctly
+  if (dataToSend.id && !dataToSend._id) {
+    dataToSend._id = dataToSend.id;
+    console.log('Added _id field based on id:', dataToSend.id);
+  } else if (dataToSend._id && !dataToSend.id) {
+    dataToSend.id = dataToSend._id;
+    console.log('Added id field based on _id:', dataToSend._id);
+  }
+
+  // Normalize IDs in tests array if it exists
+  if (dataToSend.tests && Array.isArray(dataToSend.tests)) {
+    dataToSend.tests = dataToSend.tests.map(testId => testId.toString());
+    console.log('Normalized test IDs in assessment:', dataToSend.tests);
+  }
+
+  // Normalize IDs in invitedStudents array if it exists
+  if (dataToSend.invitedStudents && Array.isArray(dataToSend.invitedStudents)) {
+    dataToSend.invitedStudents = dataToSend.invitedStudents.map(studentId => {
+      if (typeof studentId === 'object' && (studentId.id || studentId._id)) {
+        return (studentId.id || studentId._id).toString();
+      }
+      return studentId.toString();
+    });
+    console.log('Normalized invitedStudents IDs in assessment:', dataToSend.invitedStudents);
+  }
+
+  return fetchAPI(`/assessments/${assessmentId}`, {
+    method: 'PUT',
+    body: JSON.stringify(dataToSend)
+  })
+  .then(response => {
+    console.log('Assessment updated successfully:', response);
+    return response;
+  })
+  .catch(error => {
+    console.error(`Error updating assessment ${assessmentId}:`, error);
+    throw error;
+  });
+};
+export const deleteAssessment = (id) => {
+  if (!id) {
+    console.error('Invalid assessment ID:', id);
+    return Promise.reject(new Error('Invalid assessment ID'));
+  }
+
+  // Ensure we're using a string ID
+  const assessmentId = id.toString();
+  console.log('Deleting assessment with ID:', assessmentId);
+
+  // Check for auth token before making request
+  const token = sessionStorage.getItem('token') || localStorage.getItem('token');
+  if (!token) {
+    console.error('No authentication token found');
+    return Promise.reject(new Error('Authentication token missing. Please log in again.'));
+  }
+
+  const userEmail = sessionStorage.getItem('userEmail') || localStorage.getItem('userEmail');
+  if (!userEmail) {
+    console.error('No user email found');
+    return Promise.reject(new Error('User email missing. Please log in again.'));
+  }
+
+  console.log('User email for deletion request:', userEmail);
+
+  // Use the direct endpoint for deletion
+  return fetchAPI(`/direct/assessments/${assessmentId}`, {
+    method: 'DELETE'
+  })
+  .then(response => {
+    console.log('Assessment deleted successfully:', response);
+    return response;
+  })
+  .catch(error => {
+    console.error(`Error deleting assessment ${assessmentId}:`, error);
+    throw error;
+  });
+};
+export const addTestToAssessment = (assessmentId, testId) => {
+  if (!assessmentId) {
+    console.error('Invalid assessment ID:', assessmentId);
+    return Promise.reject(new Error('Invalid assessment ID'));
+  }
+  if (!testId) {
+    console.error('Invalid test ID:', testId);
+    return Promise.reject(new Error('Invalid test ID'));
+  }
+
+  // Ensure we're using string IDs
+  const assessmentIdStr = assessmentId.toString();
+  const testIdStr = testId.toString();
+
+  console.log(`Adding test ${testIdStr} to assessment ${assessmentIdStr}`);
+
+  return fetchAPI(`/assessments/${assessmentIdStr}/tests/${testIdStr}`, {
+    method: 'POST'
+  })
+  .then(response => {
+    console.log(`Successfully added test ${testIdStr} to assessment ${assessmentIdStr}:`, response);
+    return response;
+  })
+  .catch(error => {
+    console.error(`Error adding test ${testIdStr} to assessment ${assessmentIdStr}:`, error);
+    throw error;
+  });
+};
+export const removeTestFromAssessment = (assessmentId, testId) => {
+  if (!assessmentId) {
+    console.error('Invalid assessment ID:', assessmentId);
+    return Promise.reject(new Error('Invalid assessment ID'));
+  }
+  if (!testId) {
+    console.error('Invalid test ID:', testId);
+    return Promise.reject(new Error('Invalid test ID'));
+  }
+
+  // Ensure we're using string IDs
+  const assessmentIdStr = assessmentId.toString();
+  const testIdStr = testId.toString();
+
+  console.log(`Removing test ${testIdStr} from assessment ${assessmentIdStr}`);
+
+  return fetchAPI(`/assessments/${assessmentIdStr}/tests/${testIdStr}`, {
+    method: 'DELETE'
+  })
+  .then(response => {
+    console.log(`Successfully removed test ${testIdStr} from assessment ${assessmentIdStr}:`, response);
+    return response;
+  })
+  .catch(error => {
+    console.error(`Error removing test ${testIdStr} from assessment ${assessmentIdStr}:`, error);
+    throw error;
+  });
+};
 export const assignAssessmentToUser = (assessmentId, userId) => fetchAPI(`/assessments/${assessmentId}/assign/${userId}`, {
   method: 'POST'
 });
@@ -213,6 +488,15 @@ export const unassignAssessmentFromUser = (assessmentId, userId) => fetchAPI(`/a
 export const getAssessees = () => fetchAPI('/users/assessees');
 
 export const inviteStudentsByEmail = (assessmentId, emails) => {
+  if (!assessmentId) {
+    console.error('Invalid assessment ID:', assessmentId);
+    return Promise.reject(new Error('Invalid assessment ID'));
+  }
+  if (!emails || (Array.isArray(emails) && emails.length === 0) || emails === '') {
+    console.error('No emails provided for invitation');
+    return Promise.reject(new Error('No emails provided for invitation'));
+  }
+
   // Ensure emails is properly formatted
   // If it's a comma-separated string, keep it as is
   // If it's an array, join it with commas
@@ -227,29 +511,71 @@ export const inviteStudentsByEmail = (assessmentId, emails) => {
   });
 };
 
-export const inviteStudentsByIds = (assessmentId, userIds) => fetchAPI(`/assessments/${assessmentId}/invite`, {
-  method: 'POST',
-  body: JSON.stringify({ userIds })
-});
+export const inviteStudentsByIds = (assessmentId, userIds) => {
+  if (!assessmentId) {
+    console.error('Invalid assessment ID:', assessmentId);
+    return Promise.reject(new Error('Invalid assessment ID'));
+  }
+  if (!userIds || (Array.isArray(userIds) && userIds.length === 0)) {
+    console.error('No user IDs provided for invitation');
+    return Promise.reject(new Error('No user IDs provided for invitation'));
+  }
 
-export const acceptInvitation = (assessmentId, data) => fetchAPI(`/assessments/${assessmentId}/accept-invitation`, {
-  method: 'POST',
-  body: JSON.stringify(data)
-});
+  // Ensure userIds is an array
+  const formattedUserIds = Array.isArray(userIds) ? userIds : [userIds];
+
+  console.log('Inviting students to assessment by IDs:', assessmentId);
+  console.log('User IDs to invite:', formattedUserIds);
+
+  return fetchAPI(`/assessments/${assessmentId}/invite`, {
+    method: 'POST',
+    body: JSON.stringify({ userIds: formattedUserIds })
+  });
+};
+
+export const acceptInvitation = (assessmentId, data) => {
+  if (!assessmentId) {
+    console.error('Invalid assessment ID:', assessmentId);
+    return Promise.reject(new Error('Invalid assessment ID'));
+  }
+  console.log('Accepting invitation for assessment:', assessmentId);
+  return fetchAPI(`/assessments/${assessmentId}/accept-invitation`, {
+    method: 'POST',
+    body: JSON.stringify(data || {})
+  });
+};
 
 // Submit an entire assessment
-export const submitAssessment = (assessmentId) => fetchAPI(`/assessments/${assessmentId}/submit`, {
-  method: 'POST',
-  body: JSON.stringify({})
-});
+export const submitAssessment = (assessmentId) => {
+  if (!assessmentId) {
+    console.error('Invalid assessment ID:', assessmentId);
+    return Promise.reject(new Error('Invalid assessment ID'));
+  }
+  console.log('Submitting assessment:', assessmentId);
+  return fetchAPI(`/assessments/${assessmentId}/submit`, {
+    method: 'POST',
+    body: JSON.stringify({})
+  });
+};
 
 // Generate an invitation link for an assessment
 export const generateInvitationLink = (assessmentId, email) => {
+  if (!assessmentId) {
+    console.error('Invalid assessment ID:', assessmentId);
+    return null;
+  }
+  if (!email) {
+    console.error('Invalid email for invitation link');
+    return null;
+  }
+
   // Create a simple token based on the assessment ID and email
   const token = btoa(`${assessmentId}:${email}:${Date.now()}`).replace(/=/g, '');
 
   // Get the base URL
   const baseUrl = window.location.origin;
+
+  console.log(`Generating invitation link for assessment ${assessmentId} and email ${email}`);
 
   // Create the invitation URL
   return `${baseUrl}/assessments/${assessmentId}/invitation?token=${token}&email=${encodeURIComponent(email)}`;
@@ -257,9 +583,16 @@ export const generateInvitationLink = (assessmentId, email) => {
 
 // Notifications API
 export const getNotifications = () => fetchAPI('/notifications');
-export const markNotificationAsRead = (notificationId) => fetchAPI(`/notifications/${notificationId}/read`, {
-  method: 'POST'
-});
+export const markNotificationAsRead = (notificationId) => {
+  if (!notificationId) {
+    console.error('Invalid notification ID:', notificationId);
+    return Promise.reject(new Error('Invalid notification ID'));
+  }
+  console.log('Marking notification as read:', notificationId);
+  return fetchAPI(`/notifications/${notificationId}/read`, {
+    method: 'POST'
+  });
+};
 
 export default {
   // Auth
@@ -267,6 +600,7 @@ export default {
   login,
   getCurrentUser,
   deleteUserAccount,
+  updateUserProfile,
 
   // Tests
   getAllTests,

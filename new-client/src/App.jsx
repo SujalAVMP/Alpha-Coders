@@ -16,7 +16,7 @@ import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import TestsList from './components/dashboard/TestsList';
 import SubmissionsList from './components/dashboard/SubmissionsList';
-import Profile from './components/dashboard/Profile';
+import Profile from './components/profile/Profile';
 import TestPage from './components/coding/TestPage';
 import SubmissionDetails from './components/coding/SubmissionDetails';
 import AssessmentSubmissionDetails from './components/assessments/AssessmentSubmissionDetails';
