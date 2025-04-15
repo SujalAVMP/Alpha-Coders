@@ -2163,8 +2163,10 @@ app.get('/api/code/submissions', (req, res) => {
                                assessment.testAttempts[user.id][testId] ?
                                assessment.testAttempts[user.id][testId] : 0;
 
-            // Calculate a mock score based on attempts
-            const score = Math.min(100, Math.max(0, 100 - (attemptsUsed * 10)));
+            // Calculate a score based on test cases passed
+            const totalTestCases = test.testCases?.length || 3;
+            const testCasesPassed = Math.floor(totalTestCases * 0.7); // Default to 70% passed
+            const score = Math.round((testCasesPassed / totalTestCases) * 100);
 
             // Create a submission record
             userSubmissions.push({
@@ -2177,7 +2179,7 @@ app.get('/api/code/submissions', (req, res) => {
               submittedAt: assessment.submissions[user.id].submittedAt,
               status: 'Completed',
               score: score,
-              testCasesPassed: Math.floor((score / 100) * (test.testCases?.length || 3)),
+              testCasesPassed: testCasesPassed,
               totalTestCases: test.testCases?.length || 3
             });
           }
@@ -2278,16 +2280,15 @@ app.get('/api/code/submissions/:id', (req, res) => {
                      assessment.testAttempts[user.id][testId] ?
                      assessment.testAttempts[user.id][testId] : 0;
 
-  // Calculate a mock score based on attempts
-  const score = Math.min(100, Math.max(0, 100 - (attemptsUsed * 10)));
-
-  // Create mock test results
+  // Create mock test results first so we can calculate score based on passed tests
   const testResults = [];
 
   if (test.testCases && Array.isArray(test.testCases)) {
+    // Use test cases from the test
     test.testCases.forEach((testCase, index) => {
-      // Determine if this test case passed based on the score
-      const passed = Math.random() < (score / 100);
+      // Determine if this test case passed (using a consistent seed based on user+test)
+      const seed = (user.id.charCodeAt(0) + testId.charCodeAt(0)) % 100;
+      const passed = (index + seed) % 3 !== 0; // Deterministic pattern for pass/fail
 
       testResults.push({
         testCaseNumber: index + 1,
@@ -2302,7 +2303,8 @@ app.get('/api/code/submissions/:id', (req, res) => {
   } else {
     // Create some default test results if no test cases are defined
     for (let i = 0; i < 3; i++) {
-      const passed = Math.random() < (score / 100);
+      const seed = (user.id.charCodeAt(0) + testId.charCodeAt(0)) % 100;
+      const passed = (i + seed) % 3 !== 0; // Deterministic pattern for pass/fail
 
       testResults.push({
         testCaseNumber: i + 1,
@@ -2315,6 +2317,13 @@ app.get('/api/code/submissions/:id', (req, res) => {
       });
     }
   }
+
+  // Calculate score based on passed test cases
+  const passedCount = testResults.filter(tc => tc.passed).length;
+  const totalCount = testResults.length;
+  const score = Math.round((passedCount / totalCount) * 100);
+
+  // We already created test results above
 
   // Create the submission object
   const submission = {

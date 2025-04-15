@@ -159,7 +159,7 @@ export const submitCode = (testId, submissionData) => fetchAPI(`/tests/${testId}
 });
 export const getTestSubmissions = (testId) => fetchAPI(`/tests/${testId}/submissions`);
 export const getUserSubmissions = () => fetchAPI('/code/submissions');
-export const getSubmissionById = (id) => fetchAPI(`/code/submissions/${id}`);
+export const getSubmissionById = (id) => fetchAPI(`/code/submissions/${id}?email=${encodeURIComponent(localStorage.getItem('userEmail'))}`);
 export const deleteSubmission = (id) => fetchAPI(`/code/submissions/${id}`, {
   method: 'DELETE'
 });

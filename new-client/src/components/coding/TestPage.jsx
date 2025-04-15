@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
-import { getTestById, executeCode, runTestCases, submitCode, submitAssessment, fetchAPI } from '../../utils/api';
+import { executeCode, runTestCases, submitCode, fetchAPI } from '../../utils/api';
 import Editor from '@monaco-editor/react';
 import './TestPage.css';
 import {
@@ -83,8 +83,8 @@ const TestPage = () => {
       fetchAttempts();
     }
   }, [assessmentId, id]);
+
   const [submittingAssessment, setSubmittingAssessment] = useState(false);
-  const [assessmentSubmitSuccess, setAssessmentSubmitSuccess] = useState(false);
   const [panelWidth, setPanelWidth] = useState(50); // 50% width for each panel
   const resizerRef = useRef(null);
 
@@ -387,29 +387,7 @@ int main() {
     }
   };
 
-  const handleSubmitAssessment = async () => {
-    if (!assessmentId) return;
 
-    try {
-      setSubmittingAssessment(true);
-
-      // Submit the entire assessment
-      await submitAssessment(assessmentId);
-
-      setAssessmentSubmitSuccess(true);
-
-      // Redirect to the assessment view page after successful submission
-      setTimeout(() => {
-        navigate(`/assessments/${assessmentId}/view?submitted=true`);
-      }, 1500);
-    } catch (error) {
-      console.error('Error submitting assessment:', error);
-      setOutput(`Error submitting assessment: ${error.message}`);
-      setAssessmentSubmitSuccess(false);
-    } finally {
-      setSubmittingAssessment(false);
-    }
-  };
 
   if (loading) {
     return (
@@ -704,24 +682,24 @@ int main() {
                 Code Actions
               </Typography>
 
-              {/* Attempts information */}
+              {/* Attempts information and navigation */}
               {assessmentId && (
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                   <Typography variant="body2" color="text.secondary">
                     <strong>Attempts:</strong> {attemptsUsed} of {maxAttempts} used
                   </Typography>
-                  {assessmentId && (
+                  <Box sx={{ display: 'flex', gap: 2 }}>
                     <Button
                       variant="outlined"
                       color="primary"
-                      onClick={handleSubmitAssessment}
-                      disabled={submittingAssessment}
+                      component={RouterLink}
+                      to={`/assessments/${assessmentId}/view`}
                       size="small"
                       sx={{ borderRadius: 2 }}
                     >
-                      {submittingAssessment ? 'Submitting...' : 'Submit Assessment'}
+                      Back to Assessment
                     </Button>
-                  )}
+                  </Box>
                 </Box>
               )}
 
@@ -771,19 +749,7 @@ int main() {
               </Alert>
             )}
 
-            {assessmentSubmitSuccess && (
-              <Alert
-                severity="success"
-                variant="filled"
-                sx={{
-                  mb: 3,
-                  borderRadius: 2,
-                  boxShadow: 2
-                }}
-              >
-                Assessment submitted successfully! Redirecting to assessment page...
-              </Alert>
-            )}
+
 
             <Paper
               elevation={2}

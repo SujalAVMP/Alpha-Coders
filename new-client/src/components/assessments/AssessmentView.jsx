@@ -17,13 +17,20 @@ import {
   Chip,
   Alert,
   CircularProgress,
+  LinearProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   useTheme,
   useMediaQuery
 } from '@mui/material';
 import {
   AccessTime as AccessTimeIcon,
   Code as CodeIcon,
-  ArrowBack as ArrowBackIcon
+  ArrowBack as ArrowBackIcon,
+  DoneAll as DoneAllIcon
 } from '@mui/icons-material';
 import { useIsMobile, useIsTablet, getResponsivePadding } from '../../utils/responsive';
 
@@ -38,11 +45,57 @@ const AssessmentView = () => {
 
   const [assessment, setAssessment] = useState(null);
   const [tests, setTests] = useState([]);
+  const [testStatus, setTestStatus] = useState({});
   const [selectedTestId, setSelectedTestId] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
+
+  // Function to fetch test attempt status
+  const fetchTestStatus = async () => {
+    if (!assessmentId || !assessment) return;
+
+    try {
+      const statusObj = {};
+
+      // For each test in the assessment, check if it has been attempted
+      for (const test of tests) {
+        try {
+          const response = await fetch(`http://localhost:5002/api/assessments/${assessmentId}/tests/${test._id}/attempts?email=${encodeURIComponent(localStorage.getItem('userEmail'))}`, {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            statusObj[test._id] = {
+              attemptsUsed: data.attemptsUsed || 0,
+              maxAttempts: data.maxAttempts || 1,
+              attempted: data.attemptsUsed > 0,
+              completed: data.attemptsUsed > 0 // Consider a test completed if it has been attempted
+            };
+          }
+        } catch (error) {
+          console.error(`Error fetching status for test ${test._id}:`, error);
+          statusObj[test._id] = { attemptsUsed: 0, maxAttempts: 1, attempted: false, completed: false };
+        }
+      }
+
+      setTestStatus(statusObj);
+    } catch (error) {
+      console.error('Error fetching test status:', error);
+    }
+  };
+
+  // Effect to fetch test status when tests change
+  useEffect(() => {
+    if (tests.length > 0 && assessment) {
+      fetchTestStatus();
+    }
+  }, [tests, assessment]);
 
   useEffect(() => {
     const fetchAssessment = async () => {
@@ -132,9 +185,27 @@ const AssessmentView = () => {
     }
   };
 
+  const handleOpenConfirmDialog = () => {
+    // Check if all tests have been attempted
+    const completedTests = Object.values(testStatus).filter(status => status?.completed).length;
+    const totalTests = tests.length;
+
+    if (completedTests < totalTests) {
+      // Show warning but still allow submission
+      toast.warning(`You have only completed ${completedTests} out of ${totalTests} tests. Are you sure you want to submit?`);
+    }
+
+    setConfirmDialogOpen(true);
+  };
+
+  const handleCloseConfirmDialog = () => {
+    setConfirmDialogOpen(false);
+  };
+
   const handleSubmitAssessment = async () => {
     try {
       setSubmitting(true);
+      setConfirmDialogOpen(false);
 
       // Submit the entire assessment
       await submitAssessment(assessmentId);
@@ -145,6 +216,9 @@ const AssessmentView = () => {
       // Refresh the assessment data to update the status
       const updatedAssessment = await getAssessmentById(assessmentId);
       setAssessment(updatedAssessment);
+
+      // Refresh test status
+      fetchTestStatus();
     } catch (error) {
       console.error('Error submitting assessment:', error);
       toast.error(`Error: ${error.message || 'Failed to submit assessment'}`);
@@ -261,11 +335,37 @@ const AssessmentView = () => {
           </Grid>
         </Grid>
 
-        <Chip
-          label={isAssessmentActive() ? "Active" : "Inactive"}
-          color={isAssessmentActive() ? "success" : "error"}
-          sx={{ mb: isMobile ? 2 : 3 }}
-        />
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: isMobile ? 2 : 3 }}>
+          <Chip
+            label={isAssessmentActive() ? "Active" : "Inactive"}
+            color={isAssessmentActive() ? "success" : "error"}
+          />
+
+          {/* Progress indicator */}
+          {tests.length > 0 && (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Typography variant="body2" color="text.secondary">
+                Progress:
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <Typography variant="body2" fontWeight="bold" color="primary.main">
+                  {Object.values(testStatus).filter(status => status?.completed).length}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">/</Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {tests.length}
+                </Typography>
+              </Box>
+              <Box sx={{ width: 100, ml: 1 }}>
+                <LinearProgress
+                  variant="determinate"
+                  value={(Object.values(testStatus).filter(status => status?.completed).length / tests.length) * 100}
+                  sx={{ height: 8, borderRadius: 4 }}
+                />
+              </Box>
+            </Box>
+          )}
+        </Box>
 
         <Divider sx={{ my: isMobile ? 2 : 3 }} />
 
@@ -295,6 +395,14 @@ const AssessmentView = () => {
                 {tests.map((test) => (
                   <MenuItem key={test._id} value={test._id}>
                     {test.title} ({test.difficulty} - {test.timeLimit} min)
+                    {testStatus[test._id]?.attempted && (
+                      <Chip
+                        label={testStatus[test._id]?.completed ? "Completed" : "Attempted"}
+                        color={testStatus[test._id]?.completed ? "success" : "warning"}
+                        size="small"
+                        sx={{ ml: 1 }}
+                      />
+                    )}
                   </MenuItem>
                 ))}
               </Select>
@@ -331,8 +439,9 @@ const AssessmentView = () => {
             variant="contained"
             color="secondary"
             size={isMobile ? "small" : "medium"}
-            onClick={handleSubmitAssessment}
+            onClick={handleOpenConfirmDialog}
             disabled={submitting || assessment.submitted}
+            startIcon={<DoneAllIcon />}
           >
             {submitting ? 'Submitting...' : 'Submit Assessment'}
           </Button>
@@ -350,6 +459,39 @@ const AssessmentView = () => {
           This assessment has already been submitted. You can no longer make changes to your submissions.
         </Alert>
       )}
+
+      {/* Confirmation Dialog */}
+      <Dialog
+        open={confirmDialogOpen}
+        onClose={handleCloseConfirmDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Submit Assessment?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to submit this assessment?
+            {Object.values(testStatus).filter(status => status?.completed).length < tests.length && (
+              <>
+                <br /><br />
+                <strong>Warning:</strong> You have only completed {Object.values(testStatus).filter(status => status?.completed).length} out of {tests.length} tests.
+              </>
+            )}
+            <br /><br />
+            Once submitted, you will not be able to make any further changes to your solutions.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseConfirmDialog} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleSubmitAssessment} color="secondary" variant="contained" autoFocus>
+            {submitting ? 'Submitting...' : 'Submit Assessment'}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 };
