@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-User Testing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .log-container {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            height: 400px;
+            overflow-y: auto;
+        }
+        .log-entry {
+            margin-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+        .info {
+            color: blue;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Multi-User Testing</h1>
+        
+        <div>
+            <button id="registerUsers">1. Register Users</button>
+            <button id="createTests">2. Create Tests</button>
+            <button id="createAssessment">3. Create Assessment</button>
+            <button id="user2Test1">4. User 2 Attempts Test 1</button>
+            <button id="user1Test1">5. User 1 Attempts Test 1</button>
+            <button id="getAttempts">6. Verify Attempts</button>
+            <button id="user2Test2">7. User 2 Attempts Test 2</button>
+            <button id="submitUser1">8. Submit Assessment (User 1)</button>
+            <button id="checkUser2">9. Check User 2 Can Submit</button>
+            <button id="getSubmissions">10. Verify Submissions</button>
+            <button id="runAll">Run All Tests</button>
+        </div>
+        
+        <div class="log-container" id="logContainer"></div>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://localhost:5002/api';
+        
+        // Test users
+        const user1 = {
+            name: 'Test User 1',
+            email: 'testuser1@example.com',
+            password: 'password123',
+            role: 'assessor'
+        };
+
+        const user2 = {
+            name: 'Test User 2',
+            email: 'testuser2@example.com',
+            password: 'password123',
+            role: 'assessee'
+        };
+
+        // Test data
+        let user1Token = '';
+        let user2Token = '';
+        let user1Id = '';
+        let user2Id = '';
+        let assessmentId = '';
+        let test1Id = '';
+        let test2Id = '';
+
+        // Helper function to log with timestamp
+        const log = (message, type = 'info') => {
+            const logContainer = document.getElementById('logContainer');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry ${type}`;
+            logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+            console.log(`[${new Date().toISOString()}] ${message}`);
+        };
+
+        // Helper function to make API requests
+        const apiRequest = async (method, endpoint, data = null, token = null, email = null) => {
+            const headers = {
+                'Content-Type': 'application/json'
+            };
+            
+            if (token) {
+                headers['Authorization'] = `Bearer ${token}`;
+            }
+            
+            if (email) {
+                headers['X-User-Email'] = email;
+            }
+            
+            const url = new URL(`${BASE_URL}${endpoint}`);
+            
+            if (email) {
+                url.searchParams.append('email', email);
+            }
+            
+            try {
+                const response = await fetch(url, {
+                    method,
+                    headers,
+                    body: data ? JSON.stringify(data) : null
+                });
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`API Error: ${errorData.message || response.statusText}`);
+                }
+                
+                return await response.json();
+            } catch (error) {
+                log(`Error in API request to ${endpoint}: ${error.message}`, 'error');
+                throw error;
+            }
+        };
+
+        // Register users
+        const registerUsers = async () => {
+            try {
+                log('Registering User 1...');
+                const user1Response = await apiRequest('POST', '/auth/register', user1);
+                user1Token = user1Response.token;
+                user1Id = user1Response.user._id;
+                log(`User 1 registered with ID: ${user1Id}`, 'success');
+
+                log('Registering User 2...');
+                const user2Response = await apiRequest('POST', '/auth/register', user2);
+                user2Token = user2Response.token;
+                user2Id = user2Response.user._id;
+                log(`User 2 registered with ID: ${user2Id}`, 'success');
+                
+                return true;
+            } catch (error) {
+                log(`Error registering users: ${error.message}`, 'error');
+                return false;
+            }
+        };
+
+        // Create tests
+        const createTests = async () => {
+            try {
+                log('Creating Test 1...');
+                const test1Response = await apiRequest(
+                    'POST',
+                    '/tests',
+                    {
+                        title: 'Test 1',
+                        description: 'First test for multi-user testing',
+                        difficulty: 'Easy',
+                        timeLimit: 30,
+                        problemStatement: 'Write a function that adds two numbers',
+                        inputFormat: 'Two integers a and b',
+                        outputFormat: 'The sum of a and b',
+                        constraints: '1 <= a, b <= 1000',
+                        sampleInput: '2 3',
+                        sampleOutput: '5',
+                        testCases: [
+                            {
+                                input: '2 3',
+                                expected: '5',
+                                isHidden: false
+                            },
+                            {
+                                input: '5 7',
+                                expected: '12',
+                                isHidden: false
+                            }
+                        ]
+                    },
+                    user1Token,
+                    user1.email
+                );
+                test1Id = test1Response._id;
+                log(`Test 1 created with ID: ${test1Id}`, 'success');
+
+                log('Creating Test 2...');
+                const test2Response = await apiRequest(
+                    'POST',
+                    '/tests',
+                    {
+                        title: 'Test 2',
+                        description: 'Second test for multi-user testing',
+                        difficulty: 'Medium',
+                        timeLimit: 45,
+                        problemStatement: 'Write a function that multiplies two numbers',
+                        inputFormat: 'Two integers a and b',
+                        outputFormat: 'The product of a and b',
+                        constraints: '1 <= a, b <= 1000',
+                        sampleInput: '2 3',
+                        sampleOutput: '6',
+                        testCases: [
+                            {
+                                input: '2 3',
+                                expected: '6',
+                                isHidden: false
+                            },
+                            {
+                                input: '5 7',
+                                expected: '35',
+                                isHidden: false
+                            }
+                        ]
+                    },
+                    user1Token,
+                    user1.email
+                );
+                test2Id = test2Response._id;
+                log(`Test 2 created with ID: ${test2Id}`, 'success');
+                
+                return true;
+            } catch (error) {
+                log(`Error creating tests: ${error.message}`, 'error');
+                return false;
+            }
+        };
+
+        // Create assessment
+        const createAssessment = async () => {
+            try {
+                log('Creating Assessment...');
+                const assessmentResponse = await apiRequest(
+                    'POST',
+                    '/assessments',
+                    {
+                        title: 'Multi-User Test Assessment',
+                        description: 'Assessment for testing multi-user functionality',
+                        tests: [test1Id, test2Id],
+                        startTime: new Date(),
+                        endTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 1 week from now
+                        maxAttempts: 5,
+                        isPublic: false,
+                        invitedStudents: [{ email: user2.email }]
+                    },
+                    user1Token,
+                    user1.email
+                );
+                assessmentId = assessmentResponse._id;
+                log(`Assessment created with ID: ${assessmentId}`, 'success');
+                
+                return true;
+            } catch (error) {
+                log(`Error creating assessment: ${error.message}`, 'error');
+                return false;
+            }
+        };
+
+        // Submit code for Test 1 as User 2
+        const submitTest1AsUser2 = async () => {
+            try {
+                log('User 2 submitting code for Test 1...');
+                const submissionResponse = await apiRequest(
+                    'POST',
+                    `/tests/${test1Id}/submissions`,
+                    {
+                        code: 'def add(a, b):\n    return a + b\n\na, b = map(int, input().split())\nprint(add(a, b))',
+                        language: 'python',
+                        assessmentId: assessmentId
+                    },
+                    user2Token,
+                    user2.email
+                );
+                log(`User 2 submission for Test 1 created with ID: ${submissionResponse._id}`, 'success');
+                log(`User 2 Test 1 submission status: ${submissionResponse.status}`);
+                log(`User 2 Test 1 test cases passed: ${submissionResponse.testCasesPassed}/${submissionResponse.totalTestCases}`);
+                
+                return true;
+            } catch (error) {
+                log(`Error submitting code for Test 1 as User 2: ${error.message}`, 'error');
+                return false;
+            }
+        };
+
+        // Submit code for Test 1 as User 1
+        const submitTest1AsUser1 = async () => {
+            try {
+                log('User 1 submitting code for Test 1...');
+                const submissionResponse = await apiRequest(
+                    'POST',
+                    `/tests/${test1Id}/submissions`,
+                    {
+                        code: 'def add(a, b):\n    return a + b\n\na, b = map(int, input().split())\nprint(add(a, b))',
+                        language: 'python',
+                        assessmentId: assessmentId
+                    },
+                    user1Token,
+                    user1.email
+                );
+                log(`User 1 submission for Test 1 created with ID: ${submissionResponse._id}`, 'success');
+                log(`User 1 Test 1 submission status: ${submissionResponse.status}`);
+                log(`User 1 Test 1 test cases passed: ${submissionResponse.testCasesPassed}/${submissionResponse.totalTestCases}`);
+                
+                return true;
+            } catch (error) {
+                log(`Error submitting code for Test 1 as User 1: ${error.message}`, 'error');
+                return false;
+            }
+        };
+
+        // Get test attempts for User 1 and User 2
+        const getTestAttempts = async () => {
+            try {
+                log('Getting test attempts for User 1...');
+                const user1AttemptsResponse = await apiRequest(
+                    'GET',
+                    `/assessments/${assessmentId}/tests/${test1Id}/attempts`,
+                    null,
+                    user1Token,
+                    user1.email
+                );
+                log(`User 1 attempts for Test 1: ${user1AttemptsResponse.attemptsUsed}/${user1AttemptsResponse.maxAttempts}`, 'success');
+
+                log('Getting test attempts for User 2...');
+                const user2AttemptsResponse = await apiRequest(
+                    'GET',
+                    `/assessments/${assessmentId}/tests/${test1Id}/attempts`,
+                    null,
+                    user2Token,
+                    user2.email
+                );
+                log(`User 2 attempts for Test 1: ${user2AttemptsResponse.attemptsUsed}/${user2AttemptsResponse.maxAttempts}`, 'success');
+                
+                return true;
+            } catch (error) {
+                log(`Error getting test attempts: ${error.message}`, 'error');
+                return false;
+            }
+        };
+
+        // Submit code for Test 2 as User 2
+        const submitTest2AsUser2 = async () => {
+            try {
+                log('User 2 submitting code for Test 2...');
+                const submissionResponse = await apiRequest(
+                    'POST',
+                    `/tests/${test2Id}/submissions`,
+                    {
+                        code: 'def multiply(a, b):\n    return a * b\n\na, b = map(int, input().split())\nprint(multiply(a, b))',
+                        language: 'python',
+                        assessmentId: assessmentId
+                    },
+                    user2Token,
+                    user2.email
+                );
+                log(`User 2 submission for Test 2 created with ID: ${submissionResponse._id}`, 'success');
+                log(`User 2 Test 2 submission status: ${submissionResponse.status}`);
+                log(`User 2 Test 2 test cases passed: ${submissionResponse.testCasesPassed}/${submissionResponse.totalTestCases}`);
+                
+                return true;
+            } catch (error) {
+                log(`Error submitting code for Test 2 as User 2: ${error.message}`, 'error');
+                return false;
+            }
+        };
+
+        // Submit assessment for User 1
+        const submitAssessmentAsUser1 = async () => {
+            try {
+                log('User 1 submitting assessment...');
+                const submissionResponse = await apiRequest(
+                    'POST',
+                    `/assessments/${assessmentId}/submit`,
+                    { userId: user1Id, userEmail: user1.email },
+                    user1Token,
+                    user1.email
+                );
+                log(`User 1 assessment submission result: ${JSON.stringify(submissionResponse)}`, 'success');
+                
+                return true;
+            } catch (error) {
+                log(`Error submitting assessment as User 1: ${error.message}`, 'error');
+                return false;
+            }
+        };
+
+        // Check if User 2 can still submit after User 1 has submitted
+        const checkUser2CanSubmitAfterUser1 = async () => {
+            try {
+                log('Checking if User 2 can still submit after User 1 has submitted...');
+                const user2AttemptsResponse = await apiRequest(
+                    'GET',
+                    `/assessments/${assessmentId}/tests/${test2Id}/attempts`,
+                    null,
+                    user2Token,
+                    user2.email
+                );
+                log(`User 2 attempts for Test 2: ${user2AttemptsResponse.attemptsUsed}/${user2AttemptsResponse.maxAttempts}`);
+                log(`User 2 assessment submitted: ${user2AttemptsResponse.assessmentSubmitted}`);
+
+                if (!user2AttemptsResponse.assessmentSubmitted) {
+                    log('User 2 can still submit. Submitting code for Test 2 again...', 'success');
+                    await submitTest2AsUser2();
+                } else {
+                    log('User 2 cannot submit because the assessment is marked as submitted for User 2.', 'error');
+                }
+                
+                return true;
+            } catch (error) {
+                log(`Error checking if User 2 can submit: ${error.message}`, 'error');
+                return false;
+            }
+        };
+
+        // Get user submissions
+        const getUserSubmissions = async () => {
+            try {
+                log('Getting submissions for User 1...');
+                const user1SubmissionsResponse = await apiRequest(
+                    'GET',
+                    '/assessments/user-submissions',
+                    null,
+                    user1Token,
+                    user1.email
+                );
+                log(`User 1 submissions: ${JSON.stringify(user1SubmissionsResponse)}`, 'success');
+
+                log('Getting submissions for User 2...');
+                const user2SubmissionsResponse = await apiRequest(
+                    'GET',
+                    '/assessments/user-submissions',
+                    null,
+                    user2Token,
+                    user2.email
+                );
+                log(`User 2 submissions: ${JSON.stringify(user2SubmissionsResponse)}`, 'success');
+                
+                return true;
+            } catch (error) {
+                log(`Error getting user submissions: ${error.message}`, 'error');
+                return false;
+            }
+        };
+
+        // Run all tests
+        const runAllTests = async () => {
+            log('Starting multi-user testing...');
+            
+            // Step 1: Register users
+            if (!await registerUsers()) return;
+            
+            // Step 2: Create tests
+            if (!await createTests()) return;
+            
+            // Step 3: Create assessment with 2 tests and set max attempts to 5
+            if (!await createAssessment()) return;
+            
+            // Step 4: User 2 attempts Test 1
+            if (!await submitTest1AsUser2()) return;
+            
+            // Step 5: User 1 attempts Test 1
+            if (!await submitTest1AsUser1()) return;
+            
+            // Step 6: Verify that each user's attempts are tracked separately
+            if (!await getTestAttempts()) return;
+            
+            // Step 7: User 2 attempts Test 2
+            if (!await submitTest2AsUser2()) return;
+            
+            // Step 8: Submit the assessment for User 1
+            if (!await submitAssessmentAsUser1()) return;
+            
+            // Step 9: Verify that User 2 can still make submissions
+            if (!await checkUser2CanSubmitAfterUser1()) return;
+            
+            // Step 10: Verify that the submission metrics are user-specific
+            if (!await getUserSubmissions()) return;
+            
+            log('Multi-user testing completed successfully!', 'success');
+        };
+
+        // Add event listeners to buttons
+        document.getElementById('registerUsers').addEventListener('click', registerUsers);
+        document.getElementById('createTests').addEventListener('click', createTests);
+        document.getElementById('createAssessment').addEventListener('click', createAssessment);
+        document.getElementById('user2Test1').addEventListener('click', submitTest1AsUser2);
+        document.getElementById('user1Test1').addEventListener('click', submitTest1AsUser1);
+        document.getElementById('getAttempts').addEventListener('click', getTestAttempts);
+        document.getElementById('user2Test2').addEventListener('click', submitTest2AsUser2);
+        document.getElementById('submitUser1').addEventListener('click', submitAssessmentAsUser1);
+        document.getElementById('checkUser2').addEventListener('click', checkUser2CanSubmitAfterUser1);
+        document.getElementById('getSubmissions').addEventListener('click', getUserSubmissions);
+        document.getElementById('runAll').addEventListener('click', runAllTests);
+    </script>
+</body>
+</html>

@@ -37,7 +37,9 @@ const SubmissionSchema = new mongoose.Schema({
   test: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Test',
-    required: true
+    required: function() {
+      return !this.isAssessmentSubmission; // Only required for test submissions, not assessment submissions
+    }
   },
   assessment: {
     type: mongoose.Schema.Types.ObjectId,

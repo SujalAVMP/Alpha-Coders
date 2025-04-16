@@ -253,7 +253,23 @@ export const submitCode = (testId, submissionData) => fetchAPI(`/tests/${testId}
 });
 export const getTestSubmissions = (testId) => fetchAPI(`/tests/${testId}/submissions`);
 export const getUserSubmissions = () => fetchAPI('/code/submissions');
-export const getUserAssessmentSubmissions = () => fetchAPI('/assessments/user-submissions');
+export const getUserAssessmentSubmissions = () => {
+  const userId = localStorage.getItem('userId');
+  const userEmail = localStorage.getItem('userEmail');
+
+  if (!userId || !userEmail) {
+    console.error('User ID or email missing for fetching assessment submissions');
+    return Promise.reject(new Error('User authentication required. Please log in again.'));
+  }
+
+  console.log(`Fetching assessment submissions for user ${userEmail} (${userId})`);
+
+  return fetchAPI('/assessments/user-submissions', {
+    headers: {
+      'X-User-ID': userId // Add user ID to headers for additional verification
+    }
+  });
+};
 export const getAssessmentSubmissionById = (id) => {
   if (!id) {
     console.error('Invalid assessment submission ID:', id);

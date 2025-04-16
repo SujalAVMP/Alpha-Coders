@@ -87,8 +87,14 @@ const AssessmentSubmissionsList = () => {
 
     const totalScore = attemptedTests.reduce((sum, test) => {
       const submission = getLatestSubmissionForTest(test);
-      if (submission && submission.totalTestCases > 0) {
-        return sum + ((submission.testCasesPassed / submission.totalTestCases) * 100);
+      if (submission) {
+        // Handle case where totalTestCases is 0 or undefined
+        const testCasesPassed = submission.testCasesPassed || 0;
+        const totalTestCases = submission.totalTestCases || 0;
+
+        if (totalTestCases > 0) {
+          return sum + ((testCasesPassed / totalTestCases) * 100);
+        }
       }
       return sum;
     }, 0);
@@ -280,14 +286,14 @@ const AssessmentSubmissionsList = () => {
                                 <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
                                   <Typography variant="body2" color="text.secondary">
                                     Tests: {submission && submission.status !== 'Not Attempted'
-                                      ? `${submission.testCasesPassed}/${submission.totalTestCases}`
+                                      ? `${submission.testCasesPassed || 0}/${submission.totalTestCases || 0}`
                                       : 'N/A'}
                                   </Typography>
                                   <Typography variant="body2" color="text.secondary">
-                                    Time: {submission ? formatMetric(submission.executionTime, ' ms') : 'N/A'}
+                                    Time: {submission && submission.executionTime ? formatMetric(submission.executionTime, ' ms') : 'N/A'}
                                   </Typography>
                                   <Typography variant="body2" color="text.secondary">
-                                    Memory: {submission ? formatMetric(submission.memoryUsed, ' MB') : 'N/A'}
+                                    Memory: {submission && submission.memoryUsed ? formatMetric(submission.memoryUsed, ' MB') : 'N/A'}
                                   </Typography>
                                 </Box>
                               </Box>

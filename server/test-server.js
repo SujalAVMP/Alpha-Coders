@@ -2572,6 +2572,10 @@ app.get('/api/assessments/user-submissions', async (req, res) => {
 
           // Add all tests from the assessment
           if (submission.assessment.tests && Array.isArray(submission.assessment.tests)) {
+            // First, check if this is an assessment submission with no test submissions
+            const isEmptyAssessmentSubmission = submission.isAssessmentSubmission &&
+                                              (!submission.testSubmissions || submission.testSubmissions.length === 0);
+
             submission.assessment.tests.forEach(test => {
               const testId = test._id.toString();
               const testSubmission = submissionsByTest[testId];
@@ -2587,7 +2591,7 @@ app.get('/api/assessments/user-submissions', async (req, res) => {
                   // Add test with submission data
                   assessmentMap[assessmentId].tests.push({
                     id: testId,
-                    title: test.title || 'Unknown Test',
+                    title: test.title || 'Test ' + testId.substring(0, 6),
                     language: testSubmission.language || 'python',
                     submittedAt: testSubmission.submittedAt,
                     status: testSubmission.status || 'Completed',
@@ -2598,23 +2602,25 @@ app.get('/api/assessments/user-submissions', async (req, res) => {
                     memoryUsed: testSubmission.avgMemoryUsed || 0,
                     submissionId: testSubmission._id.toString()
                   });
-                } else {
-                  // Add test without submission data
-                  console.log(`Adding test ${testId} without submission data`);
+                } else if (isEmptyAssessmentSubmission) {
+                  // For assessment submissions with no test submissions, add the test with default values
+                  // This ensures all tests are displayed in the UI
+                  console.log(`Adding test ${testId} with default values for empty assessment submission`);
+
                   assessmentMap[assessmentId].tests.push({
                     id: testId,
-                    title: test.title || 'Unknown Test',
+                    title: test.title || 'Test ' + testId.substring(0, 6),
                     language: 'python',
-                    submittedAt: null,
+                    submittedAt: submission.submittedAt,
                     status: 'Not Attempted',
                     score: 0,
                     testCasesPassed: 0,
                     totalTestCases: test.testCases ? test.testCases.length : 0,
                     executionTime: 0,
-                    memoryUsed: 0,
-                    submissionId: null
+                    memoryUsed: 0
                   });
                 }
+                // Do not add tests without submission data for regular submissions
               }
             });
           }
@@ -2683,31 +2689,11 @@ app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
 
     console.log(`Found ${testSubmissions.length} test submissions for assessment ${assessmentId}`);
 
-    // If there are no test submissions, create a dummy submission to mark the assessment as completed
+    // We no longer create a dummy submission when there are no test submissions
+    // This prevents the creation of duplicate test objects that could appear as "Two Sum"
     if (testSubmissions.length === 0) {
-      // Get the first test from the assessment
-      const testId = assessment.tests[0];
-      const test = await Test.findById(testId);
-
-      if (test) {
-        // Create a submission for the test
-        const testSubmission = new Submission({
-          userId: user._id,
-          user: user._id,
-          assessment: assessment._id,
-          test: test._id,
-          testId: test._id,
-          testTitle: test.title,
-          code: 'print("Assessment submitted")',
-          language: 'python',
-          status: 'completed',
-          submittedAt: submittedAt
-        });
-
-        await testSubmission.save();
-        console.log('Created dummy test submission for assessment completion');
-        testSubmissions.push(testSubmission);
-      }
+      console.log('No test submissions found for assessment. Proceeding without creating dummy submissions.');
+      // We'll still create an assessment submission, but without any test submissions
     }
 
     // Calculate overall metrics from test submissions
@@ -2736,23 +2722,34 @@ app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
     }
 
     // Create a submission for the assessment
-    const submission = new Submission({
+    const submissionData = {
       userId: user._id,
       user: user._id,
       assessment: assessment._id,
-      test: assessment.tests[0], // Use the first test as a reference
       code: testSubmissions.length > 0 ? testSubmissions[0].code : 'print("Assessment submitted")',
       language: mostCommonLanguage,
       status: 'completed',
       submittedAt: submittedAt,
       isAssessmentSubmission: true,  // Mark this as an assessment submission, not just a test submission
-      testSubmissions: testSubmissions.map(sub => sub._id), // Reference to all test submissions
       totalTestCases,
       testCasesPassed,
       avgExecutionTime,
       avgMemoryUsed,
       score
-    });
+    };
+
+    // Add test reference if there are test submissions
+    if (testSubmissions.length > 0) {
+      submissionData.test = assessment.tests[0];
+      submissionData.testSubmissions = testSubmissions.map(sub => sub._id);
+    } else if (assessment.tests && assessment.tests.length > 0) {
+      // If no test submissions but assessment has tests, use the first test as a reference
+      // This ensures we have a valid test reference for the submission
+      submissionData.test = assessment.tests[0];
+    }
+
+    console.log('Creating assessment submission with data:', submissionData);
+    const submission = new Submission(submissionData);
 
     await submission.save();
 
