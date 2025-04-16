@@ -277,7 +277,7 @@ app.get('/api/assessments/:id/submissions', async (req, res) => {
     console.log(`Found ${submissions.length} submissions for assessment ${assessmentId}`);
 
     // Format the submissions for the response
-    const formattedSubmissions = submissions.map(submission => {
+    const formattedSubmissions = await Promise.all(submissions.map(async (submission) => {
       // Get user info, handling the case where user might be null
       let userInfo = { _id: null, email: 'Unknown', name: 'Unknown User' };
 
@@ -298,34 +298,103 @@ app.get('/api/assessments/:id/submissions', async (req, res) => {
       let attemptedTests = 0;
       const totalTests = assessment.tests ? assessment.tests.length : 0;
 
-      // If we have test submissions data, count them
-      if (submission.testSubmissions && Array.isArray(submission.testSubmissions) && submission.testSubmissions.length > 0) {
-        // Count unique test IDs in the submissions
-        const uniqueTestIds = new Set();
-        submission.testSubmissions.forEach(testSubmission => {
-          if (testSubmission && testSubmission.test) {
-            uniqueTestIds.add(testSubmission.test.toString());
+      console.log(`Assessment ${assessmentId} has ${totalTests} total tests`);
+      console.log(`Submission ${submission._id} data:`, {
+        user: userInfo.email,
+        testSubmissions: submission.testSubmissions ? submission.testSubmissions.length : 0,
+        hasTestSubmissionsArray: Array.isArray(submission.testSubmissions)
+      });
+
+      // Find all test submissions for this user and assessment to count attempted tests
+      const userTestSubmissions = await Submission.find({
+        $or: [{ userId: submission.user }, { user: submission.user }],
+        assessment: assessmentId,
+        isAssessmentSubmission: { $ne: true } // Exclude assessment submissions
+      }).populate('test');
+
+      console.log(`Found ${userTestSubmissions.length} test submissions for user ${userInfo.email} in assessment ${assessmentId}`);
+
+      // Count unique test IDs to determine how many problems were attempted
+      const uniqueTestIds = new Set();
+      userTestSubmissions.forEach(testSubmission => {
+        if (testSubmission.test) {
+          uniqueTestIds.add(testSubmission.test._id.toString());
+        }
+      });
+
+      attemptedTests = uniqueTestIds.size;
+      console.log(`User ${userInfo.email} attempted ${attemptedTests} out of ${totalTests} tests in assessment ${assessmentId}`);
+      console.log('Unique test IDs:', Array.from(uniqueTestIds));
+
+      // Calculate total test cases across all tests in the assessment
+      let totalTestCasesInAssessment = 0;
+      let totalTestCasesPassedInAssessment = 0;
+
+      // Find all test submissions for this user and assessment
+      const testSubmissions = await Submission.find({
+        $or: [{ userId: submission.user }, { user: submission.user }],
+        assessment: assessmentId,
+        isAssessmentSubmission: { $ne: true } // Exclude assessment submissions
+      }).populate('test');
+
+      console.log(`Found ${testSubmissions.length} test submissions for user ${userInfo.email} in assessment ${assessmentId}`);
+
+      // Group submissions by test and get only the latest submission for each test
+      const latestSubmissionsByTest = {};
+      testSubmissions.forEach(testSubmission => {
+        if (testSubmission.test) {
+          const testId = testSubmission.test._id.toString();
+          if (!latestSubmissionsByTest[testId] ||
+              new Date(testSubmission.submittedAt) > new Date(latestSubmissionsByTest[testId].submittedAt)) {
+            latestSubmissionsByTest[testId] = testSubmission;
           }
-        });
-        attemptedTests = uniqueTestIds.size;
+        }
+      });
+
+      // Count test cases passed and total from attempted tests
+      Object.values(latestSubmissionsByTest).forEach(testSubmission => {
+        totalTestCasesPassedInAssessment += testSubmission.testCasesPassed || 0;
+        totalTestCasesInAssessment += testSubmission.totalTestCases || 0;
+      });
+
+      // Add test cases from unattempted tests
+      if (assessment.tests && Array.isArray(assessment.tests)) {
+        // Get the IDs of tests that have been attempted
+        const attemptedTestIds = Object.keys(latestSubmissionsByTest);
+
+        // Find tests that haven't been attempted
+        for (const testId of assessment.tests) {
+          if (!attemptedTestIds.includes(testId.toString())) {
+            // Get the test to count its test cases
+            const test = await Test.findById(testId);
+            if (test && test.testCases && Array.isArray(test.testCases)) {
+              totalTestCasesInAssessment += test.testCases.length;
+              // No test cases passed for unattempted tests
+            }
+          }
+        }
       }
 
-      // Use the total test cases from the submission
-      const finalTotalTestCases = submission.totalTestCases || 0;
+      // Use the calculated values or fall back to submission values
+      const finalTotalTestCases = totalTestCasesInAssessment > 0 ?
+        totalTestCasesInAssessment : (submission.totalTestCases || 0);
+
+      const finalTestCasesPassed = totalTestCasesPassedInAssessment > 0 ?
+        totalTestCasesPassedInAssessment : (submission.testCasesPassed || 0);
 
       return {
         _id: submission._id,
         user: userInfo,
         submittedAt: submission.submittedAt,
         status: submission.status || 'completed',
-        testCasesPassed: submission.testCasesPassed || 0,
+        testCasesPassed: finalTestCasesPassed,
         totalTestCases: finalTotalTestCases,
         percentageScore: finalTotalTestCases > 0 ?
-          Math.round((submission.testCasesPassed / finalTotalTestCases) * 100) : 0,
+          Math.round((finalTestCasesPassed / finalTotalTestCases) * 100) : 0,
         attemptedTests: attemptedTests,
         totalTests: totalTests
       };
-    });
+    }));
 
     console.log('Formatted submissions:', formattedSubmissions);
 

@@ -1,9 +1,9 @@
-# Hackerrank Clone User Guide
+# Alpha Coders User Guide
 
-This guide will walk you through the complete workflow of using the Hackerrank Clone application, from registration to creating and taking assessments.
+This guide will walk you through the complete workflow of using the Alpha Coders application, from registration to creating and taking assessments.
 
 ## Table of Contents
-- [Hackerrank Clone User Guide](#hackerrank-clone-user-guide)
+- [Alpha Coders User Guide](#alpha-coders-user-guide)
   - [Table of Contents](#table-of-contents)
   - [Getting Started](#getting-started)
     - [Registration](#registration)

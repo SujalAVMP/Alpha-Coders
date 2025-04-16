@@ -48,6 +48,7 @@ server.log
 client.log
 app_pids.txt
 access.log
+manual_test_steps.md
 
 # Temporary files
 *.tmp
