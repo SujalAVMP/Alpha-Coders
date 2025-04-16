@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
-import { executeCode, runTestCases, submitCode, fetchAPI } from '../../utils/api';
+import { executeCode, runTestCases, submitCode, fetchAPI, API_URL } from '../../utils/api';
 import Editor from '@monaco-editor/react';
 import './TestPage.css';
 import {
@@ -64,7 +64,7 @@ const TestPage = () => {
       // Fetch attempts information from the server
       const fetchAttempts = async () => {
         try {
-          const response = await fetch(`http://localhost:5002/api/assessments/${assessmentId}/tests/${id}/attempts?email=${encodeURIComponent(localStorage.getItem('userEmail'))}`, {
+          const response = await fetch(`${API_URL}/assessments/${assessmentId}/tests/${id}/attempts?email=${encodeURIComponent(localStorage.getItem('userEmail'))}`, {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`
             }

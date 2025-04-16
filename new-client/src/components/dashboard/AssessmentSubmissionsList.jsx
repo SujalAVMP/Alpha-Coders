@@ -67,16 +67,28 @@ const AssessmentSubmissionsList = () => {
     return `${value}${unit}`;
   };
 
+  // Helper: Get the latest submission for a test by the current user
+  const getLatestSubmissionForTest = (test) => {
+    if (!test.submissions || test.submissions.length === 0) return null;
+    return test.submissions.reduce((latest, sub) =>
+      !latest || new Date(sub.submittedAt) > new Date(latest.submittedAt) ? sub : latest
+    , null);
+  };
+
+  // Helper: Calculate score for the current user
   const calculateAssessmentScore = (assessment) => {
     if (!assessment.tests || assessment.tests.length === 0) return 0;
 
-    const attemptedTests = assessment.tests.filter(test => test.status !== 'Not Attempted');
+    const attemptedTests = assessment.tests.filter(test => {
+      const submission = getLatestSubmissionForTest(test);
+      return submission && submission.status !== 'Not Attempted';
+    });
     if (attemptedTests.length === 0) return 0;
 
     const totalScore = attemptedTests.reduce((sum, test) => {
-      // Calculate score based on test cases passed
-      if (test.totalTestCases > 0) {
-        return sum + ((test.testCasesPassed / test.totalTestCases) * 100);
+      const submission = getLatestSubmissionForTest(test);
+      if (submission && submission.totalTestCases > 0) {
+        return sum + ((submission.testCasesPassed / submission.totalTestCases) * 100);
       }
       return sum;
     }, 0);
@@ -184,9 +196,9 @@ const AssessmentSubmissionsList = () => {
                       Submitted: {formatDate(assessment.submittedAt)}
                     </Typography>
 
-                    {assessment.tests.length > 0 && assessment.tests[0].language && (
+                    {assessment.tests.length > 0 && getLatestSubmissionForTest(assessment.tests[0]) && getLatestSubmissionForTest(assessment.tests[0]).language && (
                       <Chip
-                        label={assessment.tests[0].language.toUpperCase()}
+                        label={getLatestSubmissionForTest(assessment.tests[0]).language.toUpperCase()}
                         size="small"
                         color="primary"
                         sx={{ mb: 1 }}
@@ -195,7 +207,12 @@ const AssessmentSubmissionsList = () => {
 
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 1 }}>
                       <Typography variant="body2">
-                        {assessment.tests.filter(t => t.status !== 'Not Attempted').length}/{assessment.tests.length} Tests
+                        {
+                          assessment.tests.filter(test => {
+                            const submission = getLatestSubmissionForTest(test);
+                            return submission && submission.status !== 'Not Attempted';
+                          }).length
+                        }/{assessment.tests.length} Tests
                       </Typography>
                       <Typography variant="body2">
                         Score: {calculateAssessmentScore(assessment)}%
@@ -218,83 +235,94 @@ const AssessmentSubmissionsList = () => {
                   <Alert severity="info">No test submissions found for this assessment.</Alert>
                 ) : (
                   <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    {assessment.tests.map((test) => (
-                      <Card
-                        key={test.id}
-                        variant="outlined"
-                        sx={{
-                          borderRadius: 1,
-                          boxShadow: 'none'
-                        }}
-                      >
-                        <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
-                          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                            <Box>
-                              <Typography variant="subtitle1" sx={{ fontWeight: 500, mb: 0.5 }}>
-                                {test.title}
-                              </Typography>
+                    {assessment.tests.map((test) => {
+                      const submission = getLatestSubmissionForTest(test);
+                      return (
+                        <Card
+                          key={test.id}
+                          variant="outlined"
+                          sx={{
+                            borderRadius: 1,
+                            boxShadow: 'none'
+                          }}
+                        >
+                          <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                              <Box>
+                                <Typography variant="subtitle1" sx={{ fontWeight: 500, mb: 0.5 }}>
+                                  {test.title}
+                                </Typography>
 
-                              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 1 }}>
-                                <Chip
-                                  label={test.language}
-                                  size="small"
-                                  color="primary"
-                                  variant="outlined"
-                                />
-                                <Chip
-                                  label={test.status}
-                                  size="small"
-                                  color={
-                                    test.status === 'Accepted' ? 'success' :
-                                    test.status === 'Wrong Answer' ? 'error' :
-                                    test.status === 'Not Attempted' ? 'default' : 'warning'
-                                  }
-                                />
+                                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 1 }}>
+                                  <Chip
+                                    label={submission ? submission.language : 'N/A'}
+                                    size="small"
+                                    color="primary"
+                                    variant="outlined"
+                                  />
+                                  <Chip
+                                    label={submission ? submission.status : 'Not Attempted'}
+                                    size="small"
+                                    color={
+                                      submission
+                                        ? submission.status === 'Accepted'
+                                          ? 'success'
+                                          : submission.status === 'Wrong Answer'
+                                          ? 'error'
+                                          : submission.status === 'Not Attempted'
+                                          ? 'default'
+                                          : 'warning'
+                                        : 'default'
+                                    }
+                                  />
+                                </Box>
+
+                                <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
+                                  <Typography variant="body2" color="text.secondary">
+                                    Tests: {submission && submission.status !== 'Not Attempted'
+                                      ? `${submission.testCasesPassed}/${submission.totalTestCases}`
+                                      : 'N/A'}
+                                  </Typography>
+                                  <Typography variant="body2" color="text.secondary">
+                                    Time: {submission ? formatMetric(submission.executionTime, ' ms') : 'N/A'}
+                                  </Typography>
+                                  <Typography variant="body2" color="text.secondary">
+                                    Memory: {submission ? formatMetric(submission.memoryUsed, ' MB') : 'N/A'}
+                                  </Typography>
+                                </Box>
                               </Box>
 
-                              <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                                <Typography variant="body2" color="text.secondary">
-                                  Tests: {test.status === 'Not Attempted' ? 'N/A' : `${test.testCasesPassed}/${test.totalTestCases}`}
+                              <Box>
+                                <Typography variant="body2" color="text.secondary" sx={{ mb: 1, textAlign: 'right' }}>
+                                  Submitted: {submission ? formatDate(submission.submittedAt) : 'N/A'}
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                  Time: {formatMetric(test.executionTime, ' ms')}
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                  Memory: {formatMetric(test.memoryUsed, ' MB')}
-                                </Typography>
+
+                                {submission && submission.submissionId ? (
+                                  <Button
+                                    variant="contained"
+                                    size="small"
+                                    component={RouterLink}
+                                    to={`/submissions/${submission.submissionId}`}
+                                    sx={{ minWidth: '120px' }}
+                                  >
+                                    View Details
+                                  </Button>
+                                ) : (
+                                  <Button
+                                    variant="outlined"
+                                    size="small"
+                                    disabled
+                                    sx={{ minWidth: '120px' }}
+                                  >
+                                    Not Attempted
+                                  </Button>
+                                )}
                               </Box>
                             </Box>
-
-                            <Box>
-                              <Typography variant="body2" color="text.secondary" sx={{ mb: 1, textAlign: 'right' }}>
-                                Submitted: {formatDate(test.submittedAt)}
-                              </Typography>
-
-                              {test.submissionId ? (
-                                <Button
-                                  variant="contained"
-                                  size="small"
-                                  component={RouterLink}
-                                  to={`/submissions/${test.submissionId}`}
-                                  sx={{ minWidth: '120px' }}
-                                >
-                                  View Details
-                                </Button>
-                              ) : (
-                                <Button
-                                  variant="outlined"
-                                  size="small"
-                                  disabled
-                                  sx={{ minWidth: '120px' }}
-                                >
-                                  Not Attempted
-                                </Button>
-                              )}
-                            </Box>
-                          </Box>
-                        </CardContent>
-                      </Card>
-                    ))}
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
                   </Box>
                 )}
               </Box>

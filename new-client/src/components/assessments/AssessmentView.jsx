@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
-import { getAssessmentById, getTestById, submitAssessment } from '../../utils/api';
+import { getAssessmentById, getTestById, submitAssessment, API_URL } from '../../utils/api';
 import { toast } from 'react-toastify';
 import {
   Box,
@@ -63,7 +63,7 @@ const AssessmentView = () => {
       // For each test in the assessment, check if it has been attempted
       for (const test of tests) {
         try {
-          const response = await fetch(`http://localhost:5002/api/assessments/${assessmentId}/tests/${test._id}/attempts?email=${encodeURIComponent(localStorage.getItem('userEmail'))}`, {
+          const response = await fetch(`${API_URL}/assessments/${assessmentId}/tests/${test._id}/attempts?email=${encodeURIComponent(localStorage.getItem('userEmail'))}`, {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -71,12 +71,15 @@ const AssessmentView = () => {
 
           if (response.ok) {
             const data = await response.json();
+            console.log('Raw API response:', data);
             statusObj[test._id] = {
               attemptsUsed: data.attemptsUsed || 0,
               maxAttempts: data.maxAttempts || 1,
               attempted: data.attemptsUsed > 0,
-              completed: data.attemptsUsed > 0 // Consider a test completed if it has been attempted
+              completed: data.completed || false, // Use the completed flag from the API response
+              assessmentSubmitted: data.assessmentSubmitted || false
             };
+            console.log(`Test ${test._id} status for current user:`, statusObj[test._id]);
           }
         } catch (error) {
           console.error(`Error fetching status for test ${test._id}:`, error);
@@ -364,7 +367,11 @@ const AssessmentView = () => {
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 <Typography variant="body2" fontWeight="bold" color="primary.main">
-                  {Object.values(testStatus).filter(status => status?.completed).length}
+                  {(() => {
+                    const completedTests = Object.values(testStatus).filter(status => status?.completed);
+                    console.log('Completed tests:', completedTests);
+                    return completedTests.length;
+                  })()}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">/</Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -407,19 +414,22 @@ const AssessmentView = () => {
                 label="Select Test"
                 onChange={handleTestChange}
               >
-                {tests.map((test) => (
-                  <MenuItem key={test._id} value={test._id}>
-                    {test.title} ({test.difficulty} - {test.timeLimit} min)
-                    {testStatus[test._id]?.attempted && (
-                      <Chip
-                        label={testStatus[test._id]?.completed ? "Completed" : "Attempted"}
-                        color={testStatus[test._id]?.completed ? "success" : "warning"}
-                        size="small"
-                        sx={{ ml: 1 }}
-                      />
-                    )}
-                  </MenuItem>
-                ))}
+                {tests.map((test) => {
+                  console.log(`Test ${test._id} status:`, testStatus[test._id]);
+                  return (
+                    <MenuItem key={test._id} value={test._id}>
+                      {test.title} ({test.difficulty} - {test.timeLimit} min)
+                      {testStatus[test._id]?.attempted && (
+                        <Chip
+                          label={testStatus[test._id]?.completed ? "Completed" : "Attempted"}
+                          color={testStatus[test._id]?.completed ? "success" : "warning"}
+                          size="small"
+                          sx={{ ml: 1 }}
+                        />
+                      )}
+                    </MenuItem>
+                  );
+                })}
               </Select>
             </FormControl>
 
@@ -455,7 +465,9 @@ const AssessmentView = () => {
             color="secondary"
             size={isMobile ? "small" : "medium"}
             onClick={handleOpenConfirmDialog}
-            disabled={submitting || assessment.submitted}
+            disabled={submitting || (assessment.userSubmissions &&
+                      assessment.userSubmissions[localStorage.getItem('userId')] &&
+                      assessment.userSubmissions[localStorage.getItem('userId')].submitted)}
             startIcon={<DoneAllIcon />}
           >
             {submitting ? 'Submitting...' : 'Submit Assessment'}
@@ -469,9 +481,13 @@ const AssessmentView = () => {
         </Alert>
       )}
 
-      {assessment.submitted && !submitSuccess && (
+      {/* Check if the current user has submitted this assessment */}
+      {assessment.userSubmissions &&
+       assessment.userSubmissions[localStorage.getItem('userId')] &&
+       assessment.userSubmissions[localStorage.getItem('userId')].submitted &&
+       !submitSuccess && (
         <Alert severity="info" sx={{ mt: 2 }}>
-          This assessment has already been submitted. You can no longer make changes to your submissions.
+          You have already submitted this assessment. You can no longer make changes to your submissions.
         </Alert>
       )}
 

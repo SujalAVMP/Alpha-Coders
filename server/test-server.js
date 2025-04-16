@@ -3070,6 +3070,7 @@ app.get('/api/assessments/:assessmentId/tests/:testId/attempts', async (req, res
 
     // Get attempts from the testAttempts Map
     let attemptsUsed = 0;
+    let completed = false; // Track if this specific user has completed the test
     const maxAttempts = assessment.maxAttempts || 1;
 
     // Check if the user has attempts recorded in the testAttempts Map
@@ -3079,13 +3080,43 @@ app.get('/api/assessments/:assessmentId/tests/:testId/attempts', async (req, res
         const testAttempt = userTestAttempts.get(testId.toString());
         if (testAttempt) {
           attemptsUsed = testAttempt.attemptsUsed || 0;
+          // Mark as completed if this user has attempts and results
+          completed = attemptsUsed > 0 && !!testAttempt.results;
+          console.log(`User ${userEmail} has completed test ${testId}: ${completed}`);
         }
       }
     }
 
     // Fallback to counting submissions if no attempts are recorded in the Map
     if (attemptsUsed === 0 && submissions.length > 0) {
-      attemptsUsed = submissions.length;
+      // Only count submissions by this specific user
+      // Use a safer approach to check for user ID in different formats
+      const userSubmissions = submissions.filter(sub => {
+        // Check if sub.user exists and matches
+        if (sub.user && sub.user.toString() === user._id.toString()) {
+          return true;
+        }
+
+        // Check if sub has a userId property using a safer approach
+        // @ts-ignore - Ignore TypeScript warnings as we're checking dynamically
+        if (sub['userId'] && typeof sub['userId'].toString === 'function' &&
+            // @ts-ignore
+            sub['userId'].toString() === user._id.toString()) {
+          return true;
+        }
+
+        // Check if sub has a userId as a string property
+        // @ts-ignore
+        if (typeof sub['userId'] === 'string' && sub['userId'] === user._id.toString()) {
+          return true;
+        }
+
+        return false;
+      });
+      attemptsUsed = userSubmissions.length;
+      // Mark as completed if this user has submissions
+      completed = userSubmissions.length > 0;
+      console.log(`User ${userEmail} has completed test ${testId} based on submissions: ${completed}`);
     }
 
     // Check if the assessment has been submitted
@@ -3099,12 +3130,13 @@ app.get('/api/assessments/:assessmentId/tests/:testId/attempts', async (req, res
 
     const assessmentSubmitted = !!completedSubmission;
 
-    console.log(`User ${userEmail} has used ${attemptsUsed} of ${maxAttempts} attempts for test ${testId}. Assessment submitted: ${assessmentSubmitted}`);
+    console.log(`User ${userEmail} has used ${attemptsUsed} of ${maxAttempts} attempts for test ${testId}. Assessment submitted: ${assessmentSubmitted}. Test completed: ${completed}`);
 
     res.json({
       attemptsUsed,
       maxAttempts,
-      assessmentSubmitted
+      assessmentSubmitted,
+      completed // Explicitly return whether this specific user has completed the test
     });
   } catch (error) {
     console.error('Error getting test attempts:', error);

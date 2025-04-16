@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5002/api';
+export const API_URL = 'http://localhost:5002/api';
 
 // Helper function to handle fetch requests
 export const fetchAPI = async (url, options = {}) => {
