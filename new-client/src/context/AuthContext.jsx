@@ -7,17 +7,33 @@ export const AuthContext = createContext();
 const getSessionToken = () => sessionStorage.getItem('token');
 const getSessionId = () => sessionStorage.getItem('sessionId');
 const getSessionEmail = () => sessionStorage.getItem('userEmail');
+const getSessionUserId = () => sessionStorage.getItem('userId');
 
-const setSessionData = (token, sessionId, email) => {
+const setSessionData = (token, sessionId, email, userId) => {
   sessionStorage.setItem('token', token);
   sessionStorage.setItem('sessionId', sessionId);
   sessionStorage.setItem('userEmail', email);
+  sessionStorage.setItem('userId', userId);
+
+  // Also store in localStorage for components that need it
+  localStorage.setItem('token', token);
+  localStorage.setItem('sessionId', sessionId);
+  localStorage.setItem('userEmail', email);
+  localStorage.setItem('userId', userId);
 };
 
 const clearSessionData = () => {
+  // Clear sessionStorage
   sessionStorage.removeItem('token');
   sessionStorage.removeItem('sessionId');
   sessionStorage.removeItem('userEmail');
+  sessionStorage.removeItem('userId');
+
+  // Also clear localStorage
+  localStorage.removeItem('token');
+  localStorage.removeItem('sessionId');
+  localStorage.removeItem('userEmail');
+  localStorage.removeItem('userId');
 };
 
 export const AuthProvider = ({ children }) => {
@@ -34,8 +50,9 @@ export const AuthProvider = ({ children }) => {
         const token = getSessionToken();
         const sessionId = getSessionId();
         const email = getSessionEmail();
+        const userId = getSessionUserId();
 
-        if (token && sessionId && email) {
+        if (token && sessionId && email && userId) {
           console.log('Found session data, attempting to restore session');
           try {
             // Try to get the current user with the stored token and session ID
@@ -73,7 +90,7 @@ export const AuthProvider = ({ children }) => {
       console.log('Registration response:', data);
 
       // Store session data
-      setSessionData(data.token, data.sessionId, userData.email);
+      setSessionData(data.token, data.sessionId, userData.email, data.user._id);
 
       setUser(data.user);
       setIsAuthenticated(true);
@@ -97,7 +114,7 @@ export const AuthProvider = ({ children }) => {
       console.log('Login response:', data);
 
       // Store session data
-      setSessionData(data.token, data.sessionId, userData.email);
+      setSessionData(data.token, data.sessionId, userData.email, data.user._id);
 
       setUser(data.user);
       setIsAuthenticated(true);
@@ -168,7 +185,8 @@ export const AuthProvider = ({ children }) => {
         logout,
         deleteAccount,
         getSessionId, // Expose session ID getter for API calls
-        getSessionToken // Expose token getter for API calls
+        getSessionToken, // Expose token getter for API calls
+        getSessionUserId // Expose user ID getter for API calls
       }}
     >
       {children}

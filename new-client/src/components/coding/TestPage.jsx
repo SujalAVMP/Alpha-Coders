@@ -64,31 +64,71 @@ const TestPage = () => {
       // Fetch attempts information from the server
       const fetchAttempts = async () => {
         try {
-          const response = await fetch(`${API_URL}/assessments/${assessmentId}/tests/${id}/attempts?email=${encodeURIComponent(localStorage.getItem('userEmail'))}`, {
+          const userEmail = localStorage.getItem('userEmail');
+          const userId = localStorage.getItem('userId');
+          console.log(`Fetching attempts for user ${userEmail} (${userId}) for test ${id} in assessment ${assessmentId}`);
+
+          if (!userId) {
+            console.error('No user ID found in localStorage');
+            toast.error('User authentication error. Please log in again.');
+            return;
+          }
+
+          const response = await fetch(`${API_URL}/assessments/${assessmentId}/tests/${id}/attempts?email=${encodeURIComponent(userEmail)}`, {
             headers: {
-              'Authorization': `Bearer ${localStorage.getItem('token')}`
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              'X-User-ID': userId // Add user ID to headers for additional verification
             }
           });
 
           if (response.ok) {
             const data = await response.json();
-            console.log('Attempts data:', data);
+            console.log('Attempts data from server:', data);
+
+            // Always use server data as the source of truth
             setAttemptsUsed(data.attemptsUsed || 0);
             setMaxAttempts(data.maxAttempts || 1);
             setAssessmentSubmitted(data.assessmentSubmitted || false);
 
+            // Store the data in localStorage with user-specific keys
+            // This is just for backup/caching, server data is always authoritative
+            const userTestKey = `${userId}_${id}`;
+            localStorage.setItem(`${userTestKey}_attempts`, data.attemptsUsed || 0);
+            localStorage.setItem(`${userTestKey}_max_attempts`, data.maxAttempts || 1);
+            localStorage.setItem(`${userTestKey}_completed`, data.completed ? 'true' : 'false');
+            localStorage.setItem(`${userTestKey}_assessment_submitted`, data.assessmentSubmitted ? 'true' : 'false');
+            localStorage.setItem(`${userTestKey}_last_updated`, new Date().toISOString());
+            console.log(`Stored test status in localStorage with key ${userTestKey}`);
+
             if (data.assessmentSubmitted) {
               toast.info('This assessment has been submitted. You cannot make further submissions.');
             }
+
+            // If max attempts reached, show a message
+            if (data.attemptsUsed >= data.maxAttempts) {
+              toast.info(`Maximum attempts (${data.maxAttempts}) reached for this test.`);
+            }
+          } else {
+            const errorData = await response.json().catch(() => ({}));
+            console.error('Server returned error:', response.status, errorData);
+            toast.error(`Error fetching test status: ${errorData.message || response.statusText}`);
           }
         } catch (error) {
           console.error('Error fetching attempts:', error);
+          toast.error(`Network error: ${error.message}`);
         }
       };
 
       fetchAttempts();
+
+      // Set up interval to periodically refresh the status
+      const refreshInterval = setInterval(fetchAttempts, 30000); // Refresh every 30 seconds
+
+      return () => {
+        clearInterval(refreshInterval); // Clean up on unmount
+      };
     }
-  }, [assessmentId, id]);
+  }, [assessmentId, id, toast]);
 
   const [submittingAssessment, setSubmittingAssessment] = useState(false);
   const [panelWidth, setPanelWidth] = useState(50); // 50% width for each panel
@@ -334,14 +374,57 @@ int main() {
 
   const handleSubmit = async () => {
     try {
-      // Check if user has attempts remaining
+      // Get the user ID for user-specific validation
+      const userId = localStorage.getItem('userId');
+      const userEmail = localStorage.getItem('userEmail');
+
+      if (!userId || !userEmail) {
+        toast.error('User authentication error. Please log in again.');
+        return;
+      }
+
+      // Fetch the latest attempt status from the server before submitting
+      try {
+        const statusResponse = await fetch(`${API_URL}/assessments/${assessmentId}/tests/${id}/attempts?email=${encodeURIComponent(userEmail)}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'X-User-ID': userId
+          }
+        });
+
+        if (statusResponse.ok) {
+          const statusData = await statusResponse.json();
+          // Update local state with the latest server data
+          setAttemptsUsed(statusData.attemptsUsed || 0);
+          setMaxAttempts(statusData.maxAttempts || 1);
+          setAssessmentSubmitted(statusData.assessmentSubmitted || false);
+
+          // Re-check conditions with fresh data
+          if (statusData.attemptsUsed >= statusData.maxAttempts) {
+            toast.error(`Maximum attempts (${statusData.maxAttempts}) reached for this test.`);
+            setOutput(`Error: You have reached the maximum number of attempts (${statusData.maxAttempts}) for this test.`);
+            return;
+          }
+
+          if (statusData.assessmentSubmitted) {
+            toast.error('This assessment has been submitted. You cannot make further submissions.');
+            setOutput('Error: This assessment has been submitted. You cannot make further submissions.');
+            return;
+          }
+        }
+      } catch (statusError) {
+        console.error('Error fetching latest status:', statusError);
+        // Continue with local data if server check fails
+      }
+
+      // Check if user has attempts remaining (using local state as fallback)
       if (attemptsUsed >= maxAttempts) {
         toast.error(`Maximum attempts (${maxAttempts}) reached for this test.`);
         setOutput(`Error: You have reached the maximum number of attempts (${maxAttempts}) for this test.`);
         return;
       }
 
-      // Check if the assessment has been submitted
+      // Check if the assessment has been submitted (using local state as fallback)
       if (assessmentSubmitted) {
         toast.error('This assessment has been submitted. You cannot make further submissions.');
         setOutput('Error: This assessment has been submitted. You cannot make further submissions.');
@@ -350,22 +433,40 @@ int main() {
 
       setSubmitting(true);
       setOutput('');
+      setTestResults(null);
 
-      // Include assessmentId in the request for proper permission handling
+      console.log(`Submitting code for user ${userEmail} (${userId}) for test ${id} in assessment ${assessmentId}`);
+
+      // Include assessmentId and userId in the request for proper permission handling
       const data = await submitCode(id, {
         code,
         language,
         assessmentId: assessmentId, // Pass assessmentId for permission validation
-        testId: id // Pass the test ID explicitly in case the API needs it
+        testId: id, // Pass the test ID explicitly in case the API needs it
+        userId: userId // Pass userId for additional verification
       });
 
       // Update attempts information if returned from the server
-      if (data.attemptsUsed !== undefined && data.maxAttempts !== undefined) {
-        setAttemptsUsed(data.attemptsUsed);
-        setMaxAttempts(data.maxAttempts);
-      } else {
-        // If not returned from server, increment locally
-        setAttemptsUsed(prev => prev + 1);
+      const newAttemptsUsed = data.attemptsUsed !== undefined ? data.attemptsUsed : attemptsUsed + 1;
+      const serverMaxAttempts = data.maxAttempts !== undefined ? data.maxAttempts : maxAttempts;
+
+      // Update state
+      setAttemptsUsed(newAttemptsUsed);
+      setMaxAttempts(serverMaxAttempts);
+
+      // Store the updated data in localStorage with user-specific keys
+      if (userId) {
+        const userTestKey = `${userId}_${id}`;
+        localStorage.setItem(`${userTestKey}_attempts`, newAttemptsUsed);
+        localStorage.setItem(`${userTestKey}_max_attempts`, serverMaxAttempts);
+        localStorage.setItem(`${userTestKey}_completed`, 'true'); // Mark as completed after submission
+        localStorage.setItem(`${userTestKey}_assessment_submitted`, assessmentSubmitted ? 'true' : 'false');
+        localStorage.setItem(`${userTestKey}_last_updated`, new Date().toISOString());
+        console.log(`Updated test status in localStorage with key ${userTestKey}`);
+
+        // Force a refresh of the assessment view
+        localStorage.setItem(`${userId}_assessment_view_refresh_needed`, Date.now().toString());
+        localStorage.setItem(`${userId}_assessment_${assessmentId}_refresh_needed`, Date.now().toString());
       }
 
       // Show test results if available
@@ -384,7 +485,28 @@ int main() {
       }
 
       setSubmitSuccess(true);
-      toast.success(`Solution submitted successfully! You have used ${attemptsUsed + 1} of ${maxAttempts} attempts.`);
+      toast.success(`Solution submitted successfully! You have used ${newAttemptsUsed} of ${serverMaxAttempts} attempts.`);
+
+      // Refresh the status after submission
+      setTimeout(async () => {
+        try {
+          const refreshResponse = await fetch(`${API_URL}/assessments/${assessmentId}/tests/${id}/attempts?email=${encodeURIComponent(userEmail)}`, {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              'X-User-ID': userId
+            }
+          });
+
+          if (refreshResponse.ok) {
+            const refreshData = await refreshResponse.json();
+            setAttemptsUsed(refreshData.attemptsUsed || 0);
+            setMaxAttempts(refreshData.maxAttempts || 1);
+            setAssessmentSubmitted(refreshData.assessmentSubmitted || false);
+          }
+        } catch (refreshError) {
+          console.error('Error refreshing status after submission:', refreshError);
+        }
+      }, 2000); // Wait 2 seconds after submission to refresh
     } catch (error) {
       console.error('Error submitting code:', error);
 

@@ -547,15 +547,33 @@ export const acceptInvitation = (assessmentId, data) => {
 };
 
 // Submit an entire assessment
-export const submitAssessment = (assessmentId) => {
+export const submitAssessment = (assessmentId, userData = {}) => {
   if (!assessmentId) {
     console.error('Invalid assessment ID:', assessmentId);
     return Promise.reject(new Error('Invalid assessment ID'));
   }
-  console.log('Submitting assessment:', assessmentId);
+
+  // Get user ID from localStorage if not provided
+  const userId = userData.userId || localStorage.getItem('userId');
+  const userEmail = userData.userEmail || localStorage.getItem('userEmail');
+
+  if (!userId || !userEmail) {
+    console.error('User ID or email missing for assessment submission');
+    return Promise.reject(new Error('User authentication required. Please log in again.'));
+  }
+
+  console.log(`Submitting assessment ${assessmentId} for user ${userEmail} (${userId})`);
+
   return fetchAPI(`/assessments/${assessmentId}/submit`, {
     method: 'POST',
-    body: JSON.stringify({})
+    body: JSON.stringify({
+      userId,
+      userEmail,
+      timestamp: new Date().toISOString()
+    }),
+    headers: {
+      'X-User-ID': userId // Add user ID to headers for additional verification
+    }
   });
 };
 

@@ -97,7 +97,7 @@ app.use(cors({
   origin: 'http://localhost:5173', // Restrict to client origin
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Session-ID']
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Session-ID', 'X-User-ID']
 }));
 app.use(express.json());
 
@@ -1459,22 +1459,22 @@ app.get('/api/assessments/assigned', async (req, res) => {
       const userSubmissionStatus = assessment.userSubmissions &&
                                   assessment.userSubmissions.get(user._id.toString());
 
-      // First check the user-specific submission status
+      // ONLY use the user-specific submission status
       let hasSubmitted = !!userSubmissionStatus && userSubmissionStatus.submitted === true;
 
-      // If not found in userSubmissions, fall back to checking submissions
+      // If not found in userSubmissions, check for user-specific submissions
       if (!hasSubmitted) {
         // Only consider a submission valid if it's specifically for this assessment
         // and is marked as an assessment submission (not just a test submission)
+        // AND belongs to this specific user
         hasSubmitted = !!submission && submission.assessment &&
                        submission.assessment.toString() === assessmentId &&
-                       submission.isAssessmentSubmission === true;
+                       submission.isAssessmentSubmission === true &&
+                       submission.user && submission.user.toString() === user._id.toString();
       }
 
-      // Also check the general assessment submitted flag as a fallback
-      if (!hasSubmitted && assessment.submitted === true) {
-        hasSubmitted = true;
-      }
+      // Do NOT use the general assessment submitted flag
+      // This ensures we only consider user-specific submission status
 
       console.log(`Assessment ${assessmentId} submission status: ${hasSubmitted ? 'Submitted' : 'Not submitted'}`);
       console.log(`  - User submission status: ${userSubmissionStatus ? 'Found' : 'Not found'}`);
@@ -3113,22 +3113,35 @@ app.get('/api/assessments/:assessmentId/tests/:testId/attempts', async (req, res
 
         return false;
       });
-      attemptsUsed = userSubmissions.length;
-      // Mark as completed if this user has submissions
-      completed = userSubmissions.length > 0;
-      console.log(`User ${userEmail} has completed test ${testId} based on submissions: ${completed}`);
+
+      // Only use submissions for this specific test and assessment
+      const testSpecificSubmissions = userSubmissions.filter(sub => {
+        return sub.test && sub.test.toString() === testId &&
+               sub.assessment && sub.assessment.toString() === assessmentId;
+      });
+
+      attemptsUsed = testSpecificSubmissions.length;
+      // Mark as completed if this user has submissions for this specific test
+      completed = testSpecificSubmissions.length > 0;
+      console.log(`User ${userEmail} has completed test ${testId} based on submissions: ${completed} (${testSpecificSubmissions.length} submissions)`);
     }
 
-    // Check if the assessment has been submitted
+    // Check if the assessment has been submitted by this specific user
     // Only consider submissions that are specifically for the entire assessment, not individual test submissions
     const completedSubmission = await Submission.findOne({
-      user: user._id,
-      assessment: assessmentId,
-      status: 'completed',
-      isAssessmentSubmission: true  // Only look for submissions that are marked as assessment submissions
+      $or: [
+        { user: user._id, assessment: assessmentId, status: 'completed', isAssessmentSubmission: true },
+        { userId: user._id, assessment: assessmentId, status: 'completed', isAssessmentSubmission: true }
+      ]
     });
 
-    const assessmentSubmitted = !!completedSubmission;
+    // Also check the user-specific submission status in the assessment
+    const userSubmissionStatus = assessment.userSubmissions &&
+                               assessment.userSubmissions.get(user._id.toString());
+
+    // Assessment is submitted if either condition is true
+    const assessmentSubmitted = !!completedSubmission ||
+                              (!!userSubmissionStatus && userSubmissionStatus.submitted === true);
 
     console.log(`User ${userEmail} has used ${attemptsUsed} of ${maxAttempts} attempts for test ${testId}. Assessment submitted: ${assessmentSubmitted}. Test completed: ${completed}`);
 

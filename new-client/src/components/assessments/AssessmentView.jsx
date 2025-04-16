@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
 import { getAssessmentById, getTestById, submitAssessment, API_URL } from '../../utils/api';
 import { toast } from 'react-toastify';
@@ -54,32 +54,100 @@ const AssessmentView = () => {
   const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
 
   // Function to fetch test attempt status
-  const fetchTestStatus = async () => {
+  const fetchTestStatus = useCallback(async () => {
     if (!assessmentId || !assessment) return;
 
     try {
       const statusObj = {};
+      const userEmail = localStorage.getItem('userEmail');
+      const userId = localStorage.getItem('userId');
+
+      if (!userId || !userEmail) {
+        console.error('No user ID or email found in localStorage');
+        toast.error('User authentication error. Please log in again.');
+        return;
+      }
+
+      console.log(`Fetching test status for user ${userEmail} (${userId}) in assessment ${assessmentId}`);
 
       // For each test in the assessment, check if it has been attempted
       for (const test of tests) {
         try {
-          const response = await fetch(`${API_URL}/assessments/${assessmentId}/tests/${test._id}/attempts?email=${encodeURIComponent(localStorage.getItem('userEmail'))}`, {
+          // First, check if we have the status in localStorage with user-specific key
+          const userTestKey = `${userId}_${test._id}`;
+          const storedStatus = localStorage.getItem(`${userTestKey}_status`);
+          const storedAttempts = localStorage.getItem(`${userTestKey}_attempts`);
+          const storedCompleted = localStorage.getItem(`${userTestKey}_completed`);
+          const lastUpdated = localStorage.getItem(`${userTestKey}_last_updated`);
+
+          // Only use localStorage data if it's recent (less than 1 minute old)
+          const isRecent = lastUpdated && (new Date() - new Date(lastUpdated)) < 60000;
+
+          if (isRecent && (storedStatus || storedAttempts || storedCompleted)) {
+            console.log(`Found recent stored status for test ${test._id} with key ${userTestKey}`);
+
+            // Use the stored data if available and recent
+            let attemptsUsed = 0;
+            if (storedAttempts) {
+              attemptsUsed = parseInt(storedAttempts, 10) || 0;
+            }
+
+            statusObj[test._id] = {
+              attemptsUsed: attemptsUsed,
+              maxAttempts: parseInt(localStorage.getItem(`${userTestKey}_max_attempts`), 10) || 1,
+              attempted: attemptsUsed > 0,
+              completed: storedCompleted === 'true' || attemptsUsed > 0,
+              assessmentSubmitted: localStorage.getItem(`${userTestKey}_assessment_submitted`) === 'true'
+            };
+            console.log(`Using stored status for test ${test._id}:`, statusObj[test._id]);
+          }
+
+          // Always fetch from server to ensure we have the latest data
+          const response = await fetch(`${API_URL}/assessments/${assessmentId}/tests/${test._id}/attempts?email=${encodeURIComponent(userEmail)}`, {
             headers: {
-              'Authorization': `Bearer ${localStorage.getItem('token')}`
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              'X-User-ID': userId // Add user ID to headers for additional verification
             }
           });
 
           if (response.ok) {
             const data = await response.json();
-            console.log('Raw API response:', data);
+            console.log(`Server response for test ${test._id}:`, data);
+
+            // Use server data as the source of truth
+            const serverAttempts = data.attemptsUsed || 0;
+            const isCompleted = serverAttempts > 0 || data.completed;
+
             statusObj[test._id] = {
-              attemptsUsed: data.attemptsUsed || 0,
+              attemptsUsed: serverAttempts,
               maxAttempts: data.maxAttempts || 1,
-              attempted: data.attemptsUsed > 0,
-              completed: data.completed || false, // Use the completed flag from the API response
+              attempted: serverAttempts > 0,
+              completed: isCompleted, // Mark as completed if attempted at least once
               assessmentSubmitted: data.assessmentSubmitted || false
             };
-            console.log(`Test ${test._id} status for current user:`, statusObj[test._id]);
+            console.log(`Updated status for test ${test._id} from server:`, statusObj[test._id]);
+
+            // Store the updated data in localStorage with user-specific keys
+            if (userId) {
+              const userTestKey = `${userId}_${test._id}`;
+              localStorage.setItem(`${userTestKey}_attempts`, serverAttempts);
+              localStorage.setItem(`${userTestKey}_max_attempts`, data.maxAttempts || 1);
+              localStorage.setItem(`${userTestKey}_completed`, isCompleted ? 'true' : 'false');
+              localStorage.setItem(`${userTestKey}_assessment_submitted`, data.assessmentSubmitted ? 'true' : 'false');
+              localStorage.setItem(`${userTestKey}_last_updated`, new Date().toISOString());
+              localStorage.setItem(`${userTestKey}_status`, JSON.stringify({
+                attemptsUsed: serverAttempts,
+                maxAttempts: data.maxAttempts || 1,
+                completed: isCompleted,
+                assessmentSubmitted: data.assessmentSubmitted || false,
+                lastUpdated: new Date().toISOString()
+              }));
+              console.log(`Stored test status in localStorage with key ${userTestKey}`);
+            }
+          } else {
+            const errorData = await response.json().catch(() => ({}));
+            console.error('Server returned error:', response.status, errorData);
+            toast.error(`Error fetching test status: ${errorData.message || response.statusText}`);
           }
         } catch (error) {
           console.error(`Error fetching status for test ${test._id}:`, error);
@@ -90,15 +158,51 @@ const AssessmentView = () => {
       setTestStatus(statusObj);
     } catch (error) {
       console.error('Error fetching test status:', error);
+      toast.error(`Error fetching test status: ${error.message}`);
     }
-  };
+  }, [assessmentId, assessment, tests, toast]);
 
   // Effect to fetch test status when tests change
   useEffect(() => {
     if (tests.length > 0 && assessment) {
       fetchTestStatus();
+
+      // Set up interval to periodically refresh the status
+      const refreshInterval = setInterval(fetchTestStatus, 30000); // Refresh every 30 seconds
+
+      // Also check for refresh triggers from other components
+      const userId = localStorage.getItem('userId');
+      if (userId) {
+        const checkRefreshNeeded = () => {
+          const refreshNeeded = localStorage.getItem(`${userId}_assessment_view_refresh_needed`);
+          const assessmentRefreshNeeded = localStorage.getItem(`${userId}_assessment_${assessmentId}_refresh_needed`);
+
+          if (refreshNeeded || assessmentRefreshNeeded) {
+            console.log('Refresh trigger detected, updating test status');
+            fetchTestStatus();
+
+            // Clear the refresh flags after processing
+            localStorage.removeItem(`${userId}_assessment_view_refresh_needed`);
+            localStorage.removeItem(`${userId}_assessment_${assessmentId}_refresh_needed`);
+          }
+        };
+
+        // Check for refresh triggers every 2 seconds
+        const refreshCheckInterval = setInterval(checkRefreshNeeded, 2000);
+
+        // Clean up intervals on unmount
+        return () => {
+          clearInterval(refreshInterval);
+          clearInterval(refreshCheckInterval);
+        };
+      }
+
+      // Clean up interval on unmount
+      return () => {
+        clearInterval(refreshInterval);
+      };
     }
-  }, [tests, assessment]);
+  }, [tests, assessment, assessmentId, fetchTestStatus]);
 
   useEffect(() => {
     const fetchAssessment = async () => {
@@ -189,9 +293,12 @@ const AssessmentView = () => {
     }
   };
 
-  const handleOpenConfirmDialog = () => {
-    // Check if all tests have been attempted
-    const completedTests = Object.values(testStatus).filter(status => status?.completed).length;
+  const handleOpenConfirmDialog = async () => {
+    // Refresh test status before showing the dialog to ensure we have the latest data
+    await fetchTestStatus();
+
+    // Check if all tests have been attempted using the latest data
+    const completedTests = Object.values(testStatus).filter(status => status?.completed || status?.attemptsUsed > 0).length;
     const totalTests = tests.length;
 
     if (completedTests < totalTests) {
@@ -211,14 +318,40 @@ const AssessmentView = () => {
       setSubmitting(true);
       setConfirmDialogOpen(false);
 
-      console.log('Submitting assessment:', assessmentId);
+      // Get user ID for verification
+      const userId = localStorage.getItem('userId');
+      const userEmail = localStorage.getItem('userEmail');
 
-      // Submit the entire assessment
-      const result = await submitAssessment(assessmentId);
+      if (!userId || !userEmail) {
+        toast.error('User authentication error. Please log in again.');
+        return;
+      }
+
+      console.log(`Submitting assessment ${assessmentId} for user ${userEmail} (${userId})`);
+
+      // Refresh test status one more time before submission
+      await fetchTestStatus();
+
+      // Submit the entire assessment with user-specific data
+      const result = await submitAssessment(assessmentId, { userId, userEmail });
       console.log('Assessment submission result:', result);
 
       setSubmitSuccess(true);
       toast.success('Assessment submitted successfully!');
+
+      // Update localStorage to reflect submission
+      if (userId) {
+        // Mark all tests as submitted in localStorage
+        for (const test of tests) {
+          const userTestKey = `${userId}_${test._id}`;
+          localStorage.setItem(`${userTestKey}_assessment_submitted`, 'true');
+          localStorage.setItem(`${userTestKey}_last_updated`, new Date().toISOString());
+        }
+
+        // Mark the assessment as submitted
+        localStorage.setItem(`${userId}_assessment_${assessmentId}_submitted`, 'true');
+        localStorage.setItem(`${userId}_assessment_${assessmentId}_submitted_at`, new Date().toISOString());
+      }
 
       // Refresh the assessment data to update the status
       console.log('Refreshing assessment data...');
@@ -270,7 +403,7 @@ const AssessmentView = () => {
         <Alert severity="error" sx={{ mb: 3 }}>
           {error}
         </Alert>
-        <Typography variant="body2" color="text.secondary" paragraph>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
           This could be due to a permission issue or the assessment may not exist.
           If you believe you should have access to this assessment, please contact the administrator.
         </Typography>
@@ -320,7 +453,7 @@ const AssessmentView = () => {
           {assessment.title}
         </Typography>
 
-        <Typography variant="body1" paragraph>
+        <Typography variant="body1" sx={{ mb: 2 }}>
           {assessment.description}
         </Typography>
 
@@ -367,11 +500,7 @@ const AssessmentView = () => {
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 <Typography variant="body2" fontWeight="bold" color="primary.main">
-                  {(() => {
-                    const completedTests = Object.values(testStatus).filter(status => status?.completed);
-                    console.log('Completed tests:', completedTests);
-                    return completedTests.length;
-                  })()}
+                  {Object.values(testStatus).filter(status => status?.completed || status?.attemptsUsed > 0).length}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">/</Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -381,7 +510,7 @@ const AssessmentView = () => {
               <Box sx={{ width: 100, ml: 1 }}>
                 <LinearProgress
                   variant="determinate"
-                  value={(Object.values(testStatus).filter(status => status?.completed).length / tests.length) * 100}
+                  value={(Object.values(testStatus).filter(status => status?.completed || status?.attemptsUsed > 0).length / tests.length) * 100}
                   sx={{ height: 8, borderRadius: 4 }}
                 />
               </Box>
@@ -416,13 +545,15 @@ const AssessmentView = () => {
               >
                 {tests.map((test) => {
                   console.log(`Test ${test._id} status:`, testStatus[test._id]);
+                  const isAttempted = testStatus[test._id]?.attemptsUsed > 0;
+
                   return (
                     <MenuItem key={test._id} value={test._id}>
                       {test.title} ({test.difficulty} - {test.timeLimit} min)
-                      {testStatus[test._id]?.attempted && (
+                      {isAttempted && (
                         <Chip
-                          label={testStatus[test._id]?.completed ? "Completed" : "Attempted"}
-                          color={testStatus[test._id]?.completed ? "success" : "warning"}
+                          label="Completed"
+                          color="success"
                           size="small"
                           sx={{ ml: 1 }}
                         />
@@ -504,10 +635,10 @@ const AssessmentView = () => {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Are you sure you want to submit this assessment?
-            {Object.values(testStatus).filter(status => status?.completed).length < tests.length && (
+            {Object.values(testStatus).filter(status => status?.completed || status?.attemptsUsed > 0).length < tests.length && (
               <>
                 <br /><br />
-                <strong>Warning:</strong> You have only completed {Object.values(testStatus).filter(status => status?.completed).length} out of {tests.length} tests.
+                <strong>Warning:</strong> You have only completed {Object.values(testStatus).filter(status => status?.completed || status?.attemptsUsed > 0).length} out of {tests.length} tests.
               </>
             )}
             <br /><br />
