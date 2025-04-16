@@ -72,30 +72,29 @@ const LandingPage = () => {
 
   const testimonials = [
     {
-      name: 'Alex Johnson',
-      role: 'Software Engineer at Google',
-      avatar: 'A',
-      content: 'CodeTest helped me prepare for my technical interviews. The platform is intuitive and the challenges are very similar to what I faced in real interviews.'
-    },
-    {
-      name: 'Sarah Chen',
-      role: 'Full Stack Developer',
+      name: 'Sujal Patel',
+      role: 'Intern at OmegaChad',
       avatar: 'S',
-      content: 'I use CodeTest regularly to keep my coding skills sharp. The variety of challenges and the detailed feedback have significantly improved my problem-solving abilities.'
+      content: 'This project was hard! Took a lot of vibes to get it done!'
     },
     {
-      name: 'Michael Rodriguez',
-      role: 'CS Student',
-      avatar: 'M',
-      content: 'As a computer science student, CodeTest has been invaluable for practicing concepts I learn in class. The platform makes coding fun and engaging!'
+      name: 'Pratham Sharda',
+      role: 'Intern at Tower + Atlassian',
+      avatar: 'P',
+      content: "This project was easy for me. Sujal doesn't know what he is talking about"
+    },
+    {
+      name: 'Jiya Desai',
+      role: 'Intern at Barclays',
+      avatar: 'J',
+      content: "I'm the real *technical* person here!"
     }
   ];
 
   const stats = [
-    { value: '500+', label: 'Coding Challenges' },
-    { value: '10,000+', label: 'Active Users' },
-    { value: '5', label: 'Programming Languages' },
-    { value: '24/7', label: 'Support' }
+    { value: '2', label: 'Programming Languages' },
+    { value: 'Python', label: 'Language 1' },
+    { value: 'C++', label: 'Language 2' }
   ];
 
   return (
@@ -253,97 +252,39 @@ const LandingPage = () => {
               transform: 'translateY(50%)',
             }}
           >
-            <Grid container spacing={2} justifyContent="space-around" alignItems="center">
-              {stats.map((stat, index) => (
-                <React.Fragment key={index}>
-                  {index > 0 && (
-                    <Grid item sx={{ display: { xs: 'none', md: 'block' } }}>
-                      <Divider orientation="vertical" flexItem sx={{ height: 40 }} />
-                    </Grid>
-                  )}
-                  <Grid item xs={6} md={2} sx={{ textAlign: 'center' }}>
-                    <Typography variant="h3" component="div" color="primary.main" fontWeight="bold">
-                      {stat.value}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {stat.label}
-                    </Typography>
-                  </Grid>
-                </React.Fragment>
-              ))}
+            <Grid container spacing={2} justifyContent="center" alignItems="center">
+              <Grid item xs={12} md={4} sx={{ textAlign: 'center' }}>
+                <Typography variant="h3" component="div" color="primary.main" fontWeight="bold">
+                  {stats[0].value}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {stats[0].label}
+                </Typography>
+              </Grid>
+
+              <Grid item xs={6} md={4} sx={{ textAlign: 'center' }}>
+                <Typography variant="h4" component="div" color="primary.main" fontWeight="bold">
+                  {stats[1].value}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {stats[1].label}
+                </Typography>
+              </Grid>
+
+              <Grid item xs={6} md={4} sx={{ textAlign: 'center' }}>
+                <Typography variant="h4" component="div" color="primary.main" fontWeight="bold">
+                  {stats[2].value}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {stats[2].label}
+                </Typography>
+              </Grid>
             </Grid>
           </Paper>
         </Container>
       </Box>
 
-      {/* Features Section */}
-      <Container maxWidth="lg" sx={{ mt: { xs: 10, md: 16 }, mb: 8 }}>
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <Typography
-            variant="h3"
-            component="h2"
-            fontWeight="bold"
-            gutterBottom
-          >
-            Why Choose Our Platform?
-          </Typography>
-          <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 700, mx: 'auto' }}>
-            Our comprehensive coding platform offers everything you need to excel in your programming journey.
-          </Typography>
-        </Box>
-
-        <Grid container spacing={4}>
-          {features.map((feature, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card
-                sx={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    transform: 'translateY(-8px)',
-                    boxShadow: '0 12px 20px rgba(0,0,0,0.1)'
-                  }
-                }}
-                elevation={2}
-              >
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-                    <Avatar
-                      sx={{
-                        bgcolor: 'primary.50',
-                        color: 'primary.main',
-                        width: 60,
-                        height: 60,
-                        mb: 2
-                      }}
-                    >
-                      {feature.icon}
-                    </Avatar>
-                  </Box>
-                  <Typography variant="h5" component="h3" align="center" gutterBottom fontWeight={600}>
-                    {feature.title}
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary" align="center">
-                    {feature.description}
-                  </Typography>
-                </CardContent>
-                <CardActions sx={{ justifyContent: 'center', pb: 3 }}>
-                  <Button
-                    component={RouterLink}
-                    to={feature.link}
-                    endIcon={<ArrowForwardIcon />}
-                    sx={{ textTransform: 'none' }}
-                  >
-                    Learn more
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+      {/* Features Section removed as requested */}
 
       {/* How It Works Section */}
       <Box sx={{ bgcolor: 'grey.50', py: 10 }}>
@@ -377,10 +318,10 @@ const LandingPage = () => {
                   <Avatar sx={{ bgcolor: 'primary.main', mr: 2 }}>1</Avatar>
                   <Box>
                     <Typography variant="h5" gutterBottom fontWeight={600}>
-                      Create an Account
+                      Register as an Assessor or Assessee
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
-                      Sign up for free and set up your profile to start your coding journey.
+                      Sign up with your email and choose your role to get started.
                     </Typography>
                   </Box>
                 </Box>
@@ -389,10 +330,10 @@ const LandingPage = () => {
                   <Avatar sx={{ bgcolor: 'primary.main', mr: 2 }}>2</Avatar>
                   <Box>
                     <Typography variant="h5" gutterBottom fontWeight={600}>
-                      Choose a Challenge
+                      Create or Take Assessments
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
-                      Browse our extensive library of coding challenges and select one that matches your skill level.
+                      Assessors can create coding tests and invite students. Assessees can take assigned tests.
                     </Typography>
                   </Box>
                 </Box>
@@ -401,10 +342,10 @@ const LandingPage = () => {
                   <Avatar sx={{ bgcolor: 'primary.main', mr: 2 }}>3</Avatar>
                   <Box>
                     <Typography variant="h5" gutterBottom fontWeight={600}>
-                      Code and Submit
+                      Submit and Review
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
-                      Write your solution in our online IDE, test it, and submit for evaluation. Get instant feedback and improve.
+                      Write code in Python or C++, run tests, and submit your solutions. Assessors can review all submissions.
                     </Typography>
                   </Box>
                 </Box>
@@ -478,72 +419,7 @@ const LandingPage = () => {
         </Grid>
       </Container>
 
-      {/* CTA Section */}
-      <Box
-        sx={{
-          bgcolor: 'primary.main',
-          color: 'white',
-          py: 10,
-          position: 'relative',
-          overflow: 'hidden',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundImage: 'radial-gradient(circle at 75% 75%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%)',
-            zIndex: 1
-          }
-        }}
-      >
-        <Container maxWidth="md" sx={{ position: 'relative', zIndex: 2 }}>
-          <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="h3" component="h2" fontWeight="bold" gutterBottom>
-              Ready to Improve Your Coding Skills?
-            </Typography>
-            <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
-              Join our community of developers and start solving challenges today.
-            </Typography>
-            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
-              <Button
-                variant="contained"
-                color="secondary"
-                size="large"
-                component={RouterLink}
-                to="/register"
-                sx={{
-                  py: 1.5,
-                  px: 4,
-                  fontWeight: 600,
-                  boxShadow: '0 4px 14px 0 rgba(0,0,0,0.2)'
-                }}
-              >
-                Sign Up for Free
-              </Button>
-              <Button
-                variant="outlined"
-                size="large"
-                component={RouterLink}
-                to="/tests"
-                sx={{
-                  py: 1.5,
-                  px: 4,
-                  color: 'white',
-                  borderColor: 'white',
-                  '&:hover': {
-                    borderColor: 'white',
-                    bgcolor: 'rgba(255,255,255,0.1)'
-                  }
-                }}
-              >
-                Browse Challenges
-              </Button>
-            </Stack>
-          </Box>
-        </Container>
-      </Box>
+      {/* CTA Section removed as requested */}
     </Box>
   );
 };

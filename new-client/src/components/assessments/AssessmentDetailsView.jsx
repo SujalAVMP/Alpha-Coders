@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import { getAssessmentById, getTestById, fetchAPI } from '../../utils/api';
+import { getAssessmentById, getTestById, fetchAPI, getAssessmentSubmissions } from '../../utils/api';
 import {
   Box,
   Container,
@@ -20,7 +20,13 @@ import {
   ListItem,
   ListItemText,
   useTheme,
-  useMediaQuery
+  useMediaQuery,
+  Table,
+  TableContainer,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell
 } from '@mui/material';
 import {
   AccessTime as AccessTimeIcon,
@@ -42,7 +48,9 @@ const AssessmentDetailsView = () => {
 
   const [assessment, setAssessment] = useState(null);
   const [tests, setTests] = useState([]);
+  const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingSubmissions, setLoadingSubmissions] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -62,6 +70,21 @@ const AssessmentDetailsView = () => {
         }
 
         setAssessment(response);
+
+        // If user is an assessor and the creator of the assessment, fetch submissions
+        if (user?.role === 'assessor') {
+          console.log('User is assessor, checking if creator:', {
+            createdBy: response.createdBy,
+            userId: user?._id,
+            isCreator: response.createdBy?.toString() === user?._id?.toString()
+          });
+
+          // Compare IDs as strings to handle ObjectId vs string comparison
+          if (response.createdBy?.toString() === user?._id?.toString()) {
+            console.log('User is the creator, fetching submissions');
+            fetchSubmissions(assessmentId);
+          }
+        }
 
         // Use testDetails from the response if available
         if (response.testDetails && Array.isArray(response.testDetails)) {
@@ -105,7 +128,24 @@ const AssessmentDetailsView = () => {
       setError('Invalid assessment ID');
       setLoading(false);
     }
-  }, [assessmentId]);
+  }, [assessmentId, user?.role, user?._id]);
+
+  // Function to fetch submissions for this assessment
+  const fetchSubmissions = async (assessmentId) => {
+    try {
+      setLoadingSubmissions(true);
+      console.log('Fetching submissions for assessment:', assessmentId);
+
+      const submissionsData = await getAssessmentSubmissions(assessmentId);
+      console.log('Submissions data received:', submissionsData);
+      setSubmissions(submissionsData || []);
+    } catch (error) {
+      console.error('Error fetching submissions:', error);
+      // Don't set the main error state, just log it
+    } finally {
+      setLoadingSubmissions(false);
+    }
+  };
 
   // Check if assessment is active (current time is between start and end time)
   const isAssessmentActive = () => {
@@ -306,6 +346,75 @@ const AssessmentDetailsView = () => {
           </Grid>
         )}
       </Paper>
+
+      {/* Submissions Section - Only visible to assessors who created the assessment */}
+      {user?.role === 'assessor' && assessment?.createdBy?.toString() === user?._id?.toString() && (
+        <Paper sx={{ p: responsivePadding, mb: 4, borderRadius: 2 }}>
+          <Typography variant="h6" gutterBottom>
+            Submissions
+          </Typography>
+          <Divider sx={{ mb: 2 }} />
+
+          {loadingSubmissions && (
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: 2 }}>
+              <CircularProgress size={24} />
+            </Box>
+          )}
+
+          {!loadingSubmissions && submissions.length === 0 && (
+            <Alert severity="info">
+              No submissions yet.
+            </Alert>
+          )}
+
+          {!loadingSubmissions && submissions.length > 0 && (
+            <Box sx={{ overflowX: 'auto' }}>
+              <Table size="small">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Student</TableCell>
+                    <TableCell>Submitted At</TableCell>
+                    <TableCell>Status</TableCell>
+                    <TableCell>Score</TableCell>
+                    <TableCell>Actions</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {submissions.map((submission) => (
+                    <TableRow key={submission._id}>
+                      <TableCell>{submission.user?.email || 'Unknown'}</TableCell>
+                      <TableCell>{new Date(submission.submittedAt).toLocaleString()}</TableCell>
+                      <TableCell>
+                        <Chip
+                          label={submission.status}
+                          size="small"
+                          color={
+                            submission.status === 'completed' ? 'success' :
+                            submission.status === 'failed' ? 'error' : 'warning'
+                          }
+                        />
+                      </TableCell>
+                      <TableCell>
+                        {submission.testCasesPassed}/{submission.totalTestCases} ({submission.percentageScore}%)
+                      </TableCell>
+                      <TableCell>
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          component={RouterLink}
+                          to={`/assessments/submissions/${submission._id}`}
+                        >
+                          View
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Box>
+          )}
+        </Paper>
+      )}
 
       <Button
         component={RouterLink}

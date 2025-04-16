@@ -36,7 +36,7 @@ import {
   Email as EmailIcon,
   ArrowBack as ArrowBackIcon
 } from '@mui/icons-material';
-import { getAllTests, getAssessmentById, deleteAssessment } from '../../utils/api';
+import { getAllTests, getAssessmentById, deleteAssessment, getAssessmentSubmissions } from '../../utils/api';
 
 const AssessmentDetails = () => {
   const { assessmentId } = useParams();
@@ -47,7 +47,36 @@ const AssessmentDetails = () => {
   const [error, setError] = useState('');
   const [assessment, setAssessment] = useState(null);
   const [tests, setTests] = useState([]);
+  const [submissions, setSubmissions] = useState([]);
+  const [loadingSubmissions, setLoadingSubmissions] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+
+  // Function to fetch submissions for this assessment
+  const fetchSubmissions = async (id) => {
+    try {
+      setLoadingSubmissions(true);
+      console.log('Fetching submissions for assessment:', id);
+      const userEmail = sessionStorage.getItem('userEmail') || '';
+      const response = await fetch(`http://localhost:5002/api/assessments/${id}/submissions?email=${encodeURIComponent(userEmail)}`, {
+        headers: {
+          'Authorization': `Bearer ${sessionStorage.getItem('token') || ''}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch submissions: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('Submissions data received:', data);
+      setSubmissions(data || []);
+    } catch (error) {
+      console.error('Error fetching submissions:', error);
+      // Don't set the main error state, just log it
+    } finally {
+      setLoadingSubmissions(false);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,6 +134,12 @@ const AssessmentDetails = () => {
           }
 
           setAssessment(assessmentData);
+
+          // If user is an assessor, fetch submissions for this assessment
+          if (user?.role === 'assessor') {
+            console.log('User is assessor, fetching submissions');
+            fetchSubmissions(assessmentId);
+          }
         } catch (error) {
           console.error('Error fetching assessment:', error);
           setError('Failed to load assessment data. Please try again.');
@@ -124,7 +159,7 @@ const AssessmentDetails = () => {
       setError('Invalid assessment ID');
       setLoading(false);
     }
-  }, [assessmentId, user?.id]);
+  }, [assessmentId, user?.id, user?.role]);
 
   const handleDeleteAssessment = async () => {
     try {
@@ -146,7 +181,7 @@ const AssessmentDetails = () => {
   };
 
   const isAssessor = user?.role === 'assessor';
-  const isCreator = assessment?.createdBy === user?._id;
+  const isCreator = assessment?.createdBy?.toString() === user?._id?.toString();
 
   if (loading) {
     return (
@@ -406,36 +441,57 @@ const AssessmentDetails = () => {
                 </Typography>
                 <Divider sx={{ mb: 2 }} />
 
-                {assessment.submissions.length === 0 ? (
+                {loadingSubmissions && (
+                  <Box sx={{ display: 'flex', justifyContent: 'center', p: 2 }}>
+                    <CircularProgress size={24} />
+                  </Box>
+                )}
+
+                {!loadingSubmissions && submissions.length === 0 && (
                   <Alert severity="info">
                     No submissions yet.
                   </Alert>
-                ) : (
+                )}
+
+                {!loadingSubmissions && submissions.length > 0 && (
                   <TableContainer>
                     <Table size="small">
                       <TableHead>
                         <TableRow>
                           <TableCell>Student</TableCell>
+                          <TableCell>Submitted At</TableCell>
                           <TableCell>Status</TableCell>
                           <TableCell>Score</TableCell>
+                          <TableCell>Actions</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {assessment.submissions.map((submission) => (
-                          <TableRow key={submission.id}>
-                            <TableCell>{submission.studentEmail}</TableCell>
+                        {submissions.map((submission) => (
+                          <TableRow key={submission._id}>
+                            <TableCell>{submission.user?.email || 'Unknown'}</TableCell>
+                            <TableCell>{new Date(submission.submittedAt).toLocaleString()}</TableCell>
                             <TableCell>
                               <Chip
                                 label={submission.status}
                                 size="small"
                                 color={
-                                  submission.status === 'In Progress' ? 'warning' :
-                                  submission.status === 'Completed' ? 'success' : 'default'
+                                  submission.status === 'completed' ? 'success' :
+                                  submission.status === 'failed' ? 'error' : 'warning'
                                 }
                               />
                             </TableCell>
                             <TableCell>
-                              {submission.score}/{submission.totalTests}
+                              {submission.testCasesPassed}/{submission.totalTestCases} ({submission.percentageScore}%)
+                            </TableCell>
+                            <TableCell>
+                              <Button
+                                size="small"
+                                variant="outlined"
+                                component={Link}
+                                to={`/assessments/submissions/${submission._id}`}
+                              >
+                                View
+                              </Button>
                             </TableCell>
                           </TableRow>
                         ))}

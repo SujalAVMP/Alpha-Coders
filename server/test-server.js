@@ -3,10 +3,14 @@ const cors = require('cors');
 const { executeCode, runTestCases, buildDockerImage } = require('./code-execution/executor');
 const path = require('path');
 const fs = require('fs').promises;
+const fsSync = require('fs');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const connectDB = require('./config/db');
 const { User, Test, Assessment, Submission, Notification, Session } = require('./models');
+
+// Create a write stream for logging
+const accessLogStream = fsSync.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
 const sampleTestTemplates = require('./test-templates');
 const standardTemplates = require('./standard-templates');
 
@@ -101,9 +105,161 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// Add a middleware to log all requests
+app.use((req, res, next) => {
+  const logMessage = `${new Date().toISOString()} - ${req.method} ${req.originalUrl}\n`;
+  console.log(logMessage.trim());
+  accessLogStream.write(logMessage);
+  next();
+});
+
 // Test route
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Test route is working' });
+});
+
+// Test route for submissions
+app.get('/api/test-submissions/:id', cors(), async (req, res) => {
+  try {
+    const assessmentId = req.params.id;
+    console.log('Test submissions route called for assessment:', assessmentId);
+
+    // Find all submissions for this assessment
+    const submissions = await Submission.find({
+      assessment: assessmentId,
+      isAssessmentSubmission: true
+    }).populate('user');
+
+    console.log(`Found ${submissions.length} submissions for assessment ${assessmentId}`);
+
+    // Return raw submissions data for debugging
+    res.json({
+      count: submissions.length,
+      submissions: submissions.map(s => ({
+        _id: s._id,
+        user: s.user,
+        submittedAt: s.submittedAt,
+        status: s.status,
+        testCasesPassed: s.testCasesPassed,
+        totalTestCases: s.totalTestCases
+      }))
+    });
+  } catch (error) {
+    console.error('Error in test submissions route:', error);
+    res.status(500).json({ error: 'Failed to fetch test submissions', message: error.message });
+  }
+});
+
+// Get all submissions for an assessment (assessor only)
+app.get('/api/assessments/:id/submissions', async (req, res) => {
+  // Log the request
+  console.log('GET /api/assessments/:id/submissions - Received request');
+  console.log('Request params:', req.params);
+  console.log('Request query:', req.query);
+  console.log('Request headers:', req.headers);
+  console.log('GET /api/assessments/:id/submissions - Received request for assessment submissions');
+  console.log('Assessment ID:', req.params.id);
+  console.log('Query params:', req.query);
+  try {
+    const assessmentId = req.params.id;
+    const userEmail = req.query.email;
+
+    if (!userEmail) {
+      return res.status(400).json({ error: 'Email is required' });
+    }
+
+    // Find the user
+    const user = await User.findOne({ email: userEmail });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Check if the user is an assessor
+    if (user.role !== 'assessor') {
+      return res.status(403).json({ error: 'Only assessors can view all submissions for an assessment' });
+    }
+
+    // Check if the ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(assessmentId)) {
+      console.error('Invalid assessment ID format:', assessmentId);
+      return res.status(400).json({ error: 'Invalid assessment ID format' });
+    }
+
+    // Find the assessment
+    const assessment = await Assessment.findById(assessmentId);
+    if (!assessment) {
+      return res.status(404).json({ error: 'Assessment not found' });
+    }
+
+    // Check if the user is the creator of the assessment
+    if (assessment.createdBy.toString() !== user._id.toString()) {
+      return res.status(403).json({ error: 'Only the creator of the assessment can view all submissions' });
+    }
+
+    // Find all submissions for this assessment
+    const submissions = await Submission.find({
+      assessment: assessmentId,
+      isAssessmentSubmission: true
+    }).populate('user');
+
+    console.log(`Found ${submissions.length} submissions for assessment ${assessmentId}`);
+
+    // If user field is not populated, populate it manually
+    for (let i = 0; i < submissions.length; i++) {
+      if (!submissions[i].user && submissions[i].user !== null) {
+        // Try to find the user by ID
+        try {
+          const userId = submissions[i].user;
+          const user = await User.findById(userId);
+          if (user) {
+            submissions[i].user = user;
+            console.log(`Manually populated user for submission ${submissions[i]._id}`);
+          }
+        } catch (err) {
+          console.error(`Error populating user for submission ${submissions[i]._id}:`, err);
+        }
+      }
+    }
+
+    console.log(`Found ${submissions.length} submissions for assessment ${assessmentId}`);
+
+    // Format the submissions for the response
+    const formattedSubmissions = submissions.map(submission => {
+      // Get user info, handling the case where user might be null
+      let userInfo = { _id: null, email: 'Unknown', name: 'Unknown User' };
+
+      if (submission.user) {
+        if (typeof submission.user === 'object') {
+          userInfo = {
+            _id: submission.user._id,
+            email: submission.user.email || 'Unknown',
+            name: submission.user.name || 'Unknown User'
+          };
+        } else {
+          // If user is just an ID, use that
+          userInfo._id = submission.user;
+        }
+      }
+
+      return {
+        _id: submission._id,
+        user: userInfo,
+        submittedAt: submission.submittedAt,
+        status: submission.status || 'completed',
+        testCasesPassed: submission.testCasesPassed || 0,
+        totalTestCases: submission.totalTestCases || 0,
+        percentageScore: submission.totalTestCases > 0 ?
+          Math.round((submission.testCasesPassed / submission.totalTestCases) * 100) : 0
+      };
+    });
+
+    console.log('Formatted submissions:', formattedSubmissions);
+
+    res.json(formattedSubmissions);
+  } catch (error) {
+    console.error('Error fetching assessment submissions:', error);
+    res.status(500).json({ error: 'Failed to fetch assessment submissions', message: error.message });
+  }
 });
 
 // Generate a unique session ID
@@ -3494,6 +3650,8 @@ app.get('/api/debug/assessments', async (_req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
+
+
 
 // Default route
 app.get('/', (_req, res) => {

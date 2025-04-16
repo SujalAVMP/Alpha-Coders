@@ -279,6 +279,21 @@ export const getAssessmentSubmissionById = (id) => {
   return fetchAPI(`/assessments/submissions/${id}?email=${encodeURIComponent(sessionStorage.getItem('userEmail') || '')}`);
 };
 
+export const getAssessmentSubmissions = (assessmentId) => {
+  if (!assessmentId) {
+    console.error('Invalid assessment ID:', assessmentId);
+    return Promise.reject(new Error('Invalid assessment ID'));
+  }
+  console.log('Fetching submissions for assessment with ID:', assessmentId);
+
+  // Get user email from session storage
+  const userEmail = sessionStorage.getItem('userEmail') || '';
+  console.log('User email for submissions request:', userEmail);
+
+  // Make sure to use the correct URL format with proper encoding
+  return fetchAPI(`/assessments/${assessmentId}/submissions?email=${encodeURIComponent(userEmail)}`);
+};
+
 export const getSubmissionById = (id) => {
   if (!id) {
     console.error('Invalid submission ID:', id);
@@ -661,6 +676,7 @@ export default {
   getUserAssessmentSubmissions,
   getSubmissionById,
   getAssessmentSubmissionById,
+  getAssessmentSubmissions,
   deleteSubmission,
 
   // Code Execution
