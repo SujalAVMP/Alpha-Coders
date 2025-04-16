@@ -2183,15 +2183,15 @@ app.post('/api/code/tests/:testId/run', async (req, res) => {
     // Run test cases
     const results = await runTestCases(code, language, testCases);
 
-    const passedCount = results.filter(tc => tc.passed).length;
+    const testCasesPassed = results.filter(tc => tc.passed).length;
 
     res.json({
       results,
       summary: {
         totalTestCases: testCases.length,
-        passedTestCases: passedCount,
-        failedTestCases: testCases.length - passedCount,
-        status: passedCount === testCases.length ? 'Accepted' : 'Wrong Answer'
+        passedTestCases: testCasesPassed,
+        failedTestCases: testCases.length - testCasesPassed,
+        status: testCasesPassed === testCases.length ? 'Accepted' : 'Wrong Answer'
       }
     });
   } catch (error) {
@@ -2257,19 +2257,26 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
       }
 
       // Check if the user has attempts remaining for this test in this assessment
+      // Initialize testAttempts Map if it doesn't exist
       if (!assessment.testAttempts) {
-        assessment.testAttempts = {};
+        assessment.testAttempts = new Map();
       }
 
-      if (!assessment.testAttempts[user._id]) {
-        assessment.testAttempts[user._id] = {};
+      // Get or create the user's test attempts Map
+      let userTestAttempts = assessment.testAttempts.get(user._id.toString());
+      if (!userTestAttempts) {
+        userTestAttempts = new Map();
+        assessment.testAttempts.set(user._id.toString(), userTestAttempts);
       }
 
-      if (!assessment.testAttempts[user._id][testId]) {
-        assessment.testAttempts[user._id][testId] = 0;
+      // Get or create the attempts for this specific test
+      let testAttempt = userTestAttempts.get(testId.toString());
+      if (!testAttempt) {
+        testAttempt = { attemptsUsed: 0, lastAttemptAt: null, results: null };
+        userTestAttempts.set(testId.toString(), testAttempt);
       }
 
-      const attemptsUsed = assessment.testAttempts[user._id][testId];
+      const attemptsUsed = testAttempt.attemptsUsed || 0;
       const maxAttempts = assessment.maxAttempts || 1;
 
       console.log(`User ${user.email} has used ${attemptsUsed} of ${maxAttempts} attempts for test ${testId} in assessment ${assessmentId}`);
@@ -2283,15 +2290,13 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
       }
 
       // Increment the attempts counter
-      assessment.testAttempts[user._id][testId]++;
+      testAttempt.attemptsUsed++;
+      testAttempt.lastAttemptAt = new Date();
+      userTestAttempts.set(testId.toString(), testAttempt);
+      assessment.testAttempts.set(user._id.toString(), userTestAttempts);
 
-      // Store the test results for this submission
-      if (!assessment.testResults) {
-        assessment.testResults = {};
-      }
-      if (!assessment.testResults[user._id]) {
-        assessment.testResults[user._id] = {};
-      }
+      // Store the test results in the testAttempt
+      // Results will be updated after test execution
     }
 
     // Get test cases from the test object - include ALL test cases for submission
@@ -2321,8 +2326,8 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
     // Run test cases
     const results = await runTestCases(code, language, testCases);
 
-    const passedCount = results.filter(tc => tc.passed).length;
-    const status = passedCount === testCases.length ? 'Accepted' : 'Wrong Answer';
+    const testCasesPassed = results.filter(tc => tc.passed).length;
+    const status = testCasesPassed === testCases.length ? 'Accepted' : 'Wrong Answer';
 
     // For hidden test cases, remove input and expected output details
     const sanitizedResults = results.map(result => {
@@ -2356,15 +2361,40 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
 
       const user = await User.findOne({ email: userEmail });
 
-      if (assessment && assessment.testResults && user) {
-        // Store the actual test results
-        assessment.testResults[user._id][testId] = {
-          testCasesPassed: passedCount,
+      if (assessment && user) {
+        // Initialize testAttempts Map if it doesn't exist
+        if (!assessment.testAttempts) {
+          assessment.testAttempts = new Map();
+        }
+
+        // Get or create the user's test attempts Map
+        let userTestAttempts = assessment.testAttempts.get(user._id.toString());
+        if (!userTestAttempts) {
+          userTestAttempts = new Map();
+          assessment.testAttempts.set(user._id.toString(), userTestAttempts);
+        }
+
+        // Get or create the attempts for this specific test
+        let testAttempt = userTestAttempts.get(testId.toString());
+        if (!testAttempt) {
+          testAttempt = { attemptsUsed: 1, lastAttemptAt: new Date(), results: null };
+        }
+
+        // Store the test results
+        testAttempt.results = {
+          testCasesPassed: testCasesPassed,
           totalTestCases: testCases.length,
-          score: Math.round((passedCount / testCases.length) * 100),
-          submittedAt: new Date().toISOString(),
+          score: Math.round((testCasesPassed / testCases.length) * 100),
+          submittedAt: new Date(),
           language: language
         };
+
+        // Update the Maps
+        userTestAttempts.set(testId.toString(), testAttempt);
+        assessment.testAttempts.set(user._id.toString(), userTestAttempts);
+
+        // Save the assessment
+        await assessment.save();
       }
     }
 
@@ -2388,7 +2418,7 @@ app.post('/api/tests/:testId/submissions', async (req, res) => {
       code,
       language,
       status: status === 'Accepted' ? 'completed' : 'failed',
-      testCasesPassed: passedCount,
+      testCasesPassed: testCasesPassed,
       totalTestCases: testCases.length,
       executionTime: avgExecutionTime,
       memoryUsed: avgMemoryUsed,
@@ -2703,15 +2733,14 @@ app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
 
     await submission.save();
 
-    // Mark the assessment as submitted for this user
-    // Update the assessment to mark it as submitted for this user
+    // Mark the assessment as submitted for this user ONLY
+    // Update the assessment to mark it as submitted for this specific user
     const updatedAssessment = await Assessment.findByIdAndUpdate(
       assessmentId,
       {
         $set: {
-          submitted: true,
-          submittedAt: submittedAt,
-          // Store the submission status for this specific user
+          // Store the submission status for this specific user only
+          // Do NOT set the general 'submitted' flag to true
           [`userSubmissions.${user._id}`]: {
             submitted: true,
             submittedAt: submittedAt
@@ -2721,9 +2750,10 @@ app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
       { new: true }
     );
 
-    console.log('Updated assessment with submission status:', {
+    console.log('Updated assessment with user-specific submission status:', {
       assessmentId,
-      submitted: true,
+      userId: user._id,
+      userEmail: user.email,
       submittedAt: submittedAt,
       userSubmission: updatedAssessment?.userSubmissions?.[user._id.toString()]
     });
@@ -2831,9 +2861,9 @@ app.get('/api/code/submissions/:id', async (req, res) => {
     }
 
     // Calculate score based on passed test cases
-    const passedCount = testResults.filter(tc => tc.passed).length;
-    const totalCount = testResults.length || 1; // Avoid division by zero
-    const score = Math.round((passedCount / totalCount) * 100);
+    const testCasesPassed = testResults.filter(tc => tc.passed).length;
+    const totalTestCases = testResults.length || 1; // Avoid division by zero
+    const score = Math.round((testCasesPassed / totalTestCases) * 100);
 
     // Create the response object
     const submissionResponse = {
@@ -2854,8 +2884,8 @@ app.get('/api/code/submissions/:id', async (req, res) => {
       code: submission.code || `# Code for ${test.title}`,
       language: submission.language || 'python',
       status: submission.status || (score >= 70 ? 'Accepted' : 'Failed'),
-      testCasesPassed: submission.testCasesPassed || passedCount,
-      totalTestCases: submission.totalTestCases || totalCount,
+      testCasesPassed: submission.testCasesPassed || testCasesPassed,
+      totalTestCases: submission.totalTestCases || totalTestCases,
       score: submission.score || score,
       executionTime: submission.avgExecutionTime || Math.floor(Math.random() * 100) + 50,
       memoryUsed: submission.avgMemoryUsed || Math.floor(Math.random() * 20) + 10,
@@ -2958,16 +2988,21 @@ app.delete('/api/users/me', async (req, res) => {
     // Remove user's notifications
     await Notification.deleteMany({ userId });
 
-    // Remove user's test attempts and submissions
-    await Assessment.updateMany(
-      { 'testAttempts.user': userId },
-      { $pull: { testAttempts: { user: userId } } }
-    );
+    // Remove user's test attempts and submissions from assessments
+    const assessments = await Assessment.find();
+    for (const assessment of assessments) {
+      // Remove from testAttempts Map
+      if (assessment.testAttempts && assessment.testAttempts.has(userId.toString())) {
+        assessment.testAttempts.delete(userId.toString());
+      }
 
-    await Assessment.updateMany(
-      { 'submissions.user': userId },
-      { $pull: { submissions: { user: userId } } }
-    );
+      // Remove from userSubmissions Map
+      if (assessment.userSubmissions && assessment.userSubmissions.has(userId.toString())) {
+        assessment.userSubmissions.delete(userId.toString());
+      }
+
+      await assessment.save();
+    }
 
     // Remove user's submissions
     await Submission.deleteMany({ user: userId });
@@ -3033,9 +3068,25 @@ app.get('/api/assessments/:assessmentId/tests/:testId/attempts', async (req, res
       assessment: assessmentId
     });
 
-    // Count the number of attempts used
-    const attemptsUsed = submissions.length;
+    // Get attempts from the testAttempts Map
+    let attemptsUsed = 0;
     const maxAttempts = assessment.maxAttempts || 1;
+
+    // Check if the user has attempts recorded in the testAttempts Map
+    if (assessment.testAttempts && assessment.testAttempts instanceof Map) {
+      const userTestAttempts = assessment.testAttempts.get(user._id.toString());
+      if (userTestAttempts && userTestAttempts instanceof Map) {
+        const testAttempt = userTestAttempts.get(testId.toString());
+        if (testAttempt) {
+          attemptsUsed = testAttempt.attemptsUsed || 0;
+        }
+      }
+    }
+
+    // Fallback to counting submissions if no attempts are recorded in the Map
+    if (attemptsUsed === 0 && submissions.length > 0) {
+      attemptsUsed = submissions.length;
+    }
 
     // Check if the assessment has been submitted
     // Only consider submissions that are specifically for the entire assessment, not individual test submissions

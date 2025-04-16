@@ -76,7 +76,7 @@ router.get('/:id', authenticateToken, async (req, res) => {
 router.post('/test/:testId', authenticateToken, async (req, res) => {
   try {
     const { code, language } = req.body;
-    
+
     // Validate language
     if (!['python', 'cpp'].includes(language.toLowerCase())) {
       return res.status(400).json({ message: 'Unsupported language. Only Python and C++ are supported.' });
@@ -95,11 +95,11 @@ router.post('/test/:testId', authenticateToken, async (req, res) => {
 
     // Run test cases
     const results = await runTestCases(code, language, testCases);
-    
+
     // Calculate results
-    const passedCount = results.filter(tc => tc.passed).length;
-    const status = passedCount === testCases.length ? 'Accepted' : 'Wrong Answer';
-    
+    const testCasesPassed = results.filter(tc => tc.passed).length;
+    const status = testCasesPassed === testCases.length ? 'Accepted' : 'Wrong Answer';
+
     // Calculate average execution time and memory usage
     const avgExecutionTime = Math.round(
       results.reduce((sum, tc) => sum + tc.executionTime, 0) / results.length
@@ -115,7 +115,7 @@ router.post('/test/:testId', authenticateToken, async (req, res) => {
       code,
       language,
       status,
-      testCasesPassed: passedCount,
+      testCasesPassed: testCasesPassed,
       totalTestCases: testCases.length,
       executionTime: avgExecutionTime,
       memoryUsed: avgMemoryUsed,
@@ -136,7 +136,7 @@ router.post('/test/:testId', authenticateToken, async (req, res) => {
 router.post('/execute', authenticateToken, async (req, res) => {
   try {
     const { code, language, input } = req.body;
-    
+
     // Validate language
     if (!['python', 'cpp'].includes(language.toLowerCase())) {
       return res.status(400).json({ message: 'Unsupported language. Only Python and C++ are supported.' });
@@ -144,7 +144,7 @@ router.post('/execute', authenticateToken, async (req, res) => {
 
     // Execute code
     const result = await executeCode(code, language, input);
-    
+
     res.json(result);
   } catch (error) {
     console.error('Execute code error:', error);

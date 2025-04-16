@@ -24,40 +24,7 @@ const TestResultSchema = new mongoose.Schema({
   }
 });
 
-const TestAttemptSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  test: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Test',
-    required: true
-  },
-  attemptsUsed: {
-    type: Number,
-    default: 0
-  },
-  results: TestResultSchema
-});
-
-const SubmissionSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  submittedAt: {
-    type: Date,
-    default: Date.now
-  },
-  status: {
-    type: String,
-    enum: ['completed', 'partial', 'failed'],
-    default: 'completed'
-  }
-});
+// Removed TestAttemptSchema and SubmissionSchema in favor of Maps
 
 const AssessmentSchema = new mongoose.Schema({
   title: {
@@ -88,10 +55,7 @@ const AssessmentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Test'
   }],
-  invitedStudents: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }],
+  // Standardized on invitedUsers for all invitations
   invitedUsers: [
     {
       type: mongoose.Schema.Types.Mixed,
@@ -100,8 +64,19 @@ const AssessmentSchema = new mongoose.Schema({
       // When it's an unregistered email, we store {email: 'email@example.com', status: 'Invited'}
     }
   ],
-  testAttempts: [TestAttemptSchema],
-  submissions: [SubmissionSchema],
+  // Track test attempts for each user using a Map
+  testAttempts: {
+    type: Map,
+    of: {
+      type: Map,
+      of: {
+        attemptsUsed: Number,
+        lastAttemptAt: Date,
+        results: TestResultSchema
+      }
+    },
+    default: {}
+  },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

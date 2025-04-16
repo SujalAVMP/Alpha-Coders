@@ -58,14 +58,7 @@ const SubmissionSchema = new mongoose.Schema({
     default: 'completed'
   },
   testCaseResults: [TestCaseResultSchema],
-  passedCount: {
-    type: Number,
-    default: 0
-  },
-  totalCount: {
-    type: Number,
-    default: 0
-  },
+  // passedCount and totalCount fields removed in favor of testCasesPassed and totalTestCases
   score: {
     type: Number,
     default: 0
