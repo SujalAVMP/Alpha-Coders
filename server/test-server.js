@@ -3294,13 +3294,46 @@ app.get('/api/assessments/submissions/:id', async (req, res) => {
       };
     }).filter(result => result !== null);
 
+    // Get all tests in the assessment, including those that weren't attempted
+    const allTests = [];
+
+    // Populate all tests from the assessment
+    if (assessment.tests && Array.isArray(assessment.tests)) {
+      for (const testId of assessment.tests) {
+        try {
+          const test = await Test.findById(testId);
+          if (test) {
+            // Check if this test has a submission
+            const hasSubmission = testResults.some(result => result.testId.toString() === testId.toString());
+
+            if (!hasSubmission) {
+              // Add unattempted test with default values
+              allTests.push({
+                testId: test._id,
+                testTitle: test.title,
+                status: 'Not Attempted',
+                score: 0,
+                testCasesPassed: 0,
+                totalTestCases: test.testCases ? test.testCases.length : 0,
+                language: 'python', // Default language
+                submittedAt: null
+              });
+            }
+          }
+        } catch (err) {
+          console.error(`Error finding test with ID ${testId}:`, err);
+        }
+      }
+    }
+
     // Create the submission object
     const submissionDetails = {
       id: assessmentId,
       assessmentId: assessmentId,
       assessmentTitle: assessment.title,
       submittedAt: assessmentSubmission ? assessmentSubmission.submittedAt : new Date(),
-      testResults: testResults
+      testResults: testResults,
+      allTests: allTests // Include all tests in the assessment, including unattempted ones
     };
 
     res.json(submissionDetails);
