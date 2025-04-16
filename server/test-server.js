@@ -1051,16 +1051,23 @@ app.get('/api/tests/:id', async (req, res) => {
     // Add detailed test information
     const detailedTest = {
       ...test.toObject(),
-      // Provide default values for missing fields if needed
-      problemStatement: test.problemStatement || 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.',
-      inputFormat: test.inputFormat || 'First line contains an array of integers separated by space. Second line contains the target integer.',
-      outputFormat: test.outputFormat || 'Return the indices of the two numbers that add up to the target.',
-      constraints: test.constraints || 'You may assume that each input would have exactly one solution, and you may not use the same element twice.',
-      sampleInput: test.sampleInput || '[2, 7, 11, 15]\n9',
-      sampleOutput: test.sampleOutput || '[0, 1]',
+      // Use the actual test data without fallbacks to avoid "Two Sum" appearing incorrectly
+      problemStatement: test.problemStatement,
+      inputFormat: test.inputFormat,
+      outputFormat: test.outputFormat,
+      constraints: test.constraints,
+      sampleInput: test.sampleInput,
+      sampleOutput: test.sampleOutput,
       // Use standard templates if none exist
       codeTemplates: test.codeTemplates.length > 0 ? test.codeTemplates : standardTemplates
     };
+
+    // Log the test details to help debug
+    console.log(`Returning test details for ${testId}: ${test.title}`);
+    console.log(`Problem statement: ${detailedTest.problemStatement ? detailedTest.problemStatement.substring(0, 50) + '...' : 'None'}`);
+    console.log(`Sample input: ${detailedTest.sampleInput ? detailedTest.sampleInput.substring(0, 20) + '...' : 'None'}`);
+    console.log(`Sample output: ${detailedTest.sampleOutput ? detailedTest.sampleOutput.substring(0, 20) + '...' : 'None'}`);
+    console.log(`Code templates: ${detailedTest.codeTemplates.length} templates available`);
 
     // If the user is an assessee, filter out hidden test cases
     if (user.role === 'assessee') {
@@ -2491,6 +2498,7 @@ app.get('/api/assessments/user-submissions', async (req, res) => {
   try {
     // Get the user email from the request
     const userEmail = req.query.email;
+    console.log('Fetching user submissions for email:', userEmail);
 
     if (!userEmail) {
       return res.status(400).json({ error: 'Email is required' });
@@ -2503,6 +2511,8 @@ app.get('/api/assessments/user-submissions', async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
+    console.log('Found user:', user._id, user.email);
+
     // Find all submissions for this user
     const submissions = await Submission.find({ $or: [{ userId: user._id }, { user: user._id }] })
       .populate('test')
@@ -2513,9 +2523,12 @@ app.get('/api/assessments/user-submissions', async (req, res) => {
 
     console.log(`Found ${submissions.length} submissions for user ${user.email}`);
 
+    console.log(`Found ${submissions.length} submissions for user ${user.email}`);
+
     // Group submissions by assessment
     const assessmentMap = {};
     const submissionsByTest = {};
+    console.log('Processing submissions for My Submissions page');
 
     // First, organize submissions by test ID for easy lookup
     submissions.forEach(submission => {
@@ -2524,6 +2537,7 @@ app.get('/api/assessments/user-submissions', async (req, res) => {
         if (!submissionsByTest[testId] ||
             new Date(submission.submittedAt) > new Date(submissionsByTest[testId].submittedAt)) {
           submissionsByTest[testId] = submission;
+          console.log(`Found submission for test ${testId}: testCasesPassed=${submission.testCasesPassed}, totalTestCases=${submission.totalTestCases}`);
         }
       }
     });
@@ -2541,6 +2555,11 @@ app.get('/api/assessments/user-submissions', async (req, res) => {
             s.assessment._id.toString() === assessmentId &&
             s.isAssessmentSubmission === true
           );
+
+          console.log(`Creating assessment entry for ${assessmentId}: ${submission.assessment.title}`);
+          if (assessmentSubmission) {
+            console.log(`Found assessment submission: testCasesPassed=${assessmentSubmission.testCasesPassed}, totalTestCases=${assessmentSubmission.totalTestCases}`);
+          }
 
           assessmentMap[assessmentId] = {
             id: assessmentId,
@@ -2562,6 +2581,9 @@ app.get('/api/assessments/user-submissions', async (req, res) => {
 
               if (!testExists) {
                 if (testSubmission) {
+                  // Log the test submission data
+                  console.log(`Adding test ${testId} with submission data: testCasesPassed=${testSubmission.testCasesPassed}, totalTestCases=${testSubmission.totalTestCases}`);
+
                   // Add test with submission data
                   assessmentMap[assessmentId].tests.push({
                     id: testId,
@@ -2571,13 +2593,14 @@ app.get('/api/assessments/user-submissions', async (req, res) => {
                     status: testSubmission.status || 'Completed',
                     score: testSubmission.score || 0,
                     testCasesPassed: testSubmission.testCasesPassed || 0,
-                    totalTestCases: testSubmission.totalTestCases || 0,
+                    totalTestCases: testSubmission.totalTestCases || (test.testCases ? test.testCases.length : 0),
                     executionTime: testSubmission.avgExecutionTime || 0,
                     memoryUsed: testSubmission.avgMemoryUsed || 0,
                     submissionId: testSubmission._id.toString()
                   });
                 } else {
                   // Add test without submission data
+                  console.log(`Adding test ${testId} without submission data`);
                   assessmentMap[assessmentId].tests.push({
                     id: testId,
                     title: test.title || 'Unknown Test',
@@ -2586,7 +2609,7 @@ app.get('/api/assessments/user-submissions', async (req, res) => {
                     status: 'Not Attempted',
                     score: 0,
                     testCasesPassed: 0,
-                    totalTestCases: 0,
+                    totalTestCases: test.testCases ? test.testCases.length : 0,
                     executionTime: 0,
                     memoryUsed: 0,
                     submissionId: null

@@ -1,1771 +1,999 @@
 Checking Docker and pulling required images...
-(node:2268800) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:2295629) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
 (Use `node --trace-warnings ...` to show where the warning was created)
-(node:2268800) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:2295629) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
 MongoDB Connected: localhost
+Found 5 existing template tests. Skipping seed.
 Docker version: Docker version 28.0.4, build b8034c0
 
 Pulling Python image...
-Found 5 existing template tests. Skipping seed.
 Python image pulled successfully
 Pulling GCC image...
 GCC image pulled successfully
 Docker setup completed
 Test server running on port 5002
+Login request body: { email: '2', password: '2' }
+Session ID for login: m9joalzcpuv9g5t5pjh
+Found user: 2
+Login successful for user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Session ID for /me: m9joalzcpuv9g5t5pjh
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Token validation successful, user: 2
+Notifications for user 2 : 2
+Returning notifications for user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Session ID for /me: m9joalzcpuv9g5t5pjh
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 2
+Returning notifications for user: 2
+Token validation successful, user: 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 2 assigned assessments for user 2
+Found 1 completed submissions for user 2
+Found submission for assessment 67ff610c947661f18203d6f3
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Not submitted
+  - User submission status: Not found
+  - Submission record: Not found
+  - Assessment submitted flag: False
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 2 assigned assessments for user 2
+Found 1 completed submissions for user 2
+Found submission for assessment 67ff610c947661f18203d6f3
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Not submitted
+  - User submission status: Not found
+  - Submission record: Not found
+  - Assessment submitted flag: False
+Found 6 submissions for user 2
+Found 6 submissions for user 2
+Found 2 test submissions for assessment 67ff610c947661f18203d6f3
+Found 2 test submissions for assessment 67ff610c947661f18203d6f3
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Session ID for /me: m9joalzcpuv9g5t5pjh
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 2
+Returning notifications for user: 2
+Token validation successful, user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Session ID for /me: m9joalzcpuv9g5t5pjh
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 2
+Returning notifications for user: 2
+Token validation successful, user: 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 2 assigned assessments for user 2
+Found 1 completed submissions for user 2
+Found submission for assessment 67ff610c947661f18203d6f3
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Not submitted
+  - User submission status: Not found
+  - Submission record: Not found
+  - Assessment submitted flag: False
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 2 assigned assessments for user 2
+Found 1 completed submissions for user 2
+Found submission for assessment 67ff610c947661f18203d6f3
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Not submitted
+  - User submission status: Not found
+  - Submission record: Not found
+  - Assessment submitted flag: False
+Found 6 submissions for user 2
+Found 6 submissions for user 2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2 Assessment ID: 67ff6378947661f18203dac5
+Assessment found: new ObjectId('67ff6378947661f18203dac5')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 4
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2 Assessment ID: 67ff6378947661f18203dac5
+Assessment found: new ObjectId('67ff6378947661f18203dac5')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 4
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72df6: true
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72df6: true
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72df6: true
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72df6: true
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: true
+Submit assessment request: { assessmentId: '67ff6378947661f18203dac5' }
+Found 4 test submissions for assessment 67ff6378947661f18203dac5
+Updated assessment with user-specific submission status: {
+  assessmentId: '67ff6378947661f18203dac5',
+  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
+  userEmail: '2',
+  submittedAt: 2025-04-16T08:32:08.753Z,
+  userSubmission: undefined
+}
+Assessment 67ff6378947661f18203dac5 marked as submitted for user 67ff243f8228ee23f6a72e4c
+Created submission: {
+  id: new ObjectId('67ff6b08df6b84504a8fa60a'),
+  assessmentId: new ObjectId('67ff6378947661f18203dac5'),
+  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
+  submittedAt: 2025-04-16T08:32:08.753Z
+}
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2 Assessment ID: 67ff6378947661f18203dac5
+Assessment found: new ObjectId('67ff6378947661f18203dac5')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 4
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72df6: true
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: true. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72df6: true
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: true. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: true. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 2
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: true. Test completed: true
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: true. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 2
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: true. Test completed: true
+User 2 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: true. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 2
+User 2 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: true. Test completed: true
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Session ID for /me: m9joalzcpuv9g5t5pjh
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Token validation successful, user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Session ID for /me: m9joalzcpuv9g5t5pjh
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Token validation successful, user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Session ID for /me: m9joalzcpuv9g5t5pjh
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Token validation successful, user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Session ID for /me: m9joalzcpuv9g5t5pjh
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ==
+Token validation successful, user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 2
+Returning notifications for user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 2
+Returning notifications for user: 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 2 assigned assessments for user 2
+Found 2 completed submissions for user 2
+Found submission for assessment 67ff610c947661f18203d6f3
+Found submission for assessment 67ff6378947661f18203dac5
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 2
+Returning notifications for user: 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 2 assigned assessments for user 2
+Found 2 completed submissions for user 2
+Found submission for assessment 67ff610c947661f18203d6f3
+Found submission for assessment 67ff6378947661f18203dac5
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Found 7 submissions for user 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpvYWx6Y3B1djlnNXQ1cGpoIiwidGltZXN0YW1wIjoxNzQ0NzkyMzE0MzgwfQ== Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 2 assigned assessments for user 2
+Found 2 completed submissions for user 2
+Found submission for assessment 67ff610c947661f18203d6f3
+Found submission for assessment 67ff6378947661f18203dac5
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Found 7 submissions for user 2
+Found 7 submissions for user 2
+Found 5 test submissions for assessment 67ff6378947661f18203dac5
+Found 5 test submissions for assessment 67ff6378947661f18203dac5
+Logout request for session: m9joalzcpuv9g5t5pjh
+Session removed successfully
 Login request body: { email: '3', password: '3' }
-Session ID for login: m9jme8hk347dnf69u53
+Session ID for login: m9jobmof02g9tt9vv8df
 Found user: 3
 Login successful for user: 3
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ==
-Session ID for /me: m9jme8hk347dnf69u53
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ==
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ== Email: 3
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
 Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
+Notifications for user 3 : 2
+Returning notifications for user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Session ID for /me: m9jobmof02g9tt9vv8df
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
 Token validation successful, user: 3
-Notifications for user 3 : 5
-Returning notifications for user: 5
-Marked notification as read: new ObjectId('67ff5d69a54a77ed1a06915d')
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ==
-Session ID for /me: m9jme8hk347dnf69u53
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ==
-Token validation successful, user: 3
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ== Email: 3
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
 Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Notifications for user 3 : 5
-Returning notifications for user: 5
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ== Email: 3
+Notifications for user 3 : 2
+Returning notifications for user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Session ID for /me: m9jobmof02g9tt9vv8df
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Token validation successful, user: 3
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
 User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
-Found 5 assigned assessments for user 3
-Found 0 completed submissions for user 3
-Assessment 67ff487e41b7179a406a1f9f submission status: Not submitted
+Found 2 assigned assessments for user 3
+Found 1 completed submissions for user 3
+Found submission for assessment 67ff610c947661f18203d6f3
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Not submitted
   - User submission status: Not found
   - Submission record: Not found
   - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ== Email: 3
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
 User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
-Found 5 assigned assessments for user 3
-Found 0 completed submissions for user 3
-Assessment 67ff487e41b7179a406a1f9f submission status: Not submitted
+Found 2 assigned assessments for user 3
+Found 1 completed submissions for user 3
+Found submission for assessment 67ff610c947661f18203d6f3
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Not submitted
   - User submission status: Not found
   - Submission record: Not found
   - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Found 5 submissions for user 3
-Found 5 submissions for user 3
+Found 8 submissions for user 3
+Found 8 submissions for user 3
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ== Email: 3 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3 Assessment ID: 67ff6378947661f18203dac5
+Assessment found: new ObjectId('67ff6378947661f18203dac5')
 User found: 3
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
+Test details count: 4
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ== Email: 3 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3 Assessment ID: 67ff6378947661f18203dac5
+Assessment found: new ObjectId('67ff6378947661f18203dac5')
 User found: 3
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
+Test details count: 4
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72df6: true
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72df6: true
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 3
 User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 3
 User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
 User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
 User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72dfc
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ== Email: 3
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e08
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
 Found user for test access check: new ObjectId('67ff24f78228ee23f6a72ead') 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: false
 Test found: {
-  id: new ObjectId('67ff22878228ee23f6a72dfc'),
-  title: 'Reverse Linked List'
+  id: new ObjectId('67ff22878228ee23f6a72e08'),
+  title: 'Valid Parentheses'
 }
-Specific assessment ID from query: 67ff5d69a54a77ed1a069157
-Checking assessment 67ff5d69a54a77ed1a069157 for test 67ff22878228ee23f6a72dfc
-Is test 67ff22878228ee23f6a72dfc part of assessment 67ff5d69a54a77ed1a069157? true
+Specific assessment ID from query: 67ff6378947661f18203dac5
+Checking assessment 67ff6378947661f18203dac5 for test 67ff22878228ee23f6a72e08
+Is test 67ff22878228ee23f6a72e08 part of assessment 67ff6378947661f18203dac5? true
 Permission check for test access: {
-  testId: '67ff22878228ee23f6a72dfc',
+  testId: '67ff22878228ee23f6a72e08',
   userId: new ObjectId('67ff24f78228ee23f6a72ead'),
   userEmail: '3',
   isCreator: undefined,
   isPublic: true,
   isInvited: undefined
 }
-Access granted to test 67ff22878228ee23f6a72dfc for user 3
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: false
-GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72dfc
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ== Email: 3
+Access granted to test 67ff22878228ee23f6a72e08 for user 3
+Returning test details for 67ff22878228ee23f6a72e08: Valid Parentheses
+Problem statement: Given a string s containing just the characters '(...
+Sample input: ()[]{}...
+Sample output: true...
+Code templates: 2 templates available
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
+GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e08
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
 Found user for test access check: new ObjectId('67ff24f78228ee23f6a72ead') 3
 Test found: {
-  id: new ObjectId('67ff22878228ee23f6a72dfc'),
-  title: 'Reverse Linked List'
+  id: new ObjectId('67ff22878228ee23f6a72e08'),
+  title: 'Valid Parentheses'
 }
-Specific assessment ID from query: 67ff5d69a54a77ed1a069157
-Checking assessment 67ff5d69a54a77ed1a069157 for test 67ff22878228ee23f6a72dfc
-Is test 67ff22878228ee23f6a72dfc part of assessment 67ff5d69a54a77ed1a069157? true
+Specific assessment ID from query: 67ff6378947661f18203dac5
+Checking assessment 67ff6378947661f18203dac5 for test 67ff22878228ee23f6a72e08
+Is test 67ff22878228ee23f6a72e08 part of assessment 67ff6378947661f18203dac5? true
 Permission check for test access: {
-  testId: '67ff22878228ee23f6a72dfc',
+  testId: '67ff22878228ee23f6a72e08',
   userId: new ObjectId('67ff24f78228ee23f6a72ead'),
   userEmail: '3',
   isCreator: undefined,
   isPublic: true,
   isInvited: undefined
 }
-Access granted to test 67ff22878228ee23f6a72dfc for user 3
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: false
-Submit code request: {
-  testId: '67ff22878228ee23f6a72dfc',
+Access granted to test 67ff22878228ee23f6a72e08 for user 3
+Returning test details for 67ff22878228ee23f6a72e08: Valid Parentheses
+Problem statement: Given a string s containing just the characters '(...
+Sample input: ()[]{}...
+Sample output: true...
+Code templates: 2 templates available
+Execute code request: { language: 'python', assessmentId: '67ff6378947661f18203dac5' }
+Code to execute: # Read input from stdin and solve the problem
+# Example:
+# n = int(input())
+# arr = list(map(int, input().split()))
+
+def solve():
+    # Your solution here
+    print("true")
+    pass
+
+if __name__ == "__main__":
+    # Call the solve function
+    solve()
+Input: ()[]{}
+Executing code in Docker container...
+Starting Python execution with ID: dffd74dc-8e08-4b76-a21f-2b0a043c0f09
+Code length: 251 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_dffd74dc-8e08-4b76-a21f-2b0a043c0f09.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_dffd74dc-8e08-4b76-a21f-2b0a043c0f09       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 377 }
+Temporary files cleaned up
+Execution result: { output: 'true\n', error: '', executionTime: 377, memoryUsed: 0 }
+Run test cases request: {
+  testId: '67ff22878228ee23f6a72e08',
   language: 'python',
-  assessmentId: '67ff5d69a54a77ed1a069157'
+  assessmentId: '67ff6378947661f18203dac5'
 }
-Test found: Yes new ObjectId('67ff22878228ee23f6a72dfc')
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157
-Starting Python execution with ID: 3de27862-0b25-4fe3-8d3d-f9fdfd885b65
-Code length: 233 characters
-Input length: 11 characters
+Test found: Yes new ObjectId('67ff22878228ee23f6a72e08')
+Starting Python execution with ID: 96d02286-cb33-47c3-bffc-12ab7aceb181
+Code length: 251 characters
+Input length: 6 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_3de27862-0b25-4fe3-8d3d-f9fdfd885b65.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_3de27862-0b25-4fe3-8d3d-f9fdfd885b65       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 330 }
+Executing Python code with Docker command: cat /tmp/run_96d02286-cb33-47c3-bffc-12ab7aceb181.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_96d02286-cb33-47c3-bffc-12ab7aceb181       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 369 }
 Temporary files cleaned up
-Starting Python execution with ID: 51a74175-2473-40b2-9f16-1d7c4f845068
-Code length: 233 characters
-Input length: 5 characters
+Starting Python execution with ID: ac70cc43-90ff-4c92-b0a0-fe38a11614df
+Code length: 251 characters
+Input length: 4 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_51a74175-2473-40b2-9f16-1d7c4f845068.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_51a74175-2473-40b2-9f16-1d7c4f845068       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 317 }
+Executing Python code with Docker command: cat /tmp/run_ac70cc43-90ff-4c92-b0a0-fe38a11614df.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_ac70cc43-90ff-4c92-b0a0-fe38a11614df       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 312 }
 Temporary files cleaned up
-Starting Python execution with ID: 225532fa-7f66-4415-acc0-f20ebb4422d7
-Code length: 233 characters
+Starting Python execution with ID: a0cd5c0d-76b8-4150-ad72-370ce952f3f6
+Code length: 251 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_a0cd5c0d-76b8-4150-ad72-370ce952f3f6.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_a0cd5c0d-76b8-4150-ad72-370ce952f3f6       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 334 }
+Temporary files cleaned up
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
+Submit code request: {
+  testId: '67ff22878228ee23f6a72e08',
+  language: 'python',
+  assessmentId: '67ff6378947661f18203dac5'
+}
+Test found: Yes new ObjectId('67ff22878228ee23f6a72e08')
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5
+Starting Python execution with ID: 76e26455-7a16-432f-b73b-f06c557a36ae
+Code length: 251 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_76e26455-7a16-432f-b73b-f06c557a36ae.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_76e26455-7a16-432f-b73b-f06c557a36ae       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 367 }
+Temporary files cleaned up
+Starting Python execution with ID: 02458f7d-bf23-4934-a85a-a005f87c6590
+Code length: 251 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_02458f7d-bf23-4934-a85a-a005f87c6590.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_02458f7d-bf23-4934-a85a-a005f87c6590       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 359 }
+Temporary files cleaned up
+Starting Python execution with ID: 220a5f82-8a05-474e-aaa8-6c8e11940e6b
+Code length: 251 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_220a5f82-8a05-474e-aaa8-6c8e11940e6b.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_220a5f82-8a05-474e-aaa8-6c8e11940e6b       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 354 }
+Temporary files cleaned up
+Starting Python execution with ID: 7daeff0b-d0a7-41c8-95c0-21fa7d3c505c
+Code length: 251 characters
 Input length: 2 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_225532fa-7f66-4415-acc0-f20ebb4422d7.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_225532fa-7f66-4415-acc0-f20ebb4422d7       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 313 }
+Executing Python code with Docker command: cat /tmp/run_7daeff0b-d0a7-41c8-95c0-21fa7d3c505c.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_7daeff0b-d0a7-41c8-95c0-21fa7d3c505c       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 370 }
 Temporary files cleaned up
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ== Email: 3 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3 Assessment ID: 67ff6378947661f18203dac5
+Assessment found: new ObjectId('67ff6378947661f18203dac5')
 User found: 3
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
+Test details count: 4
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZThoazM0N2RuZjY5dTUzIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTI0MjcyfQ== Email: 3 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3 Assessment ID: 67ff6378947661f18203dac5
+Assessment found: new ObjectId('67ff6378947661f18203dac5')
 User found: 3
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
+Test details count: 4
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72df6: true
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72df6: true
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 3
 User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 3
 User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
 User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72df6: true
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 3
 User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
 User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Logout request for session: m9jme8hk347dnf69u53
-Session removed successfully
-Login request body: { email: '2', password: '2' }
-Session ID for login: m9jmepzqdx172fuhb4q
-Found user: 2
-Login successful for user: 2
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ==
-Session ID for /me: m9jmepzqdx172fuhb4q
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ==
-Token validation successful, user: 2
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ== Email: 2
-Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
-Notifications for user 2 : 5
-Returning notifications for user: 5
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ==
-Session ID for /me: m9jmepzqdx172fuhb4q
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ==
-Token validation successful, user: 2
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ== Email: 2
-Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
-Notifications for user 2 : 5
-Returning notifications for user: 5
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ== Email: 2
-User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
-Found 5 assigned assessments for user 2
-Found 3 completed submissions for user 2
-Found submission for assessment 67ff487e41b7179a406a1f9f
-Found submission for assessment 67ff4cdf7a02d32f828aaea6
-Found submission for assessment 67ff55e1dcd6b5585bffd11c
-Assessment 67ff487e41b7179a406a1f9f submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ== Email: 2
-User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
-Found 5 assigned assessments for user 2
-Found 3 completed submissions for user 2
-Found submission for assessment 67ff487e41b7179a406a1f9f
-Found submission for assessment 67ff4cdf7a02d32f828aaea6
-Found submission for assessment 67ff55e1dcd6b5585bffd11c
-Assessment 67ff487e41b7179a406a1f9f submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Found 13 submissions for user 2
-Found 13 submissions for user 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ== Email: 2 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ== Email: 2 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72dfc: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72dfc: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e0f
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ== Email: 2
-Found user for test access check: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e02
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+Found user for test access check: new ObjectId('67ff24f78228ee23f6a72ead') 3
 Test found: {
-  id: new ObjectId('67ff22878228ee23f6a72e0f'),
-  title: 'Maximum Subarray'
+  id: new ObjectId('67ff22878228ee23f6a72e02'),
+  title: 'Merge K Sorted Lists'
 }
-Specific assessment ID from query: 67ff5d69a54a77ed1a069157
-Checking assessment 67ff5d69a54a77ed1a069157 for test 67ff22878228ee23f6a72e0f
-Is test 67ff22878228ee23f6a72e0f part of assessment 67ff5d69a54a77ed1a069157? true
+Specific assessment ID from query: 67ff6378947661f18203dac5
+Checking assessment 67ff6378947661f18203dac5 for test 67ff22878228ee23f6a72e02
+Is test 67ff22878228ee23f6a72e02 part of assessment 67ff6378947661f18203dac5? true
 Permission check for test access: {
-  testId: '67ff22878228ee23f6a72e0f',
-  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
-  userEmail: '2',
+  testId: '67ff22878228ee23f6a72e02',
+  userId: new ObjectId('67ff24f78228ee23f6a72ead'),
+  userEmail: '3',
   isCreator: undefined,
   isPublic: true,
   isInvited: undefined
 }
-Access granted to test 67ff22878228ee23f6a72e0f for user 2
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e0f
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ== Email: 2
-Found user for test access check: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Access granted to test 67ff22878228ee23f6a72e02 for user 3
+Returning test details for 67ff22878228ee23f6a72e02: Merge K Sorted Lists
+Problem statement: You are given an array of k linked-lists lists, ea...
+Sample input: [[1,4,5],[1,3,4],[2,...
+Sample output: [1,1,2,3,4,4,5,6]...
+Code templates: 2 templates available
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
+GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e02
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+Found user for test access check: new ObjectId('67ff24f78228ee23f6a72ead') 3
 Test found: {
-  id: new ObjectId('67ff22878228ee23f6a72e0f'),
-  title: 'Maximum Subarray'
+  id: new ObjectId('67ff22878228ee23f6a72e02'),
+  title: 'Merge K Sorted Lists'
 }
-Specific assessment ID from query: 67ff5d69a54a77ed1a069157
-Checking assessment 67ff5d69a54a77ed1a069157 for test 67ff22878228ee23f6a72e0f
-Is test 67ff22878228ee23f6a72e0f part of assessment 67ff5d69a54a77ed1a069157? true
+Specific assessment ID from query: 67ff6378947661f18203dac5
+Checking assessment 67ff6378947661f18203dac5 for test 67ff22878228ee23f6a72e02
+Is test 67ff22878228ee23f6a72e02 part of assessment 67ff6378947661f18203dac5? true
 Permission check for test access: {
-  testId: '67ff22878228ee23f6a72e0f',
-  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
-  userEmail: '2',
+  testId: '67ff22878228ee23f6a72e02',
+  userId: new ObjectId('67ff24f78228ee23f6a72ead'),
+  userEmail: '3',
   isCreator: undefined,
   isPublic: true,
   isInvited: undefined
 }
-Access granted to test 67ff22878228ee23f6a72e0f for user 2
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Submit code request: {
-  testId: '67ff22878228ee23f6a72e0f',
+Access granted to test 67ff22878228ee23f6a72e02 for user 3
+Returning test details for 67ff22878228ee23f6a72e02: Merge K Sorted Lists
+Problem statement: You are given an array of k linked-lists lists, ea...
+Sample input: [[1,4,5],[1,3,4],[2,...
+Sample output: [1,1,2,3,4,4,5,6]...
+Code templates: 2 templates available
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
+Run test cases request: {
+  testId: '67ff22878228ee23f6a72e02',
   language: 'python',
-  assessmentId: '67ff5d69a54a77ed1a069157'
+  assessmentId: '67ff6378947661f18203dac5'
 }
-Test found: Yes new ObjectId('67ff22878228ee23f6a72e0f')
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157
-Starting Python execution with ID: 1db48110-8f05-4269-b04b-db32a78bf926
-Code length: 233 characters
+Test found: Yes new ObjectId('67ff22878228ee23f6a72e02')
+Starting Python execution with ID: 82e27ee2-2399-4ed3-a40e-d920c859abda
+Code length: 262 characters
 Input length: 23 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_1db48110-8f05-4269-b04b-db32a78bf926.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_1db48110-8f05-4269-b04b-db32a78bf926       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 293 }
-Temporary files cleaned up
-Starting Python execution with ID: 773d1914-101f-4d75-bcd4-e6ba73cb71e5
-Code length: 233 characters
-Input length: 3 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_773d1914-101f-4d75-bcd4-e6ba73cb71e5.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_773d1914-101f-4d75-bcd4-e6ba73cb71e5       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 291 }
-Temporary files cleaned up
-Starting Python execution with ID: d138c635-40de-4460-8cbe-a1aac3279690
-Code length: 233 characters
-Input length: 12 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_d138c635-40de-4460-8cbe-a1aac3279690.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_d138c635-40de-4460-8cbe-a1aac3279690       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 374 }
-Temporary files cleaned up
-Starting Python execution with ID: 7e0ca9e1-74e1-4237-8600-cc50a558e16d
-Code length: 233 characters
-Input length: 4 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_7e0ca9e1-74e1-4237-8600-cc50a558e16d.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_7e0ca9e1-74e1-4237-8600-cc50a558e16d       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 356 }
-Temporary files cleaned up
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ== Email: 2 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZXB6cWR4MTcyZnVoYjRxIiwidGltZXN0YW1wIjoxNzQ0Nzg5MTQ2OTYzfQ== Email: 2 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72dfc: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72dfc: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72dfc: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Logout request for session: m9jmepzqdx172fuhb4q
-Session removed successfully
-Login request body: { email: '2', password: '2' }
-Session ID for login: m9jmfo4w8667v1ef9t8
-Found user: 2
-Login successful for user: 2
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ==
-Session ID for /me: m9jmfo4w8667v1ef9t8
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ==
-Token validation successful, user: 2
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2
-Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
-Notifications for user 2 : 5
-Returning notifications for user: 5
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ==
-Session ID for /me: m9jmfo4w8667v1ef9t8
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ==
-Token validation successful, user: 2
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2
-Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
-Notifications for user 2 : 5
-Returning notifications for user: 5
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2
-User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
-Found 5 assigned assessments for user 2
-Found 3 completed submissions for user 2
-Found submission for assessment 67ff487e41b7179a406a1f9f
-Found submission for assessment 67ff4cdf7a02d32f828aaea6
-Found submission for assessment 67ff55e1dcd6b5585bffd11c
-Assessment 67ff487e41b7179a406a1f9f submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2
-User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
-Found 5 assigned assessments for user 2
-Found 3 completed submissions for user 2
-Found submission for assessment 67ff487e41b7179a406a1f9f
-Found submission for assessment 67ff4cdf7a02d32f828aaea6
-Found submission for assessment 67ff55e1dcd6b5585bffd11c
-Assessment 67ff487e41b7179a406a1f9f submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Found 14 submissions for user 2
-Found 14 submissions for user 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72dfc: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72dfc: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72dfc: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72dfc: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Submit assessment request: { assessmentId: '67ff5d69a54a77ed1a069157' }
-Found 2 test submissions for assessment 67ff5d69a54a77ed1a069157
-Updated assessment with user-specific submission status: {
-  assessmentId: '67ff5d69a54a77ed1a069157',
-  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
-  userEmail: '2',
-  submittedAt: 2025-04-16T07:39:59.080Z,
-  userSubmission: undefined
+Executing Python code with Docker command: cat /tmp/run_82e27ee2-2399-4ed3-a40e-d920c859abda.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_82e27ee2-2399-4ed3-a40e-d920c859abda       -i python:3.9-slim       bash
+Python execution result: {
+  stdout: '[1, 1, 2, 3, 4, 4, 5, 6]\n',
+  stderr: '',
+  executionTime: 370
 }
-Assessment 67ff5d69a54a77ed1a069157 marked as submitted for user 67ff243f8228ee23f6a72e4c
-Created submission: {
-  id: new ObjectId('67ff5ecf947661f18203bcad'),
-  assessmentId: new ObjectId('67ff5d69a54a77ed1a069157'),
-  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
-  submittedAt: 2025-04-16T07:39:59.080Z
+Temporary files cleaned up
+Starting Python execution with ID: d04e26fd-54e4-44bf-8429-7e3e06fc8b18
+Code length: 262 characters
+Input length: 2 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_d04e26fd-54e4-44bf-8429-7e3e06fc8b18.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_d04e26fd-54e4-44bf-8429-7e3e06fc8b18       -i python:3.9-slim       bash
+Python execution result: {
+  stdout: '[1, 1, 2, 3, 4, 4, 5, 6]\n',
+  stderr: '',
+  executionTime: 336
 }
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72dfc: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: true. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72dfc: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: true. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: true. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 2
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: true. Test completed: true
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: true. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: true. Test completed: false
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ==
-Session ID for /me: m9jmfo4w8667v1ef9t8
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ==
-Token validation successful, user: 2
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ==
-Session ID for /me: m9jmfo4w8667v1ef9t8
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ==
-Token validation successful, user: 2
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ==
-Session ID for /me: m9jmfo4w8667v1ef9t8
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ==
-Token validation successful, user: 2
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2
-Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
-Notifications for user 2 : 5
-Returning notifications for user: 5
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ==
-Session ID for /me: m9jmfo4w8667v1ef9t8
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ==
-Token validation successful, user: 2
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2
-Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
-Notifications for user 2 : 5
-Returning notifications for user: 5
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2
-Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
-Notifications for user 2 : 5
-Returning notifications for user: 5
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2
-User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
-Found 5 assigned assessments for user 2
-Found 4 completed submissions for user 2
-Found submission for assessment 67ff487e41b7179a406a1f9f
-Found submission for assessment 67ff4cdf7a02d32f828aaea6
-Found submission for assessment 67ff55e1dcd6b5585bffd11c
-Found submission for assessment 67ff5d69a54a77ed1a069157
-Assessment 67ff487e41b7179a406a1f9f submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2
-User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
-Found 5 assigned assessments for user 2
-Found 4 completed submissions for user 2
-Found submission for assessment 67ff487e41b7179a406a1f9f
-Found submission for assessment 67ff4cdf7a02d32f828aaea6
-Found submission for assessment 67ff55e1dcd6b5585bffd11c
-Found submission for assessment 67ff5d69a54a77ed1a069157
-Assessment 67ff487e41b7179a406a1f9f submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Found 15 submissions for user 2
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptZm80dzg2Njd2MWVmOXQ4IiwidGltZXN0YW1wIjoxNzQ0Nzg5MTkxMjA3fQ== Email: 2
-User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
-Found 5 assigned assessments for user 2
-Found 4 completed submissions for user 2
-Found submission for assessment 67ff487e41b7179a406a1f9f
-Found submission for assessment 67ff4cdf7a02d32f828aaea6
-Found submission for assessment 67ff55e1dcd6b5585bffd11c
-Found submission for assessment 67ff5d69a54a77ed1a069157
-Assessment 67ff487e41b7179a406a1f9f submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Found 15 submissions for user 2
-Found 15 submissions for user 2
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: true. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: true. Test completed: false
-Logout request for session: m9jmfo4w8667v1ef9t8
-Session removed successfully
-Login request body: { email: '3', password: '3' }
-Session ID for login: m9jmg7r8fk6r31guozv
-Found user: 3
-Login successful for user: 3
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Notifications for user 3 : 5
-Returning notifications for user: 5
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Session ID for /me: m9jmg7r8fk6r31guozv
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Token validation successful, user: 3
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Notifications for user 3 : 5
-Returning notifications for user: 5
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Session ID for /me: m9jmg7r8fk6r31guozv
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Token validation successful, user: 3
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
-Found 5 assigned assessments for user 3
-Found 0 completed submissions for user 3
-Assessment 67ff487e41b7179a406a1f9f submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
-Found 5 assigned assessments for user 3
-Found 0 completed submissions for user 3
-Assessment 67ff487e41b7179a406a1f9f submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Found 6 submissions for user 3
-Found 6 submissions for user 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
-User found: 3
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
-User found: 3
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
+Temporary files cleaned up
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
 User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e0f
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-Found user for test access check: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Test found: {
-  id: new ObjectId('67ff22878228ee23f6a72e0f'),
-  title: 'Maximum Subarray'
-}
-Specific assessment ID from query: 67ff5d69a54a77ed1a069157
-Checking assessment 67ff5d69a54a77ed1a069157 for test 67ff22878228ee23f6a72e0f
-Is test 67ff22878228ee23f6a72e0f part of assessment 67ff5d69a54a77ed1a069157? true
-Permission check for test access: {
-  testId: '67ff22878228ee23f6a72e0f',
-  userId: new ObjectId('67ff24f78228ee23f6a72ead'),
-  userEmail: '3',
-  isCreator: undefined,
-  isPublic: true,
-  isInvited: undefined
-}
-Access granted to test 67ff22878228ee23f6a72e0f for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e0f
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-Found user for test access check: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Test found: {
-  id: new ObjectId('67ff22878228ee23f6a72e0f'),
-  title: 'Maximum Subarray'
-}
-Specific assessment ID from query: 67ff5d69a54a77ed1a069157
-Checking assessment 67ff5d69a54a77ed1a069157 for test 67ff22878228ee23f6a72e0f
-Is test 67ff22878228ee23f6a72e0f part of assessment 67ff5d69a54a77ed1a069157? true
-Permission check for test access: {
-  testId: '67ff22878228ee23f6a72e0f',
-  userId: new ObjectId('67ff24f78228ee23f6a72ead'),
-  userEmail: '3',
-  isCreator: undefined,
-  isPublic: true,
-  isInvited: undefined
-}
-Access granted to test 67ff22878228ee23f6a72e0f for user 3
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
 Submit code request: {
-  testId: '67ff22878228ee23f6a72e0f',
+  testId: '67ff22878228ee23f6a72e02',
   language: 'python',
-  assessmentId: '67ff5d69a54a77ed1a069157'
+  assessmentId: '67ff6378947661f18203dac5'
 }
-Test found: Yes new ObjectId('67ff22878228ee23f6a72e0f')
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157
-Starting Python execution with ID: c36c5eff-2d5f-48a4-92fa-3726857d7089
-Code length: 233 characters
+Test found: Yes new ObjectId('67ff22878228ee23f6a72e02')
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5
+Starting Python execution with ID: 27135e4f-c84a-422d-b9c0-2f32c47e2ceb
+Code length: 262 characters
 Input length: 23 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_c36c5eff-2d5f-48a4-92fa-3726857d7089.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_c36c5eff-2d5f-48a4-92fa-3726857d7089       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 360 }
+Executing Python code with Docker command: cat /tmp/run_27135e4f-c84a-422d-b9c0-2f32c47e2ceb.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_27135e4f-c84a-422d-b9c0-2f32c47e2ceb       -i python:3.9-slim       bash
+Python execution result: {
+  stdout: '[1, 1, 2, 3, 4, 4, 5, 6]\n',
+  stderr: '',
+  executionTime: 337
+}
 Temporary files cleaned up
-Starting Python execution with ID: 7baa26d0-41b9-4b57-9ac7-d77fd92fa180
-Code length: 233 characters
-Input length: 3 characters
+Starting Python execution with ID: 53d86de2-2f09-4b79-a27c-dd95dde8d19d
+Code length: 262 characters
+Input length: 2 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_7baa26d0-41b9-4b57-9ac7-d77fd92fa180.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_7baa26d0-41b9-4b57-9ac7-d77fd92fa180       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 322 }
+Executing Python code with Docker command: cat /tmp/run_53d86de2-2f09-4b79-a27c-dd95dde8d19d.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_53d86de2-2f09-4b79-a27c-dd95dde8d19d       -i python:3.9-slim       bash
+Python execution result: {
+  stdout: '[1, 1, 2, 3, 4, 4, 5, 6]\n',
+  stderr: '',
+  executionTime: 327
+}
 Temporary files cleaned up
-Starting Python execution with ID: c9ddac66-e1b4-4663-b6c8-09299544b6ab
-Code length: 233 characters
-Input length: 12 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_c9ddac66-e1b4-4663-b6c8-09299544b6ab.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_c9ddac66-e1b4-4663-b6c8-09299544b6ab       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 353 }
-Temporary files cleaned up
-Starting Python execution with ID: 568c74f9-39cd-462c-8b02-a491aa3bd268
-Code length: 233 characters
+Starting Python execution with ID: c13b13fb-7a2e-42c6-a37c-400a05636bd6
+Code length: 262 characters
 Input length: 4 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_568c74f9-39cd-462c-8b02-a491aa3bd268.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_568c74f9-39cd-462c-8b02-a491aa3bd268       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 310 }
+Executing Python code with Docker command: cat /tmp/run_c13b13fb-7a2e-42c6-a37c-400a05636bd6.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_c13b13fb-7a2e-42c6-a37c-400a05636bd6       -i python:3.9-slim       bash
+Python execution result: {
+  stdout: '[1, 1, 2, 3, 4, 4, 5, 6]\n',
+  stderr: '',
+  executionTime: 343
+}
 Temporary files cleaned up
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: true
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3 Assessment ID: 67ff6378947661f18203dac5
+Assessment found: new ObjectId('67ff6378947661f18203dac5')
 User found: 3
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
+Test details count: 4
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3 Assessment ID: 67ff6378947661f18203dac5
+Assessment found: new ObjectId('67ff6378947661f18203dac5')
 User found: 3
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-User 3 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Submit assessment request: { assessmentId: '67ff5d69a54a77ed1a069157' }
-Found 2 test submissions for assessment 67ff5d69a54a77ed1a069157
+Test details count: 4
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72df6: true
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72df6: true
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72df6: true
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72df6: true
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72df6: true
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: true
+Submit assessment request: { assessmentId: '67ff6378947661f18203dac5' }
+Found 3 test submissions for assessment 67ff6378947661f18203dac5
 Updated assessment with user-specific submission status: {
-  assessmentId: '67ff5d69a54a77ed1a069157',
+  assessmentId: '67ff6378947661f18203dac5',
   userId: new ObjectId('67ff24f78228ee23f6a72ead'),
   userEmail: '3',
-  submittedAt: 2025-04-16T07:40:31.413Z,
+  submittedAt: 2025-04-16T08:34:06.727Z,
   userSubmission: undefined
 }
-Assessment 67ff5d69a54a77ed1a069157 marked as submitted for user 67ff24f78228ee23f6a72ead
+Assessment 67ff6378947661f18203dac5 marked as submitted for user 67ff24f78228ee23f6a72ead
 Created submission: {
-  id: new ObjectId('67ff5eef947661f18203c096'),
-  assessmentId: new ObjectId('67ff5d69a54a77ed1a069157'),
+  id: new ObjectId('67ff6b7edf6b84504a8fa9e9'),
+  assessmentId: new ObjectId('67ff6378947661f18203dac5'),
   userId: new ObjectId('67ff24f78228ee23f6a72ead'),
-  submittedAt: 2025-04-16T07:40:31.413Z
+  submittedAt: 2025-04-16T08:34:06.727Z
 }
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3 Assessment ID: 67ff5d69a54a77ed1a069157
-Assessment found: new ObjectId('67ff5d69a54a77ed1a069157')
-User found: 3
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 3
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: true. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72dfc: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: true. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: true. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has completed test 67ff22878228ee23f6a72e0f based on submissions: true (1 submissions)
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: true. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: true. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: true. Test completed: false
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Session ID for /me: m9jmg7r8fk6r31guozv
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Token validation successful, user: 3
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Session ID for /me: m9jmg7r8fk6r31guozv
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Token validation successful, user: 3
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Session ID for /me: m9jmg7r8fk6r31guozv
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Token validation successful, user: 3
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Notifications for user 3 : 5
-Returning notifications for user: 5
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Session ID for /me: m9jmg7r8fk6r31guozv
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Token validation successful, user: 3
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Notifications for user 3 : 5
-Returning notifications for user: 5
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-Notifications for user 3 : 5
-Returning notifications for user: 5
-User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
-Found 5 assigned assessments for user 3
-Found 1 completed submissions for user 3
-Found submission for assessment 67ff5d69a54a77ed1a069157
-Assessment 67ff487e41b7179a406a1f9f submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
-Found 5 assigned assessments for user 3
-Found 1 completed submissions for user 3
-Found submission for assessment 67ff5d69a54a77ed1a069157
-Assessment 67ff487e41b7179a406a1f9f submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Found 8 submissions for user 3
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
-Found 5 assigned assessments for user 3
-Found 1 completed submissions for user 3
-Found submission for assessment 67ff5d69a54a77ed1a069157
-Assessment 67ff487e41b7179a406a1f9f submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Found 8 submissions for user 3
-Found 8 submissions for user 3
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: true. Test completed: false
-Found 3 test submissions for assessment 67ff5d69a54a77ed1a069157
-Found 3 test submissions for assessment 67ff5d69a54a77ed1a069157
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Session ID for /me: m9jmg7r8fk6r31guozv
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Notifications for user 3 : 5
-Returning notifications for user: 5
-Token validation successful, user: 3
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Notifications for user 3 : 5
-Returning notifications for user: 5
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Session ID for /me: m9jmg7r8fk6r31guozv
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ==
-Token validation successful, user: 3
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
-Found 5 assigned assessments for user 3
-Found 1 completed submissions for user 3
-Found submission for assessment 67ff5d69a54a77ed1a069157
-Assessment 67ff487e41b7179a406a1f9f submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptZzdyOGZrNnIzMWd1b3p2IiwidGltZXN0YW1wIjoxNzQ0Nzg5MjE2NjM0fQ== Email: 3
-User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
-Found 5 assigned assessments for user 3
-Found 1 completed submissions for user 3
-Found submission for assessment 67ff5d69a54a77ed1a069157
-Assessment 67ff487e41b7179a406a1f9f submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Found 8 submissions for user 3
-Found 8 submissions for user 3
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5d69a54a77ed1a069157 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: true. Test completed: false
-Logout request for session: m9jmg7r8fk6r31guozv
-Session removed successfully
-Login request body: { email: '1', password: '1' }
-Session ID for login: m9jmidyqmo4zrjdlcob
-Found user: 1
-Login successful for user: 1
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWptaWR5cW1vNHpyamRsY29iIiwidGltZXN0YW1wIjoxNzQ0Nzg5MzE3OTk3fQ== Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
-  role: 'assessor',
-  createdAt: 2025-04-16T03:23:23.937Z,
-  updatedAt: 2025-04-16T03:23:23.937Z,
-  __v: 0
-}
-Found 5 assessments created by user 1
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWptaWR5cW1vNHpyamRsY29iIiwidGltZXN0YW1wIjoxNzQ0Nzg5MzE3OTk3fQ== Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
-  role: 'assessor',
-  createdAt: 2025-04-16T03:23:23.937Z,
-  updatedAt: 2025-04-16T03:23:23.937Z,
-  __v: 0
-}
-Found 5 assessments created by user 1
-GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWptaWR5cW1vNHpyamRsY29iIiwidGltZXN0YW1wIjoxNzQ0Nzg5MzE3OTk3fQ== Email: 1
-User found: 1
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWptaWR5cW1vNHpyamRsY29iIiwidGltZXN0YW1wIjoxNzQ0Nzg5MzE3OTk3fQ== Email: 1
-User found: 1
-Returning all tests for assessor
-Create assessment request body: {
-  title: 'yayyyyy',
-  description: '',
-  tests: [
-    '67ff22878228ee23f6a72df6',
-    '67ff22878228ee23f6a72e08',
-    '67ff22878228ee23f6a72e0f',
-    '67ff22878228ee23f6a72e02'
-  ],
-  startTime: '2025-04-16T13:10',
-  endTime: '2025-04-23T13:10',
-  maxAttempts: 1,
-  isPublic: false,
-  invitedStudents: [
-    { email: '2', status: 'Invited', lastAttempt: null },
-    { email: '3', status: 'Invited', lastAttempt: null }
-  ],
-  invitedUsers: [
-    { email: '2', status: 'Invited', lastAttempt: null },
-    { email: '3', status: 'Invited', lastAttempt: null }
-  ]
-}
-POST /api/assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWptaWR5cW1vNHpyamRsY29iIiwidGltZXN0YW1wIjoxNzQ0Nzg5MzE3OTk3fQ== Email: 1
-User found for assessment creation: {
-  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
-  role: 'assessor',
-  createdAt: 2025-04-16T03:23:23.937Z,
-  updatedAt: 2025-04-16T03:23:23.937Z,
-  __v: 0
-}
-Tests array for assessment: [
-  '67ff22878228ee23f6a72df6',
-  '67ff22878228ee23f6a72e08',
-  '67ff22878228ee23f6a72e0f',
-  '67ff22878228ee23f6a72e02'
-]
-Filtered invitedStudents for new assessment: [
-  { email: '2', status: 'Invited', lastAttempt: null },
-  { email: '3', status: 'Invited', lastAttempt: null }
-]
-New assessment being created: {
-  title: 'yayyyyy',
-  description: '',
-  startTime: 2025-04-16T07:40:00.000Z,
-  endTime: 2025-04-23T07:40:00.000Z,
-  maxAttempts: 1,
-  isPublic: false,
-  tests: [
-    new ObjectId('67ff22878228ee23f6a72df6'),
-    new ObjectId('67ff22878228ee23f6a72e08'),
-    new ObjectId('67ff22878228ee23f6a72e0f'),
-    new ObjectId('67ff22878228ee23f6a72e02')
-  ],
-  invitedUsers: [
-    { email: '2', status: 'Invited', lastAttempt: null },
-    { email: '3', status: 'Invited', lastAttempt: null }
-  ],
-  testAttempts: Map(0) {},
-  createdBy: new ObjectId('67ff22ab8228ee23f6a72e3e'),
-  createdAt: 2025-04-16T07:42:23.519Z,
-  userSubmissions: Map(0) {},
-  submitted: false,
-  submittedAt: null,
-  _id: new ObjectId('67ff5f5f947661f18203c4b8'),
-  updatedAt: 2025-04-16T07:42:23.519Z
-}
-Created notification for invited user: 2
-Created notification for invited user: 3
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWptaWR5cW1vNHpyamRsY29iIiwidGltZXN0YW1wIjoxNzQ0Nzg5MzE3OTk3fQ== Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
-  role: 'assessor',
-  createdAt: 2025-04-16T03:23:23.937Z,
-  updatedAt: 2025-04-16T03:23:23.937Z,
-  __v: 0
-}
-Found 6 assessments created by user 1
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWptaWR5cW1vNHpyamRsY29iIiwidGltZXN0YW1wIjoxNzQ0Nzg5MzE3OTk3fQ== Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
-  role: 'assessor',
-  createdAt: 2025-04-16T03:23:23.937Z,
-  updatedAt: 2025-04-16T03:23:23.937Z,
-  __v: 0
-}
-Found 6 assessments created by user 1
-Logout request for session: m9jmidyqmo4zrjdlcob
-Session removed successfully
-Login request body: { email: '2', password: '2' }
-Session ID for login: m9jmj64p8zzu6ixicp4
-Found user: 2
-Login successful for user: 2
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ==
-Session ID for /me: m9jmj64p8zzu6ixicp4
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ==
-Token validation successful, user: 2
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ== Email: 2
-Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
-Notifications for user 2 : 6
-Returning notifications for user: 6
-Marked notification as read: new ObjectId('67ff5f5f947661f18203c4bb')
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ==
-Session ID for /me: m9jmj64p8zzu6ixicp4
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ==
-Token validation successful, user: 2
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ== Email: 2
-Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
-Notifications for user 2 : 6
-Returning notifications for user: 6
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ== Email: 2
-User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
-Found 6 assigned assessments for user 2
-Found 4 completed submissions for user 2
-Found submission for assessment 67ff487e41b7179a406a1f9f
-Found submission for assessment 67ff4cdf7a02d32f828aaea6
-Found submission for assessment 67ff55e1dcd6b5585bffd11c
-Found submission for assessment 67ff5d69a54a77ed1a069157
-Assessment 67ff487e41b7179a406a1f9f submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5f5f947661f18203c4b8 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ== Email: 2
-User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
-Found 6 assigned assessments for user 2
-Found 4 completed submissions for user 2
-Found submission for assessment 67ff487e41b7179a406a1f9f
-Found submission for assessment 67ff4cdf7a02d32f828aaea6
-Found submission for assessment 67ff55e1dcd6b5585bffd11c
-Found submission for assessment 67ff5d69a54a77ed1a069157
-Assessment 67ff487e41b7179a406a1f9f submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5f5f947661f18203c4b8 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Found 15 submissions for user 2
-Found 15 submissions for user 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ== Email: 2 Assessment ID: 67ff5f5f947661f18203c4b8
-Assessment found: new ObjectId('67ff5f5f947661f18203c4b8')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 4
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ== Email: 2 Assessment ID: 67ff5f5f947661f18203c4b8
-Assessment found: new ObjectId('67ff5f5f947661f18203c4b8')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 4
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: false
-GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72df6
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ== Email: 2
-Found user for test access check: new ObjectId('67ff243f8228ee23f6a72e4c') 2
-Test found: { id: new ObjectId('67ff22878228ee23f6a72df6'), title: 'Two Sum' }
-Specific assessment ID from query: 67ff5f5f947661f18203c4b8
-Checking assessment 67ff5f5f947661f18203c4b8 for test 67ff22878228ee23f6a72df6
-Is test 67ff22878228ee23f6a72df6 part of assessment 67ff5f5f947661f18203c4b8? true
-Permission check for test access: {
-  testId: '67ff22878228ee23f6a72df6',
-  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
-  userEmail: '2',
-  isCreator: undefined,
-  isPublic: true,
-  isInvited: undefined
-}
-Access granted to test 67ff22878228ee23f6a72df6 for user 2
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: false
-GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72df6
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ== Email: 2
-Found user for test access check: new ObjectId('67ff243f8228ee23f6a72e4c') 2
-Test found: { id: new ObjectId('67ff22878228ee23f6a72df6'), title: 'Two Sum' }
-Specific assessment ID from query: 67ff5f5f947661f18203c4b8
-Checking assessment 67ff5f5f947661f18203c4b8 for test 67ff22878228ee23f6a72df6
-Is test 67ff22878228ee23f6a72df6 part of assessment 67ff5f5f947661f18203c4b8? true
-Permission check for test access: {
-  testId: '67ff22878228ee23f6a72df6',
-  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
-  userEmail: '2',
-  isCreator: undefined,
-  isPublic: true,
-  isInvited: undefined
-}
-Access granted to test 67ff22878228ee23f6a72df6 for user 2
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: false
-Submit code request: {
-  testId: '67ff22878228ee23f6a72df6',
-  language: 'python',
-  assessmentId: '67ff5f5f947661f18203c4b8'
-}
-Test found: Yes new ObjectId('67ff22878228ee23f6a72df6')
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8
-Starting Python execution with ID: 18fbc2d3-59ec-433b-8084-85b8493992c1
-Code length: 233 characters
-Input length: 13 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_18fbc2d3-59ec-433b-8084-85b8493992c1.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_18fbc2d3-59ec-433b-8084-85b8493992c1       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 366 }
-Temporary files cleaned up
-Starting Python execution with ID: fb9cd85c-fa23-4cd2-95b8-4462cee4be94
-Code length: 233 characters
-Input length: 9 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_fb9cd85c-fa23-4cd2-95b8-4462cee4be94.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_fb9cd85c-fa23-4cd2-95b8-4462cee4be94       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 322 }
-Temporary files cleaned up
-Starting Python execution with ID: 461f38d3-c1f4-40a6-9c92-b3f7771b81ab
-Code length: 233 characters
-Input length: 7 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_461f38d3-c1f4-40a6-9c92-b3f7771b81ab.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_461f38d3-c1f4-40a6-9c92-b3f7771b81ab       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 363 }
-Temporary files cleaned up
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ== Email: 2 Assessment ID: 67ff5f5f947661f18203c4b8
-Assessment found: new ObjectId('67ff5f5f947661f18203c4b8')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 4
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWptajY0cDh6enU2aXhpY3A0IiwidGltZXN0YW1wIjoxNzQ0Nzg5MzU0NTAwfQ== Email: 2 Assessment ID: 67ff5f5f947661f18203c4b8
-Assessment found: new ObjectId('67ff5f5f947661f18203c4b8')
-User found: 2
-Creator check: { isCreator: false }
-User 2 has completed test 67ff22878228ee23f6a72df6: true
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
-Test details count: 4
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has completed test 67ff22878228ee23f6a72df6: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has completed test 67ff22878228ee23f6a72df6: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has completed test 67ff22878228ee23f6a72df6: true
-User 2 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5f5f947661f18203c4b8 for user 2
-User 2 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Logout request for session: m9jmj64p8zzu6ixicp4
-Session removed successfully
-Login request body: { email: '3', password: '3' }
-Session ID for login: m9jmjluu0mibmf99olqp
-Found user: 3
-Login successful for user: 3
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0=
-Session ID for /me: m9jmjluu0mibmf99olqp
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0=
-Token validation successful, user: 3
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0= Email: 3
-Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Notifications for user 3 : 6
-Returning notifications for user: 6
-Marked notification as read: new ObjectId('67ff5f5f947661f18203c4be')
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0=
-Session ID for /me: m9jmjluu0mibmf99olqp
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0=
-Token validation successful, user: 3
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0= Email: 3
-Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Notifications for user 3 : 6
-Returning notifications for user: 6
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0= Email: 3
-User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
-Found 6 assigned assessments for user 3
-Found 1 completed submissions for user 3
-Found submission for assessment 67ff5d69a54a77ed1a069157
-Assessment 67ff487e41b7179a406a1f9f submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5f5f947661f18203c4b8 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0= Email: 3
-User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
-Found 6 assigned assessments for user 3
-Found 1 completed submissions for user 3
-Found submission for assessment 67ff5d69a54a77ed1a069157
-Assessment 67ff487e41b7179a406a1f9f submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4a45de43f69e032714bc submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff4cdf7a02d32f828aaea6 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff55e1dcd6b5585bffd11c submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Assessment 67ff5d69a54a77ed1a069157 submission status: Submitted
-  - User submission status: Found
-  - Submission record: Found
-  - Assessment submitted flag: False
-Assessment 67ff5f5f947661f18203c4b8 submission status: Not submitted
-  - User submission status: Not found
-  - Submission record: Not found
-  - Assessment submitted flag: False
-Found 8 submissions for user 3
-Found 8 submissions for user 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0= Email: 3 Assessment ID: 67ff5f5f947661f18203c4b8
-Assessment found: new ObjectId('67ff5f5f947661f18203c4b8')
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3 Assessment ID: 67ff6378947661f18203dac5
+Assessment found: new ObjectId('67ff6378947661f18203dac5')
 User found: 3
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
 Test details count: 4
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0= Email: 3 Assessment ID: 67ff5f5f947661f18203c4b8
-Assessment found: new ObjectId('67ff5f5f947661f18203c4b8')
-User found: 3
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 4
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: false
-GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72df6
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0= Email: 3
-Found user for test access check: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Test found: { id: new ObjectId('67ff22878228ee23f6a72df6'), title: 'Two Sum' }
-Specific assessment ID from query: 67ff5f5f947661f18203c4b8
-Checking assessment 67ff5f5f947661f18203c4b8 for test 67ff22878228ee23f6a72df6
-Is test 67ff22878228ee23f6a72df6 part of assessment 67ff5f5f947661f18203c4b8? true
-Permission check for test access: {
-  testId: '67ff22878228ee23f6a72df6',
-  userId: new ObjectId('67ff24f78228ee23f6a72ead'),
-  userEmail: '3',
-  isCreator: undefined,
-  isPublic: true,
-  isInvited: undefined
-}
-Access granted to test 67ff22878228ee23f6a72df6 for user 3
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: false
-GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72df6
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0= Email: 3
-Found user for test access check: new ObjectId('67ff24f78228ee23f6a72ead') 3
-Test found: { id: new ObjectId('67ff22878228ee23f6a72df6'), title: 'Two Sum' }
-Specific assessment ID from query: 67ff5f5f947661f18203c4b8
-Checking assessment 67ff5f5f947661f18203c4b8 for test 67ff22878228ee23f6a72df6
-Is test 67ff22878228ee23f6a72df6 part of assessment 67ff5f5f947661f18203c4b8? true
-Permission check for test access: {
-  testId: '67ff22878228ee23f6a72df6',
-  userId: new ObjectId('67ff24f78228ee23f6a72ead'),
-  userEmail: '3',
-  isCreator: undefined,
-  isPublic: true,
-  isInvited: undefined
-}
-Access granted to test 67ff22878228ee23f6a72df6 for user 3
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: false
-Submit code request: {
-  testId: '67ff22878228ee23f6a72df6',
-  language: 'python',
-  assessmentId: '67ff5f5f947661f18203c4b8'
-}
-Test found: Yes new ObjectId('67ff22878228ee23f6a72df6')
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8
-Starting Python execution with ID: 36b6d37d-68ef-4e7b-bcae-e38a0ebc170d
-Code length: 233 characters
-Input length: 13 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_36b6d37d-68ef-4e7b-bcae-e38a0ebc170d.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_36b6d37d-68ef-4e7b-bcae-e38a0ebc170d       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 357 }
-Temporary files cleaned up
-Starting Python execution with ID: 649431ed-db0d-4b3d-bb82-73d3837bd9d4
-Code length: 233 characters
-Input length: 9 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_649431ed-db0d-4b3d-bb82-73d3837bd9d4.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_649431ed-db0d-4b3d-bb82-73d3837bd9d4       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 337 }
-Temporary files cleaned up
-Starting Python execution with ID: 1908c62c-b7aa-4ceb-9956-0cacd0fcc172
-Code length: 233 characters
-Input length: 7 characters
-Docker is running
-Executing Python code with Docker command: cat /tmp/run_1908c62c-b7aa-4ceb-9956-0cacd0fcc172.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_1908c62c-b7aa-4ceb-9956-0cacd0fcc172       -i python:3.9-slim       bash
-Python execution result: { stdout: '', stderr: '', executionTime: 306 }
-Temporary files cleaned up
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0= Email: 3 Assessment ID: 67ff5f5f947661f18203c4b8
-Assessment found: new ObjectId('67ff5f5f947661f18203c4b8')
-User found: 3
-Creator check: { isCreator: false }
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 3
 User 3 has completed test 67ff22878228ee23f6a72df6: true
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
-Test details count: 4
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWptamx1dTBtaWJtZjk5b2xxcCIsInRpbWVzdGFtcCI6MTc0NDc4OTM3NDg4Mn0= Email: 3 Assessment ID: 67ff5f5f947661f18203c4b8
-Assessment found: new ObjectId('67ff5f5f947661f18203c4b8')
-User found: 3
-Creator check: { isCreator: false }
-Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 4
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 3
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: true. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff6378947661f18203dac5 for user 3
 User 3 has completed test 67ff22878228ee23f6a72df6: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has completed test 67ff22878228ee23f6a72df6: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has completed test 67ff22878228ee23f6a72df6: true
-User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false. Test completed: true
-Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: false. Test completed: false
-Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff5f5f947661f18203c4b8 for user 3
-User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false. Test completed: false
-Logout request for session: m9jmjluu0mibmf99olqp
-Session removed successfully
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: true. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: true. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e08 based on submissions: true (1 submissions)
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: true. Test completed: true
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: true. Test completed: false
+Getting attempts for test 67ff22878228ee23f6a72e0f in assessment 67ff6378947661f18203dac5 for user 3
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has used 0 of 1 attempts for test 67ff22878228ee23f6a72e0f. Assessment submitted: true. Test completed: false
+User 3 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: true. Test completed: true
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff6378947661f18203dac5 for user 3
+User 3 has completed test 67ff22878228ee23f6a72e02 based on submissions: true (1 submissions)
+User 3 has used 1 of 1 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: true. Test completed: true
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
+Notifications for user 3 : 2
+Returning notifications for user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Session ID for /me: m9jobmof02g9tt9vv8df
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Token validation successful, user: 3
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
+Notifications for user 3 : 2
+Returning notifications for user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Session ID for /me: m9jobmof02g9tt9vv8df
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Token validation successful, user: 3
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
+Found 2 assigned assessments for user 3
+Found 2 completed submissions for user 3
+Found submission for assessment 67ff610c947661f18203d6f3
+Found submission for assessment 67ff6378947661f18203dac5
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
+Found 2 assigned assessments for user 3
+Found 2 completed submissions for user 3
+Found submission for assessment 67ff610c947661f18203d6f3
+Found submission for assessment 67ff6378947661f18203dac5
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Found 11 submissions for user 3
+Found 11 submissions for user 3
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Session ID for /me: m9jobmof02g9tt9vv8df
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Token validation successful, user: 3
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Session ID for /me: m9jobmof02g9tt9vv8df
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Token validation successful, user: 3
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Session ID for /me: m9jobmof02g9tt9vv8df
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
+Notifications for user 3 : 2
+Returning notifications for user: 2
+Token validation successful, user: 3
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
+Notifications for user 3 : 2
+Returning notifications for user: 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
+Found 2 assigned assessments for user 3
+Found 2 completed submissions for user 3
+Found submission for assessment 67ff610c947661f18203d6f3
+Found submission for assessment 67ff6378947661f18203dac5
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Session ID for /me: m9jobmof02g9tt9vv8df
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Token validation successful, user: 3
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
+Found 2 assigned assessments for user 3
+Found 2 completed submissions for user 3
+Found submission for assessment 67ff610c947661f18203d6f3
+Found submission for assessment 67ff6378947661f18203dac5
+Found 11 submissions for user 3
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Found 11 submissions for user 3
+Found 4 test submissions for assessment 67ff6378947661f18203dac5
+Found 4 test submissions for assessment 67ff6378947661f18203dac5
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
+Notifications for user 3 : 2
+Returning notifications for user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Session ID for /me: m9jobmof02g9tt9vv8df
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
+Notifications for user 3 : 2
+Returning notifications for user: 2
+Token validation successful, user: 3
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
+Found 2 assigned assessments for user 3
+Found 2 completed submissions for user 3
+Found submission for assessment 67ff610c947661f18203d6f3
+Found submission for assessment 67ff6378947661f18203dac5
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Session ID for /me: m9jobmof02g9tt9vv8df
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Token validation successful, user: 3
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
+Found 2 assigned assessments for user 3
+Found 2 completed submissions for user 3
+Found submission for assessment 67ff610c947661f18203d6f3
+Found submission for assessment 67ff6378947661f18203dac5
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Found 11 submissions for user 3
+Found 11 submissions for user 3
+Found 7 test submissions for assessment 67ff610c947661f18203d6f3
+Found 7 test submissions for assessment 67ff610c947661f18203d6f3
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Session ID for /me: m9jobmof02g9tt9vv8df
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Token validation successful, user: 3
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
+Notifications for user 3 : 2
+Returning notifications for user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Session ID for /me: m9jobmof02g9tt9vv8df
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0=
+Token validation successful, user: 3
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
+Notifications for user 3 : 2
+Returning notifications for user: 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
+Found 2 assigned assessments for user 3
+Found 2 completed submissions for user 3
+Found submission for assessment 67ff610c947661f18203d6f3
+Found submission for assessment 67ff6378947661f18203dac5
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpvYm1vZjAyZzl0dDl2djhkZiIsInRpbWVzdGFtcCI6MTc0NDc5MjM2MTkyNn0= Email: 3
+User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
+Found 2 assigned assessments for user 3
+Found 2 completed submissions for user 3
+Found submission for assessment 67ff610c947661f18203d6f3
+Found submission for assessment 67ff6378947661f18203dac5
+Assessment 67ff610c947661f18203d6f3 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Assessment 67ff6378947661f18203dac5 submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Found 11 submissions for user 3
+Found 11 submissions for user 3
