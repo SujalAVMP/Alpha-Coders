@@ -1,679 +1,215 @@
 Checking Docker and pulling required images...
-(node:1867714) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:2131116) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
 (Use `node --trace-warnings ...` to show where the warning was created)
-(node:1867714) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:2131116) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
 MongoDB Connected: localhost
-Found 5 existing template tests. Skipping seed.
 Docker version: Docker version 28.0.4, build b8034c0
 
 Pulling Python image...
+No template tests found. Seeding database with templates...
+Seeded 5 template tests
 Python image pulled successfully
 Pulling GCC image...
 GCC image pulled successfully
 Docker setup completed
 Test server running on port 5002
-Create assessment request body: {
-  title: 'Invite Display Test Assessment',
-  description: 'Testing the invite display functionality',
-  tests: [ '67fe94295745f4f0320cf891' ],
-  startTime: '2025-04-15T00:00:00.000Z',
-  endTime: '2025-04-30T23:59:59.000Z',
-  maxAttempts: 3,
-  isPublic: false,
-  invitedUsers: [
-    { email: 'student@example.com', status: 'Invited' },
-    { email: 'newstudent@example.com', status: 'Invited' }
-  ]
-}
-POST /api/assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNzI3N2I5MGZmYmNmM2JkZTQ0YzgiLCJzZXNzaW9uSWQiOiJtOWlwYXp6bzFoa3RuZzdrOWM5IiwidGltZXN0YW1wIjoxNzQ0NzMzNTQ1OTcxfQ== Email: teacher@example.com
-User found for assessment creation: {
-  _id: new ObjectId('67fe7277b90ffbcf3bde44c8'),
-  name: 'Test Teacher',
-  email: 'teacher@example.com',
-  password: '$2b$10$g3GoLURdGyJoAwIFNTLbPORvYLFzxY5z1lYpi.xEXx6EGpO12fmR.',
-  role: 'assessor',
-  createdAt: 2025-04-15T14:51:35.009Z,
-  updatedAt: 2025-04-15T14:51:35.009Z,
-  __v: 0
-}
-Tests array for assessment: [ '67fe94295745f4f0320cf891' ]
-Filtered invitedStudents for new assessment: []
-New assessment being created: {
-  title: 'Invite Display Test Assessment',
-  description: 'Testing the invite display functionality',
-  startTime: 2025-04-15T00:00:00.000Z,
-  endTime: 2025-04-30T23:59:59.000Z,
-  maxAttempts: 3,
-  isPublic: false,
-  tests: [ new ObjectId('67fe94295745f4f0320cf891') ],
-  invitedStudents: [],
-  invitedUsers: [],
-  createdBy: new ObjectId('67fe7277b90ffbcf3bde44c8'),
-  createdAt: 2025-04-15T17:16:01.844Z,
-  _id: new ObjectId('67fe94515745f4f0320cf896'),
-  updatedAt: 2025-04-15T17:16:01.844Z,
-  testAttempts: [],
-  submissions: []
-}
-POST /api/assessments/:id/invite - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNzI3N2I5MGZmYmNmM2JkZTQ0YzgiLCJzZXNzaW9uSWQiOiJtOWlwYXp6bzFoa3RuZzdrOWM5IiwidGltZXN0YW1wIjoxNzQ0NzMzNTQ1OTcxfQ== Email: teacher@example.com Assessment ID: 67fe94515745f4f0320cf896
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNzI3N2I5MGZmYmNmM2JkZTQ0YzgiLCJzZXNzaW9uSWQiOiJtOWlwYXp6bzFoa3RuZzdrOWM5IiwidGltZXN0YW1wIjoxNzQ0NzMzNTQ1OTcxfQ== Email: teacher@example.com Assessment ID: 67fe94515745f4f0320cf896
-Assessment found: new ObjectId('67fe94515745f4f0320cf896')
-User found: teacher@example.com
-Creator check: { isCreator: true }
-Permission check: { isCreator: true, isPublic: false, isInvited: false }
-Test details count: 1
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ==
-Session ID for /me: m9iqk8tpot3fjzuitpo
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ==
-Token validation successful, user: 1
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ==
-Session ID for /me: m9iqk8tpot3fjzuitpo
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ==
-Token validation successful, user: 1
-GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found: 1
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found: 1
-Returning all tests for assessor
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 3 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 3 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
-Session ID for /me: m9iqkt0epk1lmzry6wk
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ==
+Session ID for /me: m9j2cfp2eviqfof6q14
+Token for /me: eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ==
+Email from query: 2
+Creating new user for email: 2
+New user created: 2
+Returning user for /me: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ==
+Session ID for /me: m9j2cfp2eviqfof6q14
+Token for /me: eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ==
+Email from query: 2
+Returning user for /me: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ==
+Session ID for /me: m9j2cfp2eviqfof6q14
+Token for /me: eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ==
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ== Email: 2
+Email from query: 2
+Found user for notifications: new ObjectId('67ff229b8228ee23f6a72e1c') 2
+Returning user for /me: 2
+Notifications for user 2 : 0
+Returning notifications for user: 0
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ==
+Session ID for /me: m9j2cfp2eviqfof6q14
+Token for /me: eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ==
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ== Email: 2
+Email from query: 2
+Found user for notifications: new ObjectId('67ff229b8228ee23f6a72e1c') 2
+Notifications for user 2 : 0
+Returning notifications for user: 0
+Returning user for /me: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ== Email: 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ== Email: 2
+Found user for notifications: new ObjectId('67ff229b8228ee23f6a72e1c') 2
+User found: 2 new ObjectId('67ff229b8228ee23f6a72e1c')
+Notifications for user 2 : 0
+Returning notifications for user: 0
+Found 0 assigned assessments for user 2
+Found 0 completed submissions for user 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ== Email: 2
+User found: 2 new ObjectId('67ff229b8228ee23f6a72e1c')
+Found 0 assigned assessments for user 2
+Found 0 completed submissions for user 2
+Found 0 submissions for user 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlZGFmNzE4YzMxMjhlMWMwM2FiOGYiLCJzZXNzaW9uSWQiOiJtOWoyY2ZwMmV2aXFmb2Y2cTE0IiwidGltZXN0YW1wIjoxNzQ0NzU1NDQ3OTg0fQ== Email: 2
+User found: 2 new ObjectId('67ff229b8228ee23f6a72e1c')
+Found 0 assigned assessments for user 2
+Found 0 submissions for user 2
+Found 0 completed submissions for user 2
+Found 0 submissions for user 2
+Register request body: { name: '1', email: '1', password: '1', role: 'assessor' }
+Session ID for registration: m9jd9va7wvjgnlxe838
+Register request body: { name: '2', email: '2', password: '2', role: 'assessee' }
+Session ID for registration: m9jda7e069sqbyu8ez9
+Login request body: { email: '2', password: '2' }
+Session ID for login: m9jdacbnr033qabraoi
+Found user: 2
+Password mismatch
+Register request body: { name: '2', email: '2', password: '2', role: 'assessee' }
+Session ID for registration: m9jdag93kg9mx6mfp3
+Register request body: { name: '2', email: '2', password: '2', role: 'assessee' }
+Session ID for registration: m9jdagwpgd7eacc66xs
+Register request body: { name: '2', email: '2', password: '2', role: 'assessee' }
+Session ID for registration: m9jdah9fnpvzm3kemyp
+Register request body: { name: '2', email: '2', password: '2', role: 'assessee' }
+Session ID for registration: m9jdiimaio1674un6b
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 0
+Returning notifications for user: 0
 Token validation successful, user: 2
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
-Session ID for /me: m9iqkt0epk1lmzry6wk
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 0
+Returning notifications for user: 0
 Token validation successful, user: 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2 Assessment ID: 67fe8e1448eb5ef04def3153
-Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: {
-  isCreator: false,
-  isPublic: false,
-  isInvited: { _id: new ObjectId('67fe8e1448eb5ef04def3156') }
-}
-Test details count: 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2 Assessment ID: 67fe8e1448eb5ef04def3153
-Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: {
-  isCreator: false,
-  isPublic: false,
-  isInvited: { _id: new ObjectId('67fe8e1448eb5ef04def3156') }
-}
-Test details count: 3
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe8e1448eb5ef04def3153 for user null
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
-Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
-User found: 1
-Creator check: { isCreator: true }
-Permission check: { isCreator: true, isPublic: false, isInvited: false }
-Test details count: 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe8e1448eb5ef04def3153
-Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
-User found: 1
-Creator check: { isCreator: true }
-Permission check: { isCreator: true, isPublic: false, isInvited: false }
-Test details count: 3
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 0 assigned assessments for user 2
+Found 0 completed submissions for user 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 0 assigned assessments for user 2
+Found 0 completed submissions for user 2
+Found 0 submissions for user 2
+Found 0 submissions for user 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 0
+Returning notifications for user: 0
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 0 assigned assessments for user 2
+Found 0 completed submissions for user 2
+Found 0 submissions for user 2
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWpkOXZhN3d2amdubHhlODM4IiwidGltZXN0YW1wIjoxNzQ0NzczODAzOTg5fQ== Email: 1
 User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
   name: '1',
   email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
   role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
   __v: 0
 }
-Found 3 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+Found 0 assessments created by user 1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWpkOXZhN3d2amdubHhlODM4IiwidGltZXN0YW1wIjoxNzQ0NzczODAzOTg5fQ== Email: 1
 User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
   name: '1',
   email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
   role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
   __v: 0
 }
-Found 3 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+Found 0 assessments created by user 1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWpkOXZhN3d2amdubHhlODM4IiwidGltZXN0YW1wIjoxNzQ0NzczODAzOTg5fQ== Email: 1
 User found: 1
 Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWpkOXZhN3d2amdubHhlODM4IiwidGltZXN0YW1wIjoxNzQ0NzczODAzOTg5fQ== Email: 1
 User found: 1
 Returning all tests for assessor
-Login request body: { email: '1', password: '1' }
-Session ID for login: m9irmb87ghlnl7hnc5
-Found user: 1
-Login successful for user: 1
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9 Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 3 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9 Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 3 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
+Register request body: { name: '3', email: '3', password: '3', role: 'assessee' }
+Session ID for registration: m9jdmgou3j4iv4k5esi
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpkbWdvdTNqNGl2NGs1ZXNpIiwidGltZXN0YW1wIjoxNzQ0Nzc0MzkxNjEwfQ==
+Session ID for /me: m9jdmgou3j4iv4k5esi
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpkbWdvdTNqNGl2NGs1ZXNpIiwidGltZXN0YW1wIjoxNzQ0Nzc0MzkxNjEwfQ==
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpkbWdvdTNqNGl2NGs1ZXNpIiwidGltZXN0YW1wIjoxNzQ0Nzc0MzkxNjEwfQ== Email: 3
+Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
+Notifications for user 3 : 0
+Returning notifications for user: 0
+Token validation successful, user: 3
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpkbWdvdTNqNGl2NGs1ZXNpIiwidGltZXN0YW1wIjoxNzQ0Nzc0MzkxNjEwfQ==
+Session ID for /me: m9jdmgou3j4iv4k5esi
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpkbWdvdTNqNGl2NGs1ZXNpIiwidGltZXN0YW1wIjoxNzQ0Nzc0MzkxNjEwfQ==
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpkbWdvdTNqNGl2NGs1ZXNpIiwidGltZXN0YW1wIjoxNzQ0Nzc0MzkxNjEwfQ== Email: 3
+Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
+Token validation successful, user: 3
+Notifications for user 3 : 0
+Returning notifications for user: 0
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpkbWdvdTNqNGl2NGs1ZXNpIiwidGltZXN0YW1wIjoxNzQ0Nzc0MzkxNjEwfQ== Email: 3
+User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
+Found 0 assigned assessments for user 3
+Found 0 completed submissions for user 3
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpkbWdvdTNqNGl2NGs1ZXNpIiwidGltZXN0YW1wIjoxNzQ0Nzc0MzkxNjEwfQ== Email: 3
+User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
+Found 0 assigned assessments for user 3
+Found 0 completed submissions for user 3
+Found 0 submissions for user 3
+Found 0 submissions for user 3
+Register request body: { name: '4', email: '4', password: '4', role: 'assessee' }
+Session ID for registration: m9jdmmypqv6jzg29yf
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmZjgyMjhlZTIzZjZhNzJlYzgiLCJzZXNzaW9uSWQiOiJtOWpkbW15cHF2Nmp6ZzI5eWYiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQzOTk3NDF9
+Session ID for /me: m9jdmmypqv6jzg29yf
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmZjgyMjhlZTIzZjZhNzJlYzgiLCJzZXNzaW9uSWQiOiJtOWpkbW15cHF2Nmp6ZzI5eWYiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQzOTk3NDF9
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmZjgyMjhlZTIzZjZhNzJlYzgiLCJzZXNzaW9uSWQiOiJtOWpkbW15cHF2Nmp6ZzI5eWYiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQzOTk3NDF9 Email: 4
+Found user for notifications: new ObjectId('67ff24ff8228ee23f6a72ec8') 4
+Notifications for user 4 : 0
+Returning notifications for user: 0
+Token validation successful, user: 4
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmZjgyMjhlZTIzZjZhNzJlYzgiLCJzZXNzaW9uSWQiOiJtOWpkbW15cHF2Nmp6ZzI5eWYiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQzOTk3NDF9 Email: 4
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmZjgyMjhlZTIzZjZhNzJlYzgiLCJzZXNzaW9uSWQiOiJtOWpkbW15cHF2Nmp6ZzI5eWYiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQzOTk3NDF9
+Session ID for /me: m9jdmmypqv6jzg29yf
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjRmZjgyMjhlZTIzZjZhNzJlYzgiLCJzZXNzaW9uSWQiOiJtOWpkbW15cHF2Nmp6ZzI5eWYiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQzOTk3NDF9
+Found user for notifications: new ObjectId('67ff24ff8228ee23f6a72ec8') 4
+Notifications for user 4 : 0
+Returning notifications for user: 0
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmZjgyMjhlZTIzZjZhNzJlYzgiLCJzZXNzaW9uSWQiOiJtOWpkbW15cHF2Nmp6ZzI5eWYiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQzOTk3NDF9 Email: 4
+Token validation successful, user: 4
+User found: 4 new ObjectId('67ff24ff8228ee23f6a72ec8')
+Found 0 assigned assessments for user 4
+Found 0 completed submissions for user 4
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmZjgyMjhlZTIzZjZhNzJlYzgiLCJzZXNzaW9uSWQiOiJtOWpkbW15cHF2Nmp6ZzI5eWYiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQzOTk3NDF9 Email: 4
+User found: 4 new ObjectId('67ff24ff8228ee23f6a72ec8')
+Found 0 assigned assessments for user 4
+Found 0 completed submissions for user 4
+Found 0 submissions for user 4
+Found 0 submissions for user 4
 Create assessment request body: {
-  title: 'Test',
+  title: 'Testing bro',
   description: '',
   tests: [
-    '67fe5207dd496f0837ae199e',
-    '67fe5207dd496f0837ae19a4',
-    '67fe5207dd496f0837ae19aa',
-    '67fe5207dd496f0837ae19b7'
+    '67ff22878228ee23f6a72df6',
+    '67ff22878228ee23f6a72dfc',
+    '67ff22878228ee23f6a72e02'
   ],
-  startTime: '2025-04-15T22:45',
-  endTime: '2025-04-22T22:45',
-  maxAttempts: 1,
-  isPublic: false,
-  invitedStudents: [],
-  invitedUsers: []
-}
-POST /api/assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found for assessment creation: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Tests array for assessment: [
-  '67fe5207dd496f0837ae199e',
-  '67fe5207dd496f0837ae19a4',
-  '67fe5207dd496f0837ae19aa',
-  '67fe5207dd496f0837ae19b7'
-]
-Filtered invitedStudents for new assessment: []
-New assessment being created: {
-  title: 'Test',
-  description: '',
-  startTime: 2025-04-15T17:15:00.000Z,
-  endTime: 2025-04-22T17:15:00.000Z,
-  maxAttempts: 1,
-  isPublic: false,
-  tests: [
-    new ObjectId('67fe5207dd496f0837ae199e'),
-    new ObjectId('67fe5207dd496f0837ae19a4'),
-    new ObjectId('67fe5207dd496f0837ae19aa'),
-    new ObjectId('67fe5207dd496f0837ae19b7')
-  ],
-  invitedStudents: [],
-  invitedUsers: [],
-  createdBy: new ObjectId('67fe5250dd496f0837ae19c4'),
-  createdAt: 2025-04-15T17:17:20.698Z,
-  _id: new ObjectId('67fe94a05745f4f0320cfb45'),
-  updatedAt: 2025-04-15T17:17:20.698Z,
-  testAttempts: [],
-  submissions: []
-}
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 4 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 4 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found: 1
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found: 1
-Returning all tests for assessor
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9
-Session ID for /me: m9irmb87ghlnl7hnc5
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9
-Token validation successful, user: 1
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9
-Session ID for /me: m9irmb87ghlnl7hnc5
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9
-Token validation successful, user: 1
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9 Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 4 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9 Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 4 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9 Email: 1 Assessment ID: 67fe94a05745f4f0320cfb45
-Assessment found: new ObjectId('67fe94a05745f4f0320cfb45')
-User found: 1
-Creator check: { isCreator: true }
-Permission check: { isCreator: true, isPublic: false, isInvited: false }
-Test details count: 4
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9 Email: 1 Assessment ID: 67fe94a05745f4f0320cfb45
-Assessment found: new ObjectId('67fe94a05745f4f0320cfb45')
-User found: 1
-Creator check: { isCreator: true }
-Permission check: { isCreator: true, isPublic: false, isInvited: false }
-Test details count: 4
-GET /api/tests/:id - Test ID: 67fe5207dd496f0837ae199e
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9 Email: 1
-Found user for test access check: new ObjectId('67fe5250dd496f0837ae19c4') 1
-Test found: { id: new ObjectId('67fe5207dd496f0837ae199e'), title: 'Two Sum' }
-Specific assessment ID from query: undefined
-Found 3 assessments containing test 67fe5207dd496f0837ae199e
-Permission check for test access: {
-  testId: '67fe5207dd496f0837ae199e',
-  userId: new ObjectId('67fe5250dd496f0837ae19c4'),
-  userEmail: '1',
-  isCreator: undefined,
-  isPublic: true,
-  isInvited: false
-}
-Access granted to test 67fe5207dd496f0837ae199e for user 1
-GET /api/tests/:id - Test ID: 67fe5207dd496f0837ae199e
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9 Email: 1
-Found user for test access check: new ObjectId('67fe5250dd496f0837ae19c4') 1
-Test found: { id: new ObjectId('67fe5207dd496f0837ae199e'), title: 'Two Sum' }
-Specific assessment ID from query: undefined
-Found 3 assessments containing test 67fe5207dd496f0837ae199e
-Permission check for test access: {
-  testId: '67fe5207dd496f0837ae199e',
-  userId: new ObjectId('67fe5250dd496f0837ae19c4'),
-  userEmail: '1',
-  isCreator: undefined,
-  isPublic: true,
-  isInvited: false
-}
-Access granted to test 67fe5207dd496f0837ae199e for user 1
-Create assessment request body: {
-  title: 'olala',
-  description: '',
-  tests: [
-    '67fe5207dd496f0837ae19b7',
-    '67fe729ab90ffbcf3bde44d9',
-    '67fe5207dd496f0837ae199e',
-    '67fe5207dd496f0837ae19a4',
-    '67fe5207dd496f0837ae19aa'
-  ],
-  startTime: '2025-04-15T22:45',
-  endTime: '2025-04-22T22:45',
-  maxAttempts: 1,
+  startTime: '2025-04-16T03:32',
+  endTime: '2025-04-23T03:32',
+  maxAttempts: '3',
   isPublic: false,
   invitedStudents: [
     { email: '2', status: 'Invited', lastAttempt: null },
@@ -684,1040 +220,731 @@ Create assessment request body: {
     { email: '3', status: 'Invited', lastAttempt: null }
   ]
 }
-POST /api/assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+POST /api/assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWpkOXZhN3d2amdubHhlODM4IiwidGltZXN0YW1wIjoxNzQ0NzczODAzOTg5fQ== Email: 1
 User found for assessment creation: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
   name: '1',
   email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
   role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
   __v: 0
 }
 Tests array for assessment: [
-  '67fe5207dd496f0837ae19b7',
-  '67fe729ab90ffbcf3bde44d9',
-  '67fe5207dd496f0837ae199e',
-  '67fe5207dd496f0837ae19a4',
-  '67fe5207dd496f0837ae19aa'
+  '67ff22878228ee23f6a72df6',
+  '67ff22878228ee23f6a72dfc',
+  '67ff22878228ee23f6a72e02'
 ]
 Filtered invitedStudents for new assessment: [
   { email: '2', status: 'Invited', lastAttempt: null },
   { email: '3', status: 'Invited', lastAttempt: null }
 ]
 New assessment being created: {
-  title: 'olala',
+  title: 'Testing bro',
   description: '',
-  startTime: 2025-04-15T17:15:00.000Z,
-  endTime: 2025-04-22T17:15:00.000Z,
-  maxAttempts: 1,
+  startTime: 2025-04-15T22:02:00.000Z,
+  endTime: 2025-04-22T22:02:00.000Z,
+  maxAttempts: 3,
   isPublic: false,
   tests: [
-    new ObjectId('67fe5207dd496f0837ae19b7'),
-    new ObjectId('67fe729ab90ffbcf3bde44d9'),
-    new ObjectId('67fe5207dd496f0837ae199e'),
-    new ObjectId('67fe5207dd496f0837ae19a4'),
-    new ObjectId('67fe5207dd496f0837ae19aa')
+    new ObjectId('67ff22878228ee23f6a72df6'),
+    new ObjectId('67ff22878228ee23f6a72dfc'),
+    new ObjectId('67ff22878228ee23f6a72e02')
   ],
   invitedStudents: [],
   invitedUsers: [
     { email: '2', status: 'Invited', lastAttempt: null },
     { email: '3', status: 'Invited', lastAttempt: null }
   ],
-  createdBy: new ObjectId('67fe5250dd496f0837ae19c4'),
-  createdAt: 2025-04-15T17:17:38.639Z,
-  _id: new ObjectId('67fe94b25745f4f0320cfd38'),
-  updatedAt: 2025-04-15T17:17:38.639Z,
+  createdBy: new ObjectId('67ff22ab8228ee23f6a72e3e'),
+  createdAt: 2025-04-16T03:33:36.338Z,
+  _id: new ObjectId('67ff25108228ee23f6a72ee3'),
+  updatedAt: 2025-04-16T03:33:36.338Z,
   testAttempts: [],
   submissions: []
 }
 Created notification for invited user: 2
 Created notification for invited user: 3
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWpkOXZhN3d2amdubHhlODM4IiwidGltZXN0YW1wIjoxNzQ0NzczODAzOTg5fQ== Email: 1
 User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
   name: '1',
   email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
   role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
   __v: 0
 }
-Found 5 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
+Found 1 assessments created by user 1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWpkOXZhN3d2amdubHhlODM4IiwidGltZXN0YW1wIjoxNzQ0NzczODAzOTg5fQ== Email: 1
 User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
   name: '1',
   email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
   role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
   __v: 0
 }
-Found 5 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe94b25745f4f0320cfd38
-Assessment found: new ObjectId('67fe94b25745f4f0320cfd38')
-User found: 1
-Creator check: { isCreator: true }
-Permission check: { isCreator: true, isPublic: false, isInvited: false }
-Test details count: 5
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe94b25745f4f0320cfd38
-Assessment found: new ObjectId('67fe94b25745f4f0320cfd38')
-User found: 1
-Creator check: { isCreator: true }
-Permission check: { isCreator: true, isPublic: false, isInvited: false }
-Test details count: 5
-GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9 Email: 1
-User found: 1
-Returning all tests for assessor
-GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9 Email: 1
-User found: 1
-Returning all tests for assessor
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 5 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 5 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
-Session ID for /me: m9iqkt0epk1lmzry6wk
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
-Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
-Notifications for user 2 : 6
-Returning notifications for user: 6
-Marked notification as read: new ObjectId('67fe94b25745f4f0320cfd3b')
-Token validation successful, user: 2
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
-Session ID for /me: m9iqkt0epk1lmzry6wk
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ==
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
-Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
-Notifications for user 2 : 6
-Returning notifications for user: 6
-Token validation successful, user: 2
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
-User found: 2 new ObjectId('67fe560af1fb316299ef149b')
-Found 4 assigned assessments for user 2
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
-User found: 2 new ObjectId('67fe560af1fb316299ef149b')
-Found 4 assigned assessments for user 2
-Found 2 submissions for user 2
-Found 2 submissions for user 2
-Found 0 submissions for user 1
-Found 0 submissions for user 1
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9 Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 5 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlybWI4N2dobG5sN2huYzUiLCJ0aW1lc3RhbXAiOjE3NDQ3Mzc0MzI5ODF9 Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 5 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
-Session ID for /me: m9iqn4adm1ggqlrsdi
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
-Token validation successful, user: 3
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
-Session ID for /me: m9iqn4adm1ggqlrsdi
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
-Token validation successful, user: 3
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
-Session ID for /me: m9iqn4adm1ggqlrsdi
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
-Token validation successful, user: 3
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9 Email: 3
-Found user for notifications: new ObjectId('67fe58aef1fb316299ef1b0d') 3
-Notifications for user 3 : 4
-Returning notifications for user: 4
-Marked notification as read: new ObjectId('67fe94b25745f4f0320cfd3e')
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
-Session ID for /me: m9iqn4adm1ggqlrsdi
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9
-Token validation successful, user: 3
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9 Email: 3
-Found user for notifications: new ObjectId('67fe58aef1fb316299ef1b0d') 3
-Notifications for user 3 : 4
-Returning notifications for user: 4
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9 Email: 3
-Found user for notifications: new ObjectId('67fe58aef1fb316299ef1b0d') 3
-Notifications for user 3 : 4
-Returning notifications for user: 4
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9 Email: 3
-User found: 3 new ObjectId('67fe58aef1fb316299ef1b0d')
-Found 4 assigned assessments for user 3
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9 Email: 3
-User found: 3 new ObjectId('67fe58aef1fb316299ef1b0d')
-Found 4 assigned assessments for user 3
-Found 3 submissions for user 3
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThhZWYxZmIzMTYyOTllZjFiMGQiLCJzZXNzaW9uSWQiOiJtOWlxbjRhZG0xZ2dxbHJzZGkiLCJ0aW1lc3RhbXAiOjE3NDQ3MzU3OTEwMjJ9 Email: 3
-User found: 3 new ObjectId('67fe58aef1fb316299ef1b0d')
-Found 4 assigned assessments for user 3
-Found 3 submissions for user 3
-Found 3 submissions for user 3
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ==
-Session ID for /me: m9ir22y2hxcourx8ncw
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ==
-Token validation successful, user: 2
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ==
-Session ID for /me: m9ir22y2hxcourx8ncw
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ==
-Token validation successful, user: 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2 Assessment ID: 67fe8e1448eb5ef04def3153
-Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: {
-  isCreator: false,
-  isPublic: false,
-  isInvited: { _id: new ObjectId('67fe8e1448eb5ef04def3156') }
-}
-Test details count: 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2 Assessment ID: 67fe8e1448eb5ef04def3153
-Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: {
-  isCreator: false,
-  isPublic: false,
-  isInvited: { _id: new ObjectId('67fe8e1448eb5ef04def3156') }
-}
-Test details count: 3
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe8e1448eb5ef04def3153 for user null
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ==
-Session ID for /me: m9ir22y2hxcourx8ncw
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ==
-Token validation successful, user: 2
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ==
-Session ID for /me: m9ir22y2hxcourx8ncw
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ==
-Token validation successful, user: 2
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2 Assessment ID: 67fe8e1448eb5ef04def3153
-Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: {
-  isCreator: false,
-  isPublic: false,
-  isInvited: { _id: new ObjectId('67fe8e1448eb5ef04def3156') }
-}
-Test details count: 3
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlyMjJ5Mmh4Y291cng4bmN3IiwidGltZXN0YW1wIjoxNzQ0NzM2NDg5MTI4fQ== Email: 2 Assessment ID: 67fe8e1448eb5ef04def3153
-Assessment found: new ObjectId('67fe8e1448eb5ef04def3153')
-User found: 2
-Creator check: { isCreator: false }
-Permission check: {
-  isCreator: false,
-  isPublic: false,
-  isInvited: { _id: new ObjectId('67fe8e1448eb5ef04def3156') }
-}
-Test details count: 3
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe8e1448eb5ef04def3153 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe8e1448eb5ef04def3153 for user null
-POST /api/assessments/:id/invite - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe94b25745f4f0320cfd38
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 5 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
-Found user for notifications: new ObjectId('67fe560af1fb316299ef149b') 2
-Notifications for user 2 : 7
-Returning notifications for user: 7
-Marked notification as read: new ObjectId('67fe94d15745f4f0320d0269')
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTYwYWYxZmIzMTYyOTllZjE0OWIiLCJzZXNzaW9uSWQiOiJtOWlxa3QwZXBrMWxtenJ5NndrIiwidGltZXN0YW1wIjoxNzQ0NzM1NjgzMDkwfQ== Email: 2
-User found: 2 new ObjectId('67fe560af1fb316299ef149b')
-Found 4 assigned assessments for user 2
-Found 2 submissions for user 2
-POST /api/assessments/:id/invite - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1 Assessment ID: 67fe94b25745f4f0320cfd38
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNTI1MGRkNDk2ZjA4MzdhZTE5YzQiLCJzZXNzaW9uSWQiOiJtOWlxazh0cG90M2ZqenVpdHBvIiwidGltZXN0YW1wIjoxNzQ0NzM1NjU2OTQxfQ== Email: 1
-User found for my assessments: {
-  _id: new ObjectId('67fe5250dd496f0837ae19c4'),
-  name: '1',
-  email: '1',
-  password: '$2b$10$aijkX2ob6GcLprHaiHAI8O5GhZbXbXagvrWTzs9m0Pll3OynxT74S',
-  role: 'assessor',
-  createdAt: 2025-04-15T12:34:24.945Z,
-  updatedAt: 2025-04-15T12:34:24.945Z,
-  __v: 0
-}
-Found 5 assessments created by user 1
-Error finding invited user with ID [object Object]: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "User"
-    at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:251:11)
-    at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-    at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-    at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-    at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-    at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-    at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-    at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/test-server.js:1323:33 {
-  stringValue: '"[object Object]"',
-  messageFormat: undefined,
-  kind: 'ObjectId',
-  value: '[object Object]',
-  path: '_id',
-  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-      at new ObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/bson/lib/bson.cjs:2523:23)
-      at castObjectId (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast/objectid.js:25:12)
-      at SchemaObjectId.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schema/objectId.js:249:12)
-      at SchemaType.applySetters (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1255:12)
-      at SchemaType.castForQuery (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/schemaType.js:1673:17)
-      at cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/cast.js:390:32)
-      at Query.cast (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4907:12)
-      at Query._castConditions (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2325:10)
-      at model.Query._findOne (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:2648:8)
-      at model.Query.exec (/home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/server/node_modules/mongoose/lib/query.js:4456:80),
-  valueType: 'string'
-}
-Logout request for session: m9ir22y2hxcourx8ncw
-Session removed successfully
-Login request body: { email: '4', password: '4' }
-Session ID for login: m9iro454thy70i0397g
-Found user: 4
-Login successful for user: 4
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
+Found 1 assessments created by user 1
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 1
 Returning notifications for user: 1
-Marked notification as read: new ObjectId('67fe94e45745f4f0320d031b')
-Token validation successful, user: 4
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
+Marked notification as read: new ObjectId('67ff25108228ee23f6a72ee6')
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 0 completed submissions for user 2
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+Found 0 submissions for user 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 1
 Returning notifications for user: 1
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Found 3 assigned assessments for user 4
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Token validation successful, user: 4
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Found 3 assigned assessments for user 4
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 0 completed submissions for user 2
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+Found 0 submissions for user 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Token validation successful, user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Token validation successful, user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 1
+Returning notifications for user: 1
+Token validation successful, user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 1
+Returning notifications for user: 1
+Token validation successful, user: 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 0 completed submissions for user 2
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 0 completed submissions for user 2
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+Found 0 submissions for user 2
+Found 0 submissions for user 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpkbWdvdTNqNGl2NGs1ZXNpIiwidGltZXN0YW1wIjoxNzQ0Nzc0MzkxNjEwfQ== Email: 3
+Found user for notifications: new ObjectId('67ff24f78228ee23f6a72ead') 3
+Notifications for user 3 : 1
+Returning notifications for user: 1
+Marked notification as read: new ObjectId('67ff25108228ee23f6a72ee9')
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmNzgyMjhlZTIzZjZhNzJlYWQiLCJzZXNzaW9uSWQiOiJtOWpkbWdvdTNqNGl2NGs1ZXNpIiwidGltZXN0YW1wIjoxNzQ0Nzc0MzkxNjEwfQ== Email: 3
+User found: 3 new ObjectId('67ff24f78228ee23f6a72ead')
+Found 1 assigned assessments for user 3
+Found 0 completed submissions for user 3
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+Found 0 submissions for user 3
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmZjgyMjhlZTIzZjZhNzJlYzgiLCJzZXNzaW9uSWQiOiJtOWpkbW15cHF2Nmp6ZzI5eWYiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQzOTk3NDF9 Email: 4
+Found user for notifications: new ObjectId('67ff24ff8228ee23f6a72ec8') 4
+Notifications for user 4 : 0
+Returning notifications for user: 0
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmZjgyMjhlZTIzZjZhNzJlYzgiLCJzZXNzaW9uSWQiOiJtOWpkbW15cHF2Nmp6ZzI5eWYiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQzOTk3NDF9 Email: 4
+User found: 4 new ObjectId('67ff24ff8228ee23f6a72ec8')
+Found 0 assigned assessments for user 4
+Found 0 completed submissions for user 4
 Found 0 submissions for user 4
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmZjgyMjhlZTIzZjZhNzJlYzgiLCJzZXNzaW9uSWQiOiJtOWpkbW15cHF2Nmp6ZzI5eWYiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQzOTk3NDF9 Email: 4
+Found user for notifications: new ObjectId('67ff24ff8228ee23f6a72ec8') 4
+Notifications for user 4 : 0
+Returning notifications for user: 0
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjRmZjgyMjhlZTIzZjZhNzJlYzgiLCJzZXNzaW9uSWQiOiJtOWpkbW15cHF2Nmp6ZzI5eWYiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQzOTk3NDF9 Email: 4
+User found: 4 new ObjectId('67ff24ff8228ee23f6a72ec8')
+Found 0 assigned assessments for user 4
+Found 0 completed submissions for user 4
 Found 0 submissions for user 4
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4 Assessment ID: 67fe94b25745f4f0320cfd38
-Assessment found: new ObjectId('67fe94b25745f4f0320cfd38')
-User found: 4
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2 Assessment ID: 67ff25108228ee23f6a72ee3
+Assessment found: new ObjectId('67ff25108228ee23f6a72ee3')
+User found: 2
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 5
+Test details count: 3
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4 Assessment ID: 67fe94b25745f4f0320cfd38
-Assessment found: new ObjectId('67fe94b25745f4f0320cfd38')
-User found: 4
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2 Assessment ID: 67ff25108228ee23f6a72ee3
+Assessment found: new ObjectId('67ff25108228ee23f6a72ee3')
+User found: 2
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 5
-Getting attempts for test 67fe5207dd496f0837ae19b7 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19b7 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38 for user null
-GET /api/tests/:id - Test ID: 67fe5207dd496f0837ae199e
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for test access check: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Test found: { id: new ObjectId('67fe5207dd496f0837ae199e'), title: 'Two Sum' }
-Specific assessment ID from query: 67fe94b25745f4f0320cfd38
-Checking assessment 67fe94b25745f4f0320cfd38 for test 67fe5207dd496f0837ae199e
-Is test 67fe5207dd496f0837ae199e part of assessment 67fe94b25745f4f0320cfd38? true
+Test details count: 3
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72df6
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for test access check: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+Test found: { id: new ObjectId('67ff22878228ee23f6a72df6'), title: 'Two Sum' }
+Specific assessment ID from query: 67ff25108228ee23f6a72ee3
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+Checking assessment 67ff25108228ee23f6a72ee3 for test 67ff22878228ee23f6a72df6
+Is test 67ff22878228ee23f6a72df6 part of assessment 67ff25108228ee23f6a72ee3? true
 Permission check for test access: {
-  testId: '67fe5207dd496f0837ae199e',
-  userId: new ObjectId('67fe58b8f1fb316299ef1b8d'),
-  userEmail: '4',
+  testId: '67ff22878228ee23f6a72df6',
+  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
+  userEmail: '2',
   isCreator: undefined,
   isPublic: true,
   isInvited: false
 }
-Access granted to test 67fe5207dd496f0837ae199e for user 4
-GET /api/tests/:id - Test ID: 67fe5207dd496f0837ae199e
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38 for user null
-Found user for test access check: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Test found: { id: new ObjectId('67fe5207dd496f0837ae199e'), title: 'Two Sum' }
-Specific assessment ID from query: 67fe94b25745f4f0320cfd38
-Checking assessment 67fe94b25745f4f0320cfd38 for test 67fe5207dd496f0837ae199e
-Is test 67fe5207dd496f0837ae199e part of assessment 67fe94b25745f4f0320cfd38? true
+Access granted to test 67ff22878228ee23f6a72df6 for user 2
+GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72df6
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for test access check: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Test found: { id: new ObjectId('67ff22878228ee23f6a72df6'), title: 'Two Sum' }
+Specific assessment ID from query: 67ff25108228ee23f6a72ee3
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+Checking assessment 67ff25108228ee23f6a72ee3 for test 67ff22878228ee23f6a72df6
+Is test 67ff22878228ee23f6a72df6 part of assessment 67ff25108228ee23f6a72ee3? true
 Permission check for test access: {
-  testId: '67fe5207dd496f0837ae199e',
-  userId: new ObjectId('67fe58b8f1fb316299ef1b8d'),
-  userEmail: '4',
+  testId: '67ff22878228ee23f6a72df6',
+  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
+  userEmail: '2',
   isCreator: undefined,
   isPublic: true,
   isInvited: false
 }
-Access granted to test 67fe5207dd496f0837ae199e for user 4
-Execute code request: { language: 'python', assessmentId: '67fe94b25745f4f0320cfd38' }
-Code to execute: def solve():
-    import sys
-    import ast
+Access granted to test 67ff22878228ee23f6a72df6 for user 2
+Execute code request: { language: 'python', assessmentId: '67ff25108228ee23f6a72ee3' }
+Code to execute: # Read input from stdin and solve the problem
+# Example:
+# n = int(input())
+# arr = list(map(int, input().split()))
 
-    # Read input
-    nums = ast.literal_eval(sys.stdin.readline().strip())  # Safely parse the array
-    target = int(sys.stdin.readline().strip())
-
-    # Hash map to store value to index
-    num_map = {}
-
-    for i, num in enumerate(nums):
-        complement = target - num
-        if complement in num_map:
-            print([num_map[complement], i])
-            return
-        num_map[num] = i
+def solve():
+    print("true")
 
 if __name__ == "__main__":
+    # Call the solve function
     solve()
-
 Input: [2,7,11,15]
 9
 Executing code in Docker container...
-Starting Python execution with ID: 46e5a6e9-101d-4ae1-b8b5-be2220acc8b8
-Code length: 481 characters
+Starting Python execution with ID: ad3d1f50-ce5a-4f0d-b08f-b40ae5333b2a
+Code length: 217 characters
 Input length: 13 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_46e5a6e9-101d-4ae1-b8b5-be2220acc8b8.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_46e5a6e9-101d-4ae1-b8b5-be2220acc8b8       -i python:3.9-slim       bash
-Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 287 }
+Executing Python code with Docker command: cat /tmp/run_ad3d1f50-ce5a-4f0d-b08f-b40ae5333b2a.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_ad3d1f50-ce5a-4f0d-b08f-b40ae5333b2a       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 305 }
 Temporary files cleaned up
-Execution result: { output: '[0, 1]\n', error: '', executionTime: 287, memoryUsed: 0 }
+Execution result: { output: 'true\n', error: '', executionTime: 305, memoryUsed: 0 }
 Run test cases request: {
-  testId: '67fe5207dd496f0837ae199e',
+  testId: '67ff22878228ee23f6a72df6',
   language: 'python',
-  assessmentId: '67fe94b25745f4f0320cfd38'
+  assessmentId: '67ff25108228ee23f6a72ee3'
 }
-Test found: Yes new ObjectId('67fe5207dd496f0837ae199e')
-Starting Python execution with ID: 8ae0ff8d-9745-4a21-aea9-58f5fb11be0b
-Code length: 481 characters
+Test found: Yes new ObjectId('67ff22878228ee23f6a72df6')
+Starting Python execution with ID: fc9c76cf-fd94-410c-ba6e-98a128a9ac5f
+Code length: 217 characters
 Input length: 13 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_8ae0ff8d-9745-4a21-aea9-58f5fb11be0b.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_8ae0ff8d-9745-4a21-aea9-58f5fb11be0b       -i python:3.9-slim       bash
-Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 375 }
+Executing Python code with Docker command: cat /tmp/run_fc9c76cf-fd94-410c-ba6e-98a128a9ac5f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_fc9c76cf-fd94-410c-ba6e-98a128a9ac5f       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 414 }
 Temporary files cleaned up
-Starting Python execution with ID: 4018679b-5044-4f91-bf94-13637eb9b066
-Code length: 481 characters
+Starting Python execution with ID: c760ba48-9a56-436e-bb49-47c794c7ec11
+Code length: 217 characters
 Input length: 9 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_4018679b-5044-4f91-bf94-13637eb9b066.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_4018679b-5044-4f91-bf94-13637eb9b066       -i python:3.9-slim       bash
-Python execution result: { stdout: '[1, 2]\n', stderr: '', executionTime: 399 }
+Executing Python code with Docker command: cat /tmp/run_c760ba48-9a56-436e-bb49-47c794c7ec11.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_c760ba48-9a56-436e-bb49-47c794c7ec11       -i python:3.9-slim       bash
+Python execution result: { stdout: 'true\n', stderr: '', executionTime: 428 }
+Temporary files cleaned up
+Run test cases request: {
+  testId: '67ff22878228ee23f6a72df6',
+  language: 'python',
+  assessmentId: '67ff25108228ee23f6a72ee3'
+}
+Test found: Yes new ObjectId('67ff22878228ee23f6a72df6')
+Starting Python execution with ID: 906684eb-c59c-4c51-8937-0eb01253b0cf
+Code length: 217 characters
+Input length: 13 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_906684eb-c59c-4c51-8937-0eb01253b0cf.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_906684eb-c59c-4c51-8937-0eb01253b0cf       -i python:3.9-slim       bash
+Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 403 }
+Temporary files cleaned up
+Starting Python execution with ID: 8a714b42-89b7-49ed-b0dd-7355bf1a51f8
+Code length: 217 characters
+Input length: 9 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_8a714b42-89b7-49ed-b0dd-7355bf1a51f8.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_8a714b42-89b7-49ed-b0dd-7355bf1a51f8       -i python:3.9-slim       bash
+Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 435 }
 Temporary files cleaned up
 Submit code request: {
-  testId: '67fe5207dd496f0837ae199e',
+  testId: '67ff22878228ee23f6a72df6',
   language: 'python',
-  assessmentId: '67fe94b25745f4f0320cfd38'
+  assessmentId: '67ff25108228ee23f6a72ee3'
 }
-Test found: Yes new ObjectId('67fe5207dd496f0837ae199e')
-User 4 has used 0 of 1 attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38
-Starting Python execution with ID: 220e5013-355f-4ccf-9391-c82694ad349f
-Code length: 481 characters
+Test found: Yes new ObjectId('67ff22878228ee23f6a72df6')
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3
+Starting Python execution with ID: f66ba20a-a9f3-467d-9756-8e9175c1c681
+Code length: 217 characters
 Input length: 13 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_220e5013-355f-4ccf-9391-c82694ad349f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_220e5013-355f-4ccf-9391-c82694ad349f       -i python:3.9-slim       bash
-Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 378 }
+Executing Python code with Docker command: cat /tmp/run_f66ba20a-a9f3-467d-9756-8e9175c1c681.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_f66ba20a-a9f3-467d-9756-8e9175c1c681       -i python:3.9-slim       bash
+Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 323 }
 Temporary files cleaned up
-Starting Python execution with ID: a08e851d-4ea2-420b-8803-a9f5afa8babb
-Code length: 481 characters
+Starting Python execution with ID: 9577e835-2d0d-4886-8ab3-76379c405334
+Code length: 217 characters
 Input length: 9 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_a08e851d-4ea2-420b-8803-a9f5afa8babb.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_a08e851d-4ea2-420b-8803-a9f5afa8babb       -i python:3.9-slim       bash
-Python execution result: { stdout: '[1, 2]\n', stderr: '', executionTime: 380 }
+Executing Python code with Docker command: cat /tmp/run_9577e835-2d0d-4886-8ab3-76379c405334.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_9577e835-2d0d-4886-8ab3-76379c405334       -i python:3.9-slim       bash
+Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 346 }
 Temporary files cleaned up
-Starting Python execution with ID: 2346698b-14e6-4fcf-9ac9-583ec29e415c
-Code length: 481 characters
+Starting Python execution with ID: 61a5c958-ff67-43f3-b12f-1329c2bf50f2
+Code length: 217 characters
 Input length: 7 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_2346698b-14e6-4fcf-9ac9-583ec29e415c.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_2346698b-14e6-4fcf-9ac9-583ec29e415c       -i python:3.9-slim       bash
-Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 396 }
+Executing Python code with Docker command: cat /tmp/run_61a5c958-ff67-43f3-b12f-1329c2bf50f2.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_61a5c958-ff67-43f3-b12f-1329c2bf50f2       -i python:3.9-slim       bash
+Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 310 }
 Temporary files cleaned up
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4 Assessment ID: 67fe94b25745f4f0320cfd38
-Assessment found: new ObjectId('67fe94b25745f4f0320cfd38')
-User found: 4
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2 Assessment ID: 67ff25108228ee23f6a72ee3
+Assessment found: new ObjectId('67ff25108228ee23f6a72ee3')
+User found: 2
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 5
+Test details count: 3
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4 Assessment ID: 67fe94b25745f4f0320cfd38
-Assessment found: new ObjectId('67fe94b25745f4f0320cfd38')
-User found: 4
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2 Assessment ID: 67ff25108228ee23f6a72ee3
+Assessment found: new ObjectId('67ff25108228ee23f6a72ee3')
+User found: 2
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 5
-Getting attempts for test 67fe5207dd496f0837ae19b7 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19b7 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38 for user null
-GET /api/tests/:id - Test ID: 67fe729ab90ffbcf3bde44d9
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for test access check: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
+Test details count: 3
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 1 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 1 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e02
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for test access check: new ObjectId('67ff243f8228ee23f6a72e4c') 2
 Test found: {
-  id: new ObjectId('67fe729ab90ffbcf3bde44d9'),
-  title: 'Two Sum Problem'
+  id: new ObjectId('67ff22878228ee23f6a72e02'),
+  title: 'Merge K Sorted Lists'
 }
-Specific assessment ID from query: 67fe94b25745f4f0320cfd38
-Checking assessment 67fe94b25745f4f0320cfd38 for test 67fe729ab90ffbcf3bde44d9
-Is test 67fe729ab90ffbcf3bde44d9 part of assessment 67fe94b25745f4f0320cfd38? true
+Specific assessment ID from query: 67ff25108228ee23f6a72ee3
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Checking assessment 67ff25108228ee23f6a72ee3 for test 67ff22878228ee23f6a72e02
+Is test 67ff22878228ee23f6a72e02 part of assessment 67ff25108228ee23f6a72ee3? true
 Permission check for test access: {
-  testId: '67fe729ab90ffbcf3bde44d9',
-  userId: new ObjectId('67fe58b8f1fb316299ef1b8d'),
-  userEmail: '4',
-  isCreator: false,
+  testId: '67ff22878228ee23f6a72e02',
+  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
+  userEmail: '2',
+  isCreator: undefined,
   isPublic: true,
   isInvited: false
 }
-Access granted to test 67fe729ab90ffbcf3bde44d9 for user 4
-Getting attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38 for user null
-GET /api/tests/:id - Test ID: 67fe729ab90ffbcf3bde44d9
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for test access check: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
+Access granted to test 67ff22878228ee23f6a72e02 for user 2
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e02
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for test access check: new ObjectId('67ff243f8228ee23f6a72e4c') 2
 Test found: {
-  id: new ObjectId('67fe729ab90ffbcf3bde44d9'),
-  title: 'Two Sum Problem'
+  id: new ObjectId('67ff22878228ee23f6a72e02'),
+  title: 'Merge K Sorted Lists'
 }
-Specific assessment ID from query: 67fe94b25745f4f0320cfd38
-Checking assessment 67fe94b25745f4f0320cfd38 for test 67fe729ab90ffbcf3bde44d9
-Is test 67fe729ab90ffbcf3bde44d9 part of assessment 67fe94b25745f4f0320cfd38? true
+Specific assessment ID from query: 67ff25108228ee23f6a72ee3
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Checking assessment 67ff25108228ee23f6a72ee3 for test 67ff22878228ee23f6a72e02
+Is test 67ff22878228ee23f6a72e02 part of assessment 67ff25108228ee23f6a72ee3? true
 Permission check for test access: {
-  testId: '67fe729ab90ffbcf3bde44d9',
-  userId: new ObjectId('67fe58b8f1fb316299ef1b8d'),
-  userEmail: '4',
-  isCreator: false,
+  testId: '67ff22878228ee23f6a72e02',
+  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
+  userEmail: '2',
+  isCreator: undefined,
   isPublic: true,
   isInvited: false
 }
-Access granted to test 67fe729ab90ffbcf3bde44d9 for user 4
+Access granted to test 67ff22878228ee23f6a72e02 for user 2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2 Assessment ID: 67ff25108228ee23f6a72ee3
+Assessment found: new ObjectId('67ff25108228ee23f6a72ee3')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 3
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2 Assessment ID: 67ff25108228ee23f6a72ee3
+Assessment found: new ObjectId('67ff25108228ee23f6a72ee3')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 3
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 1 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 1 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72dfc
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for test access check: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Test found: {
+  id: new ObjectId('67ff22878228ee23f6a72dfc'),
+  title: 'Reverse Linked List'
+}
+Specific assessment ID from query: 67ff25108228ee23f6a72ee3
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+Checking assessment 67ff25108228ee23f6a72ee3 for test 67ff22878228ee23f6a72dfc
+Is test 67ff22878228ee23f6a72dfc part of assessment 67ff25108228ee23f6a72ee3? true
+Permission check for test access: {
+  testId: '67ff22878228ee23f6a72dfc',
+  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
+  userEmail: '2',
+  isCreator: undefined,
+  isPublic: true,
+  isInvited: false
+}
+Access granted to test 67ff22878228ee23f6a72dfc for user 2
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72dfc
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for test access check: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Test found: {
+  id: new ObjectId('67ff22878228ee23f6a72dfc'),
+  title: 'Reverse Linked List'
+}
+Specific assessment ID from query: 67ff25108228ee23f6a72ee3
+Checking assessment 67ff25108228ee23f6a72ee3 for test 67ff22878228ee23f6a72dfc
+Is test 67ff22878228ee23f6a72dfc part of assessment 67ff25108228ee23f6a72ee3? true
+Permission check for test access: {
+  testId: '67ff22878228ee23f6a72dfc',
+  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
+  userEmail: '2',
+  isCreator: undefined,
+  isPublic: true,
+  isInvited: false
+}
+Access granted to test 67ff22878228ee23f6a72dfc for user 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
 Run test cases request: {
-  testId: '67fe729ab90ffbcf3bde44d9',
+  testId: '67ff22878228ee23f6a72dfc',
   language: 'python',
-  assessmentId: '67fe94b25745f4f0320cfd38'
+  assessmentId: '67ff25108228ee23f6a72ee3'
 }
-Test found: Yes new ObjectId('67fe729ab90ffbcf3bde44d9')
-Starting Python execution with ID: 4e2038df-feef-465a-b5cc-b5b8590747b5
-Code length: 481 characters
-Input length: 13 characters
+Test found: Yes new ObjectId('67ff22878228ee23f6a72dfc')
+Starting Python execution with ID: 7c454d7f-f5d9-4468-9171-06ca0b33b388
+Code length: 302 characters
+Input length: 11 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_4e2038df-feef-465a-b5cc-b5b8590747b5.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_4e2038df-feef-465a-b5cc-b5b8590747b5       -i python:3.9-slim       bash
-Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 361 }
+Executing Python code with Docker command: cat /tmp/run_7c454d7f-f5d9-4468-9171-06ca0b33b388.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_7c454d7f-f5d9-4468-9171-06ca0b33b388       -i python:3.9-slim       bash
+Python execution result: { stdout: '[5, 4, 3, 2, 1]\n', stderr: '', executionTime: 467 }
 Temporary files cleaned up
-Starting Python execution with ID: 62df7119-aba9-4c2d-859d-539f7f45a70a
-Code length: 481 characters
-Input length: 9 characters
+Starting Python execution with ID: 2cb34ff3-9309-46ac-bd03-28ffc1d003ff
+Code length: 302 characters
+Input length: 5 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_62df7119-aba9-4c2d-859d-539f7f45a70a.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_62df7119-aba9-4c2d-859d-539f7f45a70a       -i python:3.9-slim       bash
-Python execution result: { stdout: '[1, 2]\n', stderr: '', executionTime: 399 }
+Executing Python code with Docker command: cat /tmp/run_2cb34ff3-9309-46ac-bd03-28ffc1d003ff.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_2cb34ff3-9309-46ac-bd03-28ffc1d003ff       -i python:3.9-slim       bash
+Python execution result: { stdout: '[2, 1]\n', stderr: '', executionTime: 435 }
 Temporary files cleaned up
 Submit code request: {
-  testId: '67fe729ab90ffbcf3bde44d9',
+  testId: '67ff22878228ee23f6a72dfc',
   language: 'python',
-  assessmentId: '67fe94b25745f4f0320cfd38'
+  assessmentId: '67ff25108228ee23f6a72ee3'
 }
-Test found: Yes new ObjectId('67fe729ab90ffbcf3bde44d9')
-User 4 has used 0 of 1 attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38
-Starting Python execution with ID: 54d4f323-aee8-4c2c-b4a6-82b35b5df82a
-Code length: 481 characters
-Input length: 13 characters
+Test found: Yes new ObjectId('67ff22878228ee23f6a72dfc')
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3
+Starting Python execution with ID: 8d6afd34-c100-4933-b78d-4fbe05e4fdc5
+Code length: 302 characters
+Input length: 11 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_54d4f323-aee8-4c2c-b4a6-82b35b5df82a.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_54d4f323-aee8-4c2c-b4a6-82b35b5df82a       -i python:3.9-slim       bash
-Python execution result: { stdout: '[0, 1]\n', stderr: '', executionTime: 360 }
+Executing Python code with Docker command: cat /tmp/run_8d6afd34-c100-4933-b78d-4fbe05e4fdc5.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_8d6afd34-c100-4933-b78d-4fbe05e4fdc5       -i python:3.9-slim       bash
+Python execution result: { stdout: '[5, 4, 3, 2, 1]\n', stderr: '', executionTime: 439 }
 Temporary files cleaned up
-Starting Python execution with ID: 7513cad2-0367-4b0e-88ac-da39c4060641
-Code length: 481 characters
-Input length: 9 characters
+Starting Python execution with ID: ad535e47-705d-4447-b1ef-daf3cf3c526f
+Code length: 302 characters
+Input length: 5 characters
 Docker is running
-Executing Python code with Docker command: cat /tmp/run_7513cad2-0367-4b0e-88ac-da39c4060641.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_7513cad2-0367-4b0e-88ac-da39c4060641       -i python:3.9-slim       bash
-Python execution result: { stdout: '[1, 2]\n', stderr: '', executionTime: 336 }
+Executing Python code with Docker command: cat /tmp/run_ad535e47-705d-4447-b1ef-daf3cf3c526f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_ad535e47-705d-4447-b1ef-daf3cf3c526f       -i python:3.9-slim       bash
+Python execution result: { stdout: '[2, 1]\n', stderr: '', executionTime: 371 }
+Temporary files cleaned up
+Starting Python execution with ID: 9f32cb19-0886-480a-abdb-81d50ac20b34
+Code length: 302 characters
+Input length: 2 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_9f32cb19-0886-480a-abdb-81d50ac20b34.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_9f32cb19-0886-480a-abdb-81d50ac20b34       -i python:3.9-slim       bash
+Python execution result: { stdout: '[]\n', stderr: '', executionTime: 362 }
 Temporary files cleaned up
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4 Assessment ID: 67fe94b25745f4f0320cfd38
-Assessment found: new ObjectId('67fe94b25745f4f0320cfd38')
-User found: 4
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2 Assessment ID: 67ff25108228ee23f6a72ee3
+Assessment found: new ObjectId('67ff25108228ee23f6a72ee3')
+User found: 2
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 5
+Test details count: 3
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4 Assessment ID: 67fe94b25745f4f0320cfd38
-Assessment found: new ObjectId('67fe94b25745f4f0320cfd38')
-User found: 4
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2 Assessment ID: 67ff25108228ee23f6a72ee3
+Assessment found: new ObjectId('67ff25108228ee23f6a72ee3')
+User found: 2
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 5
-Getting attempts for test 67fe5207dd496f0837ae19b7 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19b7 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe94b25745f4f0320cfd38 for user null
-Submit assessment request: { assessmentId: '67fe94b25745f4f0320cfd38' }
-Assessment 67fe94b25745f4f0320cfd38 marked as submitted for user 67fe58b8f1fb316299ef1b8d
+Test details count: 3
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 1 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 1 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+User 2 has used 1 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 1 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Submit assessment request: { assessmentId: '67ff25108228ee23f6a72ee3' }
+Assessment 67ff25108228ee23f6a72ee3 marked as submitted for user 67ff243f8228ee23f6a72e4c
 Created submission: {
-  id: new ObjectId('67fe95295745f4f0320d050e'),
-  assessmentId: new ObjectId('67fe94b25745f4f0320cfd38'),
-  userId: new ObjectId('67fe58b8f1fb316299ef1b8d'),
-  submittedAt: 2025-04-15T17:19:37.507Z
+  id: new ObjectId('67ff257e8228ee23f6a73135'),
+  assessmentId: new ObjectId('67ff25108228ee23f6a72ee3'),
+  userId: new ObjectId('67ff243f8228ee23f6a72e4c'),
+  submittedAt: 2025-04-16T03:35:26.582Z
 }
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4 Assessment ID: 67fe94b25745f4f0320cfd38
-Assessment found: new ObjectId('67fe94b25745f4f0320cfd38')
-User found: 4
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2 Assessment ID: 67ff25108228ee23f6a72ee3
+Assessment found: new ObjectId('67ff25108228ee23f6a72ee3')
+User found: 2
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 5
-Getting attempts for test 67fe5207dd496f0837ae19b7 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19b7 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe94b25745f4f0320cfd38 for user null
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
+Test details count: 3
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 2 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 2 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 1 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 1 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 1
 Returning notifications for user: 1
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Token validation successful, user: 4
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
+Token validation successful, user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 1
 Returning notifications for user: 1
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Token validation successful, user: 4
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Found 3 assigned assessments for user 4
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Found 3 assigned assessments for user 4
-Found 3 submissions for user 4
-Found 3 submissions for user 4
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Token validation successful, user: 4
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Token validation successful, user: 4
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Token validation successful, user: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 2 completed submissions for user 2
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 2 completed submissions for user 2
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+Found 3 submissions for user 2
+Found 3 submissions for user 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Token validation successful, user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Token validation successful, user: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Token validation successful, user: 2
+Notifications for user 2 : 1
 Returning notifications for user: 1
-Token validation successful, user: 4
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Notifications for user 2 : 1
 Returning notifications for user: 1
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Token validation successful, user: 4
-Found 3 assigned assessments for user 4
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Token validation successful, user: 2
+Found 1 assigned assessments for user 2
+Found 2 completed submissions for user 2
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 2 completed submissions for user 2
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+Found 3 submissions for user 2
+Found 3 submissions for user 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 1
 Returning notifications for user: 1
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Found 3 assigned assessments for user 4
-Found 3 submissions for user 4
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Found 3 assigned assessments for user 4
-Found 3 submissions for user 4
-Found 3 submissions for user 4
-Found 3 test submissions for assessment 67fe94b25745f4f0320cfd38
-Found 3 test submissions for assessment 67fe94b25745f4f0320cfd38
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 2 completed submissions for user 2
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+Found 3 submissions for user 2
+No completed submission found, checking for any test submissions
+Found 3 test submissions for assessment 67ff25108228ee23f6a72ee3
+No completed submission found, checking for any test submissions
+Found 3 test submissions for assessment 67ff25108228ee23f6a72ee3
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 1
 Returning notifications for user: 1
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Token validation successful, user: 4
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
+Token validation successful, user: 2
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 1
 Returning notifications for user: 1
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Token validation successful, user: 4
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Found 3 assigned assessments for user 4
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Found 3 assigned assessments for user 4
-Found 3 submissions for user 4
-Found 3 submissions for user 4
-Found 3 test submissions for assessment 67fe94b25745f4f0320cfd38
-Found 3 test submissions for assessment 67fe94b25745f4f0320cfd38
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
-Returning notifications for user: 1
-Token validation successful, user: 4
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
-Returning notifications for user: 1
-Token validation successful, user: 4
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Found 3 assigned assessments for user 4
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Found 3 assigned assessments for user 4
-Found 3 submissions for user 4
-Found 3 submissions for user 4
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Token validation successful, user: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 2 completed submissions for user 2
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 2 completed submissions for user 2
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+Found 3 submissions for user 2
+Found 3 submissions for user 2
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4 Assessment ID: 67fe94b25745f4f0320cfd38
-Assessment found: new ObjectId('67fe94b25745f4f0320cfd38')
-User found: 4
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2 Assessment ID: 67ff25108228ee23f6a72ee3
+Assessment found: new ObjectId('67ff25108228ee23f6a72ee3')
+User found: 2
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 5
+Test details count: 3
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4 Assessment ID: 67fe94b25745f4f0320cfd38
-Assessment found: new ObjectId('67fe94b25745f4f0320cfd38')
-User found: 4
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2 Assessment ID: 67ff25108228ee23f6a72ee3
+Assessment found: new ObjectId('67ff25108228ee23f6a72ee3')
+User found: 2
 Creator check: { isCreator: false }
 Permission check: { isCreator: false, isPublic: false, isInvited: true }
-Test details count: 5
-Getting attempts for test 67fe5207dd496f0837ae19b7 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19b7 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe729ab90ffbcf3bde44d9 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae199e in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19a4 in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe94b25745f4f0320cfd38 for user null
-Getting attempts for test 67fe5207dd496f0837ae19aa in assessment 67fe94b25745f4f0320cfd38 for user null
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
+Test details count: 3
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 2 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72df6 in assessment 67ff25108228ee23f6a72ee3 for user 2
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 2 of 3 attempts for test 67ff22878228ee23f6a72df6. Assessment submitted: false
+User 2 has used 1 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72dfc in assessment 67ff25108228ee23f6a72ee3 for user 2
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 1 of 3 attempts for test 67ff22878228ee23f6a72dfc. Assessment submitted: false
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Getting attempts for test 67ff22878228ee23f6a72e02 in assessment 67ff25108228ee23f6a72ee3 for user 2
+User 2 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e02. Assessment submitted: false
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Token validation successful, user: 2
+Notifications for user 2 : 1
 Returning notifications for user: 1
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Token validation successful, user: 4
-GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-Found user for notifications: new ObjectId('67fe58b8f1fb316299ef1b8d') 4
-Notifications for user 4 : 1
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+Session ID for /me: m9jdiimaio1674un6b
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9
+GET /api/notifications - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+Found user for notifications: new ObjectId('67ff243f8228ee23f6a72e4c') 2
+Notifications for user 2 : 1
 Returning notifications for user: 1
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Found 3 assigned assessments for user 4
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Session ID for /me: m9iro454thy70i0397g
-Token for /me: eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ==
-Token validation successful, user: 4
-GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZlNThiOGYxZmIzMTYyOTllZjFiOGQiLCJzZXNzaW9uSWQiOiJtOWlybzQ1NHRoeTcwaTAzOTdnIiwidGltZXN0YW1wIjoxNzQ0NzM3NTE3MTExfQ== Email: 4
-User found: 4 new ObjectId('67fe58b8f1fb316299ef1b8d')
-Found 3 assigned assessments for user 4
-Found 3 submissions for user 4
-Found 3 submissions for user 4
-Found 3 test submissions for assessment 67fe94b25745f4f0320cfd38
-Found 3 test submissions for assessment 67fe94b25745f4f0320cfd38
+Token validation successful, user: 2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 2 completed submissions for user 2
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWpkaWltYWlvMTY3NHVuNmIiLCJ0aW1lc3RhbXAiOjE3NDQ3NzQyMDc0Nzl9 Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 2 completed submissions for user 2
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Found submission for assessment 67ff25108228ee23f6a72ee3
+Assessment 67ff25108228ee23f6a72ee3 submission status: Not submitted
+Found 3 submissions for user 2
+Found 3 submissions for user 2
+No completed submission found, checking for any test submissions
+Found 3 test submissions for assessment 67ff25108228ee23f6a72ee3
+No completed submission found, checking for any test submissions
+Found 3 test submissions for assessment 67ff25108228ee23f6a72ee3

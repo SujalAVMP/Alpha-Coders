@@ -253,6 +253,7 @@ export const submitCode = (testId, submissionData) => fetchAPI(`/tests/${testId}
 });
 export const getTestSubmissions = (testId) => fetchAPI(`/tests/${testId}/submissions`);
 export const getUserSubmissions = () => fetchAPI('/code/submissions');
+export const getUserAssessmentSubmissions = () => fetchAPI('/assessments/user-submissions');
 export const getAssessmentSubmissionById = (id) => {
   if (!id) {
     console.error('Invalid assessment submission ID:', id);
@@ -623,7 +624,9 @@ export default {
   submitCode,
   getTestSubmissions,
   getUserSubmissions,
+  getUserAssessmentSubmissions,
   getSubmissionById,
+  getAssessmentSubmissionById,
   deleteSubmission,
 
   // Code Execution

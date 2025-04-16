@@ -1417,15 +1417,20 @@ app.get('/api/assessments/assigned', async (req, res) => {
 
     // Find all submissions for this user
     const userSubmissions = await Submission.find({
-      userId: user._id,
-      status: 'completed'
+      $or: [
+        { userId: user._id, status: 'completed' },
+        { user: user._id, status: 'completed' }
+      ]
     });
+
+    console.log(`Found ${userSubmissions.length} completed submissions for user ${user.email}`);
 
     // Create a map of assessment ID to submission
     const submissionMap = {};
     userSubmissions.forEach(submission => {
       if (submission.assessment) {
         submissionMap[submission.assessment.toString()] = submission;
+        console.log(`Found submission for assessment ${submission.assessment.toString()}`);
       }
     });
 
@@ -1447,8 +1452,17 @@ app.get('/api/assessments/assigned', async (req, res) => {
     // Process each assessment to add additional information
     const processedAssessments = await Promise.all(assignedAssessments.map(async assessment => {
       // Check if the user has submitted this assessment
-      const submission = submissionMap[assessment._id.toString()];
-      const hasSubmitted = !!submission;
+      const assessmentId = assessment._id.toString();
+      const submission = submissionMap[assessmentId];
+
+      // Only consider a submission valid if it's specifically for this assessment
+      // and is marked as an assessment submission (not just a test submission)
+      const hasSubmitted = !!submission && submission.assessment &&
+                         submission.assessment.toString() === assessmentId &&
+                         submission.isAssessmentSubmission === true;
+
+      console.log(`Assessment ${assessmentId} submission status: ${hasSubmitted ? 'Submitted' : 'Not submitted'}`);
+
 
       // Check if this is a new invitation (not yet viewed)
       const isNewInvitation = unreadNotificationAssessments.has(assessment._id.toString());
@@ -1830,7 +1844,7 @@ app.get('/api/users/assessees', (req, res) => {
   res.json(assesseesList);
 });
 
-app.post('/api/assessments/:id/accept-invitation', (req, res) => {
+app.post('/api/assessments/:id/accept-invitation', async (req, res) => {
   // Get the assessment ID from the request
   const assessmentId = req.params.id;
 
@@ -1857,7 +1871,7 @@ app.post('/api/assessments/:id/accept-invitation', (req, res) => {
   // Find the user by email
   let user = null;
   if (userEmail) {
-    user = users.find(u => u.email === userEmail);
+    user = await User.findOne({ email: userEmail });
   }
 
   // If user not found by email, return error
@@ -1869,7 +1883,7 @@ app.post('/api/assessments/:id/accept-invitation', (req, res) => {
   console.log('User found for invitation acceptance:', user);
 
   // Find the assessment by ID
-  const assessment = assessments.find(a => a._id === assessmentId);
+  const assessment = await Assessment.findById(assessmentId);
 
   if (!assessment) {
     console.log('Assessment not found');
@@ -1915,23 +1929,24 @@ app.post('/api/assessments/:id/accept-invitation', (req, res) => {
     console.log('Updated invitedStudents:', assessment.invitedStudents);
 
     // Create a notification for this user if one doesn't exist
-    const hasNotification = notifications.some(n =>
-      n.userId === user._id && n.assessmentId === assessment._id && n.type === 'invitation'
-    );
+    const hasNotification = await Notification.exists({
+      userId: user._id,
+      assessmentId: assessment._id,
+      type: 'invitation'
+    });
 
     if (!hasNotification) {
-      const notification = {
-        id: Date.now().toString() + Math.random().toString(36).substring(2, 9),
+      const notification = new Notification({
         userId: user._id,
         type: 'invitation',
         title: 'Assessment Invitation Accepted',
         message: `You have accepted the invitation to take the assessment: ${assessment.title}`,
         assessmentId: assessment._id,
-        createdAt: new Date().toISOString(),
+        createdAt: new Date(),
         read: true
-      };
+      });
 
-      notifications.push(notification);
+      await notification.save();
       console.log('Created notification for accepted invitation:', notification);
     }
 
@@ -2411,6 +2426,132 @@ app.get('/api/code/submissions', async (req, res) => {
   }
 });
 
+// Get assessments with their test submissions
+app.get('/api/assessments/user-submissions', async (req, res) => {
+  try {
+    // Get the user email from the request
+    const userEmail = req.query.email;
+
+    if (!userEmail) {
+      return res.status(400).json({ error: 'Email is required' });
+    }
+
+    // Find the user
+    const user = await User.findOne({ email: userEmail });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Find all submissions for this user
+    const submissions = await Submission.find({ $or: [{ userId: user._id }, { user: user._id }] })
+      .populate('test')
+      .populate({
+        path: 'assessment',
+        populate: { path: 'tests' }
+      });
+
+    console.log(`Found ${submissions.length} submissions for user ${user.email}`);
+
+    // Group submissions by assessment
+    const assessmentMap = {};
+    const submissionsByTest = {};
+
+    // First, organize submissions by test ID for easy lookup
+    submissions.forEach(submission => {
+      if (submission.test && submission.test._id) {
+        const testId = submission.test._id.toString();
+        if (!submissionsByTest[testId] ||
+            new Date(submission.submittedAt) > new Date(submissionsByTest[testId].submittedAt)) {
+          submissionsByTest[testId] = submission;
+        }
+      }
+    });
+
+    // Process each submission to create assessment entries
+    submissions.forEach(submission => {
+      if (submission.assessment) {
+        const assessmentId = submission.assessment._id.toString();
+
+        // Create assessment entry if it doesn't exist
+        if (!assessmentMap[assessmentId]) {
+          // Find the assessment submission (marked with isAssessmentSubmission)
+          const assessmentSubmission = submissions.find(s =>
+            s.assessment &&
+            s.assessment._id.toString() === assessmentId &&
+            s.isAssessmentSubmission === true
+          );
+
+          assessmentMap[assessmentId] = {
+            id: assessmentId,
+            title: submission.assessment.title || 'Unknown Assessment',
+            submittedAt: submission.assessment.submittedAt ||
+                        (assessmentSubmission ? assessmentSubmission.submittedAt : submission.submittedAt),
+            isSubmitted: !!assessmentSubmission,
+            tests: []
+          };
+
+          // Add all tests from the assessment
+          if (submission.assessment.tests && Array.isArray(submission.assessment.tests)) {
+            submission.assessment.tests.forEach(test => {
+              const testId = test._id.toString();
+              const testSubmission = submissionsByTest[testId];
+
+              // Only add each test once
+              const testExists = assessmentMap[assessmentId].tests.some(t => t.id === testId);
+
+              if (!testExists) {
+                if (testSubmission) {
+                  // Add test with submission data
+                  assessmentMap[assessmentId].tests.push({
+                    id: testId,
+                    title: test.title || 'Unknown Test',
+                    language: testSubmission.language || 'python',
+                    submittedAt: testSubmission.submittedAt,
+                    status: testSubmission.status || 'Completed',
+                    score: testSubmission.score || 0,
+                    testCasesPassed: testSubmission.testCasesPassed || 0,
+                    totalTestCases: testSubmission.totalTestCases || 0,
+                    executionTime: testSubmission.avgExecutionTime || 0,
+                    memoryUsed: testSubmission.avgMemoryUsed || 0,
+                    submissionId: testSubmission._id.toString()
+                  });
+                } else {
+                  // Add test without submission data
+                  assessmentMap[assessmentId].tests.push({
+                    id: testId,
+                    title: test.title || 'Unknown Test',
+                    language: 'python',
+                    submittedAt: null,
+                    status: 'Not Attempted',
+                    score: 0,
+                    testCasesPassed: 0,
+                    totalTestCases: 0,
+                    executionTime: 0,
+                    memoryUsed: 0,
+                    submissionId: null
+                  });
+                }
+              }
+            });
+          }
+        }
+      }
+    });
+
+    // Convert the map to an array
+    const assessments = Object.values(assessmentMap);
+
+    // Sort assessments by submission date (newest first)
+    assessments.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+
+    return res.json(assessments);
+  } catch (error) {
+    console.error('Error fetching assessment submissions:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
 // Submit an entire assessment
 app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
   try {
@@ -2479,7 +2620,8 @@ app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
       code: 'print("Assessment submitted")', // Dummy code
       language: 'python',
       status: 'completed',
-      submittedAt: submittedAt
+      submittedAt: submittedAt,
+      isAssessmentSubmission: true  // Mark this as an assessment submission, not just a test submission
     });
 
     await submission.save();
@@ -2802,10 +2944,12 @@ app.get('/api/assessments/:assessmentId/tests/:testId/attempts', async (req, res
     const maxAttempts = assessment.maxAttempts || 1;
 
     // Check if the assessment has been submitted
+    // Only consider submissions that are specifically for the entire assessment, not individual test submissions
     const completedSubmission = await Submission.findOne({
       user: user._id,
       assessment: assessmentId,
-      status: 'completed'
+      status: 'completed',
+      isAssessmentSubmission: true  // Only look for submissions that are marked as assessment submissions
     });
 
     const assessmentSubmitted = !!completedSubmission;
@@ -2862,10 +3006,11 @@ app.get('/api/assessments/submissions/:id', async (req, res) => {
     }
 
     // Check if the assessment has been submitted by this user
+    // Only consider submissions that are specifically marked as assessment submissions
     const assessmentSubmission = await Submission.findOne({
       $or: [
-        { user: user._id, assessment: assessmentId, status: 'completed' },
-        { userId: user._id, assessment: assessmentId, status: 'completed' }
+        { user: user._id, assessment: assessmentId, status: 'completed', isAssessmentSubmission: true },
+        { userId: user._id, assessment: assessmentId, status: 'completed', isAssessmentSubmission: true }
       ]
     });
 
@@ -3044,7 +3189,7 @@ app.delete('/api/direct/assessments/:id', async (req, res) => {
 });
 
 // Debug endpoint to list all assessments
-app.get('/api/debug/assessments', async (req, res) => {
+app.get('/api/debug/assessments', async (_req, res) => {
   try {
     const assessments = await Assessment.find({});
     console.log(`Found ${assessments.length} assessments in the database`);
