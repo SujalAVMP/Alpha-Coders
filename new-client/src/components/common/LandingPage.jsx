@@ -88,6 +88,12 @@ const LandingPage = () => {
       role: 'Intern at Barclays',
       avatar: 'J',
       content: "I'm the real *technical* person here!"
+    },
+    {
+      name: 'Aditya Mehta',
+      role: 'Intern at Barclays',
+      avatar: 'A',
+      content: "Main CR hu"
     }
   ];
 

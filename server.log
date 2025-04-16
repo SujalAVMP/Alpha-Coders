@@ -721,3 +721,469 @@ Token validation successful, user: 1
 Assessment not found with ID: 67ff7d00f991275556447575
 2025-04-16T11:48:01.233Z - GET /api/assessments/submissions/67ff7d00f991275556447575?email=1
 Assessment not found with ID: 67ff7d00f991275556447575
+2025-04-16T11:52:10.983Z - GET /api/tests/my-tests?email=1
+2025-04-16T11:52:10.988Z - GET /api/tests/my-tests?email=1
+2025-04-16T11:52:14.037Z - GET /api/tests?email=1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2YXBocW0wczZzOTJuNDByIiwidGltZXN0YW1wIjoxNzQ0ODA0MDc2MjMwfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+2025-04-16T11:52:14.041Z - GET /api/tests?email=1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2YXBocW0wczZzOTJuNDByIiwidGltZXN0YW1wIjoxNzQ0ODA0MDc2MjMwfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+2025-04-16T11:52:33.269Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2YXBocW0wczZzOTJuNDByIiwidGltZXN0YW1wIjoxNzQ0ODA0MDc2MjMwfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
+  role: 'assessor',
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
+  __v: 0
+}
+Found 1 assessments created by user 1
+2025-04-16T11:52:33.276Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2YXBocW0wczZzOTJuNDByIiwidGltZXN0YW1wIjoxNzQ0ODA0MDc2MjMwfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
+  role: 'assessor',
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
+  __v: 0
+}
+Found 1 assessments created by user 1
+2025-04-16T11:52:36.186Z - GET /api/tests?email=1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2YXBocW0wczZzOTJuNDByIiwidGltZXN0YW1wIjoxNzQ0ODA0MDc2MjMwfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+2025-04-16T11:52:36.190Z - GET /api/tests?email=1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2YXBocW0wczZzOTJuNDByIiwidGltZXN0YW1wIjoxNzQ0ODA0MDc2MjMwfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+2025-04-16T11:52:36.786Z - GET /api/tests/templates?email=1
+2025-04-16T11:52:36.790Z - GET /api/tests/templates?email=1
+2025-04-16T11:52:50.106Z - GET /api/tests/my-tests?email=1
+2025-04-16T11:52:50.110Z - GET /api/tests/my-tests?email=1
+2025-04-16T11:52:50.558Z - GET /api/tests?email=1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2YXBocW0wczZzOTJuNDByIiwidGltZXN0YW1wIjoxNzQ0ODA0MDc2MjMwfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+2025-04-16T11:52:50.562Z - GET /api/tests?email=1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2YXBocW0wczZzOTJuNDByIiwidGltZXN0YW1wIjoxNzQ0ODA0MDc2MjMwfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+2025-04-16T11:52:51.144Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2YXBocW0wczZzOTJuNDByIiwidGltZXN0YW1wIjoxNzQ0ODA0MDc2MjMwfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
+  role: 'assessor',
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
+  __v: 0
+}
+Found 1 assessments created by user 1
+2025-04-16T11:52:51.156Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2YXBocW0wczZzOTJuNDByIiwidGltZXN0YW1wIjoxNzQ0ODA0MDc2MjMwfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
+  role: 'assessor',
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
+  __v: 0
+}
+Found 1 assessments created by user 1
+2025-04-16T11:52:52.443Z - GET /api/tests?email=1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2YXBocW0wczZzOTJuNDByIiwidGltZXN0YW1wIjoxNzQ0ODA0MDc2MjMwfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+2025-04-16T11:52:52.450Z - GET /api/tests?email=1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2YXBocW0wczZzOTJuNDByIiwidGltZXN0YW1wIjoxNzQ0ODA0MDc2MjMwfQ== Email: 1
+User found: 1
+Returning all tests for assessor
+2025-04-16T11:53:10.327Z - POST /api/auth/logout
+Logout request for session: m9jvaphqm0s6s92n40r
+Session removed successfully
+2025-04-16T11:53:11.985Z - POST /api/auth/login
+Login request body: { email: '2', password: '2' }
+Session ID for login: m9jvhh6a61ot8xk1v9c
+Found user: 2
+Login successful for user: 2
+2025-04-16T11:53:12.079Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWp2aGg2YTYxb3Q4eGsxdjljIiwidGltZXN0YW1wIjoxNzQ0ODA0MzkyMDQzfQ==
+Session ID for /me: m9jvhh6a61ot8xk1v9c
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWp2aGg2YTYxb3Q4eGsxdjljIiwidGltZXN0YW1wIjoxNzQ0ODA0MzkyMDQzfQ==
+2025-04-16T11:53:12.080Z - GET /api/assessments/assigned?email=2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWp2aGg2YTYxb3Q4eGsxdjljIiwidGltZXN0YW1wIjoxNzQ0ODA0MzkyMDQzfQ== Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Token validation successful, user: 2
+Found 1 completed submissions for user 2
+Found submission for assessment 67ff7c71f99127555644727a
+2025-04-16T11:53:12.086Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWp2aGg2YTYxb3Q4eGsxdjljIiwidGltZXN0YW1wIjoxNzQ0ODA0MzkyMDQzfQ==
+Session ID for /me: m9jvhh6a61ot8xk1v9c
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWp2aGg2YTYxb3Q4eGsxdjljIiwidGltZXN0YW1wIjoxNzQ0ODA0MzkyMDQzfQ==
+Assessment 67ff7c71f99127555644727a submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Token validation successful, user: 2
+2025-04-16T11:53:12.091Z - GET /api/assessments/assigned?email=2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjQzZjgyMjhlZTIzZjZhNzJlNGMiLCJzZXNzaW9uSWQiOiJtOWp2aGg2YTYxb3Q4eGsxdjljIiwidGltZXN0YW1wIjoxNzQ0ODA0MzkyMDQzfQ== Email: 2
+User found: 2 new ObjectId('67ff243f8228ee23f6a72e4c')
+Found 1 assigned assessments for user 2
+Found 1 completed submissions for user 2
+Found submission for assessment 67ff7c71f99127555644727a
+Assessment 67ff7c71f99127555644727a submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+2025-04-16T11:53:18.967Z - GET /api/assessments/submissions/67ff7c71f99127555644727a?email=2
+Found 2 test submissions for assessment 67ff7c71f99127555644727a
+Filtered to 1 latest test submissions
+2025-04-16T11:53:18.978Z - GET /api/assessments/submissions/67ff7c71f99127555644727a?email=2
+Found 2 test submissions for assessment 67ff7c71f99127555644727a
+Filtered to 1 latest test submissions
+2025-04-16T11:53:28.687Z - POST /api/auth/logout
+Logout request for session: m9jvhh6a61ot8xk1v9c
+Session removed successfully
+2025-04-16T11:53:31.157Z - POST /api/auth/login
+Login request body: { email: '6', password: '6' }
+Session ID for login: m9jvhvyty660mhbi9e
+Found user: 6
+Login successful for user: 6
+2025-04-16T11:53:31.251Z - GET /api/auth/me?email=6
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmODQ0NjlmMTBkM2NlZjJmNTJmNWQiLCJzZXNzaW9uSWQiOiJtOWp2aHZ5dHk2NjBtaGJpOWUiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ0MTEyMTZ9
+Session ID for /me: m9jvhvyty660mhbi9e
+Token for /me: eyJ1c2VySWQiOiI2N2ZmODQ0NjlmMTBkM2NlZjJmNTJmNWQiLCJzZXNzaW9uSWQiOiJtOWp2aHZ5dHk2NjBtaGJpOWUiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ0MTEyMTZ9
+2025-04-16T11:53:31.253Z - GET /api/assessments/assigned?email=6
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmODQ0NjlmMTBkM2NlZjJmNTJmNWQiLCJzZXNzaW9uSWQiOiJtOWp2aHZ5dHk2NjBtaGJpOWUiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ0MTEyMTZ9 Email: 6
+User found: 6 new ObjectId('67ff84469f10d3cef2f52f5d')
+Token validation successful, user: 6
+Found 1 assigned assessments for user 6
+2025-04-16T11:53:31.255Z - GET /api/auth/me?email=6
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmODQ0NjlmMTBkM2NlZjJmNTJmNWQiLCJzZXNzaW9uSWQiOiJtOWp2aHZ5dHk2NjBtaGJpOWUiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ0MTEyMTZ9
+Session ID for /me: m9jvhvyty660mhbi9e
+Token for /me: eyJ1c2VySWQiOiI2N2ZmODQ0NjlmMTBkM2NlZjJmNTJmNWQiLCJzZXNzaW9uSWQiOiJtOWp2aHZ5dHk2NjBtaGJpOWUiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ0MTEyMTZ9
+Found 2 completed submissions for user 6
+Found submission for assessment 67ff7c71f99127555644727a
+Found submission for assessment 67ff7c71f99127555644727a
+Assessment 67ff7c71f99127555644727a submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Token validation successful, user: 6
+2025-04-16T11:53:31.261Z - GET /api/assessments/assigned?email=6
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmODQ0NjlmMTBkM2NlZjJmNTJmNWQiLCJzZXNzaW9uSWQiOiJtOWp2aHZ5dHk2NjBtaGJpOWUiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ0MTEyMTZ9 Email: 6
+User found: 6 new ObjectId('67ff84469f10d3cef2f52f5d')
+Found 1 assigned assessments for user 6
+Found 2 completed submissions for user 6
+Found submission for assessment 67ff7c71f99127555644727a
+Found submission for assessment 67ff7c71f99127555644727a
+Assessment 67ff7c71f99127555644727a submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+2025-04-16T11:53:32.176Z - GET /api/assessments/submissions/67ff7c71f99127555644727a?email=6
+Found 6 test submissions for assessment 67ff7c71f99127555644727a
+Filtered to 2 latest test submissions
+2025-04-16T11:53:32.187Z - GET /api/assessments/submissions/67ff7c71f99127555644727a?email=6
+Found 6 test submissions for assessment 67ff7c71f99127555644727a
+Filtered to 2 latest test submissions
+2025-04-16T11:53:40.505Z - GET /api/auth/me?email=6
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmODQ0NjlmMTBkM2NlZjJmNTJmNWQiLCJzZXNzaW9uSWQiOiJtOWp2aHZ5dHk2NjBtaGJpOWUiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ0MTEyMTZ9
+Session ID for /me: m9jvhvyty660mhbi9e
+Token for /me: eyJ1c2VySWQiOiI2N2ZmODQ0NjlmMTBkM2NlZjJmNTJmNWQiLCJzZXNzaW9uSWQiOiJtOWp2aHZ5dHk2NjBtaGJpOWUiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ0MTEyMTZ9
+2025-04-16T11:53:40.506Z - GET /api/assessments/assigned?email=6
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmODQ0NjlmMTBkM2NlZjJmNTJmNWQiLCJzZXNzaW9uSWQiOiJtOWp2aHZ5dHk2NjBtaGJpOWUiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ0MTEyMTZ9 Email: 6
+User found: 6 new ObjectId('67ff84469f10d3cef2f52f5d')
+Found 1 assigned assessments for user 6
+Token validation successful, user: 6
+Found 2 completed submissions for user 6
+Found submission for assessment 67ff7c71f99127555644727a
+Found submission for assessment 67ff7c71f99127555644727a
+Assessment 67ff7c71f99127555644727a submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+2025-04-16T11:53:40.512Z - GET /api/auth/me?email=6
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmODQ0NjlmMTBkM2NlZjJmNTJmNWQiLCJzZXNzaW9uSWQiOiJtOWp2aHZ5dHk2NjBtaGJpOWUiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ0MTEyMTZ9
+Session ID for /me: m9jvhvyty660mhbi9e
+Token for /me: eyJ1c2VySWQiOiI2N2ZmODQ0NjlmMTBkM2NlZjJmNTJmNWQiLCJzZXNzaW9uSWQiOiJtOWp2aHZ5dHk2NjBtaGJpOWUiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ0MTEyMTZ9
+Token validation successful, user: 6
+2025-04-16T11:53:40.518Z - GET /api/assessments/assigned?email=6
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmODQ0NjlmMTBkM2NlZjJmNTJmNWQiLCJzZXNzaW9uSWQiOiJtOWp2aHZ5dHk2NjBtaGJpOWUiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ0MTEyMTZ9 Email: 6
+User found: 6 new ObjectId('67ff84469f10d3cef2f52f5d')
+Found 1 assigned assessments for user 6
+Found 2 completed submissions for user 6
+Found submission for assessment 67ff7c71f99127555644727a
+Found submission for assessment 67ff7c71f99127555644727a
+Assessment 67ff7c71f99127555644727a submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+2025-04-16T11:53:41.745Z - POST /api/auth/logout
+Logout request for session: m9jvhvyty660mhbi9e
+Session removed successfully
+2025-04-16T11:53:43.793Z - POST /api/auth/login
+Login request body: { email: '1', password: '1' }
+Session ID for login: m9jvi5ptyzqdm2g6168
+Found user: 1
+Login successful for user: 1
+2025-04-16T11:53:43.888Z - GET /api/tests/my-tests?email=1
+2025-04-16T11:53:43.891Z - GET /api/tests/my-tests?email=1
+2025-04-16T11:53:44.913Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2aTVwdHl6cWRtMmc2MTY4IiwidGltZXN0YW1wIjoxNzQ0ODA0NDIzODQ4fQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
+  role: 'assessor',
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
+  __v: 0
+}
+Found 1 assessments created by user 1
+2025-04-16T11:53:44.923Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2aTVwdHl6cWRtMmc2MTY4IiwidGltZXN0YW1wIjoxNzQ0ODA0NDIzODQ4fQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
+  role: 'assessor',
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
+  __v: 0
+}
+Found 1 assessments created by user 1
+2025-04-16T11:53:45.749Z - GET /api/assessments/67ff7c71f99127555644727a?email=1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2aTVwdHl6cWRtMmc2MTY4IiwidGltZXN0YW1wIjoxNzQ0ODA0NDIzODQ4fQ== Email: 1 Assessment ID: 67ff7c71f99127555644727a
+Assessment found: new ObjectId('67ff7c71f99127555644727a')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 4
+2025-04-16T11:53:45.757Z - GET /api/assessments/67ff7c71f99127555644727a?email=1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2aTVwdHl6cWRtMmc2MTY4IiwidGltZXN0YW1wIjoxNzQ0ODA0NDIzODQ4fQ== Email: 1 Assessment ID: 67ff7c71f99127555644727a
+Assessment found: new ObjectId('67ff7c71f99127555644727a')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+2025-04-16T11:53:45.760Z - GET /api/assessments/67ff7c71f99127555644727a/submissions?email=1
+GET /api/assessments/:id/submissions - Received request for assessment submissions
+Assessment ID: 67ff7c71f99127555644727a
+Query params: [Object: null prototype] { email: '1' }
+Test details count: 4
+Found 7 submissions for assessment 67ff7c71f99127555644727a
+Found 7 submissions for assessment 67ff7c71f99127555644727a
+Formatted submissions: [
+  {
+    _id: new ObjectId('67ff7d00f991275556447575'),
+    user: {
+      _id: new ObjectId('67ff243f8228ee23f6a72e4c'),
+      email: '2',
+      name: '2'
+    },
+    submittedAt: 2025-04-16T09:48:48.345Z,
+    status: 'completed',
+    testCasesPassed: 4,
+    totalTestCases: 8,
+    percentageScore: 50
+  },
+  {
+    _id: new ObjectId('67ff7d5ef991275556447860'),
+    user: {
+      _id: new ObjectId('67ff24f78228ee23f6a72ead'),
+      email: '3',
+      name: '3'
+    },
+    submittedAt: 2025-04-16T09:50:22.122Z,
+    status: 'completed',
+    testCasesPassed: 3,
+    totalTestCases: 3,
+    percentageScore: 100
+  },
+  {
+    _id: new ObjectId('67ff7f955c5cb4964fec4e07'),
+    user: {
+      _id: new ObjectId('67ff24ff8228ee23f6a72ec8'),
+      email: '4',
+      name: '4'
+    },
+    submittedAt: 2025-04-16T09:59:49.743Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff8224174cf383761bf32e'),
+    user: {
+      _id: new ObjectId('67ff81ae174cf383761bef7d'),
+      email: '5',
+      name: '5'
+    },
+    submittedAt: 2025-04-16T10:10:44.218Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff84859f10d3cef2f531db'),
+    user: {
+      _id: new ObjectId('67ff84469f10d3cef2f52f5d'),
+      email: '6',
+      name: '6'
+    },
+    submittedAt: 2025-04-16T10:20:53.419Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff85b893d5afad9203fc09'),
+    user: {
+      _id: new ObjectId('67ff858793d5afad9203f9c9'),
+      email: '7',
+      name: '7'
+    },
+    submittedAt: 2025-04-16T10:26:00.184Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff8887b31bf97d3a3337ab'),
+    user: {
+      _id: new ObjectId('67ff8815b31bf97d3a3333ed'),
+      email: '8',
+      name: '8'
+    },
+    submittedAt: 2025-04-16T10:37:58.999Z,
+    status: 'completed',
+    testCasesPassed: 11,
+    totalTestCases: 13,
+    percentageScore: 85
+  }
+]
+2025-04-16T11:53:45.782Z - GET /api/assessments/67ff7c71f99127555644727a/submissions?email=1
+GET /api/assessments/:id/submissions - Received request for assessment submissions
+Assessment ID: 67ff7c71f99127555644727a
+Query params: [Object: null prototype] { email: '1' }
+Found 7 submissions for assessment 67ff7c71f99127555644727a
+Found 7 submissions for assessment 67ff7c71f99127555644727a
+Formatted submissions: [
+  {
+    _id: new ObjectId('67ff7d00f991275556447575'),
+    user: {
+      _id: new ObjectId('67ff243f8228ee23f6a72e4c'),
+      email: '2',
+      name: '2'
+    },
+    submittedAt: 2025-04-16T09:48:48.345Z,
+    status: 'completed',
+    testCasesPassed: 4,
+    totalTestCases: 8,
+    percentageScore: 50
+  },
+  {
+    _id: new ObjectId('67ff7d5ef991275556447860'),
+    user: {
+      _id: new ObjectId('67ff24f78228ee23f6a72ead'),
+      email: '3',
+      name: '3'
+    },
+    submittedAt: 2025-04-16T09:50:22.122Z,
+    status: 'completed',
+    testCasesPassed: 3,
+    totalTestCases: 3,
+    percentageScore: 100
+  },
+  {
+    _id: new ObjectId('67ff7f955c5cb4964fec4e07'),
+    user: {
+      _id: new ObjectId('67ff24ff8228ee23f6a72ec8'),
+      email: '4',
+      name: '4'
+    },
+    submittedAt: 2025-04-16T09:59:49.743Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff8224174cf383761bf32e'),
+    user: {
+      _id: new ObjectId('67ff81ae174cf383761bef7d'),
+      email: '5',
+      name: '5'
+    },
+    submittedAt: 2025-04-16T10:10:44.218Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff84859f10d3cef2f531db'),
+    user: {
+      _id: new ObjectId('67ff84469f10d3cef2f52f5d'),
+      email: '6',
+      name: '6'
+    },
+    submittedAt: 2025-04-16T10:20:53.419Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff85b893d5afad9203fc09'),
+    user: {
+      _id: new ObjectId('67ff858793d5afad9203f9c9'),
+      email: '7',
+      name: '7'
+    },
+    submittedAt: 2025-04-16T10:26:00.184Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff8887b31bf97d3a3337ab'),
+    user: {
+      _id: new ObjectId('67ff8815b31bf97d3a3333ed'),
+      email: '8',
+      name: '8'
+    },
+    submittedAt: 2025-04-16T10:37:58.999Z,
+    status: 'completed',
+    testCasesPassed: 11,
+    totalTestCases: 13,
+    percentageScore: 85
+  }
+]
+2025-04-16T11:53:57.830Z - GET /api/assessments/submissions/67ff7d5ef991275556447860?email=1
+Assessment not found with ID: 67ff7d5ef991275556447860
+2025-04-16T11:53:57.834Z - GET /api/assessments/submissions/67ff7d5ef991275556447860?email=1
+Assessment not found with ID: 67ff7d5ef991275556447860

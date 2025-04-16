@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Start the Hackerrank Clone application with a clean database
-# This script stops any running instances, resets the database, and starts both server and client
+# Start the Hackerrank Clone application
+# This script is device-agnostic and works on Linux, macOS, and Windows (with Git Bash)
 
 # Colors for output
 GREEN='\033[0;32m'
@@ -14,80 +14,158 @@ print_message() {
   echo -e "${2}${1}${NC}"
 }
 
-# Function to check if a port is in use
-is_port_in_use() {
-  lsof -i:"$1" >/dev/null 2>&1
-  return $?
+# Function to check if a port is in use (cross-platform)
+check_port() {
+  local port=$1
+  # Try different commands based on what's available
+  if command -v nc &> /dev/null; then
+    nc -z localhost $port &> /dev/null
+    return $?
+  elif command -v lsof &> /dev/null; then
+    lsof -i:$port &> /dev/null
+    return $?
+  elif command -v netstat &> /dev/null; then
+    netstat -tuln | grep -q ":$port "
+    return $?
+  else
+    # If no tools are available, assume port is free
+    return 1
+  fi
 }
+
+# Function to kill process on a port (cross-platform)
+kill_port() {
+  local port=$1
+  print_message "Attempting to free port $port..." "$YELLOW"
+
+  if command -v lsof &> /dev/null; then
+    # Linux/macOS
+    lsof -ti:$port | xargs kill -9 2>/dev/null || true
+  elif command -v netstat &> /dev/null && command -v taskkill &> /dev/null; then
+    # Windows
+    for /f "tokens=5" %a in ('netstat -aon ^| findstr :$port') do taskkill /F /PID %a 2>NUL || true
+  fi
+}
+
+# Get the script directory in a cross-platform way
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "$SCRIPT_DIR"
 
 # Stop any running instances
 print_message "Stopping any running instances..." "$YELLOW"
 
-# Kill any processes using our ports
-if is_port_in_use 5002; then
-  print_message "Killing process on port 5002..." "$YELLOW"
-  kill -9 $(lsof -t -i:5002) 2>/dev/null || true
+# Check and kill processes on our ports
+if check_port 5002; then
+  kill_port 5002
 fi
 
-if is_port_in_use 5173; then
-  print_message "Killing process on port 5173..." "$YELLOW"
-  kill -9 $(lsof -t -i:5173) 2>/dev/null || true
+if check_port 5173; then
+  kill_port 5173
 fi
 
-if is_port_in_use 5174; then
-  print_message "Killing process on port 5174..." "$YELLOW"
-  kill -9 $(lsof -t -i:5174) 2>/dev/null || true
+if check_port 5174; then
+  kill_port 5174
 fi
 
-# Kill any existing node processes for our application
-print_message "Checking for existing node processes..." "$YELLOW"
-pkill -f "node server/test-server.js" 2>/dev/null || true
-pkill -f "vite" 2>/dev/null || true
+# Create log files
+print_message "Creating log files..." "$YELLOW"
+rm -f server.log client.log
+touch server.log client.log
 
-# Wait a moment to ensure everything is stopped
-sleep 2
+# Start Docker if needed
+print_message "Checking Docker status..." "$YELLOW"
+if command -v docker &> /dev/null; then
+  # Check if Docker is running
+  if ! docker info &>/dev/null; then
+    print_message "Starting Docker..." "$YELLOW"
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+      # macOS
+      open -a Docker &>/dev/null
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+      # Linux
+      if command -v systemctl &> /dev/null; then
+        sudo systemctl start docker &>/dev/null
+      elif command -v service &> /dev/null; then
+        sudo service docker start &>/dev/null
+      fi
+    elif [[ "$OSTYPE" == "msys"* ]] || [[ "$OSTYPE" == "cygwin"* ]]; then
+      # Windows
+      # Just try to start Docker Desktop if it's not running
+      start "" "C:\Program Files\Docker\Docker\Docker Desktop.exe" &>/dev/null || true
+    fi
 
-# Start the server with a clean database
-print_message "Starting the server with a clean database..." "$YELLOW"
-cd /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone
+    # Wait for Docker to start
+    print_message "Waiting for Docker to start..." "$YELLOW"
+    MAX_TRIES=15
+    for i in $(seq 1 $MAX_TRIES); do
+      sleep 2
+      if docker info &>/dev/null; then
+        print_message "Docker started successfully!" "$GREEN"
+        break
+      fi
 
-# Create a fresh server log file
-rm -f server.log
-touch server.log
+      print_message "Waiting for Docker... ($i/$MAX_TRIES)" "$YELLOW"
 
-# Start the server in the background
+      if [ $i -eq $MAX_TRIES ]; then
+        print_message "Docker failed to start in time. The application may not work correctly." "$RED"
+      fi
+    done
+  else
+    print_message "Docker is already running" "$GREEN"
+  fi
+else
+  print_message "Docker command not found. Please ensure Docker is installed and running." "$RED"
+  print_message "The application may not work correctly without Docker." "$RED"
+fi
+
+# Start MongoDB if needed
+print_message "Checking MongoDB status..." "$YELLOW"
+if command -v mongod &> /dev/null; then
+  # Check if MongoDB is running
+  if ! check_port 27017; then
+    print_message "Starting MongoDB..." "$YELLOW"
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+      # macOS
+      brew services start mongodb-community &>/dev/null || mongod --fork --logpath /tmp/mongodb.log
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+      # Linux
+      sudo systemctl start mongod &>/dev/null || mongod --fork --logpath /tmp/mongodb.log
+    fi
+    sleep 2
+  else
+    print_message "MongoDB is already running" "$GREEN"
+  fi
+else
+  print_message "MongoDB command not found. Please ensure MongoDB is installed and running." "$YELLOW"
+fi
+
+# Start the server
+print_message "Starting the server..." "$YELLOW"
 node server/test-server.js > server.log 2>&1 &
 SERVER_PID=$!
 
 # Wait for the server to start
 print_message "Waiting for server to start..." "$YELLOW"
-
-# Try up to 10 times (20 seconds total) to connect to the server
-MAX_TRIES=10
+MAX_TRIES=15
 for i in $(seq 1 $MAX_TRIES); do
-  print_message "Attempt $i of $MAX_TRIES..." "$YELLOW"
   sleep 2
-
-  # Check if the server process is still running
-  if ! ps -p $SERVER_PID > /dev/null; then
+  # Check if server is running
+  if ! ps -p $SERVER_PID &>/dev/null; then
     print_message "Server process died. Check server.log for details." "$RED"
     cat server.log
     exit 1
   fi
 
   # Try to connect to the server
-  SERVER_RESPONSE=$(curl -s "http://localhost:5002/api/test" 2>/dev/null)
-
-  if [[ "$SERVER_RESPONSE" == *"Test route is working"* ]]; then
+  if curl -s "http://localhost:5002/api/test" &>/dev/null; then
     print_message "Server started successfully!" "$GREEN"
     break
   fi
 
-  # If we've reached the maximum number of tries, exit with an error
+  print_message "Waiting for server... ($i/$MAX_TRIES)" "$YELLOW"
+
   if [ $i -eq $MAX_TRIES ]; then
-    print_message "Failed to start the server after $MAX_TRIES attempts." "$RED"
-    print_message "Server response: $SERVER_RESPONSE" "$RED"
-    print_message "Server log:" "$RED"
+    print_message "Server failed to start in time. Check server.log for details." "$RED"
     cat server.log
     exit 1
   fi
@@ -95,78 +173,92 @@ done
 
 # Start the client
 print_message "Starting the client..." "$YELLOW"
-cd /home/sujal-patel-ubuntu-24/Desktop/Networks/Hackerrank_Clone/new-client
-
-# Create a fresh client log file
-rm -f client.log
-touch client.log
-
-# Start the client in the background
-npm run dev > client.log 2>&1 &
+cd new-client
+npm run dev > ../client.log 2>&1 &
 CLIENT_PID=$!
+cd ..
 
 # Wait for the client to start
 print_message "Waiting for client to start..." "$YELLOW"
-
-# Try up to 10 times (20 seconds total) to connect to the client
-MAX_TRIES=10
+MAX_TRIES=15
+CLIENT_PORT=""
 for i in $(seq 1 $MAX_TRIES); do
-  print_message "Attempt $i of $MAX_TRIES..." "$YELLOW"
   sleep 2
-
-  # Check if the client process is still running
-  if ! ps -p $CLIENT_PID > /dev/null; then
+  # Check if client is running
+  if ! ps -p $CLIENT_PID &>/dev/null; then
     print_message "Client process died. Check client.log for details." "$RED"
     cat client.log
     exit 1
   fi
 
-  # Check for both possible client ports
-  if curl -s "http://localhost:5174" > /dev/null 2>&1; then
-    CLIENT_PORT=5174
-    print_message "Client started successfully on port 5174!" "$GREEN"
-    break
-  elif curl -s "http://localhost:5173" > /dev/null 2>&1; then
+  # Check both possible ports
+  if curl -s "http://localhost:5173" &>/dev/null; then
     CLIENT_PORT=5173
-    print_message "Client started successfully on port 5173!" "$GREEN"
+    print_message "Client started on port 5173!" "$GREEN"
+    break
+  elif curl -s "http://localhost:5174" &>/dev/null; then
+    CLIENT_PORT=5174
+    print_message "Client started on port 5174!" "$GREEN"
     break
   fi
 
-  # If we've reached the maximum number of tries, exit with an error
+  print_message "Waiting for client... ($i/$MAX_TRIES)" "$YELLOW"
+
   if [ $i -eq $MAX_TRIES ]; then
-    print_message "Failed to start the client after $MAX_TRIES attempts." "$RED"
-    print_message "Client log:" "$RED"
+    print_message "Client failed to start in time. Check client.log for details." "$RED"
     cat client.log
     exit 1
   fi
 done
 
-print_message "\n===== Application Started Successfully! =====" "$GREEN"
-print_message "Server running at: http://localhost:5002" "$GREEN"
-print_message "Client running at: http://localhost:${CLIENT_PORT}" "$GREEN"
-print_message "\nOpen your browser and navigate to http://localhost:${CLIENT_PORT} to use the application." "$GREEN"
-
-# Create a stop script for easy stopping later
-cat > stop-app.sh << EOF
+# Create a stop script
+cat > stop-app.sh << 'EOF'
 #!/bin/bash
 echo "Stopping Hackerrank Clone application..."
-kill -9 $SERVER_PID $CLIENT_PID 2>/dev/null || true
-pkill -f "node server/test-server.js" 2>/dev/null || true
-pkill -f "vite" 2>/dev/null || true
-kill -9 \$(lsof -t -i:5002) 2>/dev/null || true
-kill -9 \$(lsof -t -i:5173) 2>/dev/null || true
-kill -9 \$(lsof -t -i:5174) 2>/dev/null || true
+
+# Kill processes by PID if the file exists
+if [ -f app_pids.txt ]; then
+  PIDS=$(cat app_pids.txt)
+  kill $PIDS 2>/dev/null || true
+  rm app_pids.txt
+fi
+
+# Try to kill by process name
+if command -v pkill &> /dev/null; then
+  pkill -f "node server/test-server.js" 2>/dev/null || true
+  pkill -f "vite" 2>/dev/null || true
+fi
+
+# Try to kill by port
+if command -v lsof &> /dev/null; then
+  lsof -ti:5002 | xargs kill 2>/dev/null || true
+  lsof -ti:5173 | xargs kill 2>/dev/null || true
+  lsof -ti:5174 | xargs kill 2>/dev/null || true
+fi
+
 echo "Application stopped."
 EOF
 
 chmod +x stop-app.sh
 
+# Save PIDs
+echo "$SERVER_PID $CLIENT_PID" > app_pids.txt
+
+print_message "\n===== Application Started Successfully! =====" "$GREEN"
+print_message "Server running at: http://localhost:5002" "$GREEN"
+print_message "Client running at: http://localhost:${CLIENT_PORT}" "$GREEN"
 print_message "\nTo stop the application, run: ./stop-app.sh" "$YELLOW"
 
-# Save the PIDs to a file for reference
-echo "$SERVER_PID $CLIENT_PID" > app_pids.txt
-print_message "PIDs saved to app_pids.txt" "$YELLOW"
-
-# Open the browser automatically
-print_message "\nOpening browser..." "$YELLOW"
-xdg-open http://localhost:${CLIENT_PORT} 2>/dev/null || open http://localhost:${CLIENT_PORT} 2>/dev/null || echo "Could not open browser automatically. Please open http://localhost:${CLIENT_PORT} manually."
+# Try to open browser
+if command -v xdg-open &> /dev/null; then
+  # Linux
+  xdg-open "http://localhost:${CLIENT_PORT}" &>/dev/null || true
+elif command -v open &> /dev/null; then
+  # macOS
+  open "http://localhost:${CLIENT_PORT}" &>/dev/null || true
+elif command -v start &> /dev/null; then
+  # Windows
+  start "http://localhost:${CLIENT_PORT}" &>/dev/null || true
+else
+  print_message "\nPlease open http://localhost:${CLIENT_PORT} in your browser" "$YELLOW"
+fi
