@@ -1,7 +1,21 @@
 {
+  "name": "hackerrank-clone",
+  "version": "1.0.0",
+  "description": "A coding assessment platform similar to HackerRank",
+  "main": "server/test-server.js",
+  "scripts": {
+    "start": "bash start-app.sh",
+    "stop": "bash stop-app.sh",
+    "server": "cd server && npm start",
+    "client": "cd new-client && npm run dev",
+    "install-all": "npm install && cd server && npm install && cd ../new-client && npm install"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "dotenv": "^16.5.0",
     "mongoose": "^8.13.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

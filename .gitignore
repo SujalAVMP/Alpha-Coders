@@ -47,3 +47,25 @@ data
 server.log
 client.log
 app_pids.txt
+access.log
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# BFG repo cleaner
+bfg.jar
+..bfg-report/
+
+# Test files
+test-*.html
+test-*.js
+check-*.js
+clear-db.js
+clear-db.sh
+delete-test.html
+install-mongodb-compass.sh
+test_invitation.sh
+test-multi-user.html
+test-multi-user.js

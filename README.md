@@ -15,9 +15,34 @@ A modern platform for creating, managing, and taking coding assessments. This ap
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm (v6 or higher)
+- Node.js (v18 or higher)
+- npm (v9 or higher)
+- MongoDB (running on localhost:27017)
 - Docker (for code execution)
+
+### Installation
+
+1. Clone the repository
+2. Install all dependencies with a single command:
+
+```bash
+npm run install-all
+```
+
+Or install dependencies for each component separately:
+
+```bash
+# Root dependencies
+npm install
+
+# Server dependencies
+cd server
+npm install
+
+# Client dependencies
+cd ../new-client
+npm install
+```
 
 ### Running the Application
 
@@ -27,11 +52,19 @@ The easiest way to run the application is using the provided start script:
 ./start-app.sh
 ```
 
+Or use npm:
+
+```bash
+npm start
+```
+
 This script will:
 1. Stop any running instances of the application
-2. Start the server on port 5002
-3. Start the client on port 5173 or 5174
-4. Open the application in your default browser
+2. Start Docker if it's not running
+3. Start MongoDB if it's not running
+4. Start the server on port 5002
+5. Start the client on port 5173 or 5174
+6. Open the application in your default browser
 
 ### Stopping the Application
 
@@ -39,6 +72,12 @@ To stop the application, run:
 
 ```bash
 ./stop-app.sh
+```
+
+Or use npm:
+
+```bash
+npm run stop
 ```
 
 ### Manual Setup
@@ -49,7 +88,8 @@ If you prefer to run the components manually:
 
 ```bash
 cd server
-node test-server.js
+npm install
+npm start
 ```
 
 #### Client
@@ -59,6 +99,15 @@ cd new-client
 npm install
 npm run dev
 ```
+
+### Test Users
+
+When you first start the application with a fresh database, it will automatically create the following test users:
+
+- **Assessor**: email: `1`, password: `1`
+- **Assessees**: emails: `2`, `3`, `4` with matching passwords
+
+You can use these accounts for testing or create your own by registering new users.
 
 ## Usage
 
@@ -83,7 +132,26 @@ npm run dev
 
 ## Technologies Used
 
-- **Frontend**: React, Material-UI, Monaco Editor
+- **Frontend**: React, Vite, Material-UI, Monaco Editor
 - **Backend**: Node.js, Express
-- **Code Execution**: Docker
-- **Authentication**: JWT
+- **Database**: MongoDB
+- **Code Execution**: Docker (Python and C++ support)
+- **Authentication**: Session-based with tokens
+
+## Project Structure
+
+- **`/server`**: Backend Node.js server
+  - `/models`: MongoDB schemas
+  - `/code-execution`: Docker-based code execution engine
+  - `/routes`: API endpoints
+
+- **`/new-client`**: React frontend
+  - `/src/components`: React components
+  - `/src/utils`: Utility functions
+  - `/src/context`: React context providers
+
+- **Root**: Configuration files and startup scripts
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

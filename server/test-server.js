@@ -93,8 +93,61 @@ async function seedTemplateTests() {
   }
 }
 
-// Call the seed function
+// Function to seed default test users
+async function seedTestUsers() {
+  try {
+    // Check if any users already exist
+    const userCount = await User.countDocuments();
+
+    if (userCount === 0) {
+      console.log('No users found. Seeding database with test users...');
+
+      // Create test users
+      const testUsers = [
+        {
+          name: 'Test Assessor',
+          email: '1',
+          password: '1',
+          role: 'assessor'
+        },
+        {
+          name: 'Test Assessee 1',
+          email: '2',
+          password: '2',
+          role: 'assessee'
+        },
+        {
+          name: 'Test Assessee 2',
+          email: '3',
+          password: '3',
+          role: 'assessee'
+        },
+        {
+          name: 'Test Assessee 3',
+          email: '4',
+          password: '4',
+          role: 'assessee'
+        }
+      ];
+
+      // Insert test users
+      for (const userData of testUsers) {
+        const user = new User(userData);
+        await user.save();
+      }
+
+      console.log(`Seeded ${testUsers.length} test users`);
+    } else {
+      console.log(`Found ${userCount} existing users. Skipping user seed.`);
+    }
+  } catch (error) {
+    console.error('Error seeding test users:', error);
+  }
+}
+
+// Call the seed functions
 seedTemplateTests();
+seedTestUsers();
 
 // Middleware
 app.use(cors({

@@ -3,20 +3,31 @@
 This guide will walk you through the complete workflow of using the Hackerrank Clone application, from registration to creating and taking assessments.
 
 ## Table of Contents
-1. [Getting Started](#getting-started)
-2. [For Assessors (Teachers)](#for-assessors-teachers)
-   - [Creating Tests](#creating-tests)
-   - [Creating Assessments](#creating-assessments)
-   - [Inviting Students](#inviting-students)
-3. [For Assessees (Students)](#for-assessees-students)
-   - [Taking Assessments](#taking-assessments)
-   - [Submitting Code](#submitting-code)
-4. [Troubleshooting](#troubleshooting)
+- [Hackerrank Clone User Guide](#hackerrank-clone-user-guide)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+    - [Registration](#registration)
+    - [Login](#login)
+  - [For Assessors (Teachers)](#for-assessors-teachers)
+    - [Creating Tests](#creating-tests)
+      - [Using Templates](#using-templates)
+      - [Adding Test Cases](#adding-test-cases)
+    - [Creating Assessments](#creating-assessments)
+      - [Adding Tests to an Assessment](#adding-tests-to-an-assessment)
+    - [Inviting Students](#inviting-students)
+  - [For Assessees (Students)](#for-assessees-students)
+    - [Taking Assessments](#taking-assessments)
+    - [Submitting Code](#submitting-code)
+  - [Troubleshooting](#troubleshooting)
+    - [Getting Signed Out When Refreshing](#getting-signed-out-when-refreshing)
+    - [Can't See the Tests Tab](#cant-see-the-tests-tab)
+    - [Can't Add Multiple Tests to an Assessment](#cant-add-multiple-tests-to-an-assessment)
+    - [Invitation Not Working](#invitation-not-working)
 
 ## Getting Started
 
 ### Registration
-1. Navigate to the login page at http://localhost:5174/
+1. Navigate to the login page at http://localhost:5173/ (or http://localhost:5174/ depending on which port is available)
 2. Click on "Register" to create a new account
 3. Fill in your details:
    - Name
@@ -26,8 +37,12 @@ This guide will walk you through the complete workflow of using the Hackerrank C
 4. Click "Register" to create your account
 
 ### Login
-1. Navigate to the login page at http://localhost:5174/
+1. Navigate to the login page at http://localhost:5173/ (or http://localhost:5174/ depending on which port is available)
 2. Enter your email and password
+   - For testing, you can use these pre-created accounts:
+     - Assessor: email `1`, password `1`
+     - Assessees: emails `2`, `3`, `4` with matching passwords
+   - Or register your own accounts
 3. Click "Login" to access your dashboard
 
 ## For Assessors (Teachers)

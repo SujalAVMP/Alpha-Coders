@@ -1,31 +1,300 @@
 Checking Docker and pulling required images...
-(node:46102) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:53196) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
 (Use `node --trace-warnings ...` to show where the warning was created)
-(node:46102) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:53196) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
 MongoDB Connected: localhost
 Docker version: Docker version 28.0.4, build b8034c0
 
 Pulling Python image...
+Found 12 existing users. Skipping user seed.
 Found 5 existing template tests. Skipping seed.
 Python image pulled successfully
 Pulling GCC image...
 GCC image pulled successfully
 Docker setup completed
 Test server running on port 5002
-2025-04-16T12:05:01.882Z - GET /api/test
-2025-04-16T12:05:03.320Z - GET /api/auth/me?email=11
+2025-04-16T12:15:01.199Z - GET /api/test
+2025-04-16T12:15:05.652Z - GET /api/auth/me?email=1
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9
+Session ID for /me: m9jvxu3d9trcpml6of
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9
+Token validation successful, user: 1
+2025-04-16T12:15:05.664Z - GET /api/auth/me?email=1
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9
+Session ID for /me: m9jvxu3d9trcpml6of
+Token for /me: eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9
+Token validation successful, user: 1
+2025-04-16T12:15:05.781Z - GET /api/assessments/67ff7c71f99127555644727a?email=1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9 Email: 1 Assessment ID: 67ff7c71f99127555644727a
+Assessment found: new ObjectId('67ff7c71f99127555644727a')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 4
+2025-04-16T12:15:05.799Z - GET /api/assessments/67ff7c71f99127555644727a?email=1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9 Email: 1 Assessment ID: 67ff7c71f99127555644727a
+Assessment found: new ObjectId('67ff7c71f99127555644727a')
+User found: 1
+Creator check: { isCreator: true }
+2025-04-16T12:15:05.803Z - GET /api/assessments/67ff7c71f99127555644727a/submissions?email=1
+GET /api/assessments/:id/submissions - Received request
+Request params: [Object: null prototype] { id: '67ff7c71f99127555644727a' }
+Request query: [Object: null prototype] { email: '1' }
+Request headers: {
+  host: 'localhost:5002',
+  connection: 'keep-alive',
+  'sec-ch-ua-platform': '"Linux"',
+  authorization: 'Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9',
+  'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
+  'sec-ch-ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
+  'content-type': 'application/json',
+  'x-session-id': 'm9jvxu3d9trcpml6of',
+  'sec-ch-ua-mobile': '?0',
+  accept: '*/*',
+  origin: 'http://localhost:5173',
+  'sec-fetch-site': 'same-site',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'http://localhost:5173/',
+  'accept-encoding': 'gzip, deflate, br, zstd',
+  'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+  'if-none-match': 'W/"616-Xbqh3wDgJW/I4seQQ8gLDes+7PI"'
+}
+GET /api/assessments/:id/submissions - Received request for assessment submissions
+Assessment ID: 67ff7c71f99127555644727a
+Query params: [Object: null prototype] { email: '1' }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 4
+Found 7 submissions for assessment 67ff7c71f99127555644727a
+Found 7 submissions for assessment 67ff7c71f99127555644727a
+Formatted submissions: [
+  {
+    _id: new ObjectId('67ff7d00f991275556447575'),
+    user: {
+      _id: new ObjectId('67ff243f8228ee23f6a72e4c'),
+      email: '2',
+      name: '2'
+    },
+    submittedAt: 2025-04-16T09:48:48.345Z,
+    status: 'completed',
+    testCasesPassed: 4,
+    totalTestCases: 8,
+    percentageScore: 50
+  },
+  {
+    _id: new ObjectId('67ff7d5ef991275556447860'),
+    user: {
+      _id: new ObjectId('67ff24f78228ee23f6a72ead'),
+      email: '3',
+      name: '3'
+    },
+    submittedAt: 2025-04-16T09:50:22.122Z,
+    status: 'completed',
+    testCasesPassed: 3,
+    totalTestCases: 3,
+    percentageScore: 100
+  },
+  {
+    _id: new ObjectId('67ff7f955c5cb4964fec4e07'),
+    user: {
+      _id: new ObjectId('67ff24ff8228ee23f6a72ec8'),
+      email: '4',
+      name: '4'
+    },
+    submittedAt: 2025-04-16T09:59:49.743Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff8224174cf383761bf32e'),
+    user: {
+      _id: new ObjectId('67ff81ae174cf383761bef7d'),
+      email: '5',
+      name: '5'
+    },
+    submittedAt: 2025-04-16T10:10:44.218Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff84859f10d3cef2f531db'),
+    user: {
+      _id: new ObjectId('67ff84469f10d3cef2f52f5d'),
+      email: '6',
+      name: '6'
+    },
+    submittedAt: 2025-04-16T10:20:53.419Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff85b893d5afad9203fc09'),
+    user: {
+      _id: new ObjectId('67ff858793d5afad9203f9c9'),
+      email: '7',
+      name: '7'
+    },
+    submittedAt: 2025-04-16T10:26:00.184Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff8887b31bf97d3a3337ab'),
+    user: {
+      _id: new ObjectId('67ff8815b31bf97d3a3333ed'),
+      email: '8',
+      name: '8'
+    },
+    submittedAt: 2025-04-16T10:37:58.999Z,
+    status: 'completed',
+    testCasesPassed: 11,
+    totalTestCases: 13,
+    percentageScore: 85
+  }
+]
+2025-04-16T12:15:05.861Z - GET /api/assessments/67ff7c71f99127555644727a/submissions?email=1
+GET /api/assessments/:id/submissions - Received request
+Request params: [Object: null prototype] { id: '67ff7c71f99127555644727a' }
+Request query: [Object: null prototype] { email: '1' }
+Request headers: {
+  host: 'localhost:5002',
+  connection: 'keep-alive',
+  'sec-ch-ua-platform': '"Linux"',
+  authorization: 'Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9',
+  'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
+  'sec-ch-ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
+  'content-type': 'application/json',
+  'x-session-id': 'm9jvxu3d9trcpml6of',
+  'sec-ch-ua-mobile': '?0',
+  accept: '*/*',
+  origin: 'http://localhost:5173',
+  'sec-fetch-site': 'same-site',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'http://localhost:5173/',
+  'accept-encoding': 'gzip, deflate, br, zstd',
+  'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+  'if-none-match': 'W/"616-Xbqh3wDgJW/I4seQQ8gLDes+7PI"'
+}
+GET /api/assessments/:id/submissions - Received request for assessment submissions
+Assessment ID: 67ff7c71f99127555644727a
+Query params: [Object: null prototype] { email: '1' }
+Found 7 submissions for assessment 67ff7c71f99127555644727a
+Found 7 submissions for assessment 67ff7c71f99127555644727a
+Formatted submissions: [
+  {
+    _id: new ObjectId('67ff7d00f991275556447575'),
+    user: {
+      _id: new ObjectId('67ff243f8228ee23f6a72e4c'),
+      email: '2',
+      name: '2'
+    },
+    submittedAt: 2025-04-16T09:48:48.345Z,
+    status: 'completed',
+    testCasesPassed: 4,
+    totalTestCases: 8,
+    percentageScore: 50
+  },
+  {
+    _id: new ObjectId('67ff7d5ef991275556447860'),
+    user: {
+      _id: new ObjectId('67ff24f78228ee23f6a72ead'),
+      email: '3',
+      name: '3'
+    },
+    submittedAt: 2025-04-16T09:50:22.122Z,
+    status: 'completed',
+    testCasesPassed: 3,
+    totalTestCases: 3,
+    percentageScore: 100
+  },
+  {
+    _id: new ObjectId('67ff7f955c5cb4964fec4e07'),
+    user: {
+      _id: new ObjectId('67ff24ff8228ee23f6a72ec8'),
+      email: '4',
+      name: '4'
+    },
+    submittedAt: 2025-04-16T09:59:49.743Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff8224174cf383761bf32e'),
+    user: {
+      _id: new ObjectId('67ff81ae174cf383761bef7d'),
+      email: '5',
+      name: '5'
+    },
+    submittedAt: 2025-04-16T10:10:44.218Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff84859f10d3cef2f531db'),
+    user: {
+      _id: new ObjectId('67ff84469f10d3cef2f52f5d'),
+      email: '6',
+      name: '6'
+    },
+    submittedAt: 2025-04-16T10:20:53.419Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff85b893d5afad9203fc09'),
+    user: {
+      _id: new ObjectId('67ff858793d5afad9203f9c9'),
+      email: '7',
+      name: '7'
+    },
+    submittedAt: 2025-04-16T10:26:00.184Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff8887b31bf97d3a3337ab'),
+    user: {
+      _id: new ObjectId('67ff8815b31bf97d3a3333ed'),
+      email: '8',
+      name: '8'
+    },
+    submittedAt: 2025-04-16T10:37:58.999Z,
+    status: 'completed',
+    testCasesPassed: 11,
+    totalTestCases: 13,
+    percentageScore: 85
+  }
+]
+2025-04-16T12:15:06.242Z - GET /api/auth/me?email=11
 Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmOWIzYTg1ZTcwMmY2OTFiOWE3ZDEiLCJzZXNzaW9uSWQiOiJtOWp2bmRhYWh5OW5meXljZjIiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ2NjY5NDB9
 Session ID for /me: m9jvndaahy9nfyycf2
 Token for /me: eyJ1c2VySWQiOiI2N2ZmOWIzYTg1ZTcwMmY2OTFiOWE3ZDEiLCJzZXNzaW9uSWQiOiJtOWp2bmRhYWh5OW5meXljZjIiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ2NjY5NDB9
 Token validation successful, user: 11
-2025-04-16T12:05:03.334Z - GET /api/auth/me?email=11
+2025-04-16T12:15:06.247Z - GET /api/auth/me?email=11
 Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmOWIzYTg1ZTcwMmY2OTFiOWE3ZDEiLCJzZXNzaW9uSWQiOiJtOWp2bmRhYWh5OW5meXljZjIiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ2NjY5NDB9
 Session ID for /me: m9jvndaahy9nfyycf2
 Token for /me: eyJ1c2VySWQiOiI2N2ZmOWIzYTg1ZTcwMmY2OTFiOWE3ZDEiLCJzZXNzaW9uSWQiOiJtOWp2bmRhYWh5OW5meXljZjIiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ2NjY5NDB9
 Token validation successful, user: 11
-2025-04-16T12:05:03.393Z - GET /api/assessments/67ff7c71f99127555644727a/tests/67ff22878228ee23f6a72e08/attempts?email=11
-Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff7c71f99127555644727a for user 11
-2025-04-16T12:05:03.395Z - GET /api/tests/67ff22878228ee23f6a72e08?assessmentId=67ff7c71f99127555644727a&email=11
+2025-04-16T12:15:06.286Z - GET /api/tests/67ff22878228ee23f6a72e08?assessmentId=67ff7c71f99127555644727a&email=11
 GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e08
 GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmOWIzYTg1ZTcwMmY2OTFiOWE3ZDEiLCJzZXNzaW9uSWQiOiJtOWp2bmRhYWh5OW5meXljZjIiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ2NjY5NDB9 Email: 11
 Found user for test access check: new ObjectId('67ff9b3a85e702f691b9a7d1') 11
@@ -50,10 +319,7 @@ Problem statement: Given a string s containing just the characters '(...
 Sample input: ()[]{}...
 Sample output: true...
 Code templates: 2 templates available
-User 11 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
-2025-04-16T12:05:03.408Z - GET /api/assessments/67ff7c71f99127555644727a/tests/67ff22878228ee23f6a72e08/attempts?email=11
-Getting attempts for test 67ff22878228ee23f6a72e08 in assessment 67ff7c71f99127555644727a for user 11
-2025-04-16T12:05:03.408Z - GET /api/tests/67ff22878228ee23f6a72e08?assessmentId=67ff7c71f99127555644727a&email=11
+2025-04-16T12:15:06.293Z - GET /api/tests/67ff22878228ee23f6a72e08?assessmentId=67ff7c71f99127555644727a&email=11
 GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e08
 GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmOWIzYTg1ZTcwMmY2OTFiOWE3ZDEiLCJzZXNzaW9uSWQiOiJtOWp2bmRhYWh5OW5meXljZjIiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ2NjY5NDB9 Email: 11
 Found user for test access check: new ObjectId('67ff9b3a85e702f691b9a7d1') 11
@@ -78,4 +344,303 @@ Problem statement: Given a string s containing just the characters '(...
 Sample input: ()[]{}...
 Sample output: true...
 Code templates: 2 templates available
-User 11 has used 0 of 3 attempts for test 67ff22878228ee23f6a72e08. Assessment submitted: false. Test completed: false
+2025-04-16T12:15:09.142Z - POST /api/auth/login
+Login request body: { email: '1', password: '1' }
+Session ID for login: m9jw9phycaxaevwndug
+Found user: 1
+Login successful for user: 1
+2025-04-16T12:15:09.247Z - GET /api/tests/my-tests?email=1
+2025-04-16T12:15:09.251Z - GET /api/tests/my-tests?email=1
+2025-04-16T12:15:10.483Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp3OXBoeWNheGFldnduZHVnIiwidGltZXN0YW1wIjoxNzQ0ODA1NzA5MTkzfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
+  role: 'assessor',
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
+  __v: 0
+}
+Found 1 assessments created by user 1
+2025-04-16T12:15:10.491Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp3OXBoeWNheGFldnduZHVnIiwidGltZXN0YW1wIjoxNzQ0ODA1NzA5MTkzfQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
+  name: '1',
+  email: '1',
+  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
+  role: 'assessor',
+  createdAt: 2025-04-16T03:23:23.937Z,
+  updatedAt: 2025-04-16T03:23:23.937Z,
+  __v: 0
+}
+Found 1 assessments created by user 1
+2025-04-16T12:15:11.787Z - GET /api/assessments/67ff7c71f99127555644727a?email=1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp3OXBoeWNheGFldnduZHVnIiwidGltZXN0YW1wIjoxNzQ0ODA1NzA5MTkzfQ== Email: 1 Assessment ID: 67ff7c71f99127555644727a
+Assessment found: new ObjectId('67ff7c71f99127555644727a')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 4
+2025-04-16T12:15:11.796Z - GET /api/assessments/67ff7c71f99127555644727a?email=1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp3OXBoeWNheGFldnduZHVnIiwidGltZXN0YW1wIjoxNzQ0ODA1NzA5MTkzfQ== Email: 1 Assessment ID: 67ff7c71f99127555644727a
+Assessment found: new ObjectId('67ff7c71f99127555644727a')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+2025-04-16T12:15:11.800Z - GET /api/assessments/67ff7c71f99127555644727a/submissions?email=1
+GET /api/assessments/:id/submissions - Received request
+Request params: [Object: null prototype] { id: '67ff7c71f99127555644727a' }
+Request query: [Object: null prototype] { email: '1' }
+Request headers: {
+  host: 'localhost:5002',
+  connection: 'keep-alive',
+  'sec-ch-ua-platform': '"Linux"',
+  authorization: 'Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp3OXBoeWNheGFldnduZHVnIiwidGltZXN0YW1wIjoxNzQ0ODA1NzA5MTkzfQ==',
+  'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
+  'sec-ch-ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
+  'content-type': 'application/json',
+  'x-session-id': 'm9jw9phycaxaevwndug',
+  'sec-ch-ua-mobile': '?0',
+  accept: '*/*',
+  origin: 'http://localhost:5173',
+  'sec-fetch-site': 'same-site',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'http://localhost:5173/',
+  'accept-encoding': 'gzip, deflate, br, zstd',
+  'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+  'if-none-match': 'W/"616-Xbqh3wDgJW/I4seQQ8gLDes+7PI"'
+}
+GET /api/assessments/:id/submissions - Received request for assessment submissions
+Assessment ID: 67ff7c71f99127555644727a
+Query params: [Object: null prototype] { email: '1' }
+Test details count: 4
+Found 7 submissions for assessment 67ff7c71f99127555644727a
+Found 7 submissions for assessment 67ff7c71f99127555644727a
+Formatted submissions: [
+  {
+    _id: new ObjectId('67ff7d00f991275556447575'),
+    user: {
+      _id: new ObjectId('67ff243f8228ee23f6a72e4c'),
+      email: '2',
+      name: '2'
+    },
+    submittedAt: 2025-04-16T09:48:48.345Z,
+    status: 'completed',
+    testCasesPassed: 4,
+    totalTestCases: 8,
+    percentageScore: 50
+  },
+  {
+    _id: new ObjectId('67ff7d5ef991275556447860'),
+    user: {
+      _id: new ObjectId('67ff24f78228ee23f6a72ead'),
+      email: '3',
+      name: '3'
+    },
+    submittedAt: 2025-04-16T09:50:22.122Z,
+    status: 'completed',
+    testCasesPassed: 3,
+    totalTestCases: 3,
+    percentageScore: 100
+  },
+  {
+    _id: new ObjectId('67ff7f955c5cb4964fec4e07'),
+    user: {
+      _id: new ObjectId('67ff24ff8228ee23f6a72ec8'),
+      email: '4',
+      name: '4'
+    },
+    submittedAt: 2025-04-16T09:59:49.743Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff8224174cf383761bf32e'),
+    user: {
+      _id: new ObjectId('67ff81ae174cf383761bef7d'),
+      email: '5',
+      name: '5'
+    },
+    submittedAt: 2025-04-16T10:10:44.218Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff84859f10d3cef2f531db'),
+    user: {
+      _id: new ObjectId('67ff84469f10d3cef2f52f5d'),
+      email: '6',
+      name: '6'
+    },
+    submittedAt: 2025-04-16T10:20:53.419Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff85b893d5afad9203fc09'),
+    user: {
+      _id: new ObjectId('67ff858793d5afad9203f9c9'),
+      email: '7',
+      name: '7'
+    },
+    submittedAt: 2025-04-16T10:26:00.184Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff8887b31bf97d3a3337ab'),
+    user: {
+      _id: new ObjectId('67ff8815b31bf97d3a3333ed'),
+      email: '8',
+      name: '8'
+    },
+    submittedAt: 2025-04-16T10:37:58.999Z,
+    status: 'completed',
+    testCasesPassed: 11,
+    totalTestCases: 13,
+    percentageScore: 85
+  }
+]
+2025-04-16T12:15:11.824Z - GET /api/assessments/67ff7c71f99127555644727a/submissions?email=1
+GET /api/assessments/:id/submissions - Received request
+Request params: [Object: null prototype] { id: '67ff7c71f99127555644727a' }
+Request query: [Object: null prototype] { email: '1' }
+Request headers: {
+  host: 'localhost:5002',
+  connection: 'keep-alive',
+  'sec-ch-ua-platform': '"Linux"',
+  authorization: 'Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp3OXBoeWNheGFldnduZHVnIiwidGltZXN0YW1wIjoxNzQ0ODA1NzA5MTkzfQ==',
+  'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
+  'sec-ch-ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
+  'content-type': 'application/json',
+  'x-session-id': 'm9jw9phycaxaevwndug',
+  'sec-ch-ua-mobile': '?0',
+  accept: '*/*',
+  origin: 'http://localhost:5173',
+  'sec-fetch-site': 'same-site',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'http://localhost:5173/',
+  'accept-encoding': 'gzip, deflate, br, zstd',
+  'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+  'if-none-match': 'W/"616-Xbqh3wDgJW/I4seQQ8gLDes+7PI"'
+}
+GET /api/assessments/:id/submissions - Received request for assessment submissions
+Assessment ID: 67ff7c71f99127555644727a
+Query params: [Object: null prototype] { email: '1' }
+Found 7 submissions for assessment 67ff7c71f99127555644727a
+Found 7 submissions for assessment 67ff7c71f99127555644727a
+Formatted submissions: [
+  {
+    _id: new ObjectId('67ff7d00f991275556447575'),
+    user: {
+      _id: new ObjectId('67ff243f8228ee23f6a72e4c'),
+      email: '2',
+      name: '2'
+    },
+    submittedAt: 2025-04-16T09:48:48.345Z,
+    status: 'completed',
+    testCasesPassed: 4,
+    totalTestCases: 8,
+    percentageScore: 50
+  },
+  {
+    _id: new ObjectId('67ff7d5ef991275556447860'),
+    user: {
+      _id: new ObjectId('67ff24f78228ee23f6a72ead'),
+      email: '3',
+      name: '3'
+    },
+    submittedAt: 2025-04-16T09:50:22.122Z,
+    status: 'completed',
+    testCasesPassed: 3,
+    totalTestCases: 3,
+    percentageScore: 100
+  },
+  {
+    _id: new ObjectId('67ff7f955c5cb4964fec4e07'),
+    user: {
+      _id: new ObjectId('67ff24ff8228ee23f6a72ec8'),
+      email: '4',
+      name: '4'
+    },
+    submittedAt: 2025-04-16T09:59:49.743Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff8224174cf383761bf32e'),
+    user: {
+      _id: new ObjectId('67ff81ae174cf383761bef7d'),
+      email: '5',
+      name: '5'
+    },
+    submittedAt: 2025-04-16T10:10:44.218Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff84859f10d3cef2f531db'),
+    user: {
+      _id: new ObjectId('67ff84469f10d3cef2f52f5d'),
+      email: '6',
+      name: '6'
+    },
+    submittedAt: 2025-04-16T10:20:53.419Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff85b893d5afad9203fc09'),
+    user: {
+      _id: new ObjectId('67ff858793d5afad9203f9c9'),
+      email: '7',
+      name: '7'
+    },
+    submittedAt: 2025-04-16T10:26:00.184Z,
+    status: 'completed',
+    testCasesPassed: 5,
+    totalTestCases: 7,
+    percentageScore: 71
+  },
+  {
+    _id: new ObjectId('67ff8887b31bf97d3a3337ab'),
+    user: {
+      _id: new ObjectId('67ff8815b31bf97d3a3333ed'),
+      email: '8',
+      name: '8'
+    },
+    submittedAt: 2025-04-16T10:37:58.999Z,
+    status: 'completed',
+    testCasesPassed: 11,
+    totalTestCases: 13,
+    percentageScore: 85
+  }
+]
+2025-04-16T12:15:13.146Z - GET /api/assessments/submissions/67ff7d00f991275556447575?email=1
+Assessment not found with ID: 67ff7d00f991275556447575
+2025-04-16T12:15:13.151Z - GET /api/assessments/submissions/67ff7d00f991275556447575?email=1
+Assessment not found with ID: 67ff7d00f991275556447575
+2025-04-16T12:15:17.715Z - POST /api/auth/logout
+Logout request for session: m9jw9phycaxaevwndug
+Session removed successfully
