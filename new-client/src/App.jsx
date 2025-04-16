@@ -15,7 +15,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import TestsList from './components/dashboard/TestsList';
-import SubmissionsList from './components/dashboard/SubmissionsList';
+// Removed SubmissionsList import
 import Profile from './components/profile/Profile';
 import TestPage from './components/coding/TestPage';
 import SubmissionDetails from './components/coding/SubmissionDetails';
@@ -178,7 +178,7 @@ function App() {
                   <Route path="/tests/new" element={<TestEditor />} />
                   <Route path="/tests/:id/edit" element={<TestEditor />} />
                   <Route path="/tests/:id" element={<TestPage />} />
-                  <Route path="/submissions" element={<SubmissionsList />} />
+                  {/* Removed My Submissions page */}
                   <Route path="/submissions/:id" element={<SubmissionDetails />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/assessments" element={<AssessmentsList />} />

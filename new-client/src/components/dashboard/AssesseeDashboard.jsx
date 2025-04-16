@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import {
   Box,
@@ -13,44 +13,23 @@ import {
   Divider,
   Chip,
   CircularProgress,
-  Alert,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-  Avatar
+  Alert
 } from '@mui/material';
 import {
   AccessTime as AccessTimeIcon,
-  Code as CodeIcon,
-  CheckCircle as CheckCircleIcon,
-  Error as ErrorIcon
+  Code as CodeIcon
 } from '@mui/icons-material';
-import { getAssignedAssessments, getUserSubmissions, getNotifications, getCurrentUser } from '../../utils/api';
+import { getAssignedAssessments, getCurrentUser } from '../../utils/api';
 
 const AssesseeDashboard = () => {
   const { user } = useContext(AuthContext);
-  const location = useLocation();
-  const navigate = useNavigate();
 
-  // Check if we're viewing submissions based on URL query parameter
-  const [viewingSubmissions, setViewingSubmissions] = useState(() => {
-    const urlParams = new URLSearchParams(location.search);
-    return urlParams.get('tab') === 'submissions';
-  });
-
-  const [tests, setTests] = useState([]);
+  // Removed unused tests state
   const [assessments, setAssessments] = useState([]);
-  const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [notifications, setNotifications] = useState([]);
 
-  // Watch for URL changes to update the view
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    setViewingSubmissions(urlParams.get('tab') === 'submissions');
-  }, [location]);
+  // Removed URL change watcher for submissions tab
 
   // Add a new useEffect to ensure user data is properly loaded
   useEffect(() => {
@@ -76,7 +55,7 @@ const AssesseeDashboard = () => {
       setError('');
 
       // Initialize with empty arrays
-      setTests([]);
+      // Removed setTests call
       setAssessments([]);
 
       // Ensure we have user data before proceeding
@@ -86,30 +65,7 @@ const AssesseeDashboard = () => {
         return;
       }
 
-      // Fetch notifications first
-      try {
-        console.log('Fetching notifications for user:', user.email);
-        const notificationsData = await getNotifications();
-        console.log('Received notifications:', notificationsData);
-        setNotifications(notificationsData || []);
-
-        // Check for unread invitation notifications
-        const unreadInvitations = notificationsData?.filter(n =>
-          n.type === 'invitation'
-        ) || [];
-
-        console.log('Invitation notifications:', unreadInvitations);
-
-        if (unreadInvitations.length > 0) {
-          setError(
-            <Alert severity="info" sx={{ mb: 3 }}>
-              You have {unreadInvitations.length} assessment invitation(s).
-            </Alert>
-          );
-        }
-      } catch (err) {
-        console.error('Error fetching notifications:', err);
-      }
+      // Removed notifications fetching code
 
       // Fetch assigned assessments - these are the only ones the assessee should see
       try {
@@ -150,14 +106,7 @@ const AssesseeDashboard = () => {
         setAssessments([]);
       }
 
-      // Fetch user submissions
-      try {
-        const submissionsData = await getUserSubmissions();
-        setSubmissions(submissionsData || []);
-      } catch (err) {
-        console.error('Error fetching user submissions:', err);
-        setSubmissions([]);
-      }
+      // Removed user submissions fetching code
 
     } catch (err) {
       console.error('Error fetching dashboard data:', err);
@@ -178,10 +127,7 @@ const AssesseeDashboard = () => {
     fetchData();
   };
 
-  const getTestById = (testId) => {
-    // Handle both _id and id formats
-    return tests.find(test => (test._id === testId || test.id === testId)) || { title: 'Unknown Test' };
-  };
+  // Removed unused getTestById function
 
   const isAssessmentActive = (assessment) => {
     if (!assessment) return false;
@@ -201,16 +147,7 @@ const AssesseeDashboard = () => {
     return assessment.submitted === true;
   };
 
-  const canTakeAssessment = (assessment) => {
-    if (!assessment) return false;
-
-    // Default maxAttempts to 1 if not specified
-    const maxAttempts = assessment.maxAttempts || 1;
-    // Default attemptsUsed to 0 if not specified
-    const attemptsUsed = assessment.attemptsUsed || 0;
-
-    return isAssessmentActive(assessment) && attemptsUsed < maxAttempts;
-  };
+  // Removed unused canTakeAssessment function
 
   if (loading) {
     return (
@@ -225,7 +162,7 @@ const AssesseeDashboard = () => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <Box>
           <Typography variant="h4" component="h1" gutterBottom>
-            {viewingSubmissions ? 'My Submissions' : 'My Assessments'}
+            My Assessments
           </Typography>
           <Typography variant="subtitle1" gutterBottom>
             Welcome, {user?.name || 'Student'}!
@@ -239,17 +176,6 @@ const AssesseeDashboard = () => {
           >
             Refresh
           </Button>
-          <Button
-            variant="contained"
-            color={viewingSubmissions ? 'primary' : 'secondary'}
-            onClick={() => {
-              const newView = !viewingSubmissions;
-              setViewingSubmissions(newView);
-              navigate(newView ? '?tab=submissions' : '?tab=tests');
-            }}
-          >
-            {viewingSubmissions ? 'View My Assessments' : 'View My Submissions'}
-          </Button>
         </Box>
       </Box>
 
@@ -260,13 +186,11 @@ const AssesseeDashboard = () => {
       )}
 
       <Paper sx={{ mb: 4, p: 3 }} className="content-card">
-        {/* Show either Active Tests or My Submissions based on URL parameter */}
-        {!viewingSubmissions ? (
-          // Active Tests Content
-          <>
-            <Alert severity="info" sx={{ mb: 3 }}>
-              Tests will appear here when an assessor invites you to take them. You can only see tests that you've been specifically invited to.
-            </Alert>
+        {/* Active Tests Content */}
+        <>
+          <Alert severity="info" sx={{ mb: 3 }}>
+            Tests will appear here when an assessor invites you to take them. You can only see tests that you've been specifically invited to.
+          </Alert>
 
             {/* Active Tests Section */}
             <Typography variant="h6" gutterBottom sx={{ mb: 2 }}>
@@ -294,7 +218,7 @@ const AssesseeDashboard = () => {
                           <Typography variant="h6" component="h2" gutterBottom>
                             {assessment.title}
                           </Typography>
-                          <Typography variant="body2" color="text.secondary" paragraph>
+                          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                             {assessment.description || 'No description provided'}
                           </Typography>
                           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 1 }}>
@@ -363,7 +287,7 @@ const AssesseeDashboard = () => {
                             </Typography>
                             <Chip label="Submitted" size="small" color="success" />
                           </Box>
-                          <Typography variant="body2" color="text.secondary" paragraph>
+                          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                             {assessment.description || 'No description provided'}
                           </Typography>
                           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 1 }}>
@@ -407,75 +331,6 @@ const AssesseeDashboard = () => {
               </Paper>
             )}
           </>
-        ) : (
-          // My Submissions Content
-          <>
-            {submissions.length === 0 ? (
-              <Alert severity="info">
-                You haven't submitted any assessments yet. After submitting an assessment, your results will appear here.
-              </Alert>
-            ) : (
-              <>
-                <Typography variant="h6" gutterBottom>
-                  Assessment Submissions
-                </Typography>
-                <Grid container spacing={3}>
-                  {submissions.map((submission) => {
-                    return (
-                      <Grid item xs={12} sm={6} md={4} key={submission._id}>
-                        <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                          <CardContent sx={{ flexGrow: 1 }}>
-                            <Typography variant="h6" component="h2" gutterBottom>
-                              {submission.testTitle || 'Unknown Test'}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary" gutterBottom>
-                              From: {submission.assessmentTitle || 'Unknown Assessment'}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              Submitted: {new Date(submission.submittedAt).toLocaleString()}
-                            </Typography>
-                            <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                              <Chip
-                                label={submission.language.toUpperCase()}
-                                size="small"
-                                variant="outlined"
-                              />
-                              <Chip
-                                label={`${submission.testCasesPassed}/${submission.totalTestCases} Tests`}
-                                size="small"
-                                color="primary"
-                                variant="outlined"
-                              />
-                              <Chip
-                                label={`Score: ${submission.score}%`}
-                                size="small"
-                                color={submission.score >= 70 ? 'success' : 'error'}
-                                icon={submission.score >= 70 ? <CheckCircleIcon /> : <ErrorIcon />}
-                              />
-                            </Box>
-                          </CardContent>
-                          <CardActions>
-                            <Button
-                              component={Link}
-                              to={submission.assessmentId ?
-                                `/assessments/submissions/${submission.assessmentId}` :
-                                `/submissions/${submission.id}?email=${encodeURIComponent(user?.email || '')}`}
-                              variant="contained"
-                              color="primary"
-                              fullWidth
-                            >
-                              View Details
-                            </Button>
-                          </CardActions>
-                        </Card>
-                      </Grid>
-                    );
-                  })}
-                </Grid>
-              </>
-            )}
-          </>
-        )}
       </Paper>
     </Box>
   );

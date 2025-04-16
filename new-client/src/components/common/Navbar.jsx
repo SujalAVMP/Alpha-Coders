@@ -25,7 +25,6 @@ import {
   Menu as MenuIcon,
   Dashboard as DashboardIcon,
   Code as CodeIcon,
-  History as HistoryIcon,
   Person as PersonIcon,
   Logout as LogoutIcon,
   Login as LoginIcon,
@@ -87,15 +86,13 @@ const Navbar = () => {
         { text: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
         { text: 'Tests', path: '/tests', icon: <CodeIcon /> },
         { text: 'Assessments', path: '/assessments', icon: <CodeIcon /> },
-        { text: 'Submissions', path: '/submissions', icon: <HistoryIcon /> },
         { text: 'Profile', path: '/profile', icon: <PersonIcon /> }
       ];
     } else {
-      // For assessee users - removed Tests and Assessments, and made Active Tests and My Submissions direct links
+      // For assessee users - only show Dashboard and Active Tests
       return [
         { text: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
-        { text: 'Active Tests', path: '/dashboard', icon: <CodeIcon /> },
-        { text: 'My Submissions', path: '/dashboard?tab=submissions', icon: <HistoryIcon /> }
+        { text: 'Active Tests', path: '/dashboard', icon: <CodeIcon /> }
       ];
     }
   };

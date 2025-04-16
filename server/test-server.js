@@ -3268,8 +3268,24 @@ app.get('/api/assessments/submissions/:id', async (req, res) => {
 
     console.log(`Found ${testSubmissions.length} test submissions for assessment ${assessmentId}`);
 
-    // Create test results for each submission
-    const testResults = testSubmissions.map(submission => {
+    // Group submissions by test ID and keep only the latest submission for each test
+    const latestSubmissionsByTest = {};
+
+    testSubmissions.forEach(submission => {
+      if (!submission.test) return;
+
+      const testId = submission.test._id.toString();
+
+      if (!latestSubmissionsByTest[testId] ||
+          new Date(submission.submittedAt) > new Date(latestSubmissionsByTest[testId].submittedAt)) {
+        latestSubmissionsByTest[testId] = submission;
+      }
+    });
+
+    console.log(`Filtered to ${Object.keys(latestSubmissionsByTest).length} latest test submissions`);
+
+    // Create test results for each latest submission
+    const testResults = Object.values(latestSubmissionsByTest).map(submission => {
       const test = submission.test;
       if (!test) {
         console.log('Submission missing test reference:', submission._id);
