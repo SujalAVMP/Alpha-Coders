@@ -81,6 +81,22 @@ const SubmissionSchema = new mongoose.Schema({
   submittedAt: {
     type: Date,
     default: Date.now
+  },
+  isAssessmentSubmission: {
+    type: Boolean,
+    default: false
+  },
+  testSubmissions: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Submission'
+  }],
+  testCasesPassed: {
+    type: Number,
+    default: 0
+  },
+  totalTestCases: {
+    type: Number,
+    default: 0
   }
 }, { timestamps: true });
 

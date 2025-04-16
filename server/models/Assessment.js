@@ -110,6 +110,24 @@ const AssessmentSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  // Track submission status for each user
+  userSubmissions: {
+    type: Map,
+    of: {
+      submitted: Boolean,
+      submittedAt: Date
+    },
+    default: {}
+  },
+  // General submission status (for backward compatibility)
+  submitted: {
+    type: Boolean,
+    default: false
+  },
+  submittedAt: {
+    type: Date,
+    default: null
   }
 }, { timestamps: true });
 

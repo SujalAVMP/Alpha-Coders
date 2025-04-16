@@ -1455,13 +1455,31 @@ app.get('/api/assessments/assigned', async (req, res) => {
       const assessmentId = assessment._id.toString();
       const submission = submissionMap[assessmentId];
 
-      // Only consider a submission valid if it's specifically for this assessment
-      // and is marked as an assessment submission (not just a test submission)
-      const hasSubmitted = !!submission && submission.assessment &&
-                         submission.assessment.toString() === assessmentId &&
-                         submission.isAssessmentSubmission === true;
+      // Check if there's a user-specific submission status in the userSubmissions map
+      const userSubmissionStatus = assessment.userSubmissions &&
+                                  assessment.userSubmissions.get(user._id.toString());
+
+      // First check the user-specific submission status
+      let hasSubmitted = !!userSubmissionStatus && userSubmissionStatus.submitted === true;
+
+      // If not found in userSubmissions, fall back to checking submissions
+      if (!hasSubmitted) {
+        // Only consider a submission valid if it's specifically for this assessment
+        // and is marked as an assessment submission (not just a test submission)
+        hasSubmitted = !!submission && submission.assessment &&
+                       submission.assessment.toString() === assessmentId &&
+                       submission.isAssessmentSubmission === true;
+      }
+
+      // Also check the general assessment submitted flag as a fallback
+      if (!hasSubmitted && assessment.submitted === true) {
+        hasSubmitted = true;
+      }
 
       console.log(`Assessment ${assessmentId} submission status: ${hasSubmitted ? 'Submitted' : 'Not submitted'}`);
+      console.log(`  - User submission status: ${userSubmissionStatus ? 'Found' : 'Not found'}`);
+      console.log(`  - Submission record: ${submission ? 'Found' : 'Not found'}`);
+      console.log(`  - Assessment submitted flag: ${assessment.submitted ? 'True' : 'False'}`);
 
 
       // Check if this is a new invitation (not yet viewed)
@@ -1486,10 +1504,22 @@ app.get('/api/assessments/assigned', async (req, res) => {
         }
       }
 
+      // Determine the submission timestamp from the most reliable source
+      let submittedAtTimestamp = null;
+      if (hasSubmitted) {
+        if (userSubmissionStatus && userSubmissionStatus.submittedAt) {
+          submittedAtTimestamp = userSubmissionStatus.submittedAt;
+        } else if (submission && submission.submittedAt) {
+          submittedAtTimestamp = submission.submittedAt;
+        } else if (assessment.submittedAt) {
+          submittedAtTimestamp = assessment.submittedAt;
+        }
+      }
+
       return {
         ...assessment.toObject(),
         submitted: hasSubmitted,
-        submittedAt: hasSubmitted ? submission.submittedAt : null,
+        submittedAt: submittedAtTimestamp,
         isNewInvitation,
         testDetails
       };
@@ -2579,14 +2609,29 @@ app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
     // Create a submission record
     const submittedAt = new Date();
 
-    // Check if there are any existing submissions for this assessment by this user
-    const existingSubmissions = await Submission.find({
+    // Check if there's already an assessment submission for this user
+    const existingAssessmentSubmission = await Submission.findOne({
       $or: [{ userId: user._id }, { user: user._id }],
-      assessment: assessment._id
+      assessment: assessment._id,
+      isAssessmentSubmission: true
     });
 
-    // If there are no submissions, create a dummy submission to mark the assessment as completed
-    if (existingSubmissions.length === 0) {
+    if (existingAssessmentSubmission) {
+      console.log(`Assessment ${assessmentId} already submitted by user ${user._id}`);
+      return res.status(400).json({ error: 'Assessment already submitted' });
+    }
+
+    // Get all the user's test submissions for this assessment
+    const testSubmissions = await Submission.find({
+      $or: [{ userId: user._id }, { user: user._id }],
+      assessment: assessment._id,
+      isAssessmentSubmission: { $ne: true } // Exclude assessment submissions
+    }).populate('test');
+
+    console.log(`Found ${testSubmissions.length} test submissions for assessment ${assessmentId}`);
+
+    // If there are no test submissions, create a dummy submission to mark the assessment as completed
+    if (testSubmissions.length === 0) {
       // Get the first test from the assessment
       const testId = assessment.tests[0];
       const test = await Test.findById(testId);
@@ -2607,7 +2652,33 @@ app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
         });
 
         await testSubmission.save();
-        console.log('Created test submission for assessment completion');
+        console.log('Created dummy test submission for assessment completion');
+        testSubmissions.push(testSubmission);
+      }
+    }
+
+    // Calculate overall metrics from test submissions
+    const totalTestCases = testSubmissions.reduce((sum, sub) => sum + (sub.totalTestCases || 0), 0);
+    const testCasesPassed = testSubmissions.reduce((sum, sub) => sum + (sub.testCasesPassed || 0), 0);
+    const avgExecutionTime = testSubmissions.length > 0 ?
+      testSubmissions.reduce((sum, sub) => sum + (sub.avgExecutionTime || 0), 0) / testSubmissions.length : 0;
+    const avgMemoryUsed = testSubmissions.length > 0 ?
+      testSubmissions.reduce((sum, sub) => sum + (sub.avgMemoryUsed || 0), 0) / testSubmissions.length : 0;
+    const score = totalTestCases > 0 ? Math.round((testCasesPassed / totalTestCases) * 100) : 0;
+
+    // Get the most common language used
+    const languageCounts = {};
+    testSubmissions.forEach(sub => {
+      if (sub.language) {
+        languageCounts[sub.language] = (languageCounts[sub.language] || 0) + 1;
+      }
+    });
+    let mostCommonLanguage = 'python';
+    let maxCount = 0;
+    for (const [lang, count] of Object.entries(languageCounts)) {
+      if (count > maxCount) {
+        mostCommonLanguage = lang;
+        maxCount = count;
       }
     }
 
@@ -2617,22 +2688,45 @@ app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
       user: user._id,
       assessment: assessment._id,
       test: assessment.tests[0], // Use the first test as a reference
-      code: 'print("Assessment submitted")', // Dummy code
-      language: 'python',
+      code: testSubmissions.length > 0 ? testSubmissions[0].code : 'print("Assessment submitted")',
+      language: mostCommonLanguage,
       status: 'completed',
       submittedAt: submittedAt,
-      isAssessmentSubmission: true  // Mark this as an assessment submission, not just a test submission
+      isAssessmentSubmission: true,  // Mark this as an assessment submission, not just a test submission
+      testSubmissions: testSubmissions.map(sub => sub._id), // Reference to all test submissions
+      totalTestCases,
+      testCasesPassed,
+      avgExecutionTime,
+      avgMemoryUsed,
+      score
     });
 
     await submission.save();
 
     // Mark the assessment as submitted for this user
     // Update the assessment to mark it as submitted for this user
-    await Assessment.findByIdAndUpdate(
+    const updatedAssessment = await Assessment.findByIdAndUpdate(
       assessmentId,
-      { $set: { submitted: true, submittedAt: submittedAt } },
+      {
+        $set: {
+          submitted: true,
+          submittedAt: submittedAt,
+          // Store the submission status for this specific user
+          [`userSubmissions.${user._id}`]: {
+            submitted: true,
+            submittedAt: submittedAt
+          }
+        }
+      },
       { new: true }
     );
+
+    console.log('Updated assessment with submission status:', {
+      assessmentId,
+      submitted: true,
+      submittedAt: submittedAt,
+      userSubmission: updatedAssessment?.userSubmissions?.[user._id.toString()]
+    });
 
     console.log(`Assessment ${assessmentId} marked as submitted for user ${user._id}`);
     console.log('Created submission:', {
