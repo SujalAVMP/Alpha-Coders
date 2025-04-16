@@ -94,6 +94,18 @@ const LandingPage = () => {
       role: 'Intern at Barclays',
       avatar: 'A',
       content: "Main CR hu"
+    },
+    {
+      name: 'Bharat Chandra',
+      role: 'Top Student at IITGN',
+      avatar: 'B',
+      content: 'This group was the best I have ever worked with'
+    },
+    {
+      name: 'Sohitha Sonalika',
+      role: 'Top Student at IITGN',
+      avatar: 'S',
+      content: 'I found the project interesting!'
     }
   ];
 

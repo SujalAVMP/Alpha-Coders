@@ -1,0 +1,3 @@
+[alias]
+  back = checkout HEAD^
+  fwd = checkout @{-1}
