@@ -103,6 +103,17 @@ const AssessmentSchema = new mongoose.Schema({
   submittedAt: {
     type: Date,
     default: null
+  },
+  // Track assessment-level submission separately from test submissions
+  assessmentSubmission: {
+    type: Map,
+    of: {
+      submittedAt: Date,
+      overallScore: Number,
+      totalTestsPassed: Number,
+      totalTests: Number
+    },
+    default: {}
   }
 }, { timestamps: true });
 

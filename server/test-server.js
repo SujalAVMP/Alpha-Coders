@@ -2531,16 +2531,26 @@ app.get('/api/assessments/user-submissions', async (req, res) => {
     console.log('Processing submissions for My Submissions page');
 
     // First, organize submissions by test ID for easy lookup
+    // Only keep the latest submission for each test
+    // Filter out assessment-level submissions to prevent duplicates
     submissions.forEach(submission => {
+      // Skip assessment-level submissions when organizing by test
+      if (submission.isAssessmentSubmission === true) {
+        console.log(`Skipping assessment-level submission ${submission._id} for test organization`);
+        return;
+      }
+
       if (submission.test && submission.test._id) {
         const testId = submission.test._id.toString();
         if (!submissionsByTest[testId] ||
             new Date(submission.submittedAt) > new Date(submissionsByTest[testId].submittedAt)) {
           submissionsByTest[testId] = submission;
-          console.log(`Found submission for test ${testId}: testCasesPassed=${submission.testCasesPassed}, totalTestCases=${submission.totalTestCases}`);
+          console.log(`Found latest submission for test ${testId}: testCasesPassed=${submission.testCasesPassed}, totalTestCases=${submission.totalTestCases}, submittedAt=${submission.submittedAt}`);
         }
       }
     });
+
+    console.log(`Organized ${Object.keys(submissionsByTest).length} latest test submissions out of ${submissions.length} total submissions`);
 
     // Process each submission to create assessment entries
     submissions.forEach(submission => {
@@ -2681,11 +2691,28 @@ app.post('/api/assessments/:assessmentId/submit', async (req, res) => {
     }
 
     // Get all the user's test submissions for this assessment
-    const testSubmissions = await Submission.find({
+    const allTestSubmissions = await Submission.find({
       $or: [{ userId: user._id }, { user: user._id }],
       assessment: assessment._id,
       isAssessmentSubmission: { $ne: true } // Exclude assessment submissions
     }).populate('test');
+
+    console.log(`Found ${allTestSubmissions.length} total test submissions for assessment ${assessmentId}`);
+
+    // Group submissions by test and get only the latest submission for each test
+    const testSubmissionsMap = {};
+    allTestSubmissions.forEach(submission => {
+      if (submission.test) {
+        const testId = submission.test._id.toString();
+        if (!testSubmissionsMap[testId] ||
+            new Date(submission.submittedAt) > new Date(testSubmissionsMap[testId].submittedAt)) {
+          testSubmissionsMap[testId] = submission;
+        }
+      }
+    });
+
+    // Convert the map to an array of latest submissions
+    const testSubmissions = Object.values(testSubmissionsMap);
 
     console.log(`Found ${testSubmissions.length} test submissions for assessment ${assessmentId}`);
 
@@ -3231,10 +3258,11 @@ app.get('/api/assessments/submissions/:id', async (req, res) => {
     }
 
     // Find all test submissions for this assessment by this user
+    // Exclude assessment-level submissions to prevent duplicates
     const testSubmissions = await Submission.find({
       $or: [
-        { user: user._id, assessment: assessmentId },
-        { userId: user._id, assessment: assessmentId }
+        { user: user._id, assessment: assessmentId, isAssessmentSubmission: { $ne: true } },
+        { userId: user._id, assessment: assessmentId, isAssessmentSubmission: { $ne: true } }
       ]
     }).populate('test');
 
