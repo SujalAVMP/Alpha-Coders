@@ -75,7 +75,7 @@ const LandingPage = () => {
       name: 'Sujal Patel',
       role: 'Intern at OmegaChad',
       avatar: 'S',
-      content: 'This project was hard! Took a lot of vibes to get it done!'
+      content: 'This project was easy! But sure took a lot of vibes to get it done!'
     },
     {
       name: 'Pratham Sharda',

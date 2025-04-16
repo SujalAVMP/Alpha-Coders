@@ -42,8 +42,9 @@ kill_port() {
     # Linux/macOS
     lsof -ti:$port | xargs kill -9 2>/dev/null || true
   elif command -v netstat &> /dev/null && command -v taskkill &> /dev/null; then
-    # Windows
-    for /f "tokens=5" %a in ('netstat -aon ^| findstr :$port') do taskkill /F /PID %a 2>NUL || true
+    # Windows - this is a special case that will only work in CMD, not Bash
+    # So we'll just log a message for Windows users
+    print_message "On Windows, please manually ensure port $port is free" "$YELLOW"
   fi
 }
 
@@ -91,7 +92,7 @@ if command -v docker &> /dev/null; then
     elif [[ "$OSTYPE" == "msys"* ]] || [[ "$OSTYPE" == "cygwin"* ]]; then
       # Windows
       # Just try to start Docker Desktop if it's not running
-      start "" "C:\Program Files\Docker\Docker\Docker Desktop.exe" &>/dev/null || true
+      print_message "On Windows, please start Docker Desktop manually if it's not running" "$YELLOW"
     fi
 
     # Wait for Docker to start
@@ -120,27 +121,59 @@ fi
 
 # Start MongoDB if needed
 print_message "Checking MongoDB status..." "$YELLOW"
-if command -v mongod &> /dev/null; then
-  # Check if MongoDB is running
-  if ! check_port 27017; then
-    print_message "Starting MongoDB..." "$YELLOW"
+# Check if MongoDB is running
+if ! check_port 27017; then
+  print_message "MongoDB is not running. Attempting to start..." "$YELLOW"
+  if command -v mongod &> /dev/null; then
+    # MongoDB command exists
     if [[ "$OSTYPE" == "darwin"* ]]; then
       # macOS
-      brew services start mongodb-community &>/dev/null || mongod --fork --logpath /tmp/mongodb.log
+      brew services start mongodb-community &>/dev/null || mongod --fork --logpath /tmp/mongodb.log &>/dev/null || true
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
       # Linux
-      sudo systemctl start mongod &>/dev/null || mongod --fork --logpath /tmp/mongodb.log
+      if command -v systemctl &> /dev/null; then
+        sudo systemctl start mongod &>/dev/null || true
+      elif command -v service &> /dev/null; then
+        sudo service mongod start &>/dev/null || true
+      else
+        mongod --fork --logpath /tmp/mongodb.log &>/dev/null || true
+      fi
+    elif [[ "$OSTYPE" == "msys"* ]] || [[ "$OSTYPE" == "cygwin"* ]]; then
+      # Windows
+      print_message "On Windows, please start MongoDB manually if it's not running" "$YELLOW"
     fi
-    sleep 2
+
+    # Wait for MongoDB to start
+    print_message "Waiting for MongoDB to start..." "$YELLOW"
+    MAX_TRIES=5
+    for i in $(seq 1 $MAX_TRIES); do
+      sleep 2
+      if check_port 27017; then
+        print_message "MongoDB started successfully!" "$GREEN"
+        break
+      fi
+
+      print_message "Waiting for MongoDB... ($i/$MAX_TRIES)" "$YELLOW"
+
+      if [ $i -eq $MAX_TRIES ]; then
+        print_message "MongoDB failed to start. The application may not work correctly." "$RED"
+      fi
+    done
   else
-    print_message "MongoDB is already running" "$GREEN"
+    print_message "MongoDB command not found. Please ensure MongoDB is installed and running." "$YELLOW"
+    print_message "The application requires MongoDB to function correctly." "$YELLOW"
   fi
 else
-  print_message "MongoDB command not found. Please ensure MongoDB is installed and running." "$YELLOW"
+  print_message "MongoDB is already running" "$GREEN"
 fi
 
 # Start the server
 print_message "Starting the server..." "$YELLOW"
+
+# Make sure we're in the correct directory
+cd "$SCRIPT_DIR"
+
+# Start the server
 node server/test-server.js > server.log 2>&1 &
 SERVER_PID=$!
 
@@ -173,10 +206,16 @@ done
 
 # Start the client
 print_message "Starting the client..." "$YELLOW"
-cd new-client
-npm run dev > ../client.log 2>&1 &
+
+# Make sure we're in the correct directory
+cd "$SCRIPT_DIR/new-client"
+
+# Start the client
+npm run dev > "$SCRIPT_DIR/client.log" 2>&1 &
 CLIENT_PID=$!
-cd ..
+
+# Return to the script directory
+cd "$SCRIPT_DIR"
 
 # Wait for the client to start
 print_message "Waiting for client to start..." "$YELLOW"
@@ -250,15 +289,20 @@ print_message "Client running at: http://localhost:${CLIENT_PORT}" "$GREEN"
 print_message "\nTo stop the application, run: ./stop-app.sh" "$YELLOW"
 
 # Try to open browser
-if command -v xdg-open &> /dev/null; then
-  # Linux
-  xdg-open "http://localhost:${CLIENT_PORT}" &>/dev/null || true
-elif command -v open &> /dev/null; then
-  # macOS
-  open "http://localhost:${CLIENT_PORT}" &>/dev/null || true
-elif command -v start &> /dev/null; then
-  # Windows
-  start "http://localhost:${CLIENT_PORT}" &>/dev/null || true
+print_message "\nAttempting to open browser..." "$YELLOW"
+if [[ -n "$CLIENT_PORT" ]]; then
+  if command -v xdg-open &> /dev/null; then
+    # Linux
+    xdg-open "http://localhost:${CLIENT_PORT}" &>/dev/null || true
+  elif command -v open &> /dev/null; then
+    # macOS
+    open "http://localhost:${CLIENT_PORT}" &>/dev/null || true
+  elif command -v start &> /dev/null; then
+    # Windows
+    start "" "http://localhost:${CLIENT_PORT}" &>/dev/null || true
+  fi
+  print_message "If the browser doesn't open automatically, please visit:" "$YELLOW"
+  print_message "http://localhost:${CLIENT_PORT}" "$GREEN"
 else
-  print_message "\nPlease open http://localhost:${CLIENT_PORT} in your browser" "$YELLOW"
+  print_message "Client port could not be determined. Please check client.log for details." "$RED"
 fi
