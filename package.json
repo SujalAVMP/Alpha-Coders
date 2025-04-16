@@ -1,7 +1,7 @@
 {
-  "name": "hackerrank-clone",
+  "name": "alpha-coders",
   "version": "1.0.0",
-  "description": "A coding assessment platform similar to HackerRank",
+  "description": "A modern coding assessment platform for technical interviews",
   "main": "server/test-server.js",
   "scripts": {
     "start": "bash start-app.sh",

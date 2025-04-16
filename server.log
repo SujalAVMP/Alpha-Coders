@@ -1,410 +1,937 @@
 Checking Docker and pulling required images...
-(node:53196) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:17351) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
 (Use `node --trace-warnings ...` to show where the warning was created)
-(node:53196) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:17351) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
 MongoDB Connected: localhost
 Docker version: Docker version 28.0.4, build b8034c0
 
 Pulling Python image...
-Found 12 existing users. Skipping user seed.
+Found 4 existing users. Skipping user seed.
 Found 5 existing template tests. Skipping seed.
 Python image pulled successfully
 Pulling GCC image...
 GCC image pulled successfully
 Docker setup completed
-Test server running on port 5002
-2025-04-16T12:15:01.199Z - GET /api/test
-2025-04-16T12:15:05.652Z - GET /api/auth/me?email=1
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9
-Session ID for /me: m9jvxu3d9trcpml6of
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9
-Token validation successful, user: 1
-2025-04-16T12:15:05.664Z - GET /api/auth/me?email=1
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9
-Session ID for /me: m9jvxu3d9trcpml6of
-Token for /me: eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9
-Token validation successful, user: 1
-2025-04-16T12:15:05.781Z - GET /api/assessments/67ff7c71f99127555644727a?email=1
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9 Email: 1 Assessment ID: 67ff7c71f99127555644727a
-Assessment found: new ObjectId('67ff7c71f99127555644727a')
-User found: 1
-Creator check: { isCreator: true }
-Permission check: { isCreator: true, isPublic: false, isInvited: false }
-Test details count: 4
-2025-04-16T12:15:05.799Z - GET /api/assessments/67ff7c71f99127555644727a?email=1
-GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9 Email: 1 Assessment ID: 67ff7c71f99127555644727a
-Assessment found: new ObjectId('67ff7c71f99127555644727a')
-User found: 1
-Creator check: { isCreator: true }
-2025-04-16T12:15:05.803Z - GET /api/assessments/67ff7c71f99127555644727a/submissions?email=1
-GET /api/assessments/:id/submissions - Received request
-Request params: [Object: null prototype] { id: '67ff7c71f99127555644727a' }
-Request query: [Object: null prototype] { email: '1' }
-Request headers: {
-  host: 'localhost:5002',
-  connection: 'keep-alive',
-  'sec-ch-ua-platform': '"Linux"',
-  authorization: 'Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9',
-  'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
-  'sec-ch-ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
-  'content-type': 'application/json',
-  'x-session-id': 'm9jvxu3d9trcpml6of',
-  'sec-ch-ua-mobile': '?0',
-  accept: '*/*',
-  origin: 'http://localhost:5173',
-  'sec-fetch-site': 'same-site',
-  'sec-fetch-mode': 'cors',
-  'sec-fetch-dest': 'empty',
-  referer: 'http://localhost:5173/',
-  'accept-encoding': 'gzip, deflate, br, zstd',
-  'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-  'if-none-match': 'W/"616-Xbqh3wDgJW/I4seQQ8gLDes+7PI"'
-}
-GET /api/assessments/:id/submissions - Received request for assessment submissions
-Assessment ID: 67ff7c71f99127555644727a
-Query params: [Object: null prototype] { email: '1' }
-Permission check: { isCreator: true, isPublic: false, isInvited: false }
-Test details count: 4
-Found 7 submissions for assessment 67ff7c71f99127555644727a
-Found 7 submissions for assessment 67ff7c71f99127555644727a
-Formatted submissions: [
-  {
-    _id: new ObjectId('67ff7d00f991275556447575'),
-    user: {
-      _id: new ObjectId('67ff243f8228ee23f6a72e4c'),
-      email: '2',
-      name: '2'
-    },
-    submittedAt: 2025-04-16T09:48:48.345Z,
-    status: 'completed',
-    testCasesPassed: 4,
-    totalTestCases: 8,
-    percentageScore: 50
-  },
-  {
-    _id: new ObjectId('67ff7d5ef991275556447860'),
-    user: {
-      _id: new ObjectId('67ff24f78228ee23f6a72ead'),
-      email: '3',
-      name: '3'
-    },
-    submittedAt: 2025-04-16T09:50:22.122Z,
-    status: 'completed',
-    testCasesPassed: 3,
-    totalTestCases: 3,
-    percentageScore: 100
-  },
-  {
-    _id: new ObjectId('67ff7f955c5cb4964fec4e07'),
-    user: {
-      _id: new ObjectId('67ff24ff8228ee23f6a72ec8'),
-      email: '4',
-      name: '4'
-    },
-    submittedAt: 2025-04-16T09:59:49.743Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff8224174cf383761bf32e'),
-    user: {
-      _id: new ObjectId('67ff81ae174cf383761bef7d'),
-      email: '5',
-      name: '5'
-    },
-    submittedAt: 2025-04-16T10:10:44.218Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff84859f10d3cef2f531db'),
-    user: {
-      _id: new ObjectId('67ff84469f10d3cef2f52f5d'),
-      email: '6',
-      name: '6'
-    },
-    submittedAt: 2025-04-16T10:20:53.419Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff85b893d5afad9203fc09'),
-    user: {
-      _id: new ObjectId('67ff858793d5afad9203f9c9'),
-      email: '7',
-      name: '7'
-    },
-    submittedAt: 2025-04-16T10:26:00.184Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff8887b31bf97d3a3337ab'),
-    user: {
-      _id: new ObjectId('67ff8815b31bf97d3a3333ed'),
-      email: '8',
-      name: '8'
-    },
-    submittedAt: 2025-04-16T10:37:58.999Z,
-    status: 'completed',
-    testCasesPassed: 11,
-    totalTestCases: 13,
-    percentageScore: 85
-  }
-]
-2025-04-16T12:15:05.861Z - GET /api/assessments/67ff7c71f99127555644727a/submissions?email=1
-GET /api/assessments/:id/submissions - Received request
-Request params: [Object: null prototype] { id: '67ff7c71f99127555644727a' }
-Request query: [Object: null prototype] { email: '1' }
-Request headers: {
-  host: 'localhost:5002',
-  connection: 'keep-alive',
-  'sec-ch-ua-platform': '"Linux"',
-  authorization: 'Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp2eHUzZDl0cmNwbWw2b2YiLCJ0aW1lc3RhbXAiOjE3NDQ4MDUxNTUyNzd9',
-  'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
-  'sec-ch-ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
-  'content-type': 'application/json',
-  'x-session-id': 'm9jvxu3d9trcpml6of',
-  'sec-ch-ua-mobile': '?0',
-  accept: '*/*',
-  origin: 'http://localhost:5173',
-  'sec-fetch-site': 'same-site',
-  'sec-fetch-mode': 'cors',
-  'sec-fetch-dest': 'empty',
-  referer: 'http://localhost:5173/',
-  'accept-encoding': 'gzip, deflate, br, zstd',
-  'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-  'if-none-match': 'W/"616-Xbqh3wDgJW/I4seQQ8gLDes+7PI"'
-}
-GET /api/assessments/:id/submissions - Received request for assessment submissions
-Assessment ID: 67ff7c71f99127555644727a
-Query params: [Object: null prototype] { email: '1' }
-Found 7 submissions for assessment 67ff7c71f99127555644727a
-Found 7 submissions for assessment 67ff7c71f99127555644727a
-Formatted submissions: [
-  {
-    _id: new ObjectId('67ff7d00f991275556447575'),
-    user: {
-      _id: new ObjectId('67ff243f8228ee23f6a72e4c'),
-      email: '2',
-      name: '2'
-    },
-    submittedAt: 2025-04-16T09:48:48.345Z,
-    status: 'completed',
-    testCasesPassed: 4,
-    totalTestCases: 8,
-    percentageScore: 50
-  },
-  {
-    _id: new ObjectId('67ff7d5ef991275556447860'),
-    user: {
-      _id: new ObjectId('67ff24f78228ee23f6a72ead'),
-      email: '3',
-      name: '3'
-    },
-    submittedAt: 2025-04-16T09:50:22.122Z,
-    status: 'completed',
-    testCasesPassed: 3,
-    totalTestCases: 3,
-    percentageScore: 100
-  },
-  {
-    _id: new ObjectId('67ff7f955c5cb4964fec4e07'),
-    user: {
-      _id: new ObjectId('67ff24ff8228ee23f6a72ec8'),
-      email: '4',
-      name: '4'
-    },
-    submittedAt: 2025-04-16T09:59:49.743Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff8224174cf383761bf32e'),
-    user: {
-      _id: new ObjectId('67ff81ae174cf383761bef7d'),
-      email: '5',
-      name: '5'
-    },
-    submittedAt: 2025-04-16T10:10:44.218Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff84859f10d3cef2f531db'),
-    user: {
-      _id: new ObjectId('67ff84469f10d3cef2f52f5d'),
-      email: '6',
-      name: '6'
-    },
-    submittedAt: 2025-04-16T10:20:53.419Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff85b893d5afad9203fc09'),
-    user: {
-      _id: new ObjectId('67ff858793d5afad9203f9c9'),
-      email: '7',
-      name: '7'
-    },
-    submittedAt: 2025-04-16T10:26:00.184Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff8887b31bf97d3a3337ab'),
-    user: {
-      _id: new ObjectId('67ff8815b31bf97d3a3333ed'),
-      email: '8',
-      name: '8'
-    },
-    submittedAt: 2025-04-16T10:37:58.999Z,
-    status: 'completed',
-    testCasesPassed: 11,
-    totalTestCases: 13,
-    percentageScore: 85
-  }
-]
-2025-04-16T12:15:06.242Z - GET /api/auth/me?email=11
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmOWIzYTg1ZTcwMmY2OTFiOWE3ZDEiLCJzZXNzaW9uSWQiOiJtOWp2bmRhYWh5OW5meXljZjIiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ2NjY5NDB9
-Session ID for /me: m9jvndaahy9nfyycf2
-Token for /me: eyJ1c2VySWQiOiI2N2ZmOWIzYTg1ZTcwMmY2OTFiOWE3ZDEiLCJzZXNzaW9uSWQiOiJtOWp2bmRhYWh5OW5meXljZjIiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ2NjY5NDB9
-Token validation successful, user: 11
-2025-04-16T12:15:06.247Z - GET /api/auth/me?email=11
-Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmOWIzYTg1ZTcwMmY2OTFiOWE3ZDEiLCJzZXNzaW9uSWQiOiJtOWp2bmRhYWh5OW5meXljZjIiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ2NjY5NDB9
-Session ID for /me: m9jvndaahy9nfyycf2
-Token for /me: eyJ1c2VySWQiOiI2N2ZmOWIzYTg1ZTcwMmY2OTFiOWE3ZDEiLCJzZXNzaW9uSWQiOiJtOWp2bmRhYWh5OW5meXljZjIiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ2NjY5NDB9
-Token validation successful, user: 11
-2025-04-16T12:15:06.286Z - GET /api/tests/67ff22878228ee23f6a72e08?assessmentId=67ff7c71f99127555644727a&email=11
-GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e08
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmOWIzYTg1ZTcwMmY2OTFiOWE3ZDEiLCJzZXNzaW9uSWQiOiJtOWp2bmRhYWh5OW5meXljZjIiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ2NjY5NDB9 Email: 11
-Found user for test access check: new ObjectId('67ff9b3a85e702f691b9a7d1') 11
+Alpha Coders server running on port 5002
+2025-04-16T12:31:47.509Z - GET /api/test
+2025-04-16T12:31:49.847Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9
+Session ID for /me: m9jwtinhz8zep9ez9w
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9
+Token validation successful, user: 2
+2025-04-16T12:31:49.867Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9
+Session ID for /me: m9jwtinhz8zep9ez9w
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9
+Token validation successful, user: 2
+2025-04-16T12:31:49.995Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+2025-04-16T12:31:49.998Z - GET /api/tests/67ffa18aa926cdc0c0cc1d46?assessmentId=67ffa2e10c396187618e731d&email=2
+GET /api/tests/:id - Test ID: 67ffa18aa926cdc0c0cc1d46
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9 Email: 2
+Found user for test access check: new ObjectId('67ffa18aa926cdc0c0cc1d59') 2
 Test found: {
-  id: new ObjectId('67ff22878228ee23f6a72e08'),
+  id: new ObjectId('67ffa18aa926cdc0c0cc1d46'),
   title: 'Valid Parentheses'
 }
-Specific assessment ID from query: 67ff7c71f99127555644727a
-Checking assessment 67ff7c71f99127555644727a for test 67ff22878228ee23f6a72e08
-Is test 67ff22878228ee23f6a72e08 part of assessment 67ff7c71f99127555644727a? true
+Specific assessment ID from query: 67ffa2e10c396187618e731d
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+Checking assessment 67ffa2e10c396187618e731d for test 67ffa18aa926cdc0c0cc1d46
+Is test 67ffa18aa926cdc0c0cc1d46 part of assessment 67ffa2e10c396187618e731d? true
 Permission check for test access: {
-  testId: '67ff22878228ee23f6a72e08',
-  userId: new ObjectId('67ff9b3a85e702f691b9a7d1'),
-  userEmail: '11',
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  userId: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  userEmail: '2',
   isCreator: undefined,
   isPublic: true,
   isInvited: undefined
 }
-Access granted to test 67ff22878228ee23f6a72e08 for user 11
-Returning test details for 67ff22878228ee23f6a72e08: Valid Parentheses
+Access granted to test 67ffa18aa926cdc0c0cc1d46 for user 2
+Returning test details for 67ffa18aa926cdc0c0cc1d46: Valid Parentheses
 Problem statement: Given a string s containing just the characters '(...
 Sample input: ()[]{}...
 Sample output: true...
 Code templates: 2 templates available
-2025-04-16T12:15:06.293Z - GET /api/tests/67ff22878228ee23f6a72e08?assessmentId=67ff7c71f99127555644727a&email=11
-GET /api/tests/:id - Test ID: 67ff22878228ee23f6a72e08
-GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmOWIzYTg1ZTcwMmY2OTFiOWE3ZDEiLCJzZXNzaW9uSWQiOiJtOWp2bmRhYWh5OW5meXljZjIiLCJ0aW1lc3RhbXAiOjE3NDQ4MDQ2NjY5NDB9 Email: 11
-Found user for test access check: new ObjectId('67ff9b3a85e702f691b9a7d1') 11
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:31:50.012Z - GET /api/tests/67ffa18aa926cdc0c0cc1d46?assessmentId=67ffa2e10c396187618e731d&email=2
+GET /api/tests/:id - Test ID: 67ffa18aa926cdc0c0cc1d46
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9 Email: 2
+2025-04-16T12:31:50.013Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+Found user for test access check: new ObjectId('67ffa18aa926cdc0c0cc1d59') 2
 Test found: {
-  id: new ObjectId('67ff22878228ee23f6a72e08'),
+  id: new ObjectId('67ffa18aa926cdc0c0cc1d46'),
   title: 'Valid Parentheses'
 }
-Specific assessment ID from query: 67ff7c71f99127555644727a
-Checking assessment 67ff7c71f99127555644727a for test 67ff22878228ee23f6a72e08
-Is test 67ff22878228ee23f6a72e08 part of assessment 67ff7c71f99127555644727a? true
+Specific assessment ID from query: 67ffa2e10c396187618e731d
+Checking assessment 67ffa2e10c396187618e731d for test 67ffa18aa926cdc0c0cc1d46
+Is test 67ffa18aa926cdc0c0cc1d46 part of assessment 67ffa2e10c396187618e731d? true
 Permission check for test access: {
-  testId: '67ff22878228ee23f6a72e08',
-  userId: new ObjectId('67ff9b3a85e702f691b9a7d1'),
-  userEmail: '11',
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  userId: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  userEmail: '2',
   isCreator: undefined,
   isPublic: true,
   isInvited: undefined
 }
-Access granted to test 67ff22878228ee23f6a72e08 for user 11
-Returning test details for 67ff22878228ee23f6a72e08: Valid Parentheses
+Access granted to test 67ffa18aa926cdc0c0cc1d46 for user 2
+Returning test details for 67ffa18aa926cdc0c0cc1d46: Valid Parentheses
 Problem statement: Given a string s containing just the characters '(...
 Sample input: ()[]{}...
 Sample output: true...
 Code templates: 2 templates available
-2025-04-16T12:15:09.142Z - POST /api/auth/login
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:31:53.211Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9
+Session ID for /me: m9jwtinhz8zep9ez9w
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9
+Token validation successful, user: 2
+2025-04-16T12:31:53.218Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9
+Session ID for /me: m9jwtinhz8zep9ez9w
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9
+Token validation successful, user: 2
+2025-04-16T12:31:53.252Z - GET /api/tests/67ffa18aa926cdc0c0cc1d46?assessmentId=67ffa2e10c396187618e731d&email=2
+GET /api/tests/:id - Test ID: 67ffa18aa926cdc0c0cc1d46
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9 Email: 2
+Found user for test access check: new ObjectId('67ffa18aa926cdc0c0cc1d59') 2
+Test found: {
+  id: new ObjectId('67ffa18aa926cdc0c0cc1d46'),
+  title: 'Valid Parentheses'
+}
+Specific assessment ID from query: 67ffa2e10c396187618e731d
+Checking assessment 67ffa2e10c396187618e731d for test 67ffa18aa926cdc0c0cc1d46
+Is test 67ffa18aa926cdc0c0cc1d46 part of assessment 67ffa2e10c396187618e731d? true
+Permission check for test access: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  userId: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  userEmail: '2',
+  isCreator: undefined,
+  isPublic: true,
+  isInvited: undefined
+}
+Access granted to test 67ffa18aa926cdc0c0cc1d46 for user 2
+Returning test details for 67ffa18aa926cdc0c0cc1d46: Valid Parentheses
+Problem statement: Given a string s containing just the characters '(...
+Sample input: ()[]{}...
+Sample output: true...
+Code templates: 2 templates available
+2025-04-16T12:31:53.260Z - GET /api/tests/67ffa18aa926cdc0c0cc1d46?assessmentId=67ffa2e10c396187618e731d&email=2
+GET /api/tests/:id - Test ID: 67ffa18aa926cdc0c0cc1d46
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9 Email: 2
+Found user for test access check: new ObjectId('67ffa18aa926cdc0c0cc1d59') 2
+Test found: {
+  id: new ObjectId('67ffa18aa926cdc0c0cc1d46'),
+  title: 'Valid Parentheses'
+}
+Specific assessment ID from query: 67ffa2e10c396187618e731d
+Checking assessment 67ffa2e10c396187618e731d for test 67ffa18aa926cdc0c0cc1d46
+Is test 67ffa18aa926cdc0c0cc1d46 part of assessment 67ffa2e10c396187618e731d? true
+Permission check for test access: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  userId: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  userEmail: '2',
+  isCreator: undefined,
+  isPublic: true,
+  isInvited: undefined
+}
+Access granted to test 67ffa18aa926cdc0c0cc1d46 for user 2
+Returning test details for 67ffa18aa926cdc0c0cc1d46: Valid Parentheses
+Problem statement: Given a string s containing just the characters '(...
+Sample input: ()[]{}...
+Sample output: true...
+Code templates: 2 templates available
+2025-04-16T12:31:54.621Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9
+Session ID for /me: m9jwtinhz8zep9ez9w
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9
+Token validation successful, user: 2
+2025-04-16T12:31:54.627Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9
+Session ID for /me: m9jwtinhz8zep9ez9w
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9
+Token validation successful, user: 2
+2025-04-16T12:31:54.668Z - GET /api/tests/67ffa18aa926cdc0c0cc1d46?assessmentId=67ffa2e10c396187618e731d&email=2
+GET /api/tests/:id - Test ID: 67ffa18aa926cdc0c0cc1d46
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9 Email: 2
+Found user for test access check: new ObjectId('67ffa18aa926cdc0c0cc1d59') 2
+Test found: {
+  id: new ObjectId('67ffa18aa926cdc0c0cc1d46'),
+  title: 'Valid Parentheses'
+}
+Specific assessment ID from query: 67ffa2e10c396187618e731d
+Checking assessment 67ffa2e10c396187618e731d for test 67ffa18aa926cdc0c0cc1d46
+Is test 67ffa18aa926cdc0c0cc1d46 part of assessment 67ffa2e10c396187618e731d? true
+Permission check for test access: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  userId: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  userEmail: '2',
+  isCreator: undefined,
+  isPublic: true,
+  isInvited: undefined
+}
+Access granted to test 67ffa18aa926cdc0c0cc1d46 for user 2
+Returning test details for 67ffa18aa926cdc0c0cc1d46: Valid Parentheses
+Problem statement: Given a string s containing just the characters '(...
+Sample input: ()[]{}...
+Sample output: true...
+Code templates: 2 templates available
+2025-04-16T12:31:54.673Z - GET /api/tests/67ffa18aa926cdc0c0cc1d46?assessmentId=67ffa2e10c396187618e731d&email=2
+GET /api/tests/:id - Test ID: 67ffa18aa926cdc0c0cc1d46
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dGluaHo4emVwOWV6OXciLCJ0aW1lc3RhbXAiOjE3NDQ4MDY2MzM0NDF9 Email: 2
+Found user for test access check: new ObjectId('67ffa18aa926cdc0c0cc1d59') 2
+Test found: {
+  id: new ObjectId('67ffa18aa926cdc0c0cc1d46'),
+  title: 'Valid Parentheses'
+}
+Specific assessment ID from query: 67ffa2e10c396187618e731d
+Checking assessment 67ffa2e10c396187618e731d for test 67ffa18aa926cdc0c0cc1d46
+Is test 67ffa18aa926cdc0c0cc1d46 part of assessment 67ffa2e10c396187618e731d? true
+Permission check for test access: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  userId: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  userEmail: '2',
+  isCreator: undefined,
+  isPublic: true,
+  isInvited: undefined
+}
+Access granted to test 67ffa18aa926cdc0c0cc1d46 for user 2
+Returning test details for 67ffa18aa926cdc0c0cc1d46: Valid Parentheses
+Problem statement: Given a string s containing just the characters '(...
+Sample input: ()[]{}...
+Sample output: true...
+Code templates: 2 templates available
+2025-04-16T12:31:57.641Z - POST /api/auth/logout
+Logout request for session: m9jwtinhz8zep9ez9w
+Session removed successfully
+2025-04-16T12:32:01.816Z - POST /api/auth/login
+Login request body: { email: '2', password: '2' }
+Session ID for login: m9jwvevsw1824cmrlmr
+Found user: 2
+Login successful for user: 2
+2025-04-16T12:32:01.905Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ==
+Session ID for /me: m9jwvevsw1824cmrlmr
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ==
+2025-04-16T12:32:01.907Z - GET /api/assessments/assigned?email=2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ== Email: 2
+User found: 2 new ObjectId('67ffa18aa926cdc0c0cc1d59')
+Token validation successful, user: 2
+Found 1 assigned assessments for user 2
+2025-04-16T12:32:01.911Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ==
+Session ID for /me: m9jwvevsw1824cmrlmr
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ==
+Found 0 completed submissions for user 2
+Assessment 67ffa2e10c396187618e731d submission status: Not submitted
+  - User submission status: Not found
+  - Submission record: Not found
+  - Assessment submitted flag: False
+Token validation successful, user: 2
+2025-04-16T12:32:01.918Z - GET /api/assessments/assigned?email=2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ== Email: 2
+User found: 2 new ObjectId('67ffa18aa926cdc0c0cc1d59')
+Found 1 assigned assessments for user 2
+Found 0 completed submissions for user 2
+Assessment 67ffa2e10c396187618e731d submission status: Not submitted
+  - User submission status: Not found
+  - Submission record: Not found
+  - Assessment submitted flag: False
+2025-04-16T12:32:03.025Z - GET /api/assessments/67ffa2e10c396187618e731d?email=2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ== Email: 2 Assessment ID: 67ffa2e10c396187618e731d
+Assessment found: new ObjectId('67ffa2e10c396187618e731d')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 4
+2025-04-16T12:32:03.036Z - GET /api/assessments/67ffa2e10c396187618e731d?email=2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ== Email: 2 Assessment ID: 67ffa2e10c396187618e731d
+Assessment found: new ObjectId('67ffa2e10c396187618e731d')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 4
+2025-04-16T12:32:03.058Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d34/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d34 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d34. Assessment submitted: false. Test completed: false
+2025-04-16T12:32:03.073Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d34/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d34 in assessment 67ffa2e10c396187618e731d for user 2
+2025-04-16T12:32:03.075Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d34. Assessment submitted: false. Test completed: false
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:32:03.081Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+2025-04-16T12:32:03.084Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d3a/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d3a in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d3a. Assessment submitted: false. Test completed: false
+2025-04-16T12:32:03.088Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d3a/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d3a in assessment 67ffa2e10c396187618e731d for user 2
+2025-04-16T12:32:03.091Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d40/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d40 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d3a. Assessment submitted: false. Test completed: false
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d40. Assessment submitted: false. Test completed: false
+2025-04-16T12:32:03.095Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d40/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d40 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d40. Assessment submitted: false. Test completed: false
+2025-04-16T12:32:05.083Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d34/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d34 in assessment 67ffa2e10c396187618e731d for user 2
+2025-04-16T12:32:05.084Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+2025-04-16T12:32:05.090Z - GET /api/tests/67ffa18aa926cdc0c0cc1d46?assessmentId=67ffa2e10c396187618e731d&email=2
+GET /api/tests/:id - Test ID: 67ffa18aa926cdc0c0cc1d46
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ== Email: 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d34. Assessment submitted: false. Test completed: false
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+Found user for test access check: new ObjectId('67ffa18aa926cdc0c0cc1d59') 2
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+Test found: {
+  id: new ObjectId('67ffa18aa926cdc0c0cc1d46'),
+  title: 'Valid Parentheses'
+}
+Specific assessment ID from query: 67ffa2e10c396187618e731d
+2025-04-16T12:32:05.094Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+Checking assessment 67ffa2e10c396187618e731d for test 67ffa18aa926cdc0c0cc1d46
+Is test 67ffa18aa926cdc0c0cc1d46 part of assessment 67ffa2e10c396187618e731d? true
+Permission check for test access: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  userId: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  userEmail: '2',
+  isCreator: undefined,
+  isPublic: true,
+  isInvited: undefined
+}
+Access granted to test 67ffa18aa926cdc0c0cc1d46 for user 2
+Returning test details for 67ffa18aa926cdc0c0cc1d46: Valid Parentheses
+Problem statement: Given a string s containing just the characters '(...
+Sample input: ()[]{}...
+Sample output: true...
+Code templates: 2 templates available
+2025-04-16T12:32:05.096Z - GET /api/tests/67ffa18aa926cdc0c0cc1d46?assessmentId=67ffa2e10c396187618e731d&email=2
+GET /api/tests/:id - Test ID: 67ffa18aa926cdc0c0cc1d46
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ== Email: 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+Found user for test access check: new ObjectId('67ffa18aa926cdc0c0cc1d59') 2
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+Test found: {
+  id: new ObjectId('67ffa18aa926cdc0c0cc1d46'),
+  title: 'Valid Parentheses'
+}
+Specific assessment ID from query: 67ffa2e10c396187618e731d
+2025-04-16T12:32:05.099Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+Checking assessment 67ffa2e10c396187618e731d for test 67ffa18aa926cdc0c0cc1d46
+Is test 67ffa18aa926cdc0c0cc1d46 part of assessment 67ffa2e10c396187618e731d? true
+Permission check for test access: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  userId: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  userEmail: '2',
+  isCreator: undefined,
+  isPublic: true,
+  isInvited: undefined
+}
+Access granted to test 67ffa18aa926cdc0c0cc1d46 for user 2
+Returning test details for 67ffa18aa926cdc0c0cc1d46: Valid Parentheses
+Problem statement: Given a string s containing just the characters '(...
+Sample input: ()[]{}...
+Sample output: true...
+Code templates: 2 templates available
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:32:05.127Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d3a/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d3a in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d3a. Assessment submitted: false. Test completed: false
+2025-04-16T12:32:05.148Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d40/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d40 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d40. Assessment submitted: false. Test completed: false
+2025-04-16T12:32:10.119Z - POST /api/code/tests/67ffa18aa926cdc0c0cc1d46/run?email=2
+Run test cases request: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  language: 'python',
+  assessmentId: '67ffa2e10c396187618e731d'
+}
+Test found: Yes new ObjectId('67ffa18aa926cdc0c0cc1d46')
+Starting Python execution with ID: 4c9ef740-a92f-4f4b-a510-952a919a4956
+Code length: 218 characters
+Input length: 6 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_4c9ef740-a92f-4f4b-a510-952a919a4956.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_4c9ef740-a92f-4f4b-a510-952a919a4956       -i python:3.9-slim       bash
+Python execution result: { stdout: 'false\n', stderr: '', executionTime: 519 }
+Temporary files cleaned up
+Starting Python execution with ID: faba93e0-0ad3-4c4e-bd6b-618f49251bc1
+Code length: 218 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_faba93e0-0ad3-4c4e-bd6b-618f49251bc1.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_faba93e0-0ad3-4c4e-bd6b-618f49251bc1       -i python:3.9-slim       bash
+Python execution result: { stdout: 'false\n', stderr: '', executionTime: 396 }
+Temporary files cleaned up
+Starting Python execution with ID: c7bd9b0f-f793-406d-a35f-718cebfdbaa7
+Code length: 218 characters
+Input length: 4 characters
+Docker is running
+Executing Python code with Docker command: cat /tmp/run_c7bd9b0f-f793-406d-a35f-718cebfdbaa7.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_c7bd9b0f-f793-406d-a35f-718cebfdbaa7       -i python:3.9-slim       bash
+Python execution result: { stdout: 'false\n', stderr: '', executionTime: 446 }
+Temporary files cleaned up
+2025-04-16T12:32:15.061Z - GET /api/tests/67ffa18aa926cdc0c0cc1d46?assessmentId=67ffa2e10c396187618e731d&email=2
+GET /api/tests/:id - Test ID: 67ffa18aa926cdc0c0cc1d46
+GET /api/tests/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ== Email: 2
+Found user for test access check: new ObjectId('67ffa18aa926cdc0c0cc1d59') 2
+Test found: {
+  id: new ObjectId('67ffa18aa926cdc0c0cc1d46'),
+  title: 'Valid Parentheses'
+}
+Specific assessment ID from query: 67ffa2e10c396187618e731d
+Checking assessment 67ffa2e10c396187618e731d for test 67ffa18aa926cdc0c0cc1d46
+Is test 67ffa18aa926cdc0c0cc1d46 part of assessment 67ffa2e10c396187618e731d? true
+Permission check for test access: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  userId: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  userEmail: '2',
+  isCreator: undefined,
+  isPublic: true,
+  isInvited: undefined
+}
+Access granted to test 67ffa18aa926cdc0c0cc1d46 for user 2
+Returning test details for 67ffa18aa926cdc0c0cc1d46: Valid Parentheses
+Problem statement: Given a string s containing just the characters '(...
+Sample input: ()[]{}...
+Sample output: true...
+Code templates: 2 templates available
+2025-04-16T12:32:24.601Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:32:24.617Z - POST /api/tests/67ffa18aa926cdc0c0cc1d46/submissions?email=2
+Submit code request: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  language: 'cpp',
+  assessmentId: '67ffa2e10c396187618e731d'
+}
+Test found: Yes new ObjectId('67ffa18aa926cdc0c0cc1d46')
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d
+Starting C++ execution with ID: ea1b914c-2143-48b0-9ff0-d7803d07bb10
+Code length: 293 characters
+Input length: 6 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_ea1b914c-2143-48b0-9ff0-d7803d07bb10.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_ea1b914c-2143-48b0-9ff0-d7803d07bb10       -i gcc:latest       bash
+C++ execution result: {
+  stdout: '/tmp/solution.cpp:9:13: warning: multi-character character constant [-Wmultichar]\n' +
+    "    9 |     cout << 'true'\n" +
+    '      |             ^~~~~~\n' +
+    "/tmp/solution.cpp: In function 'void solve()':\n" +
+    '/tmp/solution.cpp',
+  stderr: '',
+  executionTime: 726
+}
+Temporary files cleaned up
+Starting C++ execution with ID: 4d44a49d-e189-4ca6-8c7b-d62bfde62f78
+Code length: 293 characters
+Input length: 4 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_4d44a49d-e189-4ca6-8c7b-d62bfde62f78.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_4d44a49d-e189-4ca6-8c7b-d62bfde62f78       -i gcc:latest       bash
+C++ execution result: {
+  stdout: '/tmp/solution.cpp:9:13: warning: multi-character character constant [-Wmultichar]\n' +
+    "    9 |     cout << 'true'\n" +
+    '      |             ^~~~~~\n' +
+    "/tmp/solution.cpp: In function 'void solve()':\n" +
+    '/tmp/solution.cpp',
+  stderr: '',
+  executionTime: 490
+}
+Temporary files cleaned up
+Starting C++ execution with ID: d5a95669-1e44-48c3-b9de-80ce9a37dc95
+Code length: 293 characters
+Input length: 4 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_d5a95669-1e44-48c3-b9de-80ce9a37dc95.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_d5a95669-1e44-48c3-b9de-80ce9a37dc95       -i gcc:latest       bash
+C++ execution result: {
+  stdout: '/tmp/solution.cpp:9:13: warning: multi-character character constant [-Wmultichar]\n' +
+    "    9 |     cout << 'true'\n" +
+    '      |             ^~~~~~\n' +
+    "/tmp/solution.cpp: In function 'void solve()':\n" +
+    '/tmp/solution.cpp',
+  stderr: '',
+  executionTime: 443
+}
+Temporary files cleaned up
+Starting C++ execution with ID: 956df386-5638-4c86-a71c-662263cf50e7
+Code length: 293 characters
+Input length: 2 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_956df386-5638-4c86-a71c-662263cf50e7.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_956df386-5638-4c86-a71c-662263cf50e7       -i gcc:latest       bash
+C++ execution result: {
+  stdout: '/tmp/solution.cpp:9:13: warning: multi-character character constant [-Wmultichar]\n' +
+    "    9 |     cout << 'true'\n" +
+    '      |             ^~~~~~\n' +
+    "/tmp/solution.cpp: In function 'void solve()':\n" +
+    '/tmp/solution.cpp',
+  stderr: '',
+  executionTime: 476
+}
+Temporary files cleaned up
+2025-04-16T12:32:29.040Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:32:29.710Z - POST /api/code/tests/67ffa18aa926cdc0c0cc1d46/run?email=2
+Run test cases request: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  language: 'cpp',
+  assessmentId: '67ffa2e10c396187618e731d'
+}
+Test found: Yes new ObjectId('67ffa18aa926cdc0c0cc1d46')
+Starting C++ execution with ID: d3fa6fd1-500c-4f7b-9dab-127380629246
+Code length: 293 characters
+Input length: 6 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_d3fa6fd1-500c-4f7b-9dab-127380629246.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_d3fa6fd1-500c-4f7b-9dab-127380629246       -i gcc:latest       bash
+C++ execution result: {
+  stdout: '/tmp/solution.cpp:9:13: warning: multi-character character constant [-Wmultichar]\n' +
+    "    9 |     cout << 'true'\n" +
+    '      |             ^~~~~~\n' +
+    "/tmp/solution.cpp: In function 'void solve()':\n" +
+    '/tmp/solution.cpp',
+  stderr: '',
+  executionTime: 544
+}
+Temporary files cleaned up
+Starting C++ execution with ID: 54917bb1-7de4-48b9-af21-7a0901a1522f
+Code length: 293 characters
+Input length: 4 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_54917bb1-7de4-48b9-af21-7a0901a1522f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_54917bb1-7de4-48b9-af21-7a0901a1522f       -i gcc:latest       bash
+C++ execution result: {
+  stdout: '/tmp/solution.cpp:9:13: warning: multi-character character constant [-Wmultichar]\n' +
+    "    9 |     cout << 'true'\n" +
+    '      |             ^~~~~~\n' +
+    "/tmp/solution.cpp: In function 'void solve()':\n" +
+    '/tmp/solution.cpp',
+  stderr: '',
+  executionTime: 577
+}
+Temporary files cleaned up
+Starting C++ execution with ID: c8224044-1729-495e-b784-8a7936982de8
+Code length: 293 characters
+Input length: 4 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_c8224044-1729-495e-b784-8a7936982de8.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_c8224044-1729-495e-b784-8a7936982de8       -i gcc:latest       bash
+C++ execution result: {
+  stdout: '/tmp/solution.cpp:9:13: warning: multi-character character constant [-Wmultichar]\n' +
+    "    9 |     cout << 'true'\n" +
+    '      |             ^~~~~~\n' +
+    "/tmp/solution.cpp: In function 'void solve()':\n" +
+    '/tmp/solution.cpp',
+  stderr: '',
+  executionTime: 545
+}
+Temporary files cleaned up
+2025-04-16T12:32:35.088Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:32:37.270Z - POST /api/code/tests/67ffa18aa926cdc0c0cc1d46/run?email=2
+Run test cases request: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  language: 'cpp',
+  assessmentId: '67ffa2e10c396187618e731d'
+}
+Test found: Yes new ObjectId('67ffa18aa926cdc0c0cc1d46')
+Starting C++ execution with ID: 081ebfb6-055f-42e6-9305-70f8822ecae1
+Code length: 294 characters
+Input length: 6 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_081ebfb6-055f-42e6-9305-70f8822ecae1.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_081ebfb6-055f-42e6-9305-70f8822ecae1       -i gcc:latest       bash
+C++ execution result: {
+  stdout: '/tmp/solution.cpp:9:13: warning: multi-character character constant [-Wmultichar]\n' +
+    "    9 |     cout << 'true';\n" +
+    '      |             ^~~~~~\n' +
+    '1953658213',
+  stderr: '',
+  executionTime: 640
+}
+Temporary files cleaned up
+Starting C++ execution with ID: 4fa58d4f-29fa-4e48-94bf-d63d3eab7846
+Code length: 294 characters
+Input length: 4 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_4fa58d4f-29fa-4e48-94bf-d63d3eab7846.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_4fa58d4f-29fa-4e48-94bf-d63d3eab7846       -i gcc:latest       bash
+C++ execution result: {
+  stdout: '/tmp/solution.cpp:9:13: warning: multi-character character constant [-Wmultichar]\n' +
+    "    9 |     cout << 'true';\n" +
+    '      |             ^~~~~~\n' +
+    '1953658213',
+  stderr: '',
+  executionTime: 527
+}
+Temporary files cleaned up
+Starting C++ execution with ID: 1910ccdc-ac27-4a77-a245-2bea7b01481f
+Code length: 294 characters
+Input length: 4 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_1910ccdc-ac27-4a77-a245-2bea7b01481f.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_1910ccdc-ac27-4a77-a245-2bea7b01481f       -i gcc:latest       bash
+C++ execution result: {
+  stdout: '/tmp/solution.cpp:9:13: warning: multi-character character constant [-Wmultichar]\n' +
+    "    9 |     cout << 'true';\n" +
+    '      |             ^~~~~~\n' +
+    '1953658213',
+  stderr: '',
+  executionTime: 569
+}
+Temporary files cleaned up
+2025-04-16T12:32:54.508Z - POST /api/code/tests/67ffa18aa926cdc0c0cc1d46/run?email=2
+Run test cases request: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  language: 'cpp',
+  assessmentId: '67ffa2e10c396187618e731d'
+}
+Test found: Yes new ObjectId('67ffa18aa926cdc0c0cc1d46')
+Starting C++ execution with ID: 47a65d8f-c81f-4f4b-9986-54483f75617b
+Code length: 294 characters
+Input length: 6 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_47a65d8f-c81f-4f4b-9986-54483f75617b.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_47a65d8f-c81f-4f4b-9986-54483f75617b       -i gcc:latest       bash
+C++ execution result: { stdout: 'true', stderr: '', executionTime: 627 }
+Temporary files cleaned up
+Starting C++ execution with ID: a985e513-f1a4-4e82-89ec-e3b5ba5f6f14
+Code length: 294 characters
+Input length: 4 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_a985e513-f1a4-4e82-89ec-e3b5ba5f6f14.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_a985e513-f1a4-4e82-89ec-e3b5ba5f6f14       -i gcc:latest       bash
+C++ execution result: { stdout: 'true', stderr: '', executionTime: 521 }
+Temporary files cleaned up
+Starting C++ execution with ID: b6f73be0-6209-432e-890f-28d9d764b0a0
+Code length: 294 characters
+Input length: 4 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_b6f73be0-6209-432e-890f-28d9d764b0a0.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_b6f73be0-6209-432e-890f-28d9d764b0a0       -i gcc:latest       bash
+C++ execution result: { stdout: 'true', stderr: '', executionTime: 536 }
+Temporary files cleaned up
+2025-04-16T12:32:57.694Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:32:57.709Z - POST /api/tests/67ffa18aa926cdc0c0cc1d46/submissions?email=2
+Submit code request: {
+  testId: '67ffa18aa926cdc0c0cc1d46',
+  language: 'cpp',
+  assessmentId: '67ffa2e10c396187618e731d'
+}
+Test found: Yes new ObjectId('67ffa18aa926cdc0c0cc1d46')
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d
+Starting C++ execution with ID: a91048a4-befb-4009-af83-73d16acc2652
+Code length: 294 characters
+Input length: 6 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_a91048a4-befb-4009-af83-73d16acc2652.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_a91048a4-befb-4009-af83-73d16acc2652       -i gcc:latest       bash
+C++ execution result: { stdout: 'true', stderr: '', executionTime: 559 }
+Temporary files cleaned up
+Starting C++ execution with ID: 5cb428b7-6829-4366-80e7-451d50505cfc
+Code length: 294 characters
+Input length: 4 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_5cb428b7-6829-4366-80e7-451d50505cfc.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_5cb428b7-6829-4366-80e7-451d50505cfc       -i gcc:latest       bash
+C++ execution result: { stdout: 'true', stderr: '', executionTime: 519 }
+Temporary files cleaned up
+Starting C++ execution with ID: 4ae0820c-ef40-4261-8ff8-7141adf4198a
+Code length: 294 characters
+Input length: 4 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_4ae0820c-ef40-4261-8ff8-7141adf4198a.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_4ae0820c-ef40-4261-8ff8-7141adf4198a       -i gcc:latest       bash
+C++ execution result: { stdout: 'true', stderr: '', executionTime: 503 }
+Temporary files cleaned up
+Starting C++ execution with ID: 370bdd3b-0106-42a6-9c8c-7cca5ed85011
+Code length: 294 characters
+Input length: 2 characters
+Docker is running
+Executing C++ code with Docker command: cat /tmp/run_370bdd3b-0106-42a6-9c8c-7cca5ed85011.sh | docker run --rm --network none --memory=512m --cpus=1       --name code_exec_370bdd3b-0106-42a6-9c8c-7cca5ed85011       -i gcc:latest       bash
+C++ execution result: { stdout: 'true', stderr: '', executionTime: 485 }
+Temporary files cleaned up
+2025-04-16T12:33:02.051Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:33:03.577Z - GET /api/assessments/67ffa2e10c396187618e731d?email=2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ== Email: 2 Assessment ID: 67ffa2e10c396187618e731d
+Assessment found: new ObjectId('67ffa2e10c396187618e731d')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 4
+2025-04-16T12:33:03.584Z - GET /api/assessments/67ffa2e10c396187618e731d?email=2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ== Email: 2 Assessment ID: 67ffa2e10c396187618e731d
+Assessment found: new ObjectId('67ffa2e10c396187618e731d')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 4
+2025-04-16T12:33:03.599Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d34/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d34 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d34. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:03.613Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d34/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d34 in assessment 67ffa2e10c396187618e731d for user 2
+2025-04-16T12:33:03.616Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d34. Assessment submitted: false. Test completed: false
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:33:03.620Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+2025-04-16T12:33:03.623Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d3a/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d3a in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d3a. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:03.626Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d3a/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d3a in assessment 67ffa2e10c396187618e731d for user 2
+2025-04-16T12:33:03.628Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d40/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d40 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d3a. Assessment submitted: false. Test completed: false
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d40. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:03.632Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d40/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d40 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d40. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:05.615Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d34/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d34 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d34. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:05.632Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:33:05.648Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d3a/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d3a in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d3a. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:05.664Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d40/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d40 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d40. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:07.521Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d34/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d34 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d34. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:07.528Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:33:07.537Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d3a/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d3a in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d3a. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:07.545Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d40/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d40 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d40. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:08.644Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d34/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d34 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d34. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:08.665Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: false. Test completed: true
+2025-04-16T12:33:08.676Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d3a/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d3a in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d3a. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:08.690Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d40/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d40 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d40. Assessment submitted: false. Test completed: false
+2025-04-16T12:33:08.698Z - POST /api/assessments/67ffa2e10c396187618e731d/submit?email=2
+Submit assessment request: { assessmentId: '67ffa2e10c396187618e731d' }
+Found 3 total test submissions for assessment 67ffa2e10c396187618e731d
+Found 1 test submissions for assessment 67ffa2e10c396187618e731d
+Creating assessment submission with data: {
+  userId: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  user: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  assessment: new ObjectId('67ffa2e10c396187618e731d'),
+  code: '#include <iostream>\n' +
+    '#include <vector>\n' +
+    '#include <string>\n' +
+    '#include <algorithm>\n' +
+    'using namespace std;\n' +
+    '\n' +
+    '// Main solution function\n' +
+    'void solve() {\n' +
+    '    cout << "true";\n' +
+    '}\n' +
+    '\n' +
+    'int main() {\n' +
+    '    ios_base::sync_with_stdio(false);\n' +
+    '    cin.tie(NULL);\n' +
+    '\n' +
+    '    // Call the solve function\n' +
+    '    solve();\n' +
+    '\n' +
+    '    return 0;\n' +
+    '}',
+  language: 'cpp',
+  status: 'completed',
+  submittedAt: 2025-04-16T12:33:08.700Z,
+  isAssessmentSubmission: true,
+  totalTestCases: 4,
+  testCasesPassed: 2,
+  avgExecutionTime: 0,
+  avgMemoryUsed: 0,
+  score: 50,
+  test: new ObjectId('67ffa18aa926cdc0c0cc1d34'),
+  testSubmissions: [ new ObjectId('67ffa37cc98eb2a763f0310c') ]
+}
+Updated assessment with user-specific submission status: {
+  assessmentId: '67ffa2e10c396187618e731d',
+  userId: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  userEmail: '2',
+  submittedAt: 2025-04-16T12:33:08.700Z,
+  userSubmission: undefined
+}
+Assessment 67ffa2e10c396187618e731d marked as submitted for user 67ffa18aa926cdc0c0cc1d59
+Created submission: {
+  id: new ObjectId('67ffa384c98eb2a763f031a5'),
+  assessmentId: new ObjectId('67ffa2e10c396187618e731d'),
+  userId: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+  submittedAt: 2025-04-16T12:33:08.700Z
+}
+2025-04-16T12:33:08.717Z - GET /api/assessments/67ffa2e10c396187618e731d?email=2
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ== Email: 2 Assessment ID: 67ffa2e10c396187618e731d
+Assessment found: new ObjectId('67ffa2e10c396187618e731d')
+User found: 2
+Creator check: { isCreator: false }
+Permission check: { isCreator: false, isPublic: false, isInvited: true }
+Test details count: 4
+2025-04-16T12:33:08.736Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d34/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d34 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d34 based on submissions: true (1 submissions)
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d34. Assessment submitted: true. Test completed: true
+2025-04-16T12:33:08.749Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d34/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d34 in assessment 67ffa2e10c396187618e731d for user 2
+2025-04-16T12:33:08.752Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d34 based on submissions: true (1 submissions)
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d34. Assessment submitted: true. Test completed: true
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: true. Test completed: true
+2025-04-16T12:33:08.760Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d46/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d46 in assessment 67ffa2e10c396187618e731d for user 2
+2025-04-16T12:33:08.761Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d3a/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d3a in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has completed test 67ffa18aa926cdc0c0cc1d46: true
+User 2 has used 1 of 3 attempts for test 67ffa18aa926cdc0c0cc1d46. Assessment submitted: true. Test completed: true
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d3a. Assessment submitted: true. Test completed: false
+2025-04-16T12:33:08.767Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d3a/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d3a in assessment 67ffa2e10c396187618e731d for user 2
+2025-04-16T12:33:08.769Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d40/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d40 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d3a. Assessment submitted: true. Test completed: false
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d40. Assessment submitted: true. Test completed: false
+2025-04-16T12:33:08.777Z - GET /api/assessments/67ffa2e10c396187618e731d/tests/67ffa18aa926cdc0c0cc1d40/attempts?email=2
+Getting attempts for test 67ffa18aa926cdc0c0cc1d40 in assessment 67ffa2e10c396187618e731d for user 2
+User 2 has used 0 of 3 attempts for test 67ffa18aa926cdc0c0cc1d40. Assessment submitted: true. Test completed: false
+2025-04-16T12:33:10.994Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ==
+Session ID for /me: m9jwvevsw1824cmrlmr
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ==
+Token validation successful, user: 2
+2025-04-16T12:33:10.999Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ==
+Session ID for /me: m9jwvevsw1824cmrlmr
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ==
+Token validation successful, user: 2
+2025-04-16T12:33:11.066Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ==
+Session ID for /me: m9jwvevsw1824cmrlmr
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ==
+2025-04-16T12:33:11.068Z - GET /api/assessments/assigned?email=2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ== Email: 2
+User found: 2 new ObjectId('67ffa18aa926cdc0c0cc1d59')
+Found 1 assigned assessments for user 2
+Token validation successful, user: 2
+Found 1 completed submissions for user 2
+Found submission for assessment 67ffa2e10c396187618e731d
+2025-04-16T12:33:11.074Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ==
+Session ID for /me: m9jwvevsw1824cmrlmr
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ==
+Assessment 67ffa2e10c396187618e731d submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Token validation successful, user: 2
+2025-04-16T12:33:11.083Z - GET /api/assessments/assigned?email=2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3dmV2c3cxODI0Y21ybG1yIiwidGltZXN0YW1wIjoxNzQ0ODA2NzIxODY4fQ== Email: 2
+User found: 2 new ObjectId('67ffa18aa926cdc0c0cc1d59')
+Found 1 assigned assessments for user 2
+Found 1 completed submissions for user 2
+Found submission for assessment 67ffa2e10c396187618e731d
+Assessment 67ffa2e10c396187618e731d submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+2025-04-16T12:33:13.685Z - POST /api/auth/logout
+Logout request for session: m9jwvevsw1824cmrlmr
+Session removed successfully
+2025-04-16T12:33:16.059Z - POST /api/auth/login
 Login request body: { email: '1', password: '1' }
-Session ID for login: m9jw9phycaxaevwndug
+Session ID for login: m9jwx063qikhgh6jcm
 Found user: 1
 Login successful for user: 1
-2025-04-16T12:15:09.247Z - GET /api/tests/my-tests?email=1
-2025-04-16T12:15:09.251Z - GET /api/tests/my-tests?email=1
-2025-04-16T12:15:10.483Z - GET /api/assessments/my-assessments?email=1
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp3OXBoeWNheGFldnduZHVnIiwidGltZXN0YW1wIjoxNzQ0ODA1NzA5MTkzfQ== Email: 1
+2025-04-16T12:33:16.153Z - GET /api/tests/my-tests?email=1
+2025-04-16T12:33:16.157Z - GET /api/tests/my-tests?email=1
+2025-04-16T12:33:18.159Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eDA2M3Fpa2hnaDZqY20iLCJ0aW1lc3RhbXAiOjE3NDQ4MDY3OTYxMTF9 Email: 1
 User found for my assessments: {
-  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
-  name: '1',
+  _id: new ObjectId('67ffa18aa926cdc0c0cc1d33'),
+  name: 'Test Assessor',
   email: '1',
-  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
+  password: '$2b$10$O2bQprmtvAwX8k/6QBp3OuhLg30jLAsMBeR2IPnMcT2U6Cx/st8Gm',
   role: 'assessor',
-  createdAt: 2025-04-16T03:23:23.937Z,
-  updatedAt: 2025-04-16T03:23:23.937Z,
+  createdAt: 2025-04-16T12:24:42.597Z,
+  updatedAt: 2025-04-16T12:24:42.597Z,
   __v: 0
 }
 Found 1 assessments created by user 1
-2025-04-16T12:15:10.491Z - GET /api/assessments/my-assessments?email=1
-GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp3OXBoeWNheGFldnduZHVnIiwidGltZXN0YW1wIjoxNzQ0ODA1NzA5MTkzfQ== Email: 1
+2025-04-16T12:33:18.167Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eDA2M3Fpa2hnaDZqY20iLCJ0aW1lc3RhbXAiOjE3NDQ4MDY3OTYxMTF9 Email: 1
 User found for my assessments: {
-  _id: new ObjectId('67ff22ab8228ee23f6a72e3e'),
-  name: '1',
+  _id: new ObjectId('67ffa18aa926cdc0c0cc1d33'),
+  name: 'Test Assessor',
   email: '1',
-  password: '$2b$10$F843t/.X9teIRgvLHCDN/.fiIkollNv.S1UWghDEQ9zIjg8gMYgbW',
+  password: '$2b$10$O2bQprmtvAwX8k/6QBp3OuhLg30jLAsMBeR2IPnMcT2U6Cx/st8Gm',
   role: 'assessor',
-  createdAt: 2025-04-16T03:23:23.937Z,
-  updatedAt: 2025-04-16T03:23:23.937Z,
+  createdAt: 2025-04-16T12:24:42.597Z,
+  updatedAt: 2025-04-16T12:24:42.597Z,
   __v: 0
 }
 Found 1 assessments created by user 1
-2025-04-16T12:15:11.787Z - GET /api/assessments/67ff7c71f99127555644727a?email=1
+2025-04-16T12:33:19.097Z - GET /api/assessments/67ffa2e10c396187618e731d?email=1
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp3OXBoeWNheGFldnduZHVnIiwidGltZXN0YW1wIjoxNzQ0ODA1NzA5MTkzfQ== Email: 1 Assessment ID: 67ff7c71f99127555644727a
-Assessment found: new ObjectId('67ff7c71f99127555644727a')
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eDA2M3Fpa2hnaDZqY20iLCJ0aW1lc3RhbXAiOjE3NDQ4MDY3OTYxMTF9 Email: 1 Assessment ID: 67ffa2e10c396187618e731d
+Assessment found: new ObjectId('67ffa2e10c396187618e731d')
 User found: 1
 Creator check: { isCreator: true }
 Permission check: { isCreator: true, isPublic: false, isInvited: false }
 Test details count: 4
-2025-04-16T12:15:11.796Z - GET /api/assessments/67ff7c71f99127555644727a?email=1
+2025-04-16T12:33:19.105Z - GET /api/assessments/67ffa2e10c396187618e731d?email=1
 GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
-GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp3OXBoeWNheGFldnduZHVnIiwidGltZXN0YW1wIjoxNzQ0ODA1NzA5MTkzfQ== Email: 1 Assessment ID: 67ff7c71f99127555644727a
-Assessment found: new ObjectId('67ff7c71f99127555644727a')
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eDA2M3Fpa2hnaDZqY20iLCJ0aW1lc3RhbXAiOjE3NDQ4MDY3OTYxMTF9 Email: 1 Assessment ID: 67ffa2e10c396187618e731d
+Assessment found: new ObjectId('67ffa2e10c396187618e731d')
 User found: 1
 Creator check: { isCreator: true }
 Permission check: { isCreator: true, isPublic: false, isInvited: false }
-2025-04-16T12:15:11.800Z - GET /api/assessments/67ff7c71f99127555644727a/submissions?email=1
+2025-04-16T12:33:19.109Z - GET /api/assessments/67ffa2e10c396187618e731d/submissions?email=1
 GET /api/assessments/:id/submissions - Received request
-Request params: [Object: null prototype] { id: '67ff7c71f99127555644727a' }
+Request params: [Object: null prototype] { id: '67ffa2e10c396187618e731d' }
 Request query: [Object: null prototype] { email: '1' }
 Request headers: {
   host: 'localhost:5002',
   connection: 'keep-alive',
   'sec-ch-ua-platform': '"Linux"',
-  authorization: 'Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp3OXBoeWNheGFldnduZHVnIiwidGltZXN0YW1wIjoxNzQ0ODA1NzA5MTkzfQ==',
+  authorization: 'Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eDA2M3Fpa2hnaDZqY20iLCJ0aW1lc3RhbXAiOjE3NDQ4MDY3OTYxMTF9',
   'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
   'sec-ch-ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
   'content-type': 'application/json',
-  'x-session-id': 'm9jw9phycaxaevwndug',
+  'x-session-id': 'm9jwx063qikhgh6jcm',
   'sec-ch-ua-mobile': '?0',
   accept: '*/*',
   origin: 'http://localhost:5173',
@@ -414,120 +941,42 @@ Request headers: {
   referer: 'http://localhost:5173/',
   'accept-encoding': 'gzip, deflate, br, zstd',
   'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-  'if-none-match': 'W/"616-Xbqh3wDgJW/I4seQQ8gLDes+7PI"'
+  'if-none-match': 'W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"'
 }
 GET /api/assessments/:id/submissions - Received request for assessment submissions
-Assessment ID: 67ff7c71f99127555644727a
+Assessment ID: 67ffa2e10c396187618e731d
 Query params: [Object: null prototype] { email: '1' }
 Test details count: 4
-Found 7 submissions for assessment 67ff7c71f99127555644727a
-Found 7 submissions for assessment 67ff7c71f99127555644727a
+Found 1 submissions for assessment 67ffa2e10c396187618e731d
+Found 1 submissions for assessment 67ffa2e10c396187618e731d
 Formatted submissions: [
   {
-    _id: new ObjectId('67ff7d00f991275556447575'),
+    _id: new ObjectId('67ffa384c98eb2a763f031a5'),
     user: {
-      _id: new ObjectId('67ff243f8228ee23f6a72e4c'),
+      _id: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
       email: '2',
-      name: '2'
+      name: 'Test Assessee 1'
     },
-    submittedAt: 2025-04-16T09:48:48.345Z,
+    submittedAt: 2025-04-16T12:33:08.700Z,
     status: 'completed',
-    testCasesPassed: 4,
-    totalTestCases: 8,
+    testCasesPassed: 2,
+    totalTestCases: 4,
     percentageScore: 50
-  },
-  {
-    _id: new ObjectId('67ff7d5ef991275556447860'),
-    user: {
-      _id: new ObjectId('67ff24f78228ee23f6a72ead'),
-      email: '3',
-      name: '3'
-    },
-    submittedAt: 2025-04-16T09:50:22.122Z,
-    status: 'completed',
-    testCasesPassed: 3,
-    totalTestCases: 3,
-    percentageScore: 100
-  },
-  {
-    _id: new ObjectId('67ff7f955c5cb4964fec4e07'),
-    user: {
-      _id: new ObjectId('67ff24ff8228ee23f6a72ec8'),
-      email: '4',
-      name: '4'
-    },
-    submittedAt: 2025-04-16T09:59:49.743Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff8224174cf383761bf32e'),
-    user: {
-      _id: new ObjectId('67ff81ae174cf383761bef7d'),
-      email: '5',
-      name: '5'
-    },
-    submittedAt: 2025-04-16T10:10:44.218Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff84859f10d3cef2f531db'),
-    user: {
-      _id: new ObjectId('67ff84469f10d3cef2f52f5d'),
-      email: '6',
-      name: '6'
-    },
-    submittedAt: 2025-04-16T10:20:53.419Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff85b893d5afad9203fc09'),
-    user: {
-      _id: new ObjectId('67ff858793d5afad9203f9c9'),
-      email: '7',
-      name: '7'
-    },
-    submittedAt: 2025-04-16T10:26:00.184Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff8887b31bf97d3a3337ab'),
-    user: {
-      _id: new ObjectId('67ff8815b31bf97d3a3333ed'),
-      email: '8',
-      name: '8'
-    },
-    submittedAt: 2025-04-16T10:37:58.999Z,
-    status: 'completed',
-    testCasesPassed: 11,
-    totalTestCases: 13,
-    percentageScore: 85
   }
 ]
-2025-04-16T12:15:11.824Z - GET /api/assessments/67ff7c71f99127555644727a/submissions?email=1
+2025-04-16T12:33:19.130Z - GET /api/assessments/67ffa2e10c396187618e731d/submissions?email=1
 GET /api/assessments/:id/submissions - Received request
-Request params: [Object: null prototype] { id: '67ff7c71f99127555644727a' }
+Request params: [Object: null prototype] { id: '67ffa2e10c396187618e731d' }
 Request query: [Object: null prototype] { email: '1' }
 Request headers: {
   host: 'localhost:5002',
   connection: 'keep-alive',
   'sec-ch-ua-platform': '"Linux"',
-  authorization: 'Bearer eyJ1c2VySWQiOiI2N2ZmMjJhYjgyMjhlZTIzZjZhNzJlM2UiLCJzZXNzaW9uSWQiOiJtOWp3OXBoeWNheGFldnduZHVnIiwidGltZXN0YW1wIjoxNzQ0ODA1NzA5MTkzfQ==',
+  authorization: 'Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eDA2M3Fpa2hnaDZqY20iLCJ0aW1lc3RhbXAiOjE3NDQ4MDY3OTYxMTF9',
   'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
   'sec-ch-ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
   'content-type': 'application/json',
-  'x-session-id': 'm9jw9phycaxaevwndug',
+  'x-session-id': 'm9jwx063qikhgh6jcm',
   'sec-ch-ua-mobile': '?0',
   accept: '*/*',
   origin: 'http://localhost:5173',
@@ -537,110 +986,255 @@ Request headers: {
   referer: 'http://localhost:5173/',
   'accept-encoding': 'gzip, deflate, br, zstd',
   'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-  'if-none-match': 'W/"616-Xbqh3wDgJW/I4seQQ8gLDes+7PI"'
+  'if-none-match': 'W/"ed-pt+5CpP8T/+AxY5KYpJrDB/obi0"'
 }
 GET /api/assessments/:id/submissions - Received request for assessment submissions
-Assessment ID: 67ff7c71f99127555644727a
+Assessment ID: 67ffa2e10c396187618e731d
 Query params: [Object: null prototype] { email: '1' }
-Found 7 submissions for assessment 67ff7c71f99127555644727a
-Found 7 submissions for assessment 67ff7c71f99127555644727a
+Found 1 submissions for assessment 67ffa2e10c396187618e731d
+Found 1 submissions for assessment 67ffa2e10c396187618e731d
 Formatted submissions: [
   {
-    _id: new ObjectId('67ff7d00f991275556447575'),
+    _id: new ObjectId('67ffa384c98eb2a763f031a5'),
     user: {
-      _id: new ObjectId('67ff243f8228ee23f6a72e4c'),
+      _id: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
       email: '2',
-      name: '2'
+      name: 'Test Assessee 1'
     },
-    submittedAt: 2025-04-16T09:48:48.345Z,
+    submittedAt: 2025-04-16T12:33:08.700Z,
     status: 'completed',
-    testCasesPassed: 4,
-    totalTestCases: 8,
+    testCasesPassed: 2,
+    totalTestCases: 4,
     percentageScore: 50
-  },
-  {
-    _id: new ObjectId('67ff7d5ef991275556447860'),
-    user: {
-      _id: new ObjectId('67ff24f78228ee23f6a72ead'),
-      email: '3',
-      name: '3'
-    },
-    submittedAt: 2025-04-16T09:50:22.122Z,
-    status: 'completed',
-    testCasesPassed: 3,
-    totalTestCases: 3,
-    percentageScore: 100
-  },
-  {
-    _id: new ObjectId('67ff7f955c5cb4964fec4e07'),
-    user: {
-      _id: new ObjectId('67ff24ff8228ee23f6a72ec8'),
-      email: '4',
-      name: '4'
-    },
-    submittedAt: 2025-04-16T09:59:49.743Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff8224174cf383761bf32e'),
-    user: {
-      _id: new ObjectId('67ff81ae174cf383761bef7d'),
-      email: '5',
-      name: '5'
-    },
-    submittedAt: 2025-04-16T10:10:44.218Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff84859f10d3cef2f531db'),
-    user: {
-      _id: new ObjectId('67ff84469f10d3cef2f52f5d'),
-      email: '6',
-      name: '6'
-    },
-    submittedAt: 2025-04-16T10:20:53.419Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff85b893d5afad9203fc09'),
-    user: {
-      _id: new ObjectId('67ff858793d5afad9203f9c9'),
-      email: '7',
-      name: '7'
-    },
-    submittedAt: 2025-04-16T10:26:00.184Z,
-    status: 'completed',
-    testCasesPassed: 5,
-    totalTestCases: 7,
-    percentageScore: 71
-  },
-  {
-    _id: new ObjectId('67ff8887b31bf97d3a3337ab'),
-    user: {
-      _id: new ObjectId('67ff8815b31bf97d3a3333ed'),
-      email: '8',
-      name: '8'
-    },
-    submittedAt: 2025-04-16T10:37:58.999Z,
-    status: 'completed',
-    testCasesPassed: 11,
-    totalTestCases: 13,
-    percentageScore: 85
   }
 ]
-2025-04-16T12:15:13.146Z - GET /api/assessments/submissions/67ff7d00f991275556447575?email=1
-Assessment not found with ID: 67ff7d00f991275556447575
-2025-04-16T12:15:13.151Z - GET /api/assessments/submissions/67ff7d00f991275556447575?email=1
-Assessment not found with ID: 67ff7d00f991275556447575
-2025-04-16T12:15:17.715Z - POST /api/auth/logout
-Logout request for session: m9jw9phycaxaevwndug
+2025-04-16T12:33:24.252Z - POST /api/auth/logout
+Logout request for session: m9jwx063qikhgh6jcm
 Session removed successfully
+2025-04-16T12:33:25.632Z - POST /api/auth/login
+Login request body: { email: '2', password: '2' }
+Session ID for login: m9jwx7k1cttane588dk
+Found user: 2
+Login successful for user: 2
+2025-04-16T12:33:25.721Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3eDdrMWN0dGFuZTU4OGRrIiwidGltZXN0YW1wIjoxNzQ0ODA2ODA1Njg5fQ==
+Session ID for /me: m9jwx7k1cttane588dk
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3eDdrMWN0dGFuZTU4OGRrIiwidGltZXN0YW1wIjoxNzQ0ODA2ODA1Njg5fQ==
+2025-04-16T12:33:25.724Z - GET /api/assessments/assigned?email=2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3eDdrMWN0dGFuZTU4OGRrIiwidGltZXN0YW1wIjoxNzQ0ODA2ODA1Njg5fQ== Email: 2
+User found: 2 new ObjectId('67ffa18aa926cdc0c0cc1d59')
+Token validation successful, user: 2
+Found 1 assigned assessments for user 2
+2025-04-16T12:33:25.727Z - GET /api/auth/me?email=2
+Auth header for /me: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3eDdrMWN0dGFuZTU4OGRrIiwidGltZXN0YW1wIjoxNzQ0ODA2ODA1Njg5fQ==
+Session ID for /me: m9jwx7k1cttane588dk
+Token for /me: eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3eDdrMWN0dGFuZTU4OGRrIiwidGltZXN0YW1wIjoxNzQ0ODA2ODA1Njg5fQ==
+Found 1 completed submissions for user 2
+Found submission for assessment 67ffa2e10c396187618e731d
+Assessment 67ffa2e10c396187618e731d submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+Token validation successful, user: 2
+2025-04-16T12:33:25.733Z - GET /api/assessments/assigned?email=2
+GET /api/assessments/assigned - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkNTkiLCJzZXNzaW9uSWQiOiJtOWp3eDdrMWN0dGFuZTU4OGRrIiwidGltZXN0YW1wIjoxNzQ0ODA2ODA1Njg5fQ== Email: 2
+User found: 2 new ObjectId('67ffa18aa926cdc0c0cc1d59')
+Found 1 assigned assessments for user 2
+Found 1 completed submissions for user 2
+Found submission for assessment 67ffa2e10c396187618e731d
+Assessment 67ffa2e10c396187618e731d submission status: Submitted
+  - User submission status: Found
+  - Submission record: Found
+  - Assessment submitted flag: False
+2025-04-16T12:33:26.969Z - GET /api/assessments/submissions/67ffa2e10c396187618e731d?email=2
+Found 3 test submissions for assessment 67ffa2e10c396187618e731d
+Filtered to 1 latest test submissions
+2025-04-16T12:33:26.983Z - GET /api/assessments/submissions/67ffa2e10c396187618e731d?email=2
+Found 3 test submissions for assessment 67ffa2e10c396187618e731d
+Filtered to 1 latest test submissions
+2025-04-16T12:33:29.757Z - POST /api/auth/logout
+Logout request for session: m9jwx7k1cttane588dk
+Session removed successfully
+2025-04-16T12:33:31.489Z - POST /api/auth/login
+Login request body: { email: '1', password: '1' }
+Session ID for login: m9jwxc2pvczubuq5tmh
+Found user: 1
+Login successful for user: 1
+2025-04-16T12:33:31.584Z - GET /api/tests/my-tests?email=1
+2025-04-16T12:33:31.588Z - GET /api/tests/my-tests?email=1
+2025-04-16T12:33:32.720Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eGMycHZjenVidXE1dG1oIiwidGltZXN0YW1wIjoxNzQ0ODA2ODExNTQ3fQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67ffa18aa926cdc0c0cc1d33'),
+  name: 'Test Assessor',
+  email: '1',
+  password: '$2b$10$O2bQprmtvAwX8k/6QBp3OuhLg30jLAsMBeR2IPnMcT2U6Cx/st8Gm',
+  role: 'assessor',
+  createdAt: 2025-04-16T12:24:42.597Z,
+  updatedAt: 2025-04-16T12:24:42.597Z,
+  __v: 0
+}
+Found 1 assessments created by user 1
+2025-04-16T12:33:32.726Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eGMycHZjenVidXE1dG1oIiwidGltZXN0YW1wIjoxNzQ0ODA2ODExNTQ3fQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67ffa18aa926cdc0c0cc1d33'),
+  name: 'Test Assessor',
+  email: '1',
+  password: '$2b$10$O2bQprmtvAwX8k/6QBp3OuhLg30jLAsMBeR2IPnMcT2U6Cx/st8Gm',
+  role: 'assessor',
+  createdAt: 2025-04-16T12:24:42.597Z,
+  updatedAt: 2025-04-16T12:24:42.597Z,
+  __v: 0
+}
+Found 1 assessments created by user 1
+2025-04-16T12:33:33.572Z - GET /api/assessments/67ffa2e10c396187618e731d?email=1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eGMycHZjenVidXE1dG1oIiwidGltZXN0YW1wIjoxNzQ0ODA2ODExNTQ3fQ== Email: 1 Assessment ID: 67ffa2e10c396187618e731d
+Assessment found: new ObjectId('67ffa2e10c396187618e731d')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+Test details count: 4
+2025-04-16T12:33:33.583Z - GET /api/assessments/67ffa2e10c396187618e731d?email=1
+GET /api/assessments/:id - Invitation params: { invitationToken: undefined, invitedEmail: undefined }
+GET /api/assessments/:id - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eGMycHZjenVidXE1dG1oIiwidGltZXN0YW1wIjoxNzQ0ODA2ODExNTQ3fQ== Email: 1 Assessment ID: 67ffa2e10c396187618e731d
+Assessment found: new ObjectId('67ffa2e10c396187618e731d')
+User found: 1
+Creator check: { isCreator: true }
+Permission check: { isCreator: true, isPublic: false, isInvited: false }
+2025-04-16T12:33:33.590Z - GET /api/assessments/67ffa2e10c396187618e731d/submissions?email=1
+GET /api/assessments/:id/submissions - Received request
+Request params: [Object: null prototype] { id: '67ffa2e10c396187618e731d' }
+Request query: [Object: null prototype] { email: '1' }
+Request headers: {
+  host: 'localhost:5002',
+  connection: 'keep-alive',
+  'sec-ch-ua-platform': '"Linux"',
+  authorization: 'Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eGMycHZjenVidXE1dG1oIiwidGltZXN0YW1wIjoxNzQ0ODA2ODExNTQ3fQ==',
+  'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
+  'sec-ch-ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
+  'content-type': 'application/json',
+  'x-session-id': 'm9jwxc2pvczubuq5tmh',
+  'sec-ch-ua-mobile': '?0',
+  accept: '*/*',
+  origin: 'http://localhost:5173',
+  'sec-fetch-site': 'same-site',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'http://localhost:5173/',
+  'accept-encoding': 'gzip, deflate, br, zstd',
+  'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+  'if-none-match': 'W/"ed-pt+5CpP8T/+AxY5KYpJrDB/obi0"'
+}
+GET /api/assessments/:id/submissions - Received request for assessment submissions
+Assessment ID: 67ffa2e10c396187618e731d
+Query params: [Object: null prototype] { email: '1' }
+Test details count: 4
+Found 1 submissions for assessment 67ffa2e10c396187618e731d
+Found 1 submissions for assessment 67ffa2e10c396187618e731d
+Formatted submissions: [
+  {
+    _id: new ObjectId('67ffa384c98eb2a763f031a5'),
+    user: {
+      _id: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+      email: '2',
+      name: 'Test Assessee 1'
+    },
+    submittedAt: 2025-04-16T12:33:08.700Z,
+    status: 'completed',
+    testCasesPassed: 2,
+    totalTestCases: 4,
+    percentageScore: 50
+  }
+]
+2025-04-16T12:33:33.607Z - GET /api/assessments/67ffa2e10c396187618e731d/submissions?email=1
+GET /api/assessments/:id/submissions - Received request
+Request params: [Object: null prototype] { id: '67ffa2e10c396187618e731d' }
+Request query: [Object: null prototype] { email: '1' }
+Request headers: {
+  host: 'localhost:5002',
+  connection: 'keep-alive',
+  'sec-ch-ua-platform': '"Linux"',
+  authorization: 'Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eGMycHZjenVidXE1dG1oIiwidGltZXN0YW1wIjoxNzQ0ODA2ODExNTQ3fQ==',
+  'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
+  'sec-ch-ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
+  'content-type': 'application/json',
+  'x-session-id': 'm9jwxc2pvczubuq5tmh',
+  'sec-ch-ua-mobile': '?0',
+  accept: '*/*',
+  origin: 'http://localhost:5173',
+  'sec-fetch-site': 'same-site',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'http://localhost:5173/',
+  'accept-encoding': 'gzip, deflate, br, zstd',
+  'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+  'if-none-match': 'W/"ed-pt+5CpP8T/+AxY5KYpJrDB/obi0"'
+}
+GET /api/assessments/:id/submissions - Received request for assessment submissions
+Assessment ID: 67ffa2e10c396187618e731d
+Query params: [Object: null prototype] { email: '1' }
+Found 1 submissions for assessment 67ffa2e10c396187618e731d
+Found 1 submissions for assessment 67ffa2e10c396187618e731d
+Formatted submissions: [
+  {
+    _id: new ObjectId('67ffa384c98eb2a763f031a5'),
+    user: {
+      _id: new ObjectId('67ffa18aa926cdc0c0cc1d59'),
+      email: '2',
+      name: 'Test Assessee 1'
+    },
+    submittedAt: 2025-04-16T12:33:08.700Z,
+    status: 'completed',
+    testCasesPassed: 2,
+    totalTestCases: 4,
+    percentageScore: 50
+  }
+]
+2025-04-16T12:33:34.788Z - GET /api/assessments/submissions/67ffa384c98eb2a763f031a5?email=1
+Assessment not found with ID: 67ffa384c98eb2a763f031a5
+2025-04-16T12:33:34.791Z - GET /api/assessments/submissions/67ffa384c98eb2a763f031a5?email=1
+Assessment not found with ID: 67ffa384c98eb2a763f031a5
+2025-04-16T12:33:36.578Z - GET /api/tests?email=1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eGMycHZjenVidXE1dG1oIiwidGltZXN0YW1wIjoxNzQ0ODA2ODExNTQ3fQ== Email: 1
+User found: 1
+Returning all tests for assessor
+2025-04-16T12:33:36.584Z - GET /api/tests?email=1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eGMycHZjenVidXE1dG1oIiwidGltZXN0YW1wIjoxNzQ0ODA2ODExNTQ3fQ== Email: 1
+User found: 1
+Returning all tests for assessor
+2025-04-16T12:33:36.992Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eGMycHZjenVidXE1dG1oIiwidGltZXN0YW1wIjoxNzQ0ODA2ODExNTQ3fQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67ffa18aa926cdc0c0cc1d33'),
+  name: 'Test Assessor',
+  email: '1',
+  password: '$2b$10$O2bQprmtvAwX8k/6QBp3OuhLg30jLAsMBeR2IPnMcT2U6Cx/st8Gm',
+  role: 'assessor',
+  createdAt: 2025-04-16T12:24:42.597Z,
+  updatedAt: 2025-04-16T12:24:42.597Z,
+  __v: 0
+}
+Found 1 assessments created by user 1
+2025-04-16T12:33:36.998Z - GET /api/assessments/my-assessments?email=1
+GET /api/assessments/my-assessments - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eGMycHZjenVidXE1dG1oIiwidGltZXN0YW1wIjoxNzQ0ODA2ODExNTQ3fQ== Email: 1
+User found for my assessments: {
+  _id: new ObjectId('67ffa18aa926cdc0c0cc1d33'),
+  name: 'Test Assessor',
+  email: '1',
+  password: '$2b$10$O2bQprmtvAwX8k/6QBp3OuhLg30jLAsMBeR2IPnMcT2U6Cx/st8Gm',
+  role: 'assessor',
+  createdAt: 2025-04-16T12:24:42.597Z,
+  updatedAt: 2025-04-16T12:24:42.597Z,
+  __v: 0
+}
+Found 1 assessments created by user 1
+2025-04-16T12:33:37.908Z - GET /api/tests?email=1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eGMycHZjenVidXE1dG1oIiwidGltZXN0YW1wIjoxNzQ0ODA2ODExNTQ3fQ== Email: 1
+User found: 1
+Returning all tests for assessor
+2025-04-16T12:33:37.913Z - GET /api/tests?email=1
+GET /api/tests - Auth Header: Bearer eyJ1c2VySWQiOiI2N2ZmYTE4YWE5MjZjZGMwYzBjYzFkMzMiLCJzZXNzaW9uSWQiOiJtOWp3eGMycHZjenVidXE1dG1oIiwidGltZXN0YW1wIjoxNzQ0ODA2ODExNTQ3fQ== Email: 1
+User found: 1
+Returning all tests for assessor

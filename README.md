@@ -1,4 +1,4 @@
-# Coding Assessment Platform
+# Alpha Coders
 
 A modern platform for creating, managing, and taking coding assessments. This application allows assessors to create coding tests and assessments, and assessees to take these assessments and submit their solutions.
 

@@ -300,7 +300,7 @@ const LandingPage = () => {
               How It Works
             </Typography>
             <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 700, mx: 'auto' }}>
-              Get started with CodeTest in three simple steps
+              Get started with Alpha Coders in three simple steps
             </Typography>
           </Box>
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Start the Hackerrank Clone application
+# Start the Alpha Coders application
 # This script is device-agnostic and works on Linux, macOS, and Windows (with Git Bash)
 
 # Colors for output
@@ -97,7 +97,7 @@ if command -v docker &> /dev/null; then
 
     # Wait for Docker to start
     print_message "Waiting for Docker to start..." "$YELLOW"
-    MAX_TRIES=15
+    MAX_TRIES=40
     for i in $(seq 1 $MAX_TRIES); do
       sleep 2
       if docker info &>/dev/null; then
@@ -253,7 +253,7 @@ done
 # Create a stop script
 cat > stop-app.sh << 'EOF'
 #!/bin/bash
-echo "Stopping Hackerrank Clone application..."
+echo "Stopping Alpha Coders application..."
 
 # Kill processes by PID if the file exists
 if [ -f app_pids.txt ]; then

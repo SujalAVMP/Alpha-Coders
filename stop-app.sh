@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Stopping Hackerrank Clone application..."
+echo "Stopping Alpha Coders application..."
 
 # Kill processes by PID if the file exists
 if [ -f app_pids.txt ]; then

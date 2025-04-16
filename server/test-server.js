@@ -3708,7 +3708,7 @@ app.get('/api/debug/assessments', async (_req, res) => {
 
 // Default route
 app.get('/', (_req, res) => {
-  res.send('Test Server is running');
+  res.send('Alpha Coders Server is running');
 });
 
 // Build Docker image and start server
@@ -3719,7 +3719,7 @@ buildDockerImage()
   .then(() => {
     // Start server
     app.listen(PORT, () => {
-      console.log(`Test server running on port ${PORT}`);
+      console.log(`Alpha Coders server running on port ${PORT}`);
     });
   })
   .catch(error => {

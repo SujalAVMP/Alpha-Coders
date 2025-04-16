@@ -103,7 +103,7 @@ const Navbar = () => {
     <Box sx={{ width: 250 }} role="presentation">
       <Box sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Typography variant="h6" component={RouterLink} to="/" sx={{ color: 'primary.main', textDecoration: 'none', fontWeight: 700 }}>
-          CodeTest
+          Alpha Coders
         </Typography>
       </Box>
       <Divider />
@@ -199,7 +199,7 @@ const Navbar = () => {
               flexGrow: { xs: 1, md: 0 }
             }}
           >
-            CodeTest
+            Alpha Coders
           </Typography>
 
           {!isMobile && (
