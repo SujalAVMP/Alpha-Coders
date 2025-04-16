@@ -294,15 +294,36 @@ app.get('/api/assessments/:id/submissions', async (req, res) => {
         }
       }
 
+      // Count attempted tests vs total tests in the assessment
+      let attemptedTests = 0;
+      const totalTests = assessment.tests ? assessment.tests.length : 0;
+
+      // If we have test submissions data, count them
+      if (submission.testSubmissions && Array.isArray(submission.testSubmissions) && submission.testSubmissions.length > 0) {
+        // Count unique test IDs in the submissions
+        const uniqueTestIds = new Set();
+        submission.testSubmissions.forEach(testSubmission => {
+          if (testSubmission && testSubmission.test) {
+            uniqueTestIds.add(testSubmission.test.toString());
+          }
+        });
+        attemptedTests = uniqueTestIds.size;
+      }
+
+      // Use the total test cases from the submission
+      const finalTotalTestCases = submission.totalTestCases || 0;
+
       return {
         _id: submission._id,
         user: userInfo,
         submittedAt: submission.submittedAt,
         status: submission.status || 'completed',
         testCasesPassed: submission.testCasesPassed || 0,
-        totalTestCases: submission.totalTestCases || 0,
-        percentageScore: submission.totalTestCases > 0 ?
-          Math.round((submission.testCasesPassed / submission.totalTestCases) * 100) : 0
+        totalTestCases: finalTotalTestCases,
+        percentageScore: finalTotalTestCases > 0 ?
+          Math.round((submission.testCasesPassed / finalTotalTestCases) * 100) : 0,
+        attemptedTests: attemptedTests,
+        totalTests: totalTests
       };
     });
 
@@ -805,9 +826,6 @@ int main() {
   }
 ];
 */
-
-// Mock tests data - empty by default for new users
-const tests = [];
 
 // Mock assessments data - empty by default for new users
 const assessments = [];
@@ -1617,8 +1635,7 @@ app.get('/api/assessments/assigned', async (req, res) => {
 
     console.log('User found:', user.email, user._id);
 
-    // Normalize the user's email for case-insensitive comparison
-    const normalizedUserEmail = user.email.toLowerCase();
+    // User's email is already available in user.email
 
     // Find assessments where the user is invited or that are public
     const assignedAssessments = await Assessment.find({
@@ -3416,23 +3433,70 @@ app.get('/api/assessments/:assessmentId/tests/:testId/attempts', async (req, res
 // Get assessment submission details
 app.get('/api/assessments/submissions/:id', async (req, res) => {
   try {
-    const assessmentId = req.params.id;
+    const submissionId = req.params.id;
     const userEmail = req.query.email;
+
+    console.log('GET /api/assessments/submissions/:id - Submission ID:', submissionId);
+    console.log('User email:', userEmail);
 
     if (!userEmail) {
       return res.status(400).json({ error: 'Email is required' });
     }
 
-    // Find the user
-    const user = await User.findOne({ email: userEmail });
-    if (!user) {
+    // Find the user making the request
+    const requestingUser = await User.findOne({ email: userEmail });
+    console.log('Requesting user found:', requestingUser ? 'Yes' : 'No', requestingUser ? `(${requestingUser._id}, ${requestingUser.role})` : '');
+
+    if (!requestingUser) {
       return res.status(404).json({ error: 'User not found' });
     }
 
     // Check if the ID is a valid MongoDB ObjectId
-    if (!mongoose.Types.ObjectId.isValid(assessmentId) && assessmentId.length !== 24) {
-      console.error('Invalid assessment ID format:', assessmentId);
-      return res.status(400).json({ error: 'Invalid assessment ID format' });
+    if (!mongoose.Types.ObjectId.isValid(submissionId) && submissionId.length !== 24) {
+      console.error('Invalid submission ID format:', submissionId);
+      return res.status(400).json({ error: 'Invalid submission ID format' });
+    }
+
+    // Find the submission
+    console.log('Looking for submission with ID:', submissionId);
+    const submission = await Submission.findById(submissionId);
+    console.log('Submission found:', submission ? 'Yes' : 'No');
+
+    if (!submission) {
+      console.log('Submission not found with ID:', submissionId);
+
+      // Let's try to find if this is an assessment ID instead of a submission ID
+      console.log('Checking if this is an assessment ID...');
+      const assessment = await Assessment.findById(submissionId);
+
+      if (assessment) {
+        console.log('Found assessment with this ID. Looking for a submission for this assessment...');
+
+        // Try to find a submission for this assessment by this user
+        const assessmentSubmission = await Submission.findOne({
+          assessment: submissionId,
+          user: requestingUser._id,
+          isAssessmentSubmission: true
+        });
+
+        if (assessmentSubmission) {
+          console.log('Found assessment submission:', assessmentSubmission._id);
+          // Use this submission instead
+          return res.redirect(`/api/assessments/submissions/${assessmentSubmission._id}?email=${encodeURIComponent(userEmail)}`);
+        } else {
+          console.log('No assessment submission found for this assessment and user');
+        }
+      } else {
+        console.log('Not an assessment ID either');
+      }
+
+      return res.status(404).json({ error: 'Submission not found' });
+    }
+
+    // Get the assessment ID from the submission
+    const assessmentId = submission.assessment;
+    if (!assessmentId) {
+      return res.status(404).json({ error: 'Assessment ID not found in submission' });
     }
 
     // Find the assessment
@@ -3451,27 +3515,33 @@ app.get('/api/assessments/submissions/:id', async (req, res) => {
       console.log('Added _id field based on id:', assessment.id);
     }
 
-    // Check if the assessment has been submitted by this user
-    // Only consider submissions that are specifically marked as assessment submissions
-    const assessmentSubmission = await Submission.findOne({
-      $or: [
-        { user: user._id, assessment: assessmentId, status: 'completed', isAssessmentSubmission: true },
-        { userId: user._id, assessment: assessmentId, status: 'completed', isAssessmentSubmission: true }
-      ]
-    });
-
-    if (!assessmentSubmission) {
-      // If no specific assessment submission is found, create a default response
-      // This allows viewing partial results even if the full assessment wasn't submitted
-      console.log('No completed submission found, checking for any test submissions');
+    // Get the user who made the submission
+    const submittingUser = await User.findById(submission.user);
+    if (!submittingUser) {
+      return res.status(404).json({ error: 'Submitting user not found' });
     }
 
-    // Find all test submissions for this assessment by this user
+    // Check if the requesting user has permission to view this submission
+    // Allow if:
+    // 1) User is viewing their own submission, or
+    // 2) User is an assessor who created the assessment, or
+    // 3) The submission is an assessment submission and the user is the one who submitted it
+    const isOwnSubmission = submittingUser._id.toString() === requestingUser._id.toString();
+    const isAssessorAndCreator = requestingUser.role === 'assessor' &&
+                               assessment.createdBy.toString() === requestingUser._id.toString();
+    const isAssesseeViewingOwnSubmission = submission.isAssessmentSubmission &&
+                                        submission.user.toString() === requestingUser._id.toString();
+
+    if (!isOwnSubmission && !isAssessorAndCreator && !isAssesseeViewingOwnSubmission) {
+      return res.status(403).json({ error: 'You do not have permission to view this submission' });
+    }
+
+    // Find all test submissions for this assessment by the submitting user
     // Exclude assessment-level submissions to prevent duplicates
     const testSubmissions = await Submission.find({
       $or: [
-        { user: user._id, assessment: assessmentId, isAssessmentSubmission: { $ne: true } },
-        { userId: user._id, assessment: assessmentId, isAssessmentSubmission: { $ne: true } }
+        { user: submittingUser._id, assessment: assessmentId, isAssessmentSubmission: { $ne: true } },
+        { userId: submittingUser._id, assessment: assessmentId, isAssessmentSubmission: { $ne: true } }
       ]
     }).populate('test');
 
@@ -3480,42 +3550,44 @@ app.get('/api/assessments/submissions/:id', async (req, res) => {
     // Group submissions by test ID and keep only the latest submission for each test
     const latestSubmissionsByTest = {};
 
-    testSubmissions.forEach(submission => {
-      if (!submission.test) return;
+    testSubmissions.forEach(testSubmission => {
+      if (!testSubmission.test) return;
 
-      const testId = submission.test._id.toString();
+      const testId = testSubmission.test._id.toString();
 
       if (!latestSubmissionsByTest[testId] ||
-          new Date(submission.submittedAt) > new Date(latestSubmissionsByTest[testId].submittedAt)) {
-        latestSubmissionsByTest[testId] = submission;
+          new Date(testSubmission.submittedAt) > new Date(latestSubmissionsByTest[testId].submittedAt)) {
+        latestSubmissionsByTest[testId] = testSubmission;
       }
     });
 
     console.log(`Filtered to ${Object.keys(latestSubmissionsByTest).length} latest test submissions`);
 
     // Create test results for each latest submission
-    const testResults = Object.values(latestSubmissionsByTest).map(submission => {
-      const test = submission.test;
+    const testResults = Object.values(latestSubmissionsByTest).map(testSubmission => {
+      const test = testSubmission.test;
       if (!test) {
-        console.log('Submission missing test reference:', submission._id);
+        console.log('Submission missing test reference:', testSubmission._id);
         return null;
       }
 
       // Calculate score based on test results
-      const testCasesPassed = submission.testCasesPassed || 0;
-      const totalTestCases = submission.totalTestCases || (test.testCases?.length || 1);
-      const score = submission.score || Math.round((testCasesPassed / totalTestCases) * 100);
+      const testCasesPassed = testSubmission.testCasesPassed || 0;
+      const totalTestCases = testSubmission.totalTestCases || (test.testCases?.length || 1);
+      const score = testSubmission.score || Math.round((testCasesPassed / totalTestCases) * 100);
 
       return {
-        id: submission._id,
+        id: testSubmission._id,
         testId: test._id,
         testTitle: test.title,
-        language: submission.language || 'python',
-        submittedAt: submission.submittedAt,
-        status: submission.status || (score >= 70 ? 'Completed' : 'Failed'),
+        language: testSubmission.language || 'python',
+        submittedAt: testSubmission.submittedAt,
+        status: testSubmission.status || (score >= 70 ? 'Completed' : 'Failed'),
         score: score,
         testCasesPassed: testCasesPassed,
-        totalTestCases: totalTestCases
+        totalTestCases: totalTestCases,
+        code: testSubmission.code || '',
+        testResults: testSubmission.testResults || []
       };
     }).filter(result => result !== null);
 
@@ -3551,14 +3623,44 @@ app.get('/api/assessments/submissions/:id', async (req, res) => {
       }
     }
 
+    // Calculate overall score based on all tests in the assessment, whether attempted or not
+    let totalTestCasesPassed = 0;
+    let totalTestCases = 0;
+
+    // First, count test cases from attempted tests
+    testResults.forEach(result => {
+      totalTestCasesPassed += result.testCasesPassed || 0;
+      totalTestCases += result.totalTestCases || 0;
+    });
+
+    // Then, add test cases from unattempted tests
+    allTests.forEach(test => {
+      // Only count test cases from tests that weren't attempted
+      totalTestCases += test.totalTestCases || 0;
+      // No test cases passed for unattempted tests (already 0)
+    });
+
+    const overallScore = totalTestCases > 0 ? Math.round((totalTestCasesPassed / totalTestCases) * 100) : 0;
+
     // Create the submission object
     const submissionDetails = {
-      id: assessmentId,
+      _id: submission._id,
+      id: submission._id,
       assessmentId: assessmentId,
       assessmentTitle: assessment.title,
-      submittedAt: assessmentSubmission ? assessmentSubmission.submittedAt : new Date(),
+      submittedAt: submission.submittedAt || new Date(),
       testResults: testResults,
-      allTests: allTests // Include all tests in the assessment, including unattempted ones
+      allTests: allTests, // Include all tests in the assessment, including unattempted ones
+      overallScore: overallScore,
+      totalTestCasesPassed: totalTestCasesPassed,
+      totalTestCases: totalTestCases,
+      user: {
+        _id: submittingUser._id,
+        name: submittingUser.name,
+        email: submittingUser.email
+      },
+      attemptedTests: testResults.length,
+      totalTests: assessment.tests ? assessment.tests.length : 0
     };
 
     res.json(submissionDetails);

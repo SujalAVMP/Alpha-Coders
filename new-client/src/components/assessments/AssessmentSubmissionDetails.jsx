@@ -115,68 +115,21 @@ const AssessmentSubmissionDetails = () => {
     );
   }
 
-  // Get latest submissions and calculate test case metrics
-  // Include all tests in the assessment, even those that weren't attempted
-  const getTestCaseMetrics = (testResults, allTests) => {
-    if (!testResults || testResults.length === 0) {
-      return { latestSubmissions: {}, totalTestCasesPassed: 0, totalTestCases: 0, overallScore: 0 };
-    }
+  // Use the metrics directly from the submission data if available, or calculate them
+  const totalTestCasesPassed = submission.totalTestCasesPassed !== undefined ?
+    submission.totalTestCasesPassed :
+    submission.testResults?.reduce((sum, result) => sum + (result.testCasesPassed || 0), 0) || 0;
 
-    // Group submissions by testId and get the latest submission for each test
-    const latestSubmissions = {};
+  const totalTestCases = submission.totalTestCases !== undefined ?
+    submission.totalTestCases :
+    submission.testResults?.reduce((sum, result) => sum + (result.totalTestCases || 0), 0) || 0;
 
-    // Track all test IDs in the assessment
-    const allTestIds = new Set();
+  const overallScore = submission.overallScore !== undefined ?
+    submission.overallScore :
+    (totalTestCases > 0 ? Math.round((totalTestCasesPassed / totalTestCases) * 100) : 0);
 
-    // First, collect all test IDs from the results
-    testResults.forEach(result => {
-      if (result.testId) {
-        allTestIds.add(result.testId);
-      }
-    });
-
-    // Get the latest submission for each test
-    testResults.forEach(result => {
-      const testId = result.testId;
-      if (testId && (!latestSubmissions[testId] ||
-          new Date(result.submittedAt) > new Date(latestSubmissions[testId].submittedAt))) {
-        latestSubmissions[testId] = result;
-      }
-    });
-
-    // Calculate total test cases passed and total test cases across all latest submissions
-    let totalTestCasesPassed = 0;
-    let totalTestCases = 0;
-
-    // Count test cases from attempted tests
-    Object.values(latestSubmissions).forEach(submission => {
-      totalTestCasesPassed += submission.testCasesPassed || 0;
-      totalTestCases += submission.totalTestCases || 0;
-    });
-
-    // Add test cases from unattempted tests
-    // We need to check if there are any tests in the assessment that weren't attempted
-    // This information should be available in the allTests parameter
-    if (allTests && Array.isArray(allTests)) {
-      allTests.forEach(test => {
-        // Only consider tests that weren't attempted
-        if (test.testId && !latestSubmissions[test.testId] && test.totalTestCases) {
-          totalTestCases += test.totalTestCases;
-          // No test cases passed for unattempted tests
-        }
-      });
-    }
-
-    const overallScore = totalTestCases > 0 ? Math.round((totalTestCasesPassed / totalTestCases) * 100) : 0;
-
-    return { latestSubmissions, totalTestCasesPassed, totalTestCases, overallScore };
-  };
-
-  // Extract all tests from the submission data
-  const allTests = submission.allTests || [];
-
-  // Calculate metrics including unattempted tests
-  const { totalTestCasesPassed, totalTestCases, overallScore } = getTestCaseMetrics(submission.testResults, allTests);
+  // Make sure we have test results to display
+  const testResults = submission.testResults || [];
 
   return (
     <Box sx={{ bgcolor: 'grey.50', minHeight: 'calc(100vh - 64px)' }}>
@@ -293,7 +246,7 @@ const AssessmentSubmissionDetails = () => {
         </Typography>
 
         <Grid container spacing={3}>
-          {submission.testResults.map((testResult, index) => (
+          {testResults.map((testResult, index) => (
             <Grid item xs={12} key={index}>
               <Card
                 elevation={2}

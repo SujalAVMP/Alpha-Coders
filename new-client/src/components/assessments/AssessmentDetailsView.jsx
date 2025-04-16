@@ -395,7 +395,12 @@ const AssessmentDetailsView = () => {
                         />
                       </TableCell>
                       <TableCell>
-                        {submission.testCasesPassed}/{submission.totalTestCases} ({submission.percentageScore}%)
+                        {submission.testCasesPassed}/{submission.totalTestCases} ({submission.percentageScore || Math.round((submission.testCasesPassed / submission.totalTestCases) * 100)}%)
+                        {submission.attemptedTests && submission.totalTests && (
+                          <Typography variant="caption" display="block" color="text.secondary">
+                            {submission.attemptedTests}/{submission.totalTests} problems attempted
+                          </Typography>
+                        )}
                       </TableCell>
                       <TableCell>
                         <Button

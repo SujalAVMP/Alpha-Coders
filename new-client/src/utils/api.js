@@ -276,7 +276,26 @@ export const getAssessmentSubmissionById = (id) => {
     return Promise.reject(new Error('Invalid assessment submission ID'));
   }
   console.log('Fetching assessment submission with ID:', id);
-  return fetchAPI(`/assessments/submissions/${id}?email=${encodeURIComponent(sessionStorage.getItem('userEmail') || '')}`);
+
+  // Get user email from session storage
+  const userEmail = sessionStorage.getItem('userEmail') || '';
+  console.log('User email for submission request:', userEmail);
+
+  return fetchAPI(`/assessments/submissions/${id}?email=${encodeURIComponent(userEmail)}`)
+    .then(response => {
+      console.log('Assessment submission data received:', response);
+
+      // Calculate percentage score if not provided
+      if (response && response.totalTestCasesPassed !== undefined && response.totalTestCases !== undefined) {
+        response.percentageScore = Math.round((response.totalTestCasesPassed / response.totalTestCases) * 100);
+      }
+
+      return response;
+    })
+    .catch(error => {
+      console.error(`Error fetching assessment submission ${id}:`, error);
+      throw error;
+    });
 };
 
 export const getAssessmentSubmissions = (assessmentId) => {
