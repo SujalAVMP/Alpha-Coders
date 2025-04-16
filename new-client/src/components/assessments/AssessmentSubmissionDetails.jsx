@@ -115,10 +115,38 @@ const AssessmentSubmissionDetails = () => {
     );
   }
 
-  // Calculate overall score
-  const totalTests = submission.testResults.length;
-  const passedTests = submission.testResults.filter(test => test.status === 'Completed' || test.status === 'Accepted').length;
-  const overallScore = Math.round((passedTests / totalTests) * 100);
+  // Get latest submissions and calculate test case metrics
+  const getTestCaseMetrics = (testResults) => {
+    if (!testResults || testResults.length === 0) {
+      return { latestSubmissions: {}, totalTestCasesPassed: 0, totalTestCases: 0, overallScore: 0 };
+    }
+
+    // Group submissions by testId and get the latest submission for each test
+    const latestSubmissions = {};
+
+    testResults.forEach(result => {
+      const testId = result.testId;
+      if (!latestSubmissions[testId] ||
+          new Date(result.submittedAt) > new Date(latestSubmissions[testId].submittedAt)) {
+        latestSubmissions[testId] = result;
+      }
+    });
+
+    // Calculate total test cases passed and total test cases across all latest submissions
+    let totalTestCasesPassed = 0;
+    let totalTestCases = 0;
+
+    Object.values(latestSubmissions).forEach(submission => {
+      totalTestCasesPassed += submission.testCasesPassed || 0;
+      totalTestCases += submission.totalTestCases || 0;
+    });
+
+    const overallScore = totalTestCases > 0 ? Math.round((totalTestCasesPassed / totalTestCases) * 100) : 0;
+
+    return { latestSubmissions, totalTestCasesPassed, totalTestCases, overallScore };
+  };
+
+  const { totalTestCasesPassed, totalTestCases, overallScore } = getTestCaseMetrics(submission.testResults);
 
   return (
     <Box sx={{ bgcolor: 'grey.50', minHeight: 'calc(100vh - 64px)' }}>
@@ -181,10 +209,10 @@ const AssessmentSubmissionDetails = () => {
                   <Grid item xs={12} sm={6}>
                     <Box sx={{ mb: 2 }}>
                       <Typography variant="body2" color="text.secondary" gutterBottom>
-                        TESTS COMPLETED
+                        TEST CASES PASSED
                       </Typography>
                       <Typography variant="body1" fontWeight={500}>
-                        {passedTests} of {totalTests}
+                        {totalTestCasesPassed} of {totalTestCases}
                       </Typography>
                     </Box>
                   </Grid>
