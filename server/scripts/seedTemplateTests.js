@@ -9,7 +9,7 @@ const standardTemplates = require('../standard-templates');
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/hackerrank_clone', {
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/alpha_coders', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

@@ -761,7 +761,6 @@ router.put('/:id', async (req, res) => {
           title: deletedAssessment.title
         }
       });
-    */
     } catch (deleteError) {
       console.error('Error during deletion process:', deleteError);
       return res.status(500).json({
@@ -775,6 +774,7 @@ router.put('/:id', async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
+*/
 
 // Add a test to an assessment (assessor only, creator only)
 router.post('/:id/tests/:testId', async (req, res) => {
